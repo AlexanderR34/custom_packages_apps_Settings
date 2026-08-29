@@ -173,6 +173,21 @@
             android:fragment="com.android.settings.users.UserSettings"
             settings:controller="com.android.settings.users.MultiUserPreferenceController"/>
 
+        <Preference
+            android:key="icon_manager"
+            android:title="@string/icon_manager_title"
+            android:summary="@string/icon_manager_summary"
+            android:icon="@drawable/ic_steppers">
+            <intent android:action="com.android.settings.action.STATUS_BAR_TUNER" />
+        </Preference>
+
+    </PreferenceCategory>
+
+    <PreferenceCategory
+        android:key="advanced_category"
+        android:title="@string/advanced_apps"
+        android:order="-350"
+        settings:controller="com.android.settings.widget.SystemAdvancedCategoryController">
         <com.android.settings.spa.preference.ComposePreference
             android:key="developer_options"
             android:order="-40"
