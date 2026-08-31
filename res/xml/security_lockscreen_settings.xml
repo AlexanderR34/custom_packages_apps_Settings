@@ -108,7 +108,7 @@
             android:title="@string/doze_always_on_title"
             android:summary="@string/doze_always_on_summary"
             settings:keywords="@string/keywords_always_show_time_info"
-            settings:controller="com.android.settings.display.AmbientDisplayAlwaysOnPreferenceController"
+            settings:controller="com.android.settings.display.AmbientDisplayAlwaysOnPreferenceScreenController"
             settings:userRestriction="no_ambient_display" />
 
         <!-- Modo de tiempo de espera de AOD (Siempre encendido / 10s tras tocar / 5s tras tocar) -->
