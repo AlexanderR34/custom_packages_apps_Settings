@@ -52,6 +52,34 @@
 
     <!-- Category headings in left-pane header menu -->
     <skip />
+    <!-- Bypass Charging / USB Power Delivery Direct Power -->
+    <string name="usb_pd_optimization_title">USB Power Delivery optimization</string>
+    <string name="usb_pd_optimization_summary">Dynamically manages power delivery when connected to a compatible USB Power Delivery charger</string>
+    <string name="app_refresh_rate_title">Per-app refresh rate</string>
+    <string name="app_refresh_rate_summary">Set specific refresh rates (60 Hz, 90 Hz, 120 Hz or Automatic) for each app</string>
+    <string name="app_refresh_rate_category_title">Applications</string>
+    <string name="app_refresh_rate_default">Undefined (Automatic)</string>
+    <string name="show_wifi_standard_icon_title">Show Wi-Fi standard in status bar</string>
+    <string name="show_wifi_standard_icon_summary">Display a number indicator (4, 5, 6, 7) next to the Wi-Fi icon in the status bar</string>
+    <string name="cpu_core_control_title">Processor core control</string>
+    <string name="cpu_core_control_summary">Disable cores to save energy</string>
+    <string name="cpu_core_control_category_title">Dimensity CPU Cores</string>
+    <string name="cpu_core_0_title">Core 0 (Prime)</string>
+    <string name="cpu_core_0_summary">Primary system management core. Locked to prevent system freeze or lag.</string>
+    <string name="cpu_core_0_locked_summary">Primary system core (Locked)</string>
+    <string name="cpu_core_1_title">Core 1 (Efficiency)</string>
+    <string name="cpu_core_2_title">Core 2 (Efficiency)</string>
+    <string name="cpu_core_3_title">Core 3 (Efficiency)</string>
+    <string name="cpu_core_4_title">Core 4 (Performance)</string>
+    <string name="cpu_core_5_title">Core 5 (Performance)</string>
+    <string name="cpu_core_6_title">Core 6 (Performance)</string>
+    <string name="cpu_core_7_title">Core 7 (Performance)</string>
+    <string name="cpu_core_type_prime">Prime (System)</string>
+    <string name="cpu_core_type_efficiency">Efficiency</string>
+    <string name="cpu_core_type_performance">Performance</string>
+    <string name="cpu_core_online_summary">Active (Online)</string>
+    <string name="cpu_core_offline_summary">Disabled (Power Saving)</string>
+
     <!-- Settings main menu category heading. System (Updates, data, accessibility, about phone). [CHAR LIMIT=40] -->
     <string name="header_category_system">System</string>
 
@@ -9000,6 +9028,101 @@
     <!-- Sound: Title for the option managing media volume. [CHAR LIMIT=30] -->
     <string name="media_volume_option_title">Media volume</string>
 
+    <!-- Sound: Title for Volume Boost [CHAR LIMIT=30] -->
+    <string name="volume_boost_title">Volume boost</string>
+    <!-- Sound: Summary for Volume Boost [CHAR LIMIT=NONE] -->
+    <string name="volume_boost_summary">Amplify device volume up to 200% using dynamic processing to prevent distortion</string>
+    <!-- Sound: Format for Volume Boost summary [CHAR LIMIT=30] -->
+    <string name="volume_boost_summary_format">Output level: %1$d%% (Dynamic Processing)</string>
+
+    <!-- Sound: Title for Multi-Audio Focus / Simultaneous Audio Playback [CHAR LIMIT=35] -->
+    <string name="multi_audio_focus_title">Multi audio focus</string>
+    <!-- Sound: Summary for Multi-Audio Focus [CHAR LIMIT=NONE] -->
+    <string name="multi_audio_focus_summary">Allow multiple apps to play audio simultaneously</string>
+
+    <!-- System Blur Control -->
+    <string name="blur_intensity_title">Background blur intensity</string>
+    <string name="blur_intensity_summary">Adjust real-time hardware blur effect intensity across system windows</string>
+    <string name="blur_intensity_summary_format">Blur level: %1$d%%</string>
+    <string name="custom_blur_intensity_title">Background blur intensity</string>
+    <string name="custom_blur_intensity_summary">Adjust real-time hardware blur effect intensity across system windows</string>
+
+    <!-- Navigation Bar Button Layout Inversion -->
+    <string name="button_navigation_layout_category_title">Layout</string>
+    <string name="invert_layout_title">Invert layout</string>
+    <string name="invert_layout_summary">Inverts the layout of the navigation bar and other items, such as the IME switcher</string>
+
+    <!-- Custom System Font Picker -->
+    <string name="custom_font_title">Custom system font</string>
+    <string name="custom_font_summary_default">Default system font (tap to load .ttf / .otf from storage)</string>
+    <string name="custom_font_summary_active">Active custom font: %1$s</string>
+    <string name="custom_font_dialog_title">Custom font settings</string>
+    <string name="custom_font_option_change">Load new font (.ttf / .otf)</string>
+    <string name="custom_font_option_reset">Reset to default system font</string>
+    <string name="custom_font_applied_toast">Custom font applied successfully to all system texts</string>
+    <string name="custom_font_reset_toast">System font reset to default</string>
+    <string name="custom_font_error_toast">Failed to load custom font file</string>
+
+    <!-- Allow App Downgrade & Block Screenshot Detection -->
+    <string name="allow_app_downgrade_title">Allow application downgrade</string>
+    <string name="allow_app_downgrade_summary">Allows installing older versions of applications over newer ones. WARNING: May cause app instability, errors, or data corruption.</string>
+    <string name="block_screenshot_detection_title">Hide screenshot &amp; screen recording detection</string>
+    <string name="block_screenshot_detection_summary">Prevents apps (Messenger, Snapchat, Instagram, Telegram, etc.) from detecting or notifying when you take a screenshot or record the screen</string>
+
+    <!-- Disable FLAG_SECURE & Reboot Prompt -->
+    <string name="disable_flag_secure_title">Ignore FLAG_SECURE protection</string>
+    <string name="disable_flag_secure_summary">Allows taking screenshots and screen recordings in protected apps (banking apps, incognito tabs, DRM content, etc.)</string>
+    <string name="reboot_prompt_title">Restart device?</string>
+    <string name="reboot_prompt_message">System settings have been modified. A device restart is recommended to fully apply framework and kernel modifications.</string>
+    <string name="reboot_prompt_now">Restart now</string>
+    <string name="reboot_prompt_later">Later</string>
+
+    <!-- Colored Notification Icons in Status Bar -->
+    <string name="status_bar_colored_icons_title">Colored status bar notification icons</string>
+    <string name="status_bar_colored_icons_summary">Show notification icons in the status bar using each application\'s original icon colors instead of monochrome white</string>
+
+    <!-- App Lock & Hide -->
+    <string name="app_lock_and_hide_title">App lock &amp; hide</string>
+    <string name="app_lock_and_hide_summary">Protect apps with a security PIN or hide them from the launcher</string>
+    <string name="app_lock_security_pin_title">Security PIN</string>
+    <string name="app_lock_security_pin_summary">No PIN configured for app locking</string>
+    <string name="app_lock_security_pin_configured">Security PIN active and protecting apps</string>
+    <string name="app_lock_set_pin_button">Set PIN</string>
+    <string name="app_lock_change_pin_button">Change PIN</string>
+    <string name="app_lock_search_hint">Search apps…</string>
+    <string name="app_lock_pin_saved">Security PIN saved</string>
+    <string name="app_lock_pin_too_short">PIN must be at least 4 digits</string>
+
+    <!-- Volume Percentage & Call Gain Boost -->
+    <string name="show_volume_percentage_title">Show volume percentage</string>
+    <string name="show_volume_percentage_summary">Display the volume level percentage dynamically on the volume panel slider</string>
+    <string name="volume_boost_call_gain_title">In-call audio gain boost</string>
+    <string name="volume_boost_call_gain_summary">Amplify in-call voice earpiece and speakerphone audio output if call sound is too low</string>
+    <string name="app_cellular_data_restriction_title">Allow mobile data</string>
+    <string name="app_cellular_data_restriction_summary">Allow this app to connect via cellular mobile data networks</string>
+    <string name="app_wifi_data_restriction_title">Allow Wi-Fi</string>
+    <string name="app_wifi_data_restriction_summary">Allow this app to connect via Wi-Fi networks</string>
+    <string name="bluetooth_audio_codec_title">Bluetooth audio codec</string>
+    <string name="disable_scoped_storage_restrictions_title">Bypass system folder restrictions</string>
+    <string name="disable_scoped_storage_restrictions_summary">Allow third-party apps to access restricted system directories such as Android/data, Android/obb, and Download</string>
+    <string name="app_network_isolation_title">Isolate app from network</string>
+    <string name="app_network_isolation_summary">Completely block mobile data and Wi-Fi access so this app believes there is no internet connection</string>
+    <string name="doze_always_on_timeout_title">Always On Display mode</string>
+
+    <!-- Dynamic Lockscreen Wallpaper -->
+    <string name="lockscreen_multi_wallpaper_title">Dynamic lock screen wallpaper</string>
+    <string name="lockscreen_multi_wallpaper_summary">Change lock screen wallpaper every time the screen turns off or on</string>
+    <string name="lockscreen_multi_wallpaper_summary_enabled">%1$d photos configured for screen-on rotation</string>
+    <string name="lockscreen_multi_wallpaper_enable_title">Enable dynamic lock screen</string>
+    <string name="lockscreen_multi_wallpaper_enable_summary">Automatically rotate selected photos on every screen off/on event</string>
+    <string name="lockscreen_multi_wallpaper_category_title">Photos</string>
+    <string name="lockscreen_multi_wallpaper_select_photos">Select photos from Gallery</string>
+    <string name="lockscreen_multi_wallpaper_select_photos_summary">Choose multiple photos to rotate on the lock screen</string>
+    <string name="lockscreen_multi_wallpaper_selected_count">%1$d photos selected</string>
+    <string name="lockscreen_multi_wallpaper_clear_photos">Clear selected photos</string>
+    <string name="lockscreen_multi_wallpaper_saved_toast">%1$d photos saved for lock screen rotation</string>
+    <string name="lockscreen_multi_wallpaper_cleared_toast">Lock screen photos cleared</string>
+
     <!-- Sound: Title for the option managing remote media volume. [CHAR LIMIT=30] -->
     <string name="remote_media_volume_option_title">Google Cast volume</string>
 
@@ -15590,4 +15713,8 @@
     <!-- Search keywords for Human interface device access setting -->
     <string name="keywords_access_hid">hid, human, access, device</string>
     <!-- Access HID end -->
+
+    <!-- Game Space -->
+    <string name="game_space_title">Game Space</string>
+    <string name="game_space_summary">Enhance your gaming experience</string>
 </resources>

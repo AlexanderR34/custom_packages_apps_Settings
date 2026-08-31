@@ -1,3 +1,9 @@
 .idea/
 *.code-workspace
 *.iml
+
+.gradle/
+.idea/
+build/
+*.iml
+

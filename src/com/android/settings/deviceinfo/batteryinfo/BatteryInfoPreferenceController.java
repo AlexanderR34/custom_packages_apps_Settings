@@ -36,8 +36,7 @@ public class BatteryInfoPreferenceController extends BasePreferenceController {
 
     @Override
     public int getAvailabilityStatus() {
-        return mBatterySettingsFeatureProvider.isBatteryInfoEnabled(mContext) ? AVAILABLE
-                : UNSUPPORTED_ON_DEVICE;
+        return AVAILABLE;
     }
 }
 // LINT.ThenChange(BatteryInfoApiScreen.kt)

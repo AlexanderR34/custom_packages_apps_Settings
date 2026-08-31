@@ -52,6 +52,13 @@
             android:title="@string/owner_info_settings_title"
             android:summary="@string/owner_info_settings_summary" />
 
+        <Preference
+            android:key="lockscreen_multi_wallpaper"
+            android:title="@string/lockscreen_multi_wallpaper_title"
+            android:summary="@string/summary_placeholder"
+            android:fragment="com.android.settings.display.LockscreenMultiWallpaperSettings"
+            settings:controller="com.android.settings.display.LockscreenMultiWallpaperPreferenceController" />
+
         <SwitchPreferenceCompat
             android:key="lockscreen_privacy_wallet_switch"
             android:title="@string/lockscreen_privacy_wallet_setting_toggle"
@@ -96,6 +103,23 @@
         settings:controller="com.android.settings.display.AmbientDisplayWhenToShowPreferenceController"
         android:order="1000">
 
+        <com.android.settingslib.RestrictedSwitchPreference
+            android:key="ambient_display_always_on"
+            android:title="@string/doze_always_on_title"
+            android:summary="@string/doze_always_on_summary"
+            settings:keywords="@string/keywords_always_show_time_info"
+            settings:controller="com.android.settings.display.AmbientDisplayAlwaysOnPreferenceController"
+            settings:userRestriction="no_ambient_display" />
+
+        <!-- Modo de tiempo de espera de AOD (Siempre encendido / 10s tras tocar / 5s tras tocar) -->
+        <ListPreference
+            android:key="doze_always_on_timeout_mode"
+            android:title="@string/doze_always_on_timeout_title"
+            android:summary="@string/summary_placeholder"
+            android:entries="@array/doze_always_on_timeout_entries"
+            android:entryValues="@array/doze_always_on_timeout_values"
+            android:defaultValue="0"
+            settings:controller="com.android.settings.display.AodTimeoutPreferenceController" />
         <com.android.settingslib.PrimarySwitchPreference
             android:key="gesture_tap"
             android:title="@string/ambient_display_tap_screen_title"

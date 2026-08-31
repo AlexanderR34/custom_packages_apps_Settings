@@ -1,75 +1,162 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!--
-  Copyright (C) 2019 The Android Open Source Project
-
-  Licensed under the Apache License, Version 2.0 (the "License");
-  you may not use this file except in compliance with the License.
-  You may obtain a copy of the License at
-
-       http://www.apache.org/licenses/LICENSE-2.0
-
-  Unless required by applicable law or agreed to in writing, software
-  distributed under the License is distributed on an "AS IS" BASIS,
-  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-  See the License for the specific language governing permissions and
-  limitations under the License.
-  -->
-
 <PreferenceScreen
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:settings="http://schemas.android.com/apk/res-auto"
-    android:title="@string/firmware_version"
+    android:title="Detalles y especificaciones"
     settings:keywords="@string/keywords_android_version">
 
-    <!-- Android version -->
-    <Preference
-        android:key="os_firmware_version"
-        android:title="@string/firmware_version"
-        android:summary="@string/summary_placeholder"
-        settings:enableCopying="true"
-        settings:searchable="false"
-        settings:controller="com.android.settings.deviceinfo.firmwareversion.FirmwareVersionDetailPreferenceController"/>
+    <com.android.settingslib.widget.LayoutPreference
+        android:key="hyperos_detailed_header"
+        android:layout="@layout/hyperos_detailed_header"
+        settings:controller="com.android.settings.deviceinfo.DivaRamCpuPreferenceController"
+        android:selectable="false" />
 
-    <!-- Security patch -->
     <Preference
-        android:key="security_key"
-        android:title="@string/security_patch"
-        settings:enableCopying="true"
-        settings:controller="com.android.settings.deviceinfo.firmwareversion.SecurityPatchLevelPreferenceController"/>
+        android:key="diva_os_version_detailed"
+        android:title="OS version"
+        android:summary="1.0.2"
+        android:selectable="false" />
 
-    <!-- Mainline module version -->
     <Preference
-        android:key="module_version"
-        android:title="@string/module_version"
-        android:summary="@string/summary_placeholder"
-        settings:enableCopying="true"
-        settings:controller="com.android.settings.deviceinfo.firmwareversion.MainlineModuleVersionPreferenceController"/>
+        android:key="diva_android_version_detailed"
+        android:title="Android version"
+        settings:controller="com.android.settings.deviceinfo.firmwareversion.FirmwareVersionPreferenceController" />
 
-    <!-- Baseband -->
     <Preference
-        android:key="base_band"
-        android:title="@string/baseband_version"
+        android:key="device_model"
+        android:title="Modelo"
         android:summary="@string/summary_placeholder"
-        android:selectable="false"
+        android:fragment="com.android.settings.deviceinfo.hardwareinfo.HardwareInfoFragment"
+        settings:enableCopying="true"
+        settings:controller="com.android.settings.deviceinfo.HardwareInfoPreferenceController"/>
+
+    <Preference
+        android:key="baseband_version"
+        android:title="Version de banda base"
+        android:summary="@string/summary_placeholder"
         settings:enableCopying="true"
         settings:controller="com.android.settings.deviceinfo.firmwareversion.BasebandVersionPreferenceController"/>
 
-    <!-- Kernel -->
     <Preference
         android:key="kernel_version"
-        android:title="@string/kernel_version"
+        android:title="Version del kernel"
         android:summary="@string/summary_placeholder"
-        android:selectable="false"
         settings:enableCopying="true"
         settings:controller="com.android.settings.deviceinfo.firmwareversion.KernelVersionPreferenceController"/>
 
-    <!-- Build -->
-    <Preference
-        android:key="os_build_number"
-        android:title="@string/build_number"
-        android:summary="@string/summary_placeholder"
-        android:selectable="false"
-        settings:enableCopying="true"
-        settings:controller="com.android.settings.deviceinfo.firmwareversion.SimpleBuildNumberPreferenceController"/>
 
+    <PreferenceCategory
+        android:key="basic_info_category"
+        android:selectable="false"
+        android:title="Informacion basica">
+        <com.android.settings.widget.ValidatedEditTextPreference
+            android:key="device_name_detailed"
+            android:title="Nombre del dispositivo"
+            android:summary="@string/summary_placeholder"
+            settings:controller="com.android.settings.deviceinfo.DeviceNamePreferenceController" />
+        <Preference
+            android:key="branded_account"
+            android:title="Cuenta del dispositivo"
+            android:summary="@string/summary_placeholder"
+            settings:controller="com.android.settings.deviceinfo.BrandedAccountPreferenceController"/>
+    </PreferenceCategory>
+
+    <PreferenceCategory
+        android:key="legal_category"
+        android:title="@string/my_device_info_legal_category_title">
+        <Preference
+            android:key="legal_container_detailed"
+            android:title="@string/legal_information"
+            android:fragment="com.android.settings.LegalSettings"/>
+        <Preference
+            android:key="regulatory_info_detailed"
+            android:title="@string/regulatory_labels">
+            <intent android:action="android.settings.SHOW_REGULATORY_INFO"
+                    android:targetPackage="${applicationId}"/>
+        </Preference>
+    </PreferenceCategory>
+
+    <PreferenceCategory
+        android:key="device_detail_category"
+        android:selectable="false"
+        android:title="Detalles del dispositivo">
+        
+        <Preference
+            android:title="@string/radio_info_title"
+            android:key="radio_info_settings">
+            <intent android:action="android.intent.action.MAIN"
+                    android:targetPackage="com.android.phone"
+                    android:targetClass="com.android.phone.settings.RadioInfo" />
+         </Preference>
+
+        <Preference
+            android:key="sim_status"
+            android:title="@string/sim_status_title"
+            settings:keywords="@string/keywords_sim_status"
+            android:summary="@string/summary_placeholder"
+            settings:isPreferenceVisible="@bool/config_show_sim_info"
+            settings:controller="com.android.settings.deviceinfo.simstatus.SimStatusPreferenceController"/>
+
+        <Preference
+            android:key="imei_info"
+            android:title="@string/status_imei"
+            android:summary="@string/summary_placeholder"
+            settings:keywords="@string/keywords_imei_info"
+            settings:enableCopying="true"
+            settings:isPreferenceVisible="@bool/config_show_sim_info"
+            settings:controller="com.android.settings.deviceinfo.imei.ImeiInfoPreferenceController"/>
+            
+        <Preference
+            android:key="battery_info"
+            android:title="@string/battery_info"
+            android:fragment="com.android.settings.deviceinfo.batteryinfo.BatteryInfoFragment"
+            settings:keywords="@string/keywords_battery_info"
+            settings:controller="com.android.settings.deviceinfo.batteryinfo.BatteryInfoPreferenceController"/>
+    </PreferenceCategory>
+
+    <PreferenceCategory
+        android:key="device_identifiers_category"
+        android:title="Identificadores del dispositivo">
+        
+        <Preference
+            android:key="wifi_ip_address"
+            android:title="@string/wifi_ip_address"
+            android:summary="@string/summary_placeholder"
+            android:selectable="false"
+            settings:enableCopying="true"/>
+
+        <Preference
+            android:key="saved_accesspoints_wifi_mac_address"
+            android:title="@string/status_wifi_mac_address"
+            android:summary="@string/view_saved_network"
+            android:fragment="com.android.settings.wifi.savedaccesspoints2.SavedAccessPointsWifiSettings2"
+            settings:enableCopying="false"/>
+
+        <Preference
+            android:key="wifi_mac_address"
+            android:title="@string/status_device_wifi_mac_address"
+            android:summary="@string/summary_placeholder"
+            android:selectable="false"
+            settings:enableCopying="true"/>
+
+        <Preference
+            android:key="bt_address"
+            android:title="@string/status_bt_address"
+            android:summary="@string/summary_placeholder"
+            android:selectable="false"
+            settings:enableCopying="true"/>
+
+        <Preference
+            android:key="up_time"
+            android:title="@string/status_up_time"
+            android:summary="@string/summary_placeholder"
+            android:selectable="false"/>
+
+        <Preference
+            android:key="build_number"
+            android:title="@string/build_number"
+            android:summary="@string/summary_placeholder"
+            settings:enableCopying="true"
+            settings:controller="com.android.settings.deviceinfo.BuildNumberPreferenceController"/>
+    </PreferenceCategory>
 </PreferenceScreen>

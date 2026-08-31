@@ -1,0 +1,378 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright (C) 2026 The Android Open Source Project
+
+     Licensed under the Apache License, Version 2.0 (the "License");
+     you may not use this file except in compliance with the License.
+     You may obtain a copy of the License at
+
+          http://www.apache.org/licenses/LICENSE-2.0
+
+     Unless required by applicable law or agreed to in writing, software
+     distributed under the License is distributed on an "AS IS" BASIS,
+     WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+     See the License for the specific language governing permissions and
+     limitations under the License.
+-->
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="12dp">
+
+    <!-- Cluster 1 Card -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:background="@drawable/cpu_card_bg"
+        android:padding="12dp"
+        android:layout_marginBottom="12dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Cortex-A725 · 4 cores (2.0 GHz)"
+            android:textColor="#81C784"
+            android:textStyle="bold"
+            android:textSize="14sp"
+            android:layout_marginBottom="8dp"/>
+
+        <GridLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:columnCount="2"
+            android:alignmentMode="alignBounds">
+
+            <!-- CPU 0 -->
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_columnWeight="1"
+                android:orientation="vertical"
+                android:background="@drawable/cpu_item_bg"
+                android:padding="8dp"
+                android:layout_margin="4dp">
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="CPU 0"
+                        android:textColor="#FFFFFF"
+                        android:textStyle="bold"
+                        android:textSize="12sp"/>
+                    <TextView
+                        android:id="@+id/cpu_0_freq"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentEnd="true"
+                        android:text="300 MHz"
+                        android:textColor="#81C784"
+                        android:textStyle="bold"
+                        android:textSize="12sp"/>
+                </RelativeLayout>
+                <com.android.settings.fuelgauge.CpuSparklineView
+                    android:id="@+id/cpu_0_graph"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:layout_marginTop="4dp"/>
+            </LinearLayout>
+
+            <!-- CPU 1 -->
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_columnWeight="1"
+                android:orientation="vertical"
+                android:background="@drawable/cpu_item_bg"
+                android:padding="8dp"
+                android:layout_margin="4dp">
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="CPU 1"
+                        android:textColor="#FFFFFF"
+                        android:textStyle="bold"
+                        android:textSize="12sp"/>
+                    <TextView
+                        android:id="@+id/cpu_1_freq"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentEnd="true"
+                        android:text="300 MHz"
+                        android:textColor="#81C784"
+                        android:textStyle="bold"
+                        android:textSize="12sp"/>
+                </RelativeLayout>
+                <com.android.settings.fuelgauge.CpuSparklineView
+                    android:id="@+id/cpu_1_graph"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:layout_marginTop="4dp"/>
+            </LinearLayout>
+
+            <!-- CPU 2 -->
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_columnWeight="1"
+                android:orientation="vertical"
+                android:background="@drawable/cpu_item_bg"
+                android:padding="8dp"
+                android:layout_margin="4dp">
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="CPU 2"
+                        android:textColor="#FFFFFF"
+                        android:textStyle="bold"
+                        android:textSize="12sp"/>
+                    <TextView
+                        android:id="@+id/cpu_2_freq"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentEnd="true"
+                        android:text="300 MHz"
+                        android:textColor="#81C784"
+                        android:textStyle="bold"
+                        android:textSize="12sp"/>
+                </RelativeLayout>
+                <com.android.settings.fuelgauge.CpuSparklineView
+                    android:id="@+id/cpu_2_graph"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:layout_marginTop="4dp"/>
+            </LinearLayout>
+
+            <!-- CPU 3 -->
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_columnWeight="1"
+                android:orientation="vertical"
+                android:background="@drawable/cpu_item_bg"
+                android:padding="8dp"
+                android:layout_margin="4dp">
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="CPU 3"
+                        android:textColor="#FFFFFF"
+                        android:textStyle="bold"
+                        android:textSize="12sp"/>
+                    <TextView
+                        android:id="@+id/cpu_3_freq"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentEnd="true"
+                        android:text="300 MHz"
+                        android:textColor="#81C784"
+                        android:textStyle="bold"
+                        android:textSize="12sp"/>
+                </RelativeLayout>
+                <com.android.settings.fuelgauge.CpuSparklineView
+                    android:id="@+id/cpu_3_graph"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:layout_marginTop="4dp"/>
+            </LinearLayout>
+        </GridLayout>
+    </LinearLayout>
+
+    <!-- Cluster 2 Card -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:background="@drawable/cpu_card_bg"
+        android:padding="12dp"
+        android:layout_marginBottom="12dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Cortex-A725 · 3 cores (3.0 GHz)"
+            android:textColor="#DCE775"
+            android:textStyle="bold"
+            android:textSize="14sp"
+            android:layout_marginBottom="8dp"/>
+
+        <GridLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:columnCount="2"
+            android:alignmentMode="alignBounds">
+
+            <!-- CPU 4 -->
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_columnWeight="1"
+                android:orientation="vertical"
+                android:background="@drawable/cpu_item_bg"
+                android:padding="8dp"
+                android:layout_margin="4dp">
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="CPU 4"
+                        android:textColor="#FFFFFF"
+                        android:textStyle="bold"
+                        android:textSize="12sp"/>
+                    <TextView
+                        android:id="@+id/cpu_4_freq"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentEnd="true"
+                        android:text="400 MHz"
+                        android:textColor="#DCE775"
+                        android:textStyle="bold"
+                        android:textSize="12sp"/>
+                </RelativeLayout>
+                <com.android.settings.fuelgauge.CpuSparklineView
+                    android:id="@+id/cpu_4_graph"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:layout_marginTop="4dp"/>
+            </LinearLayout>
+
+            <!-- CPU 5 -->
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_columnWeight="1"
+                android:orientation="vertical"
+                android:background="@drawable/cpu_item_bg"
+                android:padding="8dp"
+                android:layout_margin="4dp">
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="CPU 5"
+                        android:textColor="#FFFFFF"
+                        android:textStyle="bold"
+                        android:textSize="12sp"/>
+                    <TextView
+                        android:id="@+id/cpu_5_freq"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentEnd="true"
+                        android:text="400 MHz"
+                        android:textColor="#DCE775"
+                        android:textStyle="bold"
+                        android:textSize="12sp"/>
+                </RelativeLayout>
+                <com.android.settings.fuelgauge.CpuSparklineView
+                    android:id="@+id/cpu_5_graph"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:layout_marginTop="4dp"/>
+            </LinearLayout>
+
+            <!-- CPU 6 -->
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_columnWeight="1"
+                android:orientation="vertical"
+                android:background="@drawable/cpu_item_bg"
+                android:padding="8dp"
+                android:layout_margin="4dp">
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="CPU 6"
+                        android:textColor="#FFFFFF"
+                        android:textStyle="bold"
+                        android:textSize="12sp"/>
+                    <TextView
+                        android:id="@+id/cpu_6_freq"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentEnd="true"
+                        android:text="400 MHz"
+                        android:textColor="#DCE775"
+                        android:textStyle="bold"
+                        android:textSize="12sp"/>
+                </RelativeLayout>
+                <com.android.settings.fuelgauge.CpuSparklineView
+                    android:id="@+id/cpu_6_graph"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:layout_marginTop="4dp"/>
+            </LinearLayout>
+        </GridLayout>
+    </LinearLayout>
+
+    <!-- Cluster 3 Card -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:background="@drawable/cpu_card_bg"
+        android:padding="12dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Cortex-A725 · 1 core (3.25 GHz Prime)"
+            android:textColor="#FFB74D"
+            android:textStyle="bold"
+            android:textSize="14sp"
+            android:layout_marginBottom="8dp"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:background="@drawable/cpu_item_bg"
+            android:padding="8dp"
+            android:layout_margin="4dp">
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="CPU 7"
+                    android:textColor="#FFFFFF"
+                    android:textStyle="bold"
+                    android:textSize="12sp"/>
+                <TextView
+                    android:id="@+id/cpu_7_freq"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:text="2400 MHz"
+                    android:textColor="#FFB74D"
+                    android:textStyle="bold"
+                    android:textSize="12sp"/>
+            </RelativeLayout>
+            <com.android.settings.fuelgauge.CpuSparklineView
+                android:id="@+id/cpu_7_graph"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_marginTop="4dp"/>
+        </LinearLayout>
+    </LinearLayout>
+</LinearLayout>

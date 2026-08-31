@@ -111,6 +111,7 @@ import com.android.settings.display.ColorContrastFragment;
 import com.android.settings.display.NightDisplaySettings;
 import com.android.settings.display.ScreenTimeoutSettings;
 import com.android.settings.display.RefreshRateSettings;
+import com.android.settings.display.AppRefreshRateFragment;
 import com.android.settings.display.SmartAutoRotatePreferenceFragment;
 import com.android.settings.display.darkmode.DarkModeSettingsFragment;
 import com.android.settings.dream.DreamSettings;
@@ -233,6 +234,7 @@ public class SettingsGateway {
      * security exception if the fragment it needs to display is not in this list.
      */
     public static final String[] ENTRY_FRAGMENTS = {
+            com.android.settings.fuelgauge.CpuCoreControlFragment.class.getName(),
             AdvancedConnectedDeviceDashboardFragment.class.getName(),
             CreateShortcut.class.getName(),
             BluetoothPairingDetail.class.getName(),
@@ -365,6 +367,7 @@ public class SettingsGateway {
             ResetDashboardFragment.class.getName(),
             NightDisplaySettings.class.getName(),
             RefreshRateSettings.class.getName(),
+            AppRefreshRateFragment.class.getName(),
             ManageDomainUrls.class.getName(),
             AutomaticStorageManagerSettings.class.getName(),
             StorageDashboardFragment.class.getName(),

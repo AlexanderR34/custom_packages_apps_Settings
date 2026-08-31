@@ -47,6 +47,32 @@
     <string name="preview_pager_email_title" msgid="8767864657910457562">"Correo"</string>
     <string name="preview_pager_previous_button" msgid="607771113300838313">"Vista previa anterior"</string>
     <string name="preview_pager_next_button" msgid="8700907912508927271">"Vista previa siguiente"</string>
+    <string name="usb_pd_optimization_title">Optimización de carga USB-PD</string>
+    <string name="usb_pd_optimization_summary">Gestiona dinámicamente la entrega de energía al conectar un cargador USB Power Delivery compatible</string>
+    <string name="app_refresh_rate_title">Tasa de refresco por aplicación</string>
+    <string name="app_refresh_rate_summary">Configura 60 Hz, 90 Hz, 120 Hz o No definido para cada aplicación</string>
+    <string name="app_refresh_rate_category_title">Aplicaciones</string>
+    <string name="app_refresh_rate_default">No definido (Automático)</string>
+    <string name="show_wifi_standard_icon_title">Mostrar generación Wi-Fi en barra de estado</string>
+    <string name="show_wifi_standard_icon_summary">Muestra un número indicador (4, 5, 6, 7) junto al icono de Wi-Fi en la barra de estado</string>
+    <string name="cpu_core_control_title">Control de núcleos del procesador</string>
+    <string name="cpu_core_control_summary">Desactiva núcleos para ahorrar energía</string>
+    <string name="cpu_core_control_category_title">Núcleos CPU Dimensity</string>
+    <string name="cpu_core_0_title">Núcleo 0 (Principal)</string>
+    <string name="cpu_core_0_summary">Gestión principal del sistema Android. Bloqueado para evitar congelamientos.</string>
+    <string name="cpu_core_0_locked_summary">Núcleo del sistema (Bloqueado)</string>
+    <string name="cpu_core_1_title">Núcleo 1 (Eficiencia)</string>
+    <string name="cpu_core_2_title">Núcleo 2 (Eficiencia)</string>
+    <string name="cpu_core_3_title">Núcleo 3 (Eficiencia)</string>
+    <string name="cpu_core_4_title">Núcleo 4 (Alto Rendimiento)</string>
+    <string name="cpu_core_5_title">Núcleo 5 (Alto Rendimiento)</string>
+    <string name="cpu_core_6_title">Núcleo 6 (Alto Rendimiento)</string>
+    <string name="cpu_core_7_title">Núcleo 7 (Alto Rendimiento)</string>
+    <string name="cpu_core_type_prime">Principal (Sistema)</string>
+    <string name="cpu_core_type_efficiency">Eficiencia</string>
+    <string name="cpu_core_type_performance">Alto Rendimiento</string>
+    <string name="cpu_core_online_summary">Activo (En línea)</string>
+    <string name="cpu_core_offline_summary">Desactivado (Ahorro de energía)</string>
     <string name="font_size_make_smaller_desc" msgid="9149663537989624487">"Reducir tamaño de fuente"</string>
     <string name="font_size_make_larger_desc" msgid="5774611876657293550">"Aumentar tamaño de fuente"</string>
     <string name="stay_awake_on_fold_title" msgid="6590454679898134221">"Siempre"</string>
@@ -3775,6 +3801,80 @@
     <string name="keywords_text_cursor_blink_rate" msgid="7682963763334011148">"cursor de texto, cursor, parpadeo, intervalo de parpadeo, frecuencia de parpadeo, animación, reducir animación, quitar animación"</string>
     <string name="sound_dashboard_summary" msgid="8254699132423665654">"Volumen y vibración"</string>
     <string name="media_volume_option_title" msgid="5966569685119475630">"Volumen multimedia"</string>
+    <string name="volume_boost_title">"Aumento de volumen"</string>
+    <string name="volume_boost_summary">"Aumenta el volumen del dispositivo hasta un 200% utilizando procesamiento dinámico para evitar la distorsión"</string>
+    <string name="volume_boost_summary_format">"Nivel de salida: %1$d%% (Dynamic Processing)"</string>
+    <string name="multi_audio_focus_title">"Enfoque de audio múltiple"</string>
+    <string name="multi_audio_focus_summary">"Permite que varias aplicaciones reproduzcan sonido al mismo tiempo"</string>
+    <string name="blur_intensity_title">"Intensidad de desenfoque"</string>
+    <string name="blur_intensity_summary">"Ajusta la intensidad del efecto de desenfoque de fondo en las ventanas del sistema"</string>
+    <string name="blur_intensity_summary_format">"Nivel de desenfoque: %1$d%%"</string>
+    <string name="custom_blur_intensity_title">"Intensidad de desenfoque"</string>
+    <string name="custom_blur_intensity_summary">"Ajusta la intensidad del efecto de desenfoque de fondo en las ventanas del sistema"</string>
+    <string name="button_navigation_layout_category_title">"Diseño"</string>
+    <string name="invert_layout_title">"Invertir diseño de botones"</string>
+    <string name="invert_layout_summary">"Invierte la posición del botón Atrás y del botón Recientes en la barra de navegación"</string>
+    <string name="custom_font_title">"Fuente del sistema personalizada"</string>
+    <string name="custom_font_summary_default">"Fuente predeterminada del sistema (toca para cargar .ttf / .otf desde el almacenamiento)"</string>
+    <string name="custom_font_summary_active">"Fuente personalizada activa: %1$s"</string>
+    <string name="custom_font_dialog_title">"Ajustes de fuente del sistema"</string>
+    <string name="custom_font_option_change">"Cargar nueva fuente (.ttf / .otf)"</string>
+    <string name="custom_font_option_reset">"Restablecer fuente predeterminada del sistema"</string>
+    <string name="custom_font_applied_toast">"Fuente personalizada aplicada correctamente a todos los textos del sistema"</string>
+    <string name="custom_font_reset_toast">"Fuente del sistema restablecida a la predeterminada"</string>
+    <string name="custom_font_error_toast">"Error al cargar el archivo de fuente personalizada"</string>
+    <string name="allow_app_downgrade_title">"Permitir degradación de aplicaciones"</string>
+    <string name="allow_app_downgrade_summary">"Permite instalar versiones anteriores de las aplicaciones sobre versiones más recientes. ADVERTENCIA: Puede provocar errores, inestabilidad o corrupción de datos en la aplicación instalada."</string>
+    <string name="block_screenshot_detection_title">"Ocultar detección de capturas y grabaciones de pantalla"</string>
+    <string name="block_screenshot_detection_summary">"Evita que las aplicaciones (Messenger, Snapchat, Instagram, Telegram, etc.) detecten o notifiquen cuando tomas una captura o grabas la pantalla"</string>
+    <string name="disable_flag_secure_title">"Ignorar protección FLAG_SECURE"</string>
+    <string name="disable_flag_secure_summary">"Permite realizar capturas de pantalla y grabaciones en aplicaciones protegidas (bancos, pestañas de incógnito, contenido DRM, etc.)"</string>
+    <string name="reboot_prompt_title">"¿Reiniciar dispositivo?"</string>
+    <string name="reboot_prompt_message">"Se han modificado ajustes del sistema. Se recomienda reiniciar el dispositivo para aplicar completamente las modificaciones de la interfaz y del kernel."</string>
+    <string name="reboot_prompt_now">"Reiniciar ahora"</string>
+    <string name="reboot_prompt_later">"Más tarde"</string>
+    <string name="status_bar_colored_icons_title">"Permitir coloreado de iconos en la barra de estado"</string>
+    <string name="status_bar_colored_icons_summary">"Muestra los iconos de notificaciones en la barra de estado con el color original de cada aplicación en lugar de un color blanco plano"</string>
+
+    <!-- Bloqueo y Ocultación de Aplicaciones -->
+    <string name="app_lock_and_hide_title">"Bloqueo y ocultación de aplicaciones"</string>
+    <string name="app_lock_and_hide_summary">"Protege aplicaciones con PIN de seguridad u ocúltalas del lanzador del sistema"</string>
+    <string name="app_lock_security_pin_title">"PIN de seguridad"</string>
+    <string name="app_lock_security_pin_summary">"No hay ningún PIN configurado para bloquear aplicaciones"</string>
+    <string name="app_lock_security_pin_configured">"PIN de seguridad activo y protegiendo aplicaciones"</string>
+    <string name="app_lock_set_pin_button">"Establecer PIN"</string>
+    <string name="app_lock_change_pin_button">"Cambiar PIN"</string>
+    <string name="app_lock_search_hint">"Buscar aplicaciones…"</string>
+    <string name="app_lock_pin_saved">"PIN de seguridad guardado correctamente"</string>
+    <string name="app_lock_pin_too_short">"El PIN debe tener al menos 4 dígitos"</string>
+
+    <!-- Porcentaje de Volumen y Ganancia en Llamadas -->
+    <string name="show_volume_percentage_title">"Mostrar porcentaje de volumen"</string>
+    <string name="show_volume_percentage_summary">"Muestra el porcentaje del nivel de volumen de forma dinámica en el deslizador del panel"</string>
+    <string name="volume_boost_call_gain_title">"Ganancia de audio en llamadas"</string>
+    <string name="volume_boost_call_gain_summary">"Amplifica el sonido de voz del auricular y altavoz durante llamadas si el volumen es demasiado bajo"</string>
+    <string name="app_cellular_data_restriction_title">"Permitir datos móviles"</string>
+    <string name="app_cellular_data_restriction_summary">"Permite a esta aplicación conectarse a través de redes móviles de datos"</string>
+    <string name="app_wifi_data_restriction_title">"Permitir Wi-Fi"</string>
+    <string name="app_wifi_data_restriction_summary">"Permite a esta aplicación conectarse a través de redes Wi-Fi"</string>
+    <string name="bluetooth_audio_codec_title">"Códec de audio Bluetooth"</string>
+    <string name="disable_scoped_storage_restrictions_title">"Permitir acceso a carpetas del sistema"</string>
+    <string name="disable_scoped_storage_restrictions_summary">"Permite que aplicaciones de terceros puedan leer y escribir en carpetas restringidas como Android/data, Android/obb y Download"</string>
+    <string name="app_network_isolation_title">"Aislar aplicación de la red"</string>
+    <string name="app_network_isolation_summary">"Bloquea por completo los datos móviles y Wi-Fi para que esta aplicación crea que no hay conexión a internet"</string>
+    <string name="doze_always_on_timeout_title">"Modo de pantalla siempre activa"</string>
+    <string name="lockscreen_multi_wallpaper_title">"Fondo de pantalla dinámico"</string>
+    <string name="lockscreen_multi_wallpaper_summary">"Cambia el fondo de pantalla de bloqueo cada vez que apagas o enciendes la pantalla"</string>
+    <string name="lockscreen_multi_wallpaper_summary_enabled">"%1$d fotos configuradas para rotación de pantalla"</string>
+    <string name="lockscreen_multi_wallpaper_enable_title">"Activar fondo dinámico de bloqueo"</string>
+    <string name="lockscreen_multi_wallpaper_enable_summary">"Rota automáticamente las fotos seleccionadas en cada encendido/apagado"</string>
+    <string name="lockscreen_multi_wallpaper_category_title">"Fotografías"</string>
+    <string name="lockscreen_multi_wallpaper_select_photos">"Seleccionar fotos de la galería"</string>
+    <string name="lockscreen_multi_wallpaper_select_photos_summary">"Elige varias fotos para rotar en la pantalla de bloqueo"</string>
+    <string name="lockscreen_multi_wallpaper_selected_count">"%1$d fotos seleccionadas"</string>
+    <string name="lockscreen_multi_wallpaper_clear_photos">"Limpiar fotos seleccionadas"</string>
+    <string name="lockscreen_multi_wallpaper_saved_toast">"%1$d fotos guardadas para la pantalla de bloqueo"</string>
+    <string name="lockscreen_multi_wallpaper_cleared_toast">"Fotos de pantalla de bloqueo eliminadas"</string>
     <string name="remote_media_volume_option_title" msgid="7907330631195715350">"Volumen de Google Cast"</string>
     <string name="call_volume_option_title" msgid="1461105986437268924">"Volumen de llamadas"</string>
     <string name="alarm_volume_option_title" msgid="6398641749273697140">"Volumen de alarmas"</string>

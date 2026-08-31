@@ -159,9 +159,37 @@ public class AppDataUsage extends DataUsageBaseFragment implements OnPreferenceC
                     use(AppDataUsageAppSettingsController.class).init(mPackages, userId);
                 }
                 mRestrictBackground = findPreference(KEY_RESTRICT_BACKGROUND);
-                mRestrictBackground.setOnPreferenceChangeListener(this);
+                if (mRestrictBackground != null) mRestrictBackground.setOnPreferenceChangeListener(this);
                 mUnrestrictedData = findPreference(KEY_UNRESTRICTED_DATA);
-                mUnrestrictedData.setOnPreferenceChangeListener(this);
+                if (mUnrestrictedData != null) mUnrestrictedData.setOnPreferenceChangeListener(this);
+            }
+
+            AppCellularDataRestrictionPreferenceController cellularController =
+                    use(AppCellularDataRestrictionPreferenceController.class);
+            if (cellularController != null) {
+                cellularController.setUid(mAppItem.key);
+                Preference pref = findPreference("app_cellular_data_restriction");
+                if (pref != null) {
+                    cellularController.updateState(pref);
+                }
+            }
+            AppWifiDataRestrictionPreferenceController wifiController =
+                    use(AppWifiDataRestrictionPreferenceController.class);
+            if (wifiController != null) {
+                wifiController.setUid(mAppItem.key);
+                Preference pref = findPreference("app_wifi_data_restriction");
+                if (pref != null) {
+                    wifiController.updateState(pref);
+                }
+            }
+            AppNetworkIsolationPreferenceController isolationController =
+                    use(AppNetworkIsolationPreferenceController.class);
+            if (isolationController != null) {
+                isolationController.setUid(mAppItem.key);
+                Preference pref = findPreference("app_network_isolation_switch");
+                if (pref != null) {
+                    isolationController.updateState(pref);
+                }
             }
             mDataSaverBackend = new DataSaverBackend(mContext);
 

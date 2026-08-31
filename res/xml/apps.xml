@@ -132,6 +132,15 @@
                    android:value="com.android.settings.Settings$UserAspectRatioAppListActivity"/>
             <intent android:action="android.settings.MANAGE_USER_ASPECT_RATIO_SETTINGS"/>
         </Preference>
+
+        <!-- Bloqueo y ocultación de aplicaciones -->
+        <Preference
+            android:key="app_lock_and_hide"
+            android:title="@string/app_lock_and_hide_title"
+            android:summary="@string/app_lock_and_hide_summary"
+            android:icon="@drawable/ic_app_lock_closed"
+            android:order="30"
+            android:fragment="com.android.settings.applock.AppLockSettingsFragment" />
     </PreferenceCategory>
 
 </PreferenceScreen>

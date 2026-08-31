@@ -36,6 +36,7 @@ public class BatteryInfoFragment extends DashboardFragment {
     private static final String KEY_BATTERY_INFO_FOOTER = "battery_info_footer";
 
     private FooterPreference mFooterPreference;
+    private android.content.BroadcastReceiver mBatteryReceiver;
 
     @Override
     public int getMetricsCategory() {
@@ -51,13 +52,38 @@ public class BatteryInfoFragment extends DashboardFragment {
     public void onCreate(Bundle icicle) {
         super.onCreate(icicle);
         mFooterPreference = findPreference(KEY_BATTERY_INFO_FOOTER);
+        
+        mBatteryReceiver = new android.content.BroadcastReceiver() {
+            @Override
+            public void onReceive(Context context, android.content.Intent intent) {
+                updatePreferenceStates();
+            }
+        };
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        if (getContext() != null) {
+            getContext().registerReceiver(mBatteryReceiver, 
+                    new android.content.IntentFilter(android.content.Intent.ACTION_BATTERY_CHANGED));
+        }
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        if (getContext() != null) {
+            getContext().unregisterReceiver(mBatteryReceiver);
+        }
     }
 
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        mFooterPreference.setVisible(
-                getContext().getResources().getBoolean(R.bool.config_show_battery_cycle_count));
+        if (mFooterPreference != null) {
+            mFooterPreference.setVisible(true);
+        }
     }
 
     @Override

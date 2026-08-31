@@ -18,7 +18,12 @@ package com.android.settings.wifi;
 import static com.android.settingslib.wifi.WifiUtils.getHotspotIconResource;
 
 import android.content.Context;
-import android.content.res.Resources;
+import android.content.res.TypedArray;
+import android.graphics.Canvas;
+import android.graphics.ColorFilter;
+import android.graphics.Paint;
+import android.graphics.Rect;
+import android.graphics.Typeface;
 import android.graphics.drawable.Drawable;
 import android.os.UserManager;
 import android.text.TextUtils;
@@ -184,7 +189,17 @@ public class WifiEntryPreference extends RestrictedPreference implements
      * Updates the title and summary; may indirectly call notifyChanged().
      */
     public void refresh() {
-        setTitle(mWifiEntry.getTitle());
+        CharSequence rawTitle = mWifiEntry.getTitle();
+        String titleStr = rawTitle != null ? rawTitle.toString() : "";
+        int pos = titleStr.indexOf(" [(");
+        if (pos != -1) {
+            titleStr = titleStr.substring(0, pos);
+        }
+        pos = titleStr.indexOf(" [");
+        if (pos != -1) {
+            titleStr = titleStr.substring(0, pos);
+        }
+        setTitle(titleStr);
         if (mWifiEntry instanceof HotspotNetworkEntry) {
             updateHotspotIcon(((HotspotNetworkEntry) mWifiEntry).getDeviceType());
         } else {
@@ -193,7 +208,24 @@ public class WifiEntryPreference extends RestrictedPreference implements
             updateIcon(mShowX, mLevel);
         }
 
-        setSummary(mWifiEntry.getSummary(false /* concise */));
+        CharSequence summary = mWifiEntry.getSummary(false /* concise */);
+        if (summary != null) {
+            String summaryStr = summary.toString();
+            int debugPos = summaryStr.indexOf(" / f = ");
+            if (debugPos != -1) {
+                summaryStr = summaryStr.substring(0, debugPos);
+            }
+            debugPos = summaryStr.indexOf(" [;(");
+            if (debugPos != -1) {
+                summaryStr = summaryStr.substring(0, debugPos);
+            }
+            debugPos = summaryStr.indexOf(" [{");
+            if (debugPos != -1) {
+                summaryStr = summaryStr.substring(0, debugPos);
+            }
+            summary = summaryStr;
+        }
+        setSummary(summary);
         mContentDescription = buildContentDescription();
     }
 
@@ -242,9 +274,11 @@ public class WifiEntryPreference extends RestrictedPreference implements
 
     private void setIconWithTint(Drawable drawable) {
         if (drawable != null) {
-            // Must use Drawable#setTintList() instead of Drawable#setTint() to show the grey
-            // icon when the preference is disabled.
             drawable.setTintList(Utils.getColorAttr(getContext(), getIconColorAttr()));
+            String standard = mWifiEntry != null ? mWifiEntry.getStandardString() : null;
+            if (!TextUtils.isEmpty(standard) && (standard.contains("4") || standard.contains("5") || standard.contains("6") || standard.contains("7"))) {
+                drawable = new WifiStandardDrawable(getContext(), drawable, standard);
+            }
             setIcon(drawable);
         } else {
             setIcon(null);
@@ -336,5 +370,66 @@ public class WifiEntryPreference extends RestrictedPreference implements
             // Do nothing
         }
         return buttonIcon;
+    }
+
+    private static class WifiStandardDrawable extends Drawable {
+        private final Drawable mBaseIcon;
+        private final String mText;
+        private final Paint mTextPaint;
+
+        WifiStandardDrawable(Context context, Drawable baseIcon, String standard) {
+            mBaseIcon = baseIcon;
+            if (standard.contains("4")) mText = "4";
+            else if (standard.contains("5")) mText = "5";
+            else if (standard.contains("6")) mText = "6";
+            else if (standard.contains("7")) mText = "7";
+            else mText = null;
+
+            float density = context.getResources().getDisplayMetrics().density;
+
+            mTextPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
+            mTextPaint.setColor(Utils.getColorAttrDefaultColor(context, android.R.attr.colorAccent));
+            mTextPaint.setTextSize(10 * density);
+            mTextPaint.setTypeface(Typeface.create("google-sans", Typeface.BOLD));
+            mTextPaint.setTextAlign(Paint.Align.RIGHT);
+        }
+
+        @Override
+        public void draw(@NonNull Canvas canvas) {
+            Rect bounds = getBounds();
+            mBaseIcon.setBounds(bounds);
+            mBaseIcon.draw(canvas);
+
+            if (mText != null) {
+                float x = bounds.right;
+                float y = bounds.top + (bounds.height() * 0.35f);
+                canvas.drawText(mText, x, y, mTextPaint);
+            }
+        }
+
+        @Override
+        public void setAlpha(int alpha) {
+            mBaseIcon.setAlpha(alpha);
+        }
+
+        @Override
+        public void setColorFilter(@Nullable ColorFilter colorFilter) {
+            mBaseIcon.setColorFilter(colorFilter);
+        }
+
+        @Override
+        public int getOpacity() {
+            return mBaseIcon.getOpacity();
+        }
+
+        @Override
+        public int getIntrinsicWidth() {
+            return mBaseIcon.getIntrinsicWidth();
+        }
+
+        @Override
+        public int getIntrinsicHeight() {
+            return mBaseIcon.getIntrinsicHeight();
+        }
     }
 }

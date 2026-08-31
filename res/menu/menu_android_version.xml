@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/action_easter_egg"
+        android:title="Huevo de Pascua de Android" />
+    <item
+        android:id="@+id/action_system_info"
+        android:title="Información extra" />
+</menu>

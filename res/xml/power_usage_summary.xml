@@ -75,6 +75,13 @@
             android:title="@string/battery_percentage"
             android:summary="@string/battery_percentage_description"
             settings:controller="com.android.settings.display.BatteryPercentagePreferenceController" />
+
+        <SwitchPreferenceCompat
+            android:key="usb_pd_optimization"
+            android:title="@string/usb_pd_optimization_title"
+            android:summary="@string/usb_pd_optimization_summary"
+            android:defaultValue="true"
+            settings:controller="com.android.settings.fuelgauge.UsbPdOptimizationPreferenceController" />
     </com.android.settingslib.widget.UntitledPreferenceCategory>
 
     <Preference
@@ -83,6 +90,12 @@
         android:summary="@string/charging_control_summary"
         android:fragment="com.android.settings.lineage.health.ChargingControlSettings"
         settings:controller="com.android.settings.lineage.health.ChargingControlPreferenceController" />
+
+    <Preference
+        android:key="battery_info"
+        android:title="@string/battery_info"
+        android:fragment="com.android.settings.deviceinfo.batteryinfo.BatteryInfoFragment"
+        settings:controller="com.android.settings.deviceinfo.batteryinfo.BatteryInfoPreferenceController" />
 
     <!-- Charging speed -->
     <ListPreference

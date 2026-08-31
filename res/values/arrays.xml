@@ -29,6 +29,19 @@
         <item>30 minutes</item>
     </string-array>
 
+    <!-- Always On Display timeout preferences -->
+    <string-array name="doze_always_on_timeout_entries">
+        <item>Always on</item>
+        <item>Show for 10 seconds after tapping</item>
+        <item>Show for 5 seconds after tapping</item>
+    </string-array>
+
+    <string-array name="doze_always_on_timeout_values" translatable="false">
+        <item>0</item>
+        <item>10</item>
+        <item>5</item>
+    </string-array>
+
     <!-- Do not translate. -->
     <string-array name="screen_timeout_values" translatable="false">
         <!-- Do not translate. -->

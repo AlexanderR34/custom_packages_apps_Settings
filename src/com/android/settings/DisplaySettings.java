@@ -69,6 +69,16 @@ public class DisplaySettings extends DashboardFragment {
     }
 
     @Override
+    public void onActivityResult(int requestCode, int resultCode, android.content.Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        com.android.settings.display.CustomFontPreferenceController fontController =
+                use(com.android.settings.display.CustomFontPreferenceController.class);
+        if (fontController != null) {
+            fontController.handleActivityResult(requestCode, resultCode, data);
+        }
+    }
+
+    @Override
     protected List<AbstractPreferenceController> createPreferenceControllers(Context context) {
         final List<AbstractPreferenceController> controllers =
                 buildPreferenceControllers(context, getSettingsLifecycle());

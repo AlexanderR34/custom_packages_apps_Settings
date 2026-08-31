@@ -41,8 +41,20 @@ public class BatteryDesignCapacityPreferenceController extends BasePreferenceCon
     @Override
     public CharSequence getSummary() {
         Intent batteryIntent = BatteryUtils.getBatteryIntent(mContext);
-        final int designCapacityUah =
-                batteryIntent.getIntExtra(BatteryManager.EXTRA_DESIGN_CAPACITY, -1);
+        int designCapacityUah =
+                batteryIntent != null ? batteryIntent.getIntExtra(BatteryManager.EXTRA_DESIGN_CAPACITY, -1) : -1;
+
+        if (designCapacityUah <= 0) {
+            try {
+                com.android.internal.os.PowerProfile powerProfile = new com.android.internal.os.PowerProfile(mContext);
+                double capacityMah = powerProfile.getBatteryCapacity();
+                if (capacityMah > 0) {
+                    designCapacityUah = (int) (capacityMah * 1_000);
+                }
+            } catch (Exception e) {
+                // Ignore if PowerProfile not available
+            }
+        }
 
         if (designCapacityUah > 0) {
             int designCapacity = designCapacityUah / 1_000;

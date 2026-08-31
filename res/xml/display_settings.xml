@@ -277,5 +277,35 @@
             android:key="vr_display_pref"
             android:title="@string/display_vr_pref_title"
             android:fragment="com.android.settings.display.VrDisplayPreferencePicker"/>
+
+        <Preference
+        android:key="custom_screen_resolution_pref"
+        android:title="@string/custom_screen_resolution_title"
+        android:fragment="com.android.settings.display.CustomScreenResolutionFragment"
+        settings:controller="com.android.settings.display.CustomScreenResolutionPreferenceController" />
+
+        <com.android.settings.display.BlurSeekBarPreference
+            android:key="custom_blur_intensity"
+            android:title="@string/custom_blur_intensity_title"
+            android:summary="@string/custom_blur_intensity_summary"
+            settings:controller="com.android.settings.display.CustomBlurPreferenceController"
+            android:defaultValue="50"
+            android:max="100"
+            settings:min="0" />
+
+        <!-- Coloreado de Iconos de Notificaciones en Barra de Estado -->
+        <SwitchPreferenceCompat
+            android:key="status_bar_colored_icons"
+            android:title="@string/status_bar_colored_icons_title"
+            android:summary="@string/status_bar_colored_icons_summary"
+            settings:controller="com.android.settings.display.ColoredNotificationIconsPreferenceController" />
+
+        <!-- Tasa de refresco por aplicación -->
+        <Preference
+            android:key="app_refresh_rate"
+            android:title="@string/app_refresh_rate_title"
+            android:summary="@string/app_refresh_rate_summary"
+            android:fragment="com.android.settings.display.AppRefreshRateFragment"
+            settings:controller="com.android.settings.display.AppRefreshRatePreferenceController" />
     </PreferenceCategory>
 </PreferenceScreen>

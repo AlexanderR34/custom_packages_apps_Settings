@@ -1,0 +1,805 @@
+From a3f5e5acdb1921f0360548df030f3c70976e70ba Mon Sep 17 00:00:00 2001
+From: AlexanderR34 <oharol888@gmail.com>
+Date: Mon, 6 Jul 2026 04:47:32 +0000
+Subject: [PATCH] a
+
+Change-Id: I4a04d9180e761f8e9815e0404fed83891d82bd01
+Signed-off-by: AlexanderR34 <oharol888@gmail.com>
+---
+ AndroidManifest.xml                           |   9 +-
+ res/layout/activity_project_diva_info.xml     | 546 ++++++++++++++++++
+ res/menu/menu_android_version.xml             |   9 +
+ res/xml/firmware_version.xml                  |  57 +-
+ .../FirmwareVersionSettings.java              |  95 ++-
+ 5 files changed, 660 insertions(+), 56 deletions(-)
+ create mode 100644 res/layout/activity_project_diva_info.xml
+ create mode 100644 res/menu/menu_android_version.xml
+
+diff --git a/AndroidManifest.xml b/AndroidManifest.xml
+index c87bb3e..e8d6c00 100644
+--- a/AndroidManifest.xml
++++ b/AndroidManifest.xml
+@@ -1963,11 +1963,12 @@
+                        android:value="true" />
+         </activity>
+ 
+-        <activity
++    <activity 
+     android:name=".deviceinfo.ProjectDivaInfoActivity"
+-    android:label="Acerca de Android"
+-    android:theme="@style/Theme.Settings.NoActionBar"
+-    android:exported="false" />
++    android:label="Acerca de Project Diva"
++    android:theme="@style/Theme.SubSettings" 
++    android:exported="true">
++    </activity>
+ 
+         <activity
+             android:name="Settings$ManageApplicationsActivity"
+diff --git a/res/layout/activity_project_diva_info.xml b/res/layout/activity_project_diva_info.xml
+new file mode 100644
+index 0000000..15a564c
+--- /dev/null
++++ b/res/layout/activity_project_diva_info.xml
+@@ -0,0 +1,546 @@
++<?xml version="1.0" encoding="utf-8"?>
++<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
++    xmlns:app="http://schemas.android.com/apk/res-auto"
++    xmlns:tools="http://schemas.android.com/tools"
++    android:id="@+id/main"
++    android:layout_width="match_parent"
++    android:layout_height="match_parent"
++    android:background="#05121B"
++    android:fillViewport="true"
++    android:clipChildren="false"
++    android:clipToPadding="false">
++
++    <LinearLayout
++        android:layout_width="match_parent"
++        android:layout_height="wrap_content"
++        android:orientation="vertical"
++        android:padding="16dp"
++        android:clipChildren="false"
++        android:clipToPadding="false">
++
++        <!-- Logo Section -->
++        <FrameLayout
++            android:layout_width="match_parent"
++            android:layout_height="220dp"
++            android:layout_marginBottom="16dp"
++            android:clipChildren="false"
++            android:clipToPadding="false">
++
++            <View
++                android:id="@+id/glow_view"
++                android:layout_width="500dp"
++                android:layout_height="500dp"
++                android:layout_gravity="center"
++                android:background="@drawable/bg_destello_degradado" />
++
++            <com.google.android.material.card.MaterialCardView
++                android:layout_width="wrap_content"
++                android:layout_height="wrap_content"
++                android:layout_gravity="center"
++                app:cardBackgroundColor="#B30D2738"
++                app:cardCornerRadius="24dp"
++                app:cardElevation="8dp"
++                app:strokeColor="#8033E6FF"
++                app:strokeWidth="1.5dp">
++
++                <ImageView
++                    android:id="@+id/logo_encabezado"
++                    android:layout_width="364dp"
++                    android:layout_height="185dp"
++                    android:adjustViewBounds="true"
++                    android:padding="24dp"
++                    android:scaleType="centerInside"
++                    android:src="@drawable/logo" />
++            </com.google.android.material.card.MaterialCardView>
++        </FrameLayout>
++
++
++
++        <!-- 1. Device -->
++        <com.google.android.material.card.MaterialCardView
++            android:layout_width="match_parent"
++            android:layout_height="wrap_content"
++            android:layout_marginBottom="10dp"
++            app:cardBackgroundColor="#B30D2738"
++            app:cardCornerRadius="16dp"
++            app:cardElevation="0dp"
++            app:strokeColor="#4D33E6FF"
++            app:strokeWidth="1dp">
++            <LinearLayout
++                android:layout_width="match_parent"
++                android:layout_height="wrap_content"
++                android:orientation="horizontal"
++                android:padding="16dp"
++                android:gravity="center_vertical">
++                <ImageView
++                    android:layout_width="24dp"
++                    android:layout_height="24dp"
++                    android:src="@drawable/ic_device"
++                    app:tint="#33E6FF" />
++                <LinearLayout
++                    android:layout_width="match_parent"
++                    android:layout_height="wrap_content"
++                    android:layout_marginStart="16dp"
++                    android:orientation="vertical">
++                    <TextView
++                        android:layout_width="wrap_content"
++                        android:layout_height="wrap_content"
++                        android:text="Dispositivo"
++                        android:textColor="#FFFFFF"
++                        android:textSize="14sp"
++                        android:fontFamily="sans-serif-black" />
++                    <TextView
++                        android:layout_width="wrap_content"
++                        android:layout_height="wrap_content"
++                        android:text="Xiaomi POCO X7 Pro | rodin"
++                        android:textColor="#8A9EA9"
++                        android:textSize="13sp" />
++                </LinearLayout>
++            </LinearLayout>
++        </com.google.android.material.card.MaterialCardView>
++
++        <!-- 2. Android Version -->
++        <com.google.android.material.card.MaterialCardView
++            android:id="@+id/btn_android_version"
++            android:layout_width="match_parent"
++            android:layout_height="wrap_content"
++            android:layout_marginBottom="10dp"
++            android:clickable="true"
++            android:focusable="true"
++            app:cardBackgroundColor="#B30D2738"
++            app:cardCornerRadius="16dp"
++            app:cardElevation="0dp"
++            app:strokeColor="#4D33E6FF"
++            app:strokeWidth="1dp">
++            <LinearLayout
++                android:layout_width="match_parent"
++                android:layout_height="wrap_content"
++                android:orientation="horizontal"
++                android:padding="16dp"
++                android:gravity="center_vertical">
++                <ImageView
++                    android:layout_width="24dp"
++                    android:layout_height="24dp"
++                    android:src="@drawable/ic_android_logo"
++                    app:tint="#33E6FF" />
++                <LinearLayout
++                    android:layout_width="match_parent"
++                    android:layout_height="wrap_content"
++                    android:layout_marginStart="16dp"
++                    android:orientation="vertical">
++                    <TextView
++                        android:layout_width="wrap_content"
++                        android:layout_height="wrap_content"
++                        android:text="Versión de Android"
++                        android:textColor="#FFFFFF"
++                        android:textSize="14sp"
++                        android:fontFamily="sans-serif-black" />
++                    <TextView
++                        android:layout_width="wrap_content"
++                        android:layout_height="wrap_content"
++                        android:text="16"
++                        android:textColor="#8A9EA9"
++                        android:textSize="13sp" />
++                </LinearLayout>
++            </LinearLayout>
++        </com.google.android.material.card.MaterialCardView>
++
++
++
++        <!-- 3. Project Diva Version -->
++        <com.google.android.material.card.MaterialCardView
++            android:layout_width="match_parent"
++            android:layout_height="wrap_content"
++            android:layout_marginBottom="10dp"
++            app:cardBackgroundColor="#B30D2738"
++            app:cardCornerRadius="16dp"
++            app:cardElevation="0dp"
++            app:strokeColor="#4D33E6FF"
++            app:strokeWidth="1dp">
++            <LinearLayout
++                android:layout_width="match_parent"
++                android:layout_height="wrap_content"
++                android:orientation="horizontal"
++                android:padding="16dp"
++                android:gravity="center_vertical">
++                <ImageView
++                    android:layout_width="24dp"
++                    android:layout_height="24dp"
++                    android:src="@drawable/ic_star"
++                    app:tint="#33E6FF" />
++                <LinearLayout
++                    android:layout_width="match_parent"
++                    android:layout_height="wrap_content"
++                    android:layout_marginStart="16dp"
++                    android:orientation="vertical">
++                    <TextView
++                        android:layout_width="wrap_content"
++                        android:layout_height="wrap_content"
++                        android:text="Versión de Project Diva"
++                        android:textColor="#FFFFFF"
++                        android:textSize="14sp"
++                        android:fontFamily="sans-serif-black" />
++                    <TextView
++                        android:layout_width="wrap_content"
++                        android:layout_height="wrap_content"
++                        android:text="1.0 DESTELLO AZUL"
++                        android:textColor="#8A9EA9"
++                        android:textSize="13sp" />
++                </LinearLayout>
++            </LinearLayout>
++        </com.google.android.material.card.MaterialCardView>
++
++        <!-- 4. Maintainer -->
++        <com.google.android.material.card.MaterialCardView
++            android:layout_width="match_parent"
++            android:layout_height="wrap_content"
++            android:layout_marginBottom="10dp"
++            app:cardBackgroundColor="#B30D2738"
++            app:cardCornerRadius="16dp"
++            app:cardElevation="0dp"
++            app:strokeColor="#4D33E6FF"
++            app:strokeWidth="1dp">
++            <LinearLayout
++                android:layout_width="match_parent"
++                android:layout_height="wrap_content"
++                android:orientation="horizontal"
++                android:padding="16dp"
++                android:gravity="center_vertical">
++                <ImageView
++                    android:layout_width="24dp"
++                    android:layout_height="24dp"
++                    android:src="@drawable/ic_person"
++                    app:tint="#33E6FF" />
++                <LinearLayout
++                    android:layout_width="match_parent"
++                    android:layout_height="wrap_content"
++                    android:layout_marginStart="16dp"
++                    android:orientation="vertical">
++                    <TextView
++                        android:layout_width="wrap_content"
++                        android:layout_height="wrap_content"
++                        android:text="Mantenedor del dispositivo"
++                        android:textColor="#FFFFFF"
++                        android:textSize="14sp"
++                        android:fontFamily="sans-serif-black" />
++                    <TextView
++                        android:layout_width="wrap_content"
++                        android:layout_height="wrap_content"
++                        android:text="AlexMainMandy"
++                        android:textColor="#8A9EA9"
++                        android:textSize="13sp" />
++                </LinearLayout>
++            </LinearLayout>
++        </com.google.android.material.card.MaterialCardView>
++
++
++
++        <!-- 5. Android Security Patch -->
++        <com.google.android.material.card.MaterialCardView
++            android:layout_width="match_parent"
++            android:layout_height="wrap_content"
++            android:layout_marginBottom="10dp"
++            app:cardBackgroundColor="#B30D2738"
++            app:cardCornerRadius="16dp"
++            app:cardElevation="0dp"
++            app:strokeColor="#4D33E6FF"
++            app:strokeWidth="1dp">
++            <LinearLayout
++                android:layout_width="match_parent"
++                android:layout_height="wrap_content"
++                android:orientation="horizontal"
++                android:padding="16dp"
++                android:gravity="center_vertical">
++                <ImageView
++                    android:layout_width="24dp"
++                    android:layout_height="24dp"
++                    android:src="@drawable/ic_security"
++                    app:tint="#33E6FF" />
++                <LinearLayout
++                    android:layout_width="match_parent"
++                    android:layout_height="wrap_content"
++                    android:layout_marginStart="16dp"
++                    android:orientation="vertical">
++                    <TextView
++                        android:layout_width="wrap_content"
++                        android:layout_height="wrap_content"
++                        android:text="Actualización de seguridad"
++                        android:textColor="#FFFFFF"
++                        android:textSize="14sp"
++                        android:fontFamily="sans-serif-black" />
++                    <TextView
++                        android:layout_width="wrap_content"
++                        android:layout_height="wrap_content"
++                        android:text="1 de julio de 2026"
++                        android:textColor="#8A9EA9"
++                        android:textSize="13sp" />
++                </LinearLayout>
++            </LinearLayout>
++        </com.google.android.material.card.MaterialCardView>
++
++        <!-- 6. Vendor Security Patch -->
++        <com.google.android.material.card.MaterialCardView
++            android:layout_width="match_parent"
++            android:layout_height="wrap_content"
++            android:layout_marginBottom="10dp"
++            app:cardBackgroundColor="#B30D2738"
++            app:cardCornerRadius="16dp"
++            app:cardElevation="0dp"
++            app:strokeColor="#4D33E6FF"
++            app:strokeWidth="1dp">
++            <LinearLayout
++                android:layout_width="match_parent"
++                android:layout_height="wrap_content"
++                android:orientation="horizontal"
++                android:padding="16dp"
++                android:gravity="center_vertical">
++                <ImageView
++                    android:layout_width="24dp"
++                    android:layout_height="24dp"
++                    android:src="@drawable/ic_verified_user"
++                    app:tint="#33E6FF" />
++                <LinearLayout
++                    android:layout_width="match_parent"
++                    android:layout_height="wrap_content"
++                    android:layout_marginStart="16dp"
++                    android:orientation="vertical">
++                    <TextView
++                        android:layout_width="wrap_content"
++                        android:layout_height="wrap_content"
++                        android:text="Parche de seguridad del proveedor"
++                        android:textColor="#FFFFFF"
++                        android:textSize="14sp"
++                        android:fontFamily="sans-serif-black" />
++                    <TextView
++                        android:layout_width="wrap_content"
++                        android:layout_height="wrap_content"
++                        android:text="1 de mayo de 2026"
++                        android:textColor="#8A9EA9"
++                        android:textSize="13sp" />
++                </LinearLayout>
++            </LinearLayout>
++        </com.google.android.material.card.MaterialCardView>
++
++
++
++        <!-- 7. Google Play System -->
++        <com.google.android.material.card.MaterialCardView
++            android:layout_width="match_parent"
++            android:layout_height="wrap_content"
++            android:layout_marginBottom="10dp"
++            app:cardBackgroundColor="#B30D2738"
++            app:cardCornerRadius="16dp"
++            app:cardElevation="0dp"
++            app:strokeColor="#4D33E6FF"
++            app:strokeWidth="1dp">
++            <LinearLayout
++                android:layout_width="match_parent"
++                android:layout_height="wrap_content"
++                android:orientation="horizontal"
++                android:padding="16dp"
++                android:gravity="center_vertical">
++                <ImageView
++                    android:layout_width="24dp"
++                    android:layout_height="24dp"
++                    android:src="@drawable/ic_play_arrow"
++                    app:tint="#33E6FF" />
++                <LinearLayout
++                    android:layout_width="match_parent"
++                    android:layout_height="wrap_content"
++                    android:layout_marginStart="16dp"
++                    android:orientation="vertical">
++                    <TextView
++                        android:layout_width="wrap_content"
++                        android:layout_height="wrap_content"
++                        android:text="Google Play System"
++                        android:textColor="#FFFFFF"
++                        android:textSize="14sp"
++                        android:fontFamily="sans-serif-black" />
++                    <TextView
++                        android:layout_width="wrap_content"
++                        android:layout_height="wrap_content"
++                        android:text="1 de junio de 2026"
++                        android:textColor="#8A9EA9"
++                        android:textSize="13sp" />
++                </LinearLayout>
++            </LinearLayout>
++        </com.google.android.material.card.MaterialCardView>
++
++        <!-- 8. Baseband Version -->
++        <com.google.android.material.card.MaterialCardView
++            android:layout_width="match_parent"
++            android:layout_height="wrap_content"
++            android:layout_marginBottom="10dp"
++            app:cardBackgroundColor="#B30D2738"
++            app:cardCornerRadius="16dp"
++            app:cardElevation="0dp"
++            app:strokeColor="#4D33E6FF"
++            app:strokeWidth="1dp">
++            <LinearLayout
++                android:layout_width="match_parent"
++                android:layout_height="wrap_content"
++                android:orientation="horizontal"
++                android:padding="16dp"
++                android:gravity="center_vertical">
++                <ImageView
++                    android:layout_width="24dp"
++                    android:layout_height="24dp"
++                    android:src="@drawable/ic_antenna"
++                    app:tint="#33E6FF" />
++                <LinearLayout
++                    android:layout_width="match_parent"
++                    android:layout_height="wrap_content"
++                    android:layout_marginStart="16dp"
++                    android:orientation="vertical">
++                    <TextView
++                        android:layout_width="wrap_content"
++                        android:layout_height="wrap_content"
++                        android:text="Versión de banda base"
++                        android:textColor="#FFFFFF"
++                        android:textSize="14sp"
++                        android:fontFamily="sans-serif-black" />
++                    <TextView
++                        android:layout_width="wrap_content"
++                        android:layout_height="wrap_content"
++                        android:text="MOLY.NR17.R1.MP5.TC8.PR1.SP.V1.P31"
++                        android:textColor="#8A9EA9"
++                        android:textSize="13sp" />
++                </LinearLayout>
++            </LinearLayout>
++        </com.google.android.material.card.MaterialCardView>
++
++
++
++        <!-- 9. Kernel Version -->
++        <com.google.android.material.card.MaterialCardView
++            android:layout_width="match_parent"
++            android:layout_height="wrap_content"
++            android:layout_marginBottom="10dp"
++            app:cardBackgroundColor="#B30D2738"
++            app:cardCornerRadius="16dp"
++            app:cardElevation="0dp"
++            app:strokeColor="#4D33E6FF"
++            app:strokeWidth="1dp">
++            <LinearLayout
++                android:layout_width="match_parent"
++                android:layout_height="wrap_content"
++                android:orientation="horizontal"
++                android:padding="16dp"
++                android:gravity="center_vertical">
++                <ImageView
++                    android:layout_width="24dp"
++                    android:layout_height="24dp"
++                    android:src="@drawable/ic_cpu"
++                    app:tint="#33E6FF" />
++                <LinearLayout
++                    android:layout_width="match_parent"
++                    android:layout_height="wrap_content"
++                    android:layout_marginStart="16dp"
++                    android:orientation="vertical">
++                    <TextView
++                        android:layout_width="wrap_content"
++                        android:layout_height="wrap_content"
++                        android:text="Versión de kernel"
++                        android:textColor="#FFFFFF"
++                        android:textSize="14sp"
++                        android:fontFamily="sans-serif-black" />
++                    <TextView
++                        android:layout_width="wrap_content"
++                        android:layout_height="wrap_content"
++                        android:text="6.6.89-android15-8-g8e4be6b47e40-abklozz"
++                        android:textColor="#8A9EA9"
++                        android:textSize="13sp" />
++                </LinearLayout>
++            </LinearLayout>
++        </com.google.android.material.card.MaterialCardView>
++
++        <!-- 10. Build Date -->
++        <com.google.android.material.card.MaterialCardView
++            android:layout_width="match_parent"
++            android:layout_height="wrap_content"
++            android:layout_marginBottom="10dp"
++            app:cardBackgroundColor="#B30D2738"
++            app:cardCornerRadius="16dp"
++            app:cardElevation="0dp"
++            app:strokeColor="#4D33E6FF"
++            app:strokeWidth="1dp">
++            <LinearLayout
++                android:layout_width="match_parent"
++                android:layout_height="wrap_content"
++                android:orientation="horizontal"
++                android:padding="16dp"
++                android:gravity="center_vertical">
++                <ImageView
++                    android:layout_width="24dp"
++                    android:layout_height="24dp"
++                    android:src="@drawable/ic_event"
++                    app:tint="#33E6FF" />
++                <LinearLayout
++                    android:layout_width="match_parent"
++                    android:layout_height="wrap_content"
++                    android:layout_marginStart="16dp"
++                    android:orientation="vertical">
++                    <TextView
++                        android:layout_width="wrap_content"
++                        android:layout_height="wrap_content"
++                        android:text="Fecha de compilación"
++                        android:textColor="#FFFFFF"
++                        android:textSize="14sp"
++                        android:fontFamily="sans-serif-black" />
++                    <TextView
++                        android:layout_width="wrap_content"
++                        android:layout_height="wrap_content"
++                        android:text="Wed Jul 1 23:35:28 UTC 2026"
++                        android:textColor="#8A9EA9"
++                        android:textSize="13sp" />
++                </LinearLayout>
++            </LinearLayout>
++        </com.google.android.material.card.MaterialCardView>
++
++
++
++        <!-- 11. Build Number -->
++        <com.google.android.material.card.MaterialCardView
++            android:layout_width="match_parent"
++            android:layout_height="wrap_content"
++            android:layout_marginBottom="24dp"
++            app:cardBackgroundColor="#B30D2738"
++            app:cardCornerRadius="16dp"
++            app:cardElevation="0dp"
++            app:strokeColor="#4D33E6FF"
++            app:strokeWidth="1dp">
++            <LinearLayout
++                android:layout_width="match_parent"
++                android:layout_height="wrap_content"
++                android:orientation="horizontal"
++                android:padding="16dp"
++                android:gravity="center_vertical">
++                <ImageView
++                    android:layout_width="24dp"
++                    android:layout_height="24dp"
++                    android:src="@drawable/ic_build"
++                    app:tint="#33E6FF" />
++                <LinearLayout
++                    android:layout_width="match_parent"
++                    android:layout_height="wrap_content"
++                    android:layout_marginStart="16dp"
++                    android:orientation="vertical">
++                    <TextView
++                        android:layout_width="wrap_content"
++                        android:layout_height="wrap_content"
++                        android:text="Número de compilación"
++                        android:textColor="#FFFFFF"
++                        android:textSize="14sp"
++                        android:fontFamily="sans-serif-black" />
++                    <TextView
++                        android:layout_width="wrap_content"
++                        android:layout_height="wrap_content"
++                        android:text="BP4A.251205.oo6 release-keys"
++                        android:textColor="#8A9EA9"
++                        android:textSize="13sp" />
++                </LinearLayout>
++            </LinearLayout>
++        </com.google.android.material.card.MaterialCardView>
++
++    </LinearLayout>
++</ScrollView>
+\ No newline at end of file
+diff --git a/res/menu/menu_android_version.xml b/res/menu/menu_android_version.xml
+new file mode 100644
+index 0000000..136ead1
+--- /dev/null
++++ b/res/menu/menu_android_version.xml
+@@ -0,0 +1,9 @@
++<?xml version="1.0" encoding="utf-8"?>
++<menu xmlns:android="http://schemas.android.com/apk/res/android">
++    <item
++        android:id="@+id/action_easter_egg"
++        android:title="Huevo de pascua de Android" />
++    <item
++        android:id="@+id/action_system_info"
++        android:title="Información detallada del sistema" />
++</menu>
+\ No newline at end of file
+diff --git a/res/xml/firmware_version.xml b/res/xml/firmware_version.xml
+index 41f7733..83c7ff6 100644
+--- a/res/xml/firmware_version.xml
++++ b/res/xml/firmware_version.xml
+@@ -21,55 +21,10 @@
+     android:title="@string/firmware_version"
+     settings:keywords="@string/keywords_android_version">
+ 
+-    <!-- Android version -->
+-    <Preference
+-        android:key="os_firmware_version"
+-        android:title="@string/firmware_version"
+-        android:summary="@string/summary_placeholder"
+-        settings:enableCopying="true"
+-        settings:searchable="false"
+-        settings:controller="com.android.settings.deviceinfo.firmwareversion.FirmwareVersionDetailPreferenceController"/>
++    <!-- Cargamos directamente el diseño customizado de tu alumno -->
++    <com.android.settingslib.widget.LayoutPreference
++        android:key="project_diva_custom_layout"
++        android:layout="@layout/activity_project_diva_info"
++        settings:searchable="false"/>
+ 
+-    <!-- Security patch -->
+-    <Preference
+-        android:key="security_key"
+-        android:title="@string/security_patch"
+-        settings:enableCopying="true"
+-        settings:controller="com.android.settings.deviceinfo.firmwareversion.SecurityPatchLevelPreferenceController"/>
+-
+-    <!-- Mainline module version -->
+-    <Preference
+-        android:key="module_version"
+-        android:title="@string/module_version"
+-        android:summary="@string/summary_placeholder"
+-        settings:enableCopying="true"
+-        settings:controller="com.android.settings.deviceinfo.firmwareversion.MainlineModuleVersionPreferenceController"/>
+-
+-    <!-- Baseband -->
+-    <Preference
+-        android:key="base_band"
+-        android:title="@string/baseband_version"
+-        android:summary="@string/summary_placeholder"
+-        android:selectable="false"
+-        settings:enableCopying="true"
+-        settings:controller="com.android.settings.deviceinfo.firmwareversion.BasebandVersionPreferenceController"/>
+-
+-    <!-- Kernel -->
+-    <Preference
+-        android:key="kernel_version"
+-        android:title="@string/kernel_version"
+-        android:summary="@string/summary_placeholder"
+-        android:selectable="false"
+-        settings:enableCopying="true"
+-        settings:controller="com.android.settings.deviceinfo.firmwareversion.KernelVersionPreferenceController"/>
+-
+-    <!-- Build -->
+-    <Preference
+-        android:key="os_build_number"
+-        android:title="@string/build_number"
+-        android:summary="@string/summary_placeholder"
+-        android:selectable="false"
+-        settings:enableCopying="true"
+-        settings:controller="com.android.settings.deviceinfo.firmwareversion.SimpleBuildNumberPreferenceController"/>
+-
+-</PreferenceScreen>
++</PreferenceScreen>
+\ No newline at end of file
+diff --git a/src/com/android/settings/deviceinfo/firmwareversion/FirmwareVersionSettings.java b/src/com/android/settings/deviceinfo/firmwareversion/FirmwareVersionSettings.java
+index 25efc1e..c3cee53 100644
+--- a/src/com/android/settings/deviceinfo/firmwareversion/FirmwareVersionSettings.java
++++ b/src/com/android/settings/deviceinfo/firmwareversion/FirmwareVersionSettings.java
+@@ -16,8 +16,14 @@
+ 
+ package com.android.settings.deviceinfo.firmwareversion;
+ 
++import android.animation.ValueAnimator;
+ import android.app.settings.SettingsEnums;
+ import android.content.Context;
++import android.content.Intent;
++import android.os.Bundle;
++import android.view.View;
++import android.view.animation.LinearInterpolator;
++import android.widget.PopupMenu;
+ 
+ import androidx.annotation.NonNull;
+ import androidx.annotation.Nullable;
+@@ -27,10 +33,14 @@ import com.android.settings.dashboard.DashboardFragment;
+ import com.android.settings.flags.Flags;
+ import com.android.settings.search.BaseSearchIndexProvider;
+ import com.android.settingslib.search.SearchIndexable;
++import com.android.settingslib.widget.LayoutPreference;
++import com.google.android.material.card.MaterialCardView;
+ 
+ @SearchIndexable
+ public class FirmwareVersionSettings extends DashboardFragment {
+ 
++    private ValueAnimator clock;
++
+     @Override
+     public @Nullable String getPreferenceScreenBindingKey(@NonNull Context context) {
+         return FirmwareVersionScreen.KEY;
+@@ -51,8 +61,91 @@ public class FirmwareVersionSettings extends DashboardFragment {
+         return SettingsEnums.DIALOG_FIRMWARE_VERSION;
+     }
+ 
++    @Override
++    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
++        super.onViewCreated(view, savedInstanceState);
++
++        // Extraemos el contenedor principal usando la Key que pusimos en el XML
++        LayoutPreference customLayoutPref = findPreference("project_diva_custom_layout");
++        if (customLayoutPref != null) {
++            View root = customLayoutPref.findViewById(R.id.main);
++            if (root != null) {
++                // Inicializamos la animación del destello y los clicks usando el root
++                setupAndroidVersionMenu(root);
++                animateGlowRandomly(root);
++            }
++        }
++    }
++
++    private void setupAndroidVersionMenu(View root) {
++        MaterialCardView btnAndroidVersion = root.findViewById(R.id.btn_android_version);
++        if (btnAndroidVersion != null) {
++            btnAndroidVersion.setOnClickListener(view -> {
++                PopupMenu popupMenu = new PopupMenu(getContext(), view);
++                popupMenu.getMenuInflater().inflate(R.menu.menu_android_version, popupMenu.getMenu());
++                
++                popupMenu.setOnMenuItemClickListener(menuItem -> {
++                    if (menuItem.getItemId() == R.id.action_easter_egg) {
++                        // Lanza el Easter Egg (PlatLogoActivity) nativo del sistema
++                        Intent intent = new Intent(Intent.ACTION_MAIN);
++                        intent.setClassName("android", "com.android.internal.app.PlatLogoActivity");
++                        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
++                        try {
++                            startActivity(intent);
++                        } catch (Exception e) {
++                            e.printStackTrace();
++                        }
++                        return true;
++                    } else if (menuItem.getItemId() == R.id.action_system_info) {
++                        // Espacio libre para lógica o diálogos extra de tu alumno
++                        return true;
++                    }
++                    return false;
++                });
++                popupMenu.show();
++            });
++        }
++    }
++
++    private void animateGlowRandomly(View root) {
++        final View glowView = root.findViewById(R.id.glow_view);
++        if (glowView == null) return;
++
++        glowView.post(() -> {
++            clock = ValueAnimator.ofFloat(0f, 1000000f);
++            clock.setDuration(1000000);
++            clock.setRepeatCount(ValueAnimator.INFINITE);
++            clock.setInterpolator(new LinearInterpolator());
++
++            clock.addUpdateListener(animation -> {
++                float t = (float) animation.getAnimatedValue();
++                
++                float x = (float) (350f * Math.sin(t / 1500.0));
++                float y = (float) (250f * Math.cos(t / 2100.0));
++                float scale = (float) (1.2f + 0.3f * Math.sin(t / 2700.0));
++
++                glowView.setTranslationX(x);
++                glowView.setTranslationY(y);
++                glowView.setScaleX(scale);
++                glowView.setScaleY(scale);
++                glowView.setRotation(t / 100f);
++            });
++            
++            clock.start();
++        });
++    }
++
++    @Override
++    public void onDestroyView() {
++        // Frenamos la animación infinitamente repetida al salir para evitar fugas de memoria
++        if (clock != null) {
++            clock.cancel();
++        }
++        super.onDestroyView();
++    }
++
+     public static final BaseSearchIndexProvider SEARCH_INDEX_DATA_PROVIDER =
+             new BaseSearchIndexProvider(
+                     Flags.catalystFirmwareVersion() && Flags.catalystSettingsSearch() ? 0
+                             : R.xml.firmware_version);
+-}
++}
+\ No newline at end of file
+-- 
+2.43.0
+

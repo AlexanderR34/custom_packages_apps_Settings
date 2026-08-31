@@ -29,7 +29,13 @@ import android.sysprop.BluetoothProperties;
 import android.text.TextUtils;
 import android.util.Log;
 
+import android.bluetooth.BluetoothCodecConfig;
+import android.bluetooth.BluetoothCodecType;
+import android.bluetooth.BluetoothLeAudioCodecConfig;
+import android.bluetooth.BluetoothProfile;
+import com.android.settings.development.BluetoothA2dpConfigStore;
 import androidx.annotation.VisibleForTesting;
+import androidx.preference.ListPreference;
 import androidx.preference.Preference;
 import androidx.preference.PreferenceFragmentCompat;
 import androidx.preference.PreferenceGroup;
@@ -565,6 +571,35 @@ public class BluetoothDetailsProfilesController extends BluetoothDetailsControll
             }
         }
 
+        A2dpProfile a2dpProfile = mProfileManager.getA2dpProfile();
+        LeAudioProfile leAudioProfile = mProfileManager.getLeAudioProfile();
+        if (a2dpProfile != null && a2dpProfile.isProfileReady() && a2dpProfile.getConnectionStatus(mCachedDevice.getDevice()) == BluetoothProfile.STATE_CONNECTED) {
+            updateCodecPreference(a2dpProfile);
+        } else if (leAudioProfile != null && leAudioProfile.isProfileReady() && leAudioProfile.getConnectionStatus(mCachedDevice.getDevice()) == BluetoothProfile.STATE_CONNECTED) {
+            updateLeAudioCodecPreference(leAudioProfile);
+        } else {
+            Preference p = mProfilesContainer.findPreference("bluetooth_audio_codec");
+            if (p != null) {
+                mProfilesContainer.removePreference(p);
+            }
+        }
+
+        if (!Flags.enableBluetoothSettingsExpressiveDesign()) {
+            Preference preference = mProfilesContainer.findPreference(KEY_BOTTOM_PREFERENCE);
+            if (preference == null) {
+                preference = new Preference(mContext);
+                if (mHasExtraSpace) {
+                    preference.setLayoutResource(R.layout.preference_bluetooth_profile_category);
+                } else {
+                    preference.setLayoutResource(R.layout.preference_category_bluetooth_no_padding);
+                }
+                preference.setEnabled(false);
+                preference.setKey(KEY_BOTTOM_PREFERENCE);
+                preference.setOrder(ORDINAL);
+                preference.setSelectable(false);
+                mProfilesContainer.addPreference(preference);
+            }
+        }
         Set<String> additionalInvisibleProfiles = mAdditionalInvisibleProfiles.get();
         HashSet<String> combinedInvisibleProfiles = new HashSet<>(mInvisibleProfiles);
         if (additionalInvisibleProfiles != null) {
@@ -584,5 +619,146 @@ public class BluetoothDetailsProfilesController extends BluetoothDetailsControll
     @Override
     public String getPreferenceKey() {
         return KEY_PROFILES_GROUP;
+    }
+
+    private void updateCodecPreference(A2dpProfile a2dp) {
+        BluetoothDevice device = mCachedDevice.getDevice();
+        if (a2dp == null || !a2dp.isProfileReady() || !mCachedDevice.isConnected()) {
+            Preference p = mProfilesContainer.findPreference("bluetooth_audio_codec");
+            if (p != null) {
+                mProfilesContainer.removePreference(p);
+            }
+            return;
+        }
+        List<BluetoothCodecConfig> selectable = a2dp.getSelectableCodecConfigs(device);
+        if (selectable == null || selectable.isEmpty()) {
+            Preference p = mProfilesContainer.findPreference("bluetooth_audio_codec");
+            if (p != null) {
+                mProfilesContainer.removePreference(p);
+            }
+            return;
+        }
+
+        Preference codecPref = mProfilesContainer.findPreference("bluetooth_audio_codec");
+        if (codecPref == null) {
+            codecPref = new Preference(mProfilesContainer.getContext());
+            codecPref.setKey("bluetooth_audio_codec");
+            codecPref.setTitle(R.string.bluetooth_audio_codec_title);
+            codecPref.setOrder(90);
+            codecPref.setSelectable(false);
+            mProfilesContainer.addPreference(codecPref);
+        }
+
+        BluetoothCodecConfig activeConfig = a2dp.getActiveCodecConfig(device);
+        String activeName = activeConfig != null ? getCodecDisplayName(activeConfig) : "AAC";
+        codecPref.setSummary(activeName);
+    }
+
+    private String getCodecDisplayName(BluetoothCodecConfig config) {
+        if (config == null) return "Desconocido";
+        int type = config.getCodecType();
+        switch (type) {
+            case BluetoothCodecConfig.SOURCE_CODEC_TYPE_SBC:
+                return "SBC";
+            case BluetoothCodecConfig.SOURCE_CODEC_TYPE_AAC:
+                return "AAC";
+            case BluetoothCodecConfig.SOURCE_CODEC_TYPE_APTX:
+                return "aptX";
+            case BluetoothCodecConfig.SOURCE_CODEC_TYPE_APTX_HD:
+                return "aptX HD";
+            case BluetoothCodecConfig.SOURCE_CODEC_TYPE_LDAC:
+                return "LDAC";
+            case BluetoothCodecConfig.SOURCE_CODEC_TYPE_LC3:
+                return "LC3";
+            case BluetoothCodecConfig.SOURCE_CODEC_TYPE_OPUS:
+                return "Opus";
+            default:
+                BluetoothCodecType codecType = config.getExtendedCodecType();
+                if (codecType != null && codecType.getCodecName() != null && !codecType.getCodecName().trim().isEmpty()) {
+                    return codecType.getCodecName().trim();
+                }
+                return "Códec (" + type + ")";
+        }
+    }
+
+    private static final int[] SAMPLE_RATES = new int[] {
+            BluetoothCodecConfig.SAMPLE_RATE_192000,
+            BluetoothCodecConfig.SAMPLE_RATE_176400,
+            BluetoothCodecConfig.SAMPLE_RATE_96000,
+            BluetoothCodecConfig.SAMPLE_RATE_88200,
+            BluetoothCodecConfig.SAMPLE_RATE_48000,
+            BluetoothCodecConfig.SAMPLE_RATE_44100
+    };
+
+    private static final int[] BITS_PER_SAMPLES = new int[] {
+            BluetoothCodecConfig.BITS_PER_SAMPLE_32,
+            BluetoothCodecConfig.BITS_PER_SAMPLE_24,
+            BluetoothCodecConfig.BITS_PER_SAMPLE_16
+    };
+
+    private static final int[] CHANNEL_MODES = new int[] {
+            BluetoothCodecConfig.CHANNEL_MODE_STEREO,
+            BluetoothCodecConfig.CHANNEL_MODE_MONO
+    };
+
+    private static int getHighestSampleRate(BluetoothCodecConfig config) {
+        if (config == null) return BluetoothCodecConfig.SAMPLE_RATE_NONE;
+        int cap = config.getSampleRate();
+        for (int rate : SAMPLE_RATES) {
+            if ((cap & rate) != 0) return rate;
+        }
+        return BluetoothCodecConfig.SAMPLE_RATE_NONE;
+    }
+
+    private static int getHighestBitsPerSample(BluetoothCodecConfig config) {
+        if (config == null) return BluetoothCodecConfig.BITS_PER_SAMPLE_NONE;
+        int cap = config.getBitsPerSample();
+        for (int bits : BITS_PER_SAMPLES) {
+            if ((cap & bits) != 0) return bits;
+        }
+        return BluetoothCodecConfig.BITS_PER_SAMPLE_NONE;
+    }
+
+    private static int getHighestChannelMode(BluetoothCodecConfig config) {
+        if (config == null) return BluetoothCodecConfig.CHANNEL_MODE_NONE;
+        int cap = config.getChannelMode();
+        for (int mode : CHANNEL_MODES) {
+            if ((cap & mode) != 0) return mode;
+        }
+        return BluetoothCodecConfig.CHANNEL_MODE_NONE;
+    }
+
+    private void updateLeAudioCodecPreference(LeAudioProfile leAudio) {
+        BluetoothDevice device = mCachedDevice.getDevice();
+        if (leAudio == null || !leAudio.isProfileReady() || !mCachedDevice.isConnected()) {
+            Preference p = mProfilesContainer.findPreference("bluetooth_audio_codec");
+            if (p != null) {
+                mProfilesContainer.removePreference(p);
+            }
+            return;
+        }
+        List<BluetoothLeAudioCodecConfig> selectable = leAudio.getSelectableCodecConfigs(device);
+        if (selectable == null || selectable.isEmpty()) {
+            Preference p = mProfilesContainer.findPreference("bluetooth_audio_codec");
+            if (p != null) {
+                mProfilesContainer.removePreference(p);
+            }
+            return;
+        }
+
+        Preference codecPref = mProfilesContainer.findPreference("bluetooth_audio_codec");
+        if (codecPref == null) {
+            codecPref = new Preference(mProfilesContainer.getContext());
+            codecPref.setKey("bluetooth_audio_codec");
+            codecPref.setTitle(R.string.bluetooth_audio_codec_title);
+            codecPref.setOrder(90);
+            codecPref.setSelectable(false);
+            mProfilesContainer.addPreference(codecPref);
+        }
+
+        BluetoothLeAudioCodecConfig activeConfig = leAudio.getActiveCodecConfig(device);
+        int type = activeConfig != null ? activeConfig.getCodecType() : BluetoothLeAudioCodecConfig.SOURCE_CODEC_TYPE_LC3;
+        String displayName = (type == BluetoothLeAudioCodecConfig.SOURCE_CODEC_TYPE_LC3) ? "LC3" : ("LE Audio (" + type + ")");
+        codecPref.setSummary(displayName);
     }
 }

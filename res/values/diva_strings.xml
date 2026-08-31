@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+    
+    <!-- Custom Screen Resolution Settings -->
+    <string name="custom_screen_resolution_title">Screen resolution</string>
+    <string name="custom_screen_resolution_summary">Change the screen resolution to your liking. The lower the resolution value, the more battery you will save.</string>
+    
+    <string name="custom_screen_resolution_1440p">1440x3200 QHD+ (experimental)</string>
+    <string name="custom_screen_resolution_1220p">1220x2712 WQHD+</string>
+    <string name="custom_screen_resolution_1080p">1080x2400 FHD+</string>
+    <string name="custom_screen_resolution_720p">720x1600 HD+</string>
+
+    <!-- Per-app volume -->
+    <string name="app_volume">App volume</string>
+    <string name="app_volume_title">Per-app volume control</string>
+    <string name="app_volume_summary">Show per-app volume button into volume dialog</string>
+
+    <!-- Custom Blur Intensity -->
+    <string name="custom_blur_intensity_title">Intensidad de densenfoque</string>
+    <string name="custom_blur_intensity_summary">Ajusta el nivel de desenfoque del sistema</string>
+</resources>

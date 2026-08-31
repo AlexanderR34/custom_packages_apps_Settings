@@ -33,8 +33,7 @@
         settings:controller="com.android.settings.datausage.AppDataUsageSummaryController"/>
 
     <com.android.settingslib.widget.UntitledPreferenceCategory
-        android:key="app_data_usage_settings_category"
-        settings:isPreferenceVisible="@bool/config_show_sim_info">
+        android:key="app_data_usage_settings_category">
 
         <Preference
             android:key="app_settings"
@@ -54,6 +53,27 @@
             android:summary="@string/unrestricted_app_summary"
             settings:useAdditionalSummary="true"
             settings:restrictedSwitchSummary="@string/disabled_by_admin" />
+
+        <SwitchPreferenceCompat
+            android:key="app_cellular_data_restriction"
+            android:title="@string/app_cellular_data_restriction_title"
+            android:summary="@string/app_cellular_data_restriction_summary"
+            android:defaultValue="true"
+            settings:controller="com.android.settings.datausage.AppCellularDataRestrictionPreferenceController" />
+
+        <SwitchPreferenceCompat
+            android:key="app_wifi_data_restriction"
+            android:title="@string/app_wifi_data_restriction_title"
+            android:summary="@string/app_wifi_data_restriction_summary"
+            android:defaultValue="true"
+            settings:controller="com.android.settings.datausage.AppWifiDataRestrictionPreferenceController" />
+
+        <SwitchPreferenceCompat
+            android:key="app_network_isolation_switch"
+            android:title="@string/app_network_isolation_title"
+            android:summary="@string/app_network_isolation_summary"
+            android:defaultValue="false"
+            settings:controller="com.android.settings.datausage.AppNetworkIsolationPreferenceController" />
 
     </com.android.settingslib.widget.UntitledPreferenceCategory>
 
