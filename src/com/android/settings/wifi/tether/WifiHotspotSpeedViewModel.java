@@ -86,6 +86,7 @@ public class WifiHotspotSpeedViewModel extends AndroidViewModel {
         Log.d(TAG, "on6gAvailableChanged(), available:" + available);
         boolean isSupported = mWifiHotspotRepository.is6GHzBandSupported();
         mSpeedInfo6g.mIsEnabled = isSupported || available;
+        mSpeedInfo6g.mSummary = getApplication()
                 .getString((isSupported || available) ? RES_SPEED_6G_SUMMARY : RES_SUMMARY_UNAVAILABLE);
 
         boolean showDualBand = mWifiHotspotRepository.isDualBand()
