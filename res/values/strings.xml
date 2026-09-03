@@ -59,6 +59,16 @@
     <string name="app_refresh_rate_summary">Set specific refresh rates (60 Hz, 90 Hz, 120 Hz or Automatic) for each app</string>
     <string name="app_refresh_rate_category_title">Applications</string>
     <string name="app_refresh_rate_default">Undefined (Automatic)</string>
+    <string name="app_orientation_title">Per-app orientation</string>
+    <string name="app_orientation_summary">Force orientation (Portrait, Landscape, Inverted, or Gyroscope sensor) for apps and games</string>
+    <string name="app_orientation_category_title">Applications</string>
+    <string name="app_orientation_default">Not set (Default)</string>
+    <string name="app_orientation_portrait">0° Vertical (Portrait)</string>
+    <string name="app_orientation_landscape">90° Horizontal (Landscape)</string>
+    <string name="app_orientation_reverse_portrait">180° Vertical Inverted</string>
+    <string name="app_orientation_reverse_landscape">270° Landscape Inverted</string>
+    <string name="app_orientation_full_sensor">Auto detection (Gyroscope)</string>
+    <string name="app_orientation_sensor_landscape">Horizontal (Sensor)</string>
     <string name="show_wifi_standard_icon_title">Show Wi-Fi standard in status bar</string>
     <string name="show_wifi_standard_icon_summary">Display a number indicator (4, 5, 6, 7) next to the Wi-Fi icon in the status bar</string>
     <string name="cpu_core_control_title">Processor core control</string>

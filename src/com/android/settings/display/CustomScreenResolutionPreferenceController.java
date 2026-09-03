@@ -26,7 +26,9 @@ public class CustomScreenResolutionPreferenceController extends BasePreferenceCo
     @Override
     public CharSequence getSummary() {
         String currentKey = Settings.System.getString(mContext.getContentResolver(), "custom_screen_resolution_key");
-        if (currentKey == null) currentKey = "res_1220p";
+        if (currentKey == null || currentKey.isEmpty()) {
+            currentKey = "res_1220p";
+        }
 
         switch (currentKey) {
             case "res_1440p": return mContext.getString(R.string.custom_screen_resolution_1440p);

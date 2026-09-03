@@ -5,10 +5,21 @@
     <string name="custom_screen_resolution_title">Screen resolution</string>
     <string name="custom_screen_resolution_summary">Change the screen resolution to your liking. The lower the resolution value, the more battery you will save.</string>
     
-    <string name="custom_screen_resolution_1440p">1440x3200 QHD+ (experimental)</string>
-    <string name="custom_screen_resolution_1220p">1220x2712 WQHD+</string>
-    <string name="custom_screen_resolution_1080p">1080x2400 FHD+</string>
-    <string name="custom_screen_resolution_720p">720x1600 HD+</string>
+    <string name="custom_screen_resolution_1440p">3200x1440 QHD+ (experimental)</string>
+    <string name="custom_screen_resolution_1220p">2712x1220 FHD+ (Stock)</string>
+    <string name="custom_screen_resolution_1080p">2400x1080 FHD+</string>
+    <string name="custom_screen_resolution_720p">1600x720 HD+</string>
+
+    <string name="custom_screen_resolution_headline">Sharper or blurrier images, you decide</string>
+    <string name="custom_screen_resolution_warning">Some apps may close when you change the resolution.</string>
+    <string name="custom_screen_resolution_footer_hint">A low screen resolution can increase screen time, while a higher resolution could decrease it.</string>
+    <string name="custom_screen_resolution_apply">Apply</string>
+    <string name="custom_screen_resolution_applied_toast">Screen resolution updated successfully</string>
+
+    <string name="custom_screen_resolution_desc_720p">HD+ (1600 × 720) • Lower resolution saves maximum battery power and improves gaming smoothness. Visuals will appear softer.</string>
+    <string name="custom_screen_resolution_desc_1080p">FHD+ (2400 × 1080) • Excellent balance between crisp visuals and everyday battery life.</string>
+    <string name="custom_screen_resolution_desc_stock">FHD+ Stock (2712 × 1220) • Native factory panel resolution offering optimal sharpness and display calibration.</string>
+    <string name="custom_screen_resolution_desc_1440p">QHD+ (3200 × 1440) • Ultra sharp experimental resolution for maximum clarity and detail. High battery usage.</string>
 
     <!-- Per-app volume -->
     <string name="app_volume">App volume</string>
@@ -18,4 +29,18 @@
     <!-- Custom Blur Intensity -->
     <string name="custom_blur_intensity_title">Intensidad de densenfoque</string>
     <string name="custom_blur_intensity_summary">Ajusta el nivel de desenfoque del sistema</string>
+
+    <!-- Status Bar Music Island -->
+    <string name="status_bar_music_island_title">Activar isla musical</string>
+    <string name="status_bar_music_island_summary">Un simple atajo para pasar, retroceder o pausar las canciones desde la status bar</string>
+
+    <!-- Custom App Label -->
+    <string name="custom_app_name_title">Nombre personalizado</string>
+    <string name="custom_app_name_hint">Escribe el nuevo nombre</string>
+    <string name="custom_app_name_reset">Restablecer</string>
+    <string name="custom_app_name_saved">Nombre actualizado</string>
+    <string name="custom_app_name_reset_done">Nombre restablecido</string>
+
+    <!-- App Install Time -->
+    <string name="app_install_time_format">Instalada el %1$s a las %2$s</string>
 </resources>

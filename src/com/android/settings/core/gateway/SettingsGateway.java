@@ -112,6 +112,7 @@ import com.android.settings.display.NightDisplaySettings;
 import com.android.settings.display.ScreenTimeoutSettings;
 import com.android.settings.display.RefreshRateSettings;
 import com.android.settings.display.AppRefreshRateFragment;
+import com.android.settings.display.AppOrientationFragment;
 import com.android.settings.display.SmartAutoRotatePreferenceFragment;
 import com.android.settings.display.darkmode.DarkModeSettingsFragment;
 import com.android.settings.dream.DreamSettings;
@@ -368,6 +369,7 @@ public class SettingsGateway {
             NightDisplaySettings.class.getName(),
             RefreshRateSettings.class.getName(),
             AppRefreshRateFragment.class.getName(),
+            AppOrientationFragment.class.getName(),
             ManageDomainUrls.class.getName(),
             AutomaticStorageManagerSettings.class.getName(),
             StorageDashboardFragment.class.getName(),

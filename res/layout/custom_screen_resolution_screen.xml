@@ -1,0 +1,455 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true"
+    android:scrollbars="none"
+    android:overScrollMode="never">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingHorizontal="16dp"
+        android:paddingTop="12dp"
+        android:paddingBottom="24dp">
+
+        <!-- Headline: Sharper or blurrier images, you decide -->
+        <TextView
+            android:id="@+id/text_resolution_header"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/custom_screen_resolution_headline"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:textStyle="bold"
+            android:textSize="20sp"
+            android:gravity="center"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="16dp"
+            android:textColor="?android:attr/textColorPrimary" />
+
+        <!-- Showcase Hero Container: 4 zoom comparison circles -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:background="@drawable/m3_card_container_bg"
+            android:padding="16dp"
+            android:layout_marginBottom="16dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center"
+                android:weightSum="2"
+                android:layout_marginBottom="14dp">
+
+                <!-- HD+ Preview -->
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical"
+                    android:gravity="center">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="HD+"
+                        android:textStyle="bold"
+                        android:textSize="14sp"
+                        android:layout_marginBottom="6dp"
+                        android:textColor="?android:attr/textColorPrimary" />
+
+                    <FrameLayout
+                        android:id="@+id/frame_preview_hd"
+                        android:layout_width="84dp"
+                        android:layout_height="84dp"
+                        android:padding="3dp"
+                        android:background="@drawable/m3_zoom_circle_bg">
+
+                        <ImageView
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:src="@drawable/res_preview_hd"
+                            android:scaleType="centerCrop" />
+                    </FrameLayout>
+                </LinearLayout>
+
+                <!-- FHD+ Preview -->
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical"
+                    android:gravity="center">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="FHD+"
+                        android:textStyle="bold"
+                        android:textSize="14sp"
+                        android:layout_marginBottom="6dp"
+                        android:textColor="?android:attr/textColorPrimary" />
+
+                    <FrameLayout
+                        android:id="@+id/frame_preview_fhd"
+                        android:layout_width="84dp"
+                        android:layout_height="84dp"
+                        android:padding="3dp"
+                        android:background="@drawable/m3_zoom_circle_bg">
+
+                        <ImageView
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:src="@drawable/res_preview_fhd"
+                            android:scaleType="centerCrop" />
+                    </FrameLayout>
+                </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center"
+                android:weightSum="2">
+
+                <!-- FHD+ Stock Preview -->
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical"
+                    android:gravity="center">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="FHD+ STOCK"
+                        android:textStyle="bold"
+                        android:textSize="14sp"
+                        android:layout_marginBottom="6dp"
+                        android:textColor="?android:attr/textColorPrimary" />
+
+                    <FrameLayout
+                        android:id="@+id/frame_preview_stock"
+                        android:layout_width="84dp"
+                        android:layout_height="84dp"
+                        android:padding="3dp"
+                        android:background="@drawable/m3_zoom_circle_active_bg">
+
+                        <ImageView
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:src="@drawable/res_preview_fhd_stock"
+                            android:scaleType="centerCrop" />
+                    </FrameLayout>
+                </LinearLayout>
+
+                <!-- QHD+ Preview -->
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical"
+                    android:gravity="center">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="QHD+"
+                        android:textStyle="bold"
+                        android:textSize="14sp"
+                        android:layout_marginBottom="6dp"
+                        android:textColor="?android:attr/textColorPrimary" />
+
+                    <FrameLayout
+                        android:id="@+id/frame_preview_qhd"
+                        android:layout_width="84dp"
+                        android:layout_height="84dp"
+                        android:padding="3dp"
+                        android:background="@drawable/m3_zoom_circle_bg">
+
+                        <ImageView
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:src="@drawable/res_preview_qhd"
+                            android:scaleType="centerCrop" />
+                    </FrameLayout>
+                </LinearLayout>
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <!-- Warning / Notice Pill -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:background="@drawable/m3_info_banner_bg"
+            android:paddingHorizontal="14dp"
+            android:paddingVertical="10dp"
+            android:layout_marginBottom="16dp">
+
+            <ImageView
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:src="@drawable/ic_resolution_info"
+                android:tint="?android:attr/textColorSecondary"
+                android:layout_marginEnd="10dp"
+                android:contentDescription="Info" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/custom_screen_resolution_warning"
+                android:textSize="13sp"
+                android:textColor="?android:attr/textColorSecondary" />
+        </LinearLayout>
+
+        <!-- Material 3 Expressive 4-Column Horizontal Selector (Samsung style + M3) -->
+        <LinearLayout
+            android:id="@+id/container_resolution_selector"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:background="@drawable/m3_card_container_bg"
+            android:padding="6dp"
+            android:weightSum="4"
+            android:layout_marginBottom="16dp">
+
+            <!-- HD+ Option (720p) -->
+            <LinearLayout
+                android:id="@+id/card_res_720p"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical"
+                android:gravity="center"
+                android:background="@drawable/m3_selector_card_normal"
+                android:clickable="true"
+                android:focusable="true"
+                android:paddingVertical="12dp"
+                android:paddingHorizontal="2dp">
+
+                <TextView
+                    android:id="@+id/title_res_720p"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="HD+"
+                    android:textStyle="bold"
+                    android:textSize="15sp"
+                    android:textColor="?android:attr/textColorPrimary" />
+
+                <TextView
+                    android:id="@+id/sub_res_720p"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="1600x720"
+                    android:textSize="11sp"
+                    android:textColor="?android:attr/textColorSecondary"
+                    android:layout_marginTop="2dp"
+                    android:layout_marginBottom="8dp" />
+
+                <ImageView
+                    android:id="@+id/radio_res_720p"
+                    android:layout_width="22dp"
+                    android:layout_height="22dp"
+                    android:src="@drawable/m3_radio_unchecked"
+                    android:contentDescription="Select HD+" />
+            </LinearLayout>
+
+            <View
+                android:layout_width="1dp"
+                android:layout_height="match_parent"
+                android:background="#1F7f7f7f"
+                android:layout_marginVertical="8dp" />
+
+            <!-- FHD+ Option (1080p) -->
+            <LinearLayout
+                android:id="@+id/card_res_1080p"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical"
+                android:gravity="center"
+                android:background="@drawable/m3_selector_card_normal"
+                android:clickable="true"
+                android:focusable="true"
+                android:paddingVertical="12dp"
+                android:paddingHorizontal="2dp">
+
+                <TextView
+                    android:id="@+id/title_res_1080p"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="FHD+"
+                    android:textStyle="bold"
+                    android:textSize="15sp"
+                    android:textColor="?android:attr/textColorPrimary" />
+
+                <TextView
+                    android:id="@+id/sub_res_1080p"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="2400x1080"
+                    android:textSize="11sp"
+                    android:textColor="?android:attr/textColorSecondary"
+                    android:layout_marginTop="2dp"
+                    android:layout_marginBottom="8dp" />
+
+                <ImageView
+                    android:id="@+id/radio_res_1080p"
+                    android:layout_width="22dp"
+                    android:layout_height="22dp"
+                    android:src="@drawable/m3_radio_unchecked"
+                    android:contentDescription="Select FHD+" />
+            </LinearLayout>
+
+            <View
+                android:layout_width="1dp"
+                android:layout_height="match_parent"
+                android:background="#1F7f7f7f"
+                android:layout_marginVertical="8dp" />
+
+            <!-- FHD+ Stock Option (1220p) -->
+            <LinearLayout
+                android:id="@+id/card_res_1220p"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical"
+                android:gravity="center"
+                android:background="@drawable/m3_selector_card_normal"
+                android:clickable="true"
+                android:focusable="true"
+                android:paddingVertical="12dp"
+                android:paddingHorizontal="2dp">
+
+                <TextView
+                    android:id="@+id/title_res_1220p"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="STOCK"
+                    android:textStyle="bold"
+                    android:textSize="15sp"
+                    android:textColor="?android:attr/textColorPrimary" />
+
+                <TextView
+                    android:id="@+id/sub_res_1220p"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="2712x1220"
+                    android:textSize="11sp"
+                    android:textColor="?android:attr/textColorSecondary"
+                    android:layout_marginTop="2dp"
+                    android:layout_marginBottom="8dp" />
+
+                <ImageView
+                    android:id="@+id/radio_res_1220p"
+                    android:layout_width="22dp"
+                    android:layout_height="22dp"
+                    android:src="@drawable/m3_radio_checked"
+                    android:contentDescription="Select Stock 1220p" />
+            </LinearLayout>
+
+            <View
+                android:layout_width="1dp"
+                android:layout_height="match_parent"
+                android:background="#1F7f7f7f"
+                android:layout_marginVertical="8dp" />
+
+            <!-- QHD+ Option (1440p) -->
+            <LinearLayout
+                android:id="@+id/card_res_1440p"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical"
+                android:gravity="center"
+                android:background="@drawable/m3_selector_card_normal"
+                android:clickable="true"
+                android:focusable="true"
+                android:paddingVertical="12dp"
+                android:paddingHorizontal="2dp">
+
+                <TextView
+                    android:id="@+id/title_res_1440p"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="QHD+"
+                    android:textStyle="bold"
+                    android:textSize="15sp"
+                    android:textColor="?android:attr/textColorPrimary" />
+
+                <TextView
+                    android:id="@+id/sub_res_1440p"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="3200x1440"
+                    android:textSize="11sp"
+                    android:textColor="?android:attr/textColorSecondary"
+                    android:layout_marginTop="2dp"
+                    android:layout_marginBottom="8dp" />
+
+                <ImageView
+                    android:id="@+id/radio_res_1440p"
+                    android:layout_width="22dp"
+                    android:layout_height="22dp"
+                    android:src="@drawable/m3_radio_unchecked"
+                    android:contentDescription="Select QHD+" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <!-- Dynamic Description Card / Footer Note -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:background="@drawable/m3_card_container_bg"
+            android:padding="16dp"
+            android:layout_marginBottom="24dp">
+
+            <TextView
+                android:id="@+id/text_resolution_description"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/custom_screen_resolution_desc_stock"
+                android:textSize="14sp"
+                android:lineSpacingExtra="3dp"
+                android:textColor="?android:attr/textColorPrimary"
+                android:layout_marginBottom="8dp" />
+
+            <TextView
+                android:id="@+id/text_resolution_battery_hint"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/custom_screen_resolution_footer_hint"
+                android:textSize="12sp"
+                android:textColor="?android:attr/textColorSecondary" />
+        </LinearLayout>
+
+        <!-- Apply Button -->
+        <Button
+            android:id="@+id/button_apply_resolution"
+            android:layout_width="match_parent"
+            android:layout_height="54dp"
+            android:text="@string/custom_screen_resolution_apply"
+            android:textAllCaps="false"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:textColor="@android:color/white"
+            android:background="@drawable/m3_button_apply_bg"
+            android:enabled="false"
+            android:alpha="0.5" />
+
+    </LinearLayout>
+</ScrollView>

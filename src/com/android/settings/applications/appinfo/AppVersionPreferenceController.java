@@ -1,4 +1,4 @@
-/*
+﻿/*
  * Copyright (C) 2017 The Android Open Source Project
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -19,8 +19,11 @@ package com.android.settings.applications.appinfo;
 import android.content.Context;
 import android.content.pm.PackageInfo;
 import android.text.BidiFormatter;
+import android.text.format.DateFormat;
 
 import com.android.settings.R;
+
+import java.util.Date;
 
 public class AppVersionPreferenceController extends AppInfoPreferenceControllerBase {
 
@@ -30,13 +33,26 @@ public class AppVersionPreferenceController extends AppInfoPreferenceControllerB
 
     @Override
     public CharSequence getSummary() {
-        // TODO(b/168333280): Review the null case in detail since this is just a quick
-        // workaround to fix NPE.
         final PackageInfo packageInfo = mParent.getPackageInfo();
         if (packageInfo == null) {
             return null;
         }
-        return mContext.getString(R.string.version_text,
-                BidiFormatter.getInstance().unicodeWrap(packageInfo.versionName));
+
+        StringBuilder sb = new StringBuilder();
+        sb.append(mContext.getString(R.string.version_text,
+                BidiFormatter.getInstance().unicodeWrap(packageInfo.versionName)));
+
+        if (packageInfo.firstInstallTime > 0) {
+            java.text.DateFormat dateFormat = DateFormat.getMediumDateFormat(mContext);
+            java.text.DateFormat timeFormat = DateFormat.getTimeFormat(mContext);
+            Date installDate = new Date(packageInfo.firstInstallTime);
+            String formattedDate = dateFormat.format(installDate);
+            String formattedTime = timeFormat.format(installDate);
+
+            sb.append("\n");
+            sb.append(mContext.getString(R.string.app_install_time_format, formattedDate, formattedTime));
+        }
+
+        return sb.toString();
     }
 }

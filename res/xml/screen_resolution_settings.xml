@@ -4,14 +4,10 @@
     xmlns:settings="http://schemas.android.com/apk/res-auto"
     android:title="@string/custom_screen_resolution_title">
 
-    <com.android.settingslib.widget.FooterPreference
-        android:key="screen_resolution_footer"
-        android:title="@string/custom_screen_resolution_summary"
+    <com.android.settingslib.widget.LayoutPreference
+        android:key="screen_resolution_custom_layout"
+        android:layout="@layout/custom_screen_resolution_screen"
         android:selectable="false"
         settings:searchable="false" />
-
-    <PreferenceCategory
-        android:key="screen_resolution_radio_group">
-    </PreferenceCategory>
 
 </PreferenceScreen>

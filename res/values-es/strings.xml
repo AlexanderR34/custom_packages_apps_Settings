@@ -53,6 +53,16 @@
     <string name="app_refresh_rate_summary">Configura 60 Hz, 90 Hz, 120 Hz o No definido para cada aplicación</string>
     <string name="app_refresh_rate_category_title">Aplicaciones</string>
     <string name="app_refresh_rate_default">No definido (Automático)</string>
+    <string name="app_orientation_title">Rotación por aplicación</string>
+    <string name="app_orientation_summary">Forzar orientación (Vertical, Horizontal, Invertido o Giroscopio) para aplicaciones y juegos</string>
+    <string name="app_orientation_category_title">Aplicaciones</string>
+    <string name="app_orientation_default">No establecido (Por defecto)</string>
+    <string name="app_orientation_portrait">0 Grados vertical</string>
+    <string name="app_orientation_landscape">90 Grados Horizontal</string>
+    <string name="app_orientation_reverse_portrait">180 Grados Vertical invertido</string>
+    <string name="app_orientation_reverse_landscape">270 Grados Paisaje invertido</string>
+    <string name="app_orientation_full_sensor">Detección automática (Giroscopio)</string>
+    <string name="app_orientation_sensor_landscape">Horizontal con sensor</string>
     <string name="show_wifi_standard_icon_title">Mostrar generación Wi-Fi en barra de estado</string>
     <string name="show_wifi_standard_icon_summary">Muestra un número indicador (4, 5, 6, 7) junto al icono de Wi-Fi en la barra de estado</string>
     <string name="cpu_core_control_title">Control de núcleos del procesador</string>

@@ -232,4 +232,13 @@
         android:order="40"
         settings:controller="com.android.settings.system.DisableScopedStorageRestrictionsPreferenceController" />
 
+    <!-- Status Bar Music Island -->
+    <SwitchPreferenceCompat
+        android:key="status_bar_music_island"
+        android:title="@string/status_bar_music_island_title"
+        android:summary="@string/status_bar_music_island_summary"
+        android:defaultValue="false"
+        android:order="50"
+        settings:controller="com.android.settings.system.MusicIslandPreferenceController" />
+
 </PreferenceScreen>

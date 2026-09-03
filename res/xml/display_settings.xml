@@ -307,5 +307,13 @@
             android:summary="@string/app_refresh_rate_summary"
             android:fragment="com.android.settings.display.AppRefreshRateFragment"
             settings:controller="com.android.settings.display.AppRefreshRatePreferenceController" />
+
+        <!-- Rotación / Orientación por aplicación -->
+        <Preference
+            android:key="app_orientation"
+            android:title="@string/app_orientation_title"
+            android:summary="@string/app_orientation_summary"
+            android:fragment="com.android.settings.display.AppOrientationFragment"
+            settings:controller="com.android.settings.display.AppOrientationPreferenceController" />
     </PreferenceCategory>
 </PreferenceScreen>
