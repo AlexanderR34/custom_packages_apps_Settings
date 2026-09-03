@@ -532,4 +532,15 @@
     <string name="gs_config_saved">Configuration saved</string>
     <string name="gs_loading_apps">Loading apps\u2026</string>
     <string name="gs_failed">Failed: %s</string>
+
+    <!-- System Dashboard Fragment Strings -->
+    <string name="keywords_mouse">mouse, cursor, pointer, primary button, scrolling, click</string>
+    <string name="backup_restore_category_title">Backup</string>
+    <string name="other_system_options_category_title">System options</string>
+    <string name="date_and_time_settings_title">Date &amp; time</string>
+
+    <!-- Ambient Display / Lockscreen Strings -->
+    <string name="doze_always_on_title">Always-on display</string>
+    <string name="touchscreen_gesture_settings_title">Touchscreen gestures</string>
+    <string name="touchscreen_gesture_settings_summary">Perform actions using touchscreen gestures</string>
 </resources>

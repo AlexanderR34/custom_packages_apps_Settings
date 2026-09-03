@@ -29,11 +29,6 @@ import android.sysprop.BluetoothProperties;
 import android.text.TextUtils;
 import android.util.Log;
 
-import android.bluetooth.BluetoothCodecConfig;
-import android.bluetooth.BluetoothCodecType;
-import android.bluetooth.BluetoothLeAudioCodecConfig;
-import android.bluetooth.BluetoothProfile;
-import com.android.settings.development.BluetoothA2dpConfigStore;
 import androidx.annotation.VisibleForTesting;
 import androidx.preference.ListPreference;
 import androidx.preference.Preference;
@@ -44,6 +39,7 @@ import androidx.preference.SwitchPreferenceCompat;
 import androidx.preference.TwoStatePreference;
 
 import com.android.settings.R;
+import com.android.settings.flags.Flags;
 import com.android.settings.overlay.FeatureFactory;
 import com.android.settingslib.bluetooth.A2dpProfile;
 import com.android.settingslib.bluetooth.BluetoothUtils;
@@ -630,14 +626,6 @@ public class BluetoothDetailsProfilesController extends BluetoothDetailsControll
             }
             return;
         }
-        List<BluetoothCodecConfig> selectable = a2dp.getSelectableCodecConfigs(device);
-        if (selectable == null || selectable.isEmpty()) {
-            Preference p = mProfilesContainer.findPreference("bluetooth_audio_codec");
-            if (p != null) {
-                mProfilesContainer.removePreference(p);
-            }
-            return;
-        }
 
         Preference codecPref = mProfilesContainer.findPreference("bluetooth_audio_codec");
         if (codecPref == null) {
@@ -649,83 +637,8 @@ public class BluetoothDetailsProfilesController extends BluetoothDetailsControll
             mProfilesContainer.addPreference(codecPref);
         }
 
-        BluetoothCodecConfig activeConfig = a2dp.getActiveCodecConfig(device);
-        String activeName = activeConfig != null ? getCodecDisplayName(activeConfig) : "AAC";
+        String activeName = a2dp.getHighQualityAudioOptionLabel(device);
         codecPref.setSummary(activeName);
-    }
-
-    private String getCodecDisplayName(BluetoothCodecConfig config) {
-        if (config == null) return "Desconocido";
-        int type = config.getCodecType();
-        switch (type) {
-            case BluetoothCodecConfig.SOURCE_CODEC_TYPE_SBC:
-                return "SBC";
-            case BluetoothCodecConfig.SOURCE_CODEC_TYPE_AAC:
-                return "AAC";
-            case BluetoothCodecConfig.SOURCE_CODEC_TYPE_APTX:
-                return "aptX";
-            case BluetoothCodecConfig.SOURCE_CODEC_TYPE_APTX_HD:
-                return "aptX HD";
-            case BluetoothCodecConfig.SOURCE_CODEC_TYPE_LDAC:
-                return "LDAC";
-            case BluetoothCodecConfig.SOURCE_CODEC_TYPE_LC3:
-                return "LC3";
-            case BluetoothCodecConfig.SOURCE_CODEC_TYPE_OPUS:
-                return "Opus";
-            default:
-                BluetoothCodecType codecType = config.getExtendedCodecType();
-                if (codecType != null && codecType.getCodecName() != null && !codecType.getCodecName().trim().isEmpty()) {
-                    return codecType.getCodecName().trim();
-                }
-                return "Códec (" + type + ")";
-        }
-    }
-
-    private static final int[] SAMPLE_RATES = new int[] {
-            BluetoothCodecConfig.SAMPLE_RATE_192000,
-            BluetoothCodecConfig.SAMPLE_RATE_176400,
-            BluetoothCodecConfig.SAMPLE_RATE_96000,
-            BluetoothCodecConfig.SAMPLE_RATE_88200,
-            BluetoothCodecConfig.SAMPLE_RATE_48000,
-            BluetoothCodecConfig.SAMPLE_RATE_44100
-    };
-
-    private static final int[] BITS_PER_SAMPLES = new int[] {
-            BluetoothCodecConfig.BITS_PER_SAMPLE_32,
-            BluetoothCodecConfig.BITS_PER_SAMPLE_24,
-            BluetoothCodecConfig.BITS_PER_SAMPLE_16
-    };
-
-    private static final int[] CHANNEL_MODES = new int[] {
-            BluetoothCodecConfig.CHANNEL_MODE_STEREO,
-            BluetoothCodecConfig.CHANNEL_MODE_MONO
-    };
-
-    private static int getHighestSampleRate(BluetoothCodecConfig config) {
-        if (config == null) return BluetoothCodecConfig.SAMPLE_RATE_NONE;
-        int cap = config.getSampleRate();
-        for (int rate : SAMPLE_RATES) {
-            if ((cap & rate) != 0) return rate;
-        }
-        return BluetoothCodecConfig.SAMPLE_RATE_NONE;
-    }
-
-    private static int getHighestBitsPerSample(BluetoothCodecConfig config) {
-        if (config == null) return BluetoothCodecConfig.BITS_PER_SAMPLE_NONE;
-        int cap = config.getBitsPerSample();
-        for (int bits : BITS_PER_SAMPLES) {
-            if ((cap & bits) != 0) return bits;
-        }
-        return BluetoothCodecConfig.BITS_PER_SAMPLE_NONE;
-    }
-
-    private static int getHighestChannelMode(BluetoothCodecConfig config) {
-        if (config == null) return BluetoothCodecConfig.CHANNEL_MODE_NONE;
-        int cap = config.getChannelMode();
-        for (int mode : CHANNEL_MODES) {
-            if ((cap & mode) != 0) return mode;
-        }
-        return BluetoothCodecConfig.CHANNEL_MODE_NONE;
     }
 
     private void updateLeAudioCodecPreference(LeAudioProfile leAudio) {
@@ -737,14 +650,6 @@ public class BluetoothDetailsProfilesController extends BluetoothDetailsControll
             }
             return;
         }
-        List<BluetoothLeAudioCodecConfig> selectable = leAudio.getSelectableCodecConfigs(device);
-        if (selectable == null || selectable.isEmpty()) {
-            Preference p = mProfilesContainer.findPreference("bluetooth_audio_codec");
-            if (p != null) {
-                mProfilesContainer.removePreference(p);
-            }
-            return;
-        }
 
         Preference codecPref = mProfilesContainer.findPreference("bluetooth_audio_codec");
         if (codecPref == null) {
@@ -756,9 +661,6 @@ public class BluetoothDetailsProfilesController extends BluetoothDetailsControll
             mProfilesContainer.addPreference(codecPref);
         }
 
-        BluetoothLeAudioCodecConfig activeConfig = leAudio.getActiveCodecConfig(device);
-        int type = activeConfig != null ? activeConfig.getCodecType() : BluetoothLeAudioCodecConfig.SOURCE_CODEC_TYPE_LC3;
-        String displayName = (type == BluetoothLeAudioCodecConfig.SOURCE_CODEC_TYPE_LC3) ? "LC3" : ("LE Audio (" + type + ")");
-        codecPref.setSummary(displayName);
+        codecPref.setSummary("LC3");
     }
 }
