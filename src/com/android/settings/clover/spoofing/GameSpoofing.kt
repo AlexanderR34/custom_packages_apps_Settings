@@ -317,46 +317,13 @@ class GameSpoofing : SettingsPreferenceFragment() {
         private val STANDARD_KEYS = listOf("MODEL", "MANUFACTURER")
 
         private val PRESET_PROFILES = listOf(
-            "Realme 14 5G (120 FPS)" to mapOf(
-                "MODEL" to "RMX5010",
-                "MANUFACTURER" to "realme",
-            ),
-            "Realme GT 5 Pro (144 FPS)" to mapOf(
-                "MODEL" to "RMX3888",
-                "MANUFACTURER" to "realme",
-            ),
-            "ROG Phone 8 Pro (165 FPS)" to mapOf(
-                "MODEL" to "ASUS_AI2401_A",
-                "MANUFACTURER" to "asus",
-            ),
-            "Galaxy S24 Ultra (120 FPS)" to mapOf(
-                "MODEL" to "SM-S928B",
-                "MANUFACTURER" to "samsung",
-            ),
-            "Xiaomi 14 Pro (120 FPS)" to mapOf(
-                "MODEL" to "23116PN5BC",
-                "MANUFACTURER" to "Xiaomi",
-            ),
-            "OnePlus 12 (120 FPS)" to mapOf(
-                "MODEL" to "PJD110",
-                "MANUFACTURER" to "OnePlus",
-            ),
-            "iQOO 12 Pro (144 FPS)" to mapOf(
-                "MODEL" to "V2329A",
-                "MANUFACTURER" to "vivo",
-            ),
-            "Black Shark 5 Pro (144 FPS)" to mapOf(
-                "MODEL" to "SHARK KTUS-H",
-                "MANUFACTURER" to "blackshark",
-            ),
-            "Lenovo Legion Y700 (144 FPS)" to mapOf(
-                "MODEL" to "Lenovo TB-9707F",
-                "MANUFACTURER" to "Lenovo",
-            ),
-            "iPad Pro 11 (120 FPS)" to mapOf(
-                "MODEL" to "iPad13,8",
-                "MANUFACTURER" to "Apple",
-            ),
+            "ROG Phone 8 Pro" to mapOf("MODEL" to "ASUS_AI2401_A", "MANUFACTURER" to "asus"),
+            "Galaxy S24 Ultra" to mapOf("MODEL" to "SM-S928B", "MANUFACTURER" to "samsung"),
+            "Xiaomi 13 Pro" to mapOf("MODEL" to "2210132C", "MANUFACTURER" to "Xiaomi"),
+            "OnePlus 9 Pro" to mapOf("MODEL" to "LE2101", "MANUFACTURER" to "OnePlus"),
+            "Black Shark 4" to mapOf("MODEL" to "2SM-X706B", "MANUFACTURER" to "blackshark"),
+            "Lenovo Y700" to mapOf("MODEL" to "Lenovo TB-9707F", "MANUFACTURER" to "Lenovo"),
+            "iPad Pro" to mapOf("MODEL" to "iPad13,8", "MANUFACTURER" to "Apple"),
         )
     }
 }
