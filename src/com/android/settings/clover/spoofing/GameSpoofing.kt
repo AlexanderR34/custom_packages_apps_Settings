@@ -323,7 +323,6 @@ class GameSpoofing : SettingsPreferenceFragment() {
             "OnePlus 9 Pro" to mapOf("MODEL" to "LE2101", "MANUFACTURER" to "OnePlus"),
             "Black Shark 4" to mapOf("MODEL" to "2SM-X706B", "MANUFACTURER" to "blackshark"),
             "Lenovo Y700" to mapOf("MODEL" to "Lenovo TB-9707F", "MANUFACTURER" to "Lenovo"),
-            "iPad Pro" to mapOf("MODEL" to "iPad13,8", "MANUFACTURER" to "Apple"),
         )
     }
 }
