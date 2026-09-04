@@ -53,6 +53,10 @@
     <string name="app_refresh_rate_summary">Configura 60 Hz, 90 Hz, 120 Hz o No definido para cada aplicación</string>
     <string name="app_refresh_rate_category_title">Aplicaciones</string>
     <string name="app_refresh_rate_default">No definido (Automático)</string>
+    <string name="game_frame_pacer_title">Limitador de FPS / Game Frame Pacer</string>
+    <string name="game_frame_pacer_summary">Fija un límite estricto de FPS y estabiliza la cadencia de cuadros por aplicación</string>
+    <string name="game_frame_pacer_category_title">Aplicaciones</string>
+    <string name="game_frame_pacer_default">Sin límite / Por defecto del motor</string>
     <string name="app_orientation_title">Rotación por aplicación</string>
     <string name="app_orientation_summary">Forzar orientación (Vertical, Horizontal, Invertido o Giroscopio) para aplicaciones y juegos</string>
     <string name="app_orientation_category_title">Aplicaciones</string>

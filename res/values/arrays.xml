@@ -1809,4 +1809,23 @@
         <item>Quick settings</item>
         <item>Lockscreen</item>
     </string-array>
+
+    <!-- Game Frame Pacer / FPS Limiter entries and values -->
+    <string-array name="game_frame_pacer_entries">
+        <item>@string/game_frame_pacer_default</item>
+        <item>30 FPS (33.3 ms)</item>
+        <item>45 FPS (22.2 ms)</item>
+        <item>60 FPS (16.6 ms)</item>
+        <item>90 FPS (11.1 ms)</item>
+        <item>120 FPS (8.3 ms)</item>
+    </string-array>
+
+    <string-array name="game_frame_pacer_values" translatable="false">
+        <item>0</item>
+        <item>30</item>
+        <item>45</item>
+        <item>60</item>
+        <item>90</item>
+        <item>120</item>
+    </string-array>
 </resources>

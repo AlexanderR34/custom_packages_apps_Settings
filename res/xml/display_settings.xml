@@ -302,6 +302,14 @@
             android:fragment="com.android.settings.display.AppRefreshRateFragment"
             settings:controller="com.android.settings.display.AppRefreshRatePreferenceController" />
 
+        <!-- Game Frame Pacer / Limitador de FPS por aplicación -->
+        <Preference
+            android:key="game_frame_pacer"
+            android:title="@string/game_frame_pacer_title"
+            android:summary="@string/game_frame_pacer_summary"
+            android:fragment="com.android.settings.display.GameFramePacerFragment"
+            settings:controller="com.android.settings.display.GameFramePacerPreferenceController" />
+
         <!-- Rotación / Orientación por aplicación -->
         <Preference
             android:key="app_orientation"

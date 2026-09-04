@@ -59,6 +59,10 @@
     <string name="app_refresh_rate_summary">Set specific refresh rates (60 Hz, 90 Hz, 120 Hz or Automatic) for each app</string>
     <string name="app_refresh_rate_category_title">Applications</string>
     <string name="app_refresh_rate_default">Undefined (Automatic)</string>
+    <string name="game_frame_pacer_title">Game frame pacer</string>
+    <string name="game_frame_pacer_summary">Set rendering FPS limit and frame pacing (30, 45, 60, 90, 120 FPS or Unlimited) per application</string>
+    <string name="game_frame_pacer_category_title">Applications</string>
+    <string name="game_frame_pacer_default">Unlimited / Engine default</string>
     <string name="app_orientation_title">Per-app orientation</string>
     <string name="app_orientation_summary">Force orientation (Portrait, Landscape, Inverted, or Gyroscope sensor) for apps and games</string>
     <string name="app_orientation_category_title">Applications</string>

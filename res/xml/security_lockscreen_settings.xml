@@ -52,12 +52,6 @@
             android:title="@string/owner_info_settings_title"
             android:summary="@string/owner_info_settings_summary" />
 
-        <Preference
-            android:key="lockscreen_multi_wallpaper"
-            android:title="@string/lockscreen_multi_wallpaper_title"
-            android:summary="@string/summary_placeholder"
-            android:fragment="com.android.settings.display.LockscreenMultiWallpaperSettings"
-            settings:controller="com.android.settings.display.LockscreenMultiWallpaperPreferenceController" />
 
         <SwitchPreferenceCompat
             android:key="lockscreen_privacy_wallet_switch"
