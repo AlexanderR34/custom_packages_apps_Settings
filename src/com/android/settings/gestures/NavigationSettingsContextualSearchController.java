@@ -52,10 +52,7 @@ public class NavigationSettingsContextualSearchController extends TogglePreferen
 
     @Override
     public int getAvailabilityStatus() {
-        if (mContext.getPackageManager().hasSystemFeature(FEATURE_CONTEXTUAL_SEARCH)) {
-            return AVAILABLE;
-        }
-        return UNSUPPORTED_ON_DEVICE;
+        return AVAILABLE;
     }
 
     @Override

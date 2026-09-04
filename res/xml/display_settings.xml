@@ -293,12 +293,6 @@
             settings:textEnd="@string/blur_max_label"
             settings:allowDividerAbove="true" />
 
-        <!-- Coloreado de Iconos de Notificaciones en Barra de Estado -->
-        <SwitchPreferenceCompat
-            android:key="status_bar_colored_icons"
-            android:title="@string/status_bar_colored_icons_title"
-            android:summary="@string/status_bar_colored_icons_summary"
-            settings:controller="com.android.settings.display.ColoredNotificationIconsPreferenceController" />
 
         <!-- Tasa de refresco por aplicación -->
         <Preference

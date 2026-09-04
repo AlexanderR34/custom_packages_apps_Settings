@@ -100,6 +100,12 @@
         android:fragment="com.android.settings.gestures.SwipeToScreenshotGestureSettings"
         settings:controller="com.android.settings.gestures.SwipeToScreenshotPreferenceController" />
 
+    <SwitchPreferenceCompat
+        android:key="search_gesture_press_hold"
+        android:title="@string/search_gesture_feature_title"
+        android:summary="@string/search_gesture_feature_summary"
+        settings:controller="com.android.settings.gestures.NavigationSettingsContextualSearchController" />
+
     <com.android.settingslib.PrimarySwitchPreference
         android:key="gesture_prevent_ringing_summary"
         android:title="@string/gesture_prevent_ringing_screen_title"
