@@ -284,14 +284,14 @@
         android:fragment="com.android.settings.display.CustomScreenResolutionFragment"
         settings:controller="com.android.settings.display.CustomScreenResolutionPreferenceController" />
 
-        <com.android.settings.display.BlurSeekBarPreference
+        <com.android.settingslib.widget.SliderPreference
             android:key="custom_blur_intensity"
             android:title="@string/custom_blur_intensity_title"
             android:summary="@string/custom_blur_intensity_summary"
             settings:controller="com.android.settings.display.CustomBlurPreferenceController"
-            android:defaultValue="50"
-            android:max="100"
-            settings:min="0" />
+            settings:textStart="@string/blur_min_label"
+            settings:textEnd="@string/blur_max_label"
+            settings:allowDividerAbove="true" />
 
         <!-- Coloreado de Iconos de Notificaciones en Barra de Estado -->
         <SwitchPreferenceCompat

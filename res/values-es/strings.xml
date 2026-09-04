@@ -3821,6 +3821,8 @@
     <string name="blur_intensity_summary_format">"Nivel de desenfoque: %1$d%%"</string>
     <string name="custom_blur_intensity_title">"Intensidad de desenfoque"</string>
     <string name="custom_blur_intensity_summary">"Ajusta la intensidad del efecto de desenfoque de fondo en las ventanas del sistema"</string>
+    <string name="blur_min_label">"0%"</string>
+    <string name="blur_max_label">"100%"</string>
     <string name="button_navigation_layout_category_title">"Diseño"</string>
     <string name="invert_layout_title">"Invertir diseño de botones"</string>
     <string name="invert_layout_summary">"Invierte la posición del botón Atrás y del botón Recientes en la barra de navegación"</string>

@@ -1,4 +1,4 @@
-﻿package com.android.settings.system;
+package com.android.settings.system;
 
 import android.content.Context;
 import android.provider.Settings;

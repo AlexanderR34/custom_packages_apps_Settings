@@ -1,4 +1,4 @@
-﻿/*
+/*
  * Copyright (C) 2025 The Android Open Source Project
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -120,15 +120,15 @@ class AppInfoHeaderPreference(private val packageInfoProvider: PackageInfoProvid
 
         val container = FrameLayout(context).apply {
             val margin = (24 * context.resources.displayMetrics.density).toInt()
-            val topMargin = (8 * context.resources.displayMetrics.density).toInt()
+            val topMarginPx = (8 * context.resources.displayMetrics.density).toInt()
             val params = FrameLayout.LayoutParams(
                 ViewGroup.LayoutParams.MATCH_PARENT,
                 ViewGroup.LayoutParams.WRAP_CONTENT
             ).apply {
                 leftMargin = margin
                 rightMargin = margin
-                topMargin = topMargin
-                bottomMargin = topMargin
+                topMargin = topMarginPx
+                bottomMargin = topMarginPx
             }
             input.layoutParams = params
             addView(input)

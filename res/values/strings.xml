@@ -9056,6 +9056,8 @@
     <string name="blur_intensity_summary_format">Blur level: %1$d%%</string>
     <string name="custom_blur_intensity_title">Background blur intensity</string>
     <string name="custom_blur_intensity_summary">Adjust real-time hardware blur effect intensity across system windows</string>
+    <string name="blur_min_label">0%</string>
+    <string name="blur_max_label">100%</string>
 
     <!-- Navigation Bar Button Layout Inversion -->
     <string name="button_navigation_layout_category_title">Layout</string>

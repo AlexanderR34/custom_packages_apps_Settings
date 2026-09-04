@@ -16,28 +16,25 @@
 
 package com.android.settings.backup;
 
-
 import android.content.Context;
 import android.content.Intent;
 
 import androidx.preference.Preference;
 import androidx.preference.PreferenceScreen;
 
-import com.android.settings.core.PreferenceControllerMixin;
-import com.android.settingslib.core.AbstractPreferenceController;
+import com.android.settings.core.BasePreferenceController;
 
-public class BackupSettingsPreferenceController extends AbstractPreferenceController
-        implements PreferenceControllerMixin {
+public class BackupSettingsPreferenceController extends BasePreferenceController {
     private static final String BACKUP_SETTINGS = "backup_settings";
-    private static final  String MANUFACTURER_SETTINGS = "manufacturer_backup";
+    private static final String MANUFACTURER_SETTINGS = "manufacturer_backup";
     private Intent mBackupSettingsIntent;
     private CharSequence mBackupSettingsTitle;
     private String mBackupSettingsSummary;
     private Intent mManufacturerIntent;
     private String mManufacturerLabel;
 
-    public BackupSettingsPreferenceController(Context context) {
-        super(context);
+    public BackupSettingsPreferenceController(Context context, String key) {
+        super(context, key);
         BackupSettingsHelper settingsHelper = new BackupSettingsHelper(context);
         mBackupSettingsIntent = settingsHelper.getIntentForBackupSettings();
         mBackupSettingsTitle = settingsHelper.getLabelForBackupSettings();
@@ -46,30 +43,34 @@ public class BackupSettingsPreferenceController extends AbstractPreferenceContro
         mManufacturerLabel = settingsHelper.getLabelProvidedByManufacturer();
     }
 
+    public BackupSettingsPreferenceController(Context context) {
+        this(context, BACKUP_SETTINGS);
+    }
+
+    @Override
+    public int getAvailabilityStatus() {
+        return AVAILABLE;
+    }
+
     @Override
     public void displayPreference(PreferenceScreen screen) {
+        super.displayPreference(screen);
         Preference backupSettings = screen.findPreference(BACKUP_SETTINGS);
+        if (backupSettings != null) {
+            backupSettings.setIntent(mBackupSettingsIntent);
+            if (mBackupSettingsTitle != null) {
+                backupSettings.setTitle(mBackupSettingsTitle);
+            }
+            if (mBackupSettingsSummary != null) {
+                backupSettings.setSummary(mBackupSettingsSummary);
+            }
+        }
         Preference manufacturerSettings = screen.findPreference(MANUFACTURER_SETTINGS);
-        backupSettings.setIntent(mBackupSettingsIntent);
-        backupSettings.setTitle(mBackupSettingsTitle);
-        backupSettings.setSummary(mBackupSettingsSummary);
-        manufacturerSettings.setIntent(mManufacturerIntent);
-        manufacturerSettings.setTitle(mManufacturerLabel);
-    }
-
-    /**
-     * Returns true if preference is available (should be displayed)
-     */
-    @Override
-    public boolean isAvailable() {
-        return true;
-    }
-
-    /**
-     * Returns the key for this preference.
-     */
-    @Override
-    public String getPreferenceKey() {
-        return null;
+        if (manufacturerSettings != null) {
+            manufacturerSettings.setIntent(mManufacturerIntent);
+            if (mManufacturerLabel != null) {
+                manufacturerSettings.setTitle(mManufacturerLabel);
+            }
+        }
     }
 }

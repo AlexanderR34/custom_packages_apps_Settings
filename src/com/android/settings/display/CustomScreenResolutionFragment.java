@@ -1,4 +1,4 @@
-﻿package com.android.settings.display;
+package com.android.settings.display;
 
 import android.app.ActivityManager;
 import android.content.Context;

@@ -157,6 +157,7 @@ private fun AppInfoSettings(packageInfoPresenter: PackageInfoPresenter) {
         AppButtons(packageInfoPresenter, isHibernationSwitchEnabledStateFlow)
 
         Category {
+            AppRenamePreference(app)
             AppSettingsPreference(app)
             AppAllServicesPreference(app)
             AppNotificationPreference(app)
@@ -220,9 +221,146 @@ private fun AppInfoSettings(packageInfoPresenter: PackageInfoPresenter) {
 
         Category(title = stringResource(R.string.app_install_details_group_title)) {
             AppInstallerInfoPreference(app)
+            AppInstallDatePreference(packageInfo)
         }
 
         appInfoProvider.FooterAppVersion()
+    }
+}
+
+@Composable
+private fun AppInstallDatePreference(packageInfo: android.content.pm.PackageInfo) {
+    val installDateStr = remember(packageInfo) {
+        try {
+            val dateFormat = java.text.DateFormat.getDateTimeInstance(
+                java.text.DateFormat.MEDIUM,
+                java.text.DateFormat.SHORT
+            )
+            val installed = dateFormat.format(java.util.Date(packageInfo.firstInstallTime))
+            val updated = dateFormat.format(java.util.Date(packageInfo.lastUpdateTime))
+            "Instalada: $installed\nActualizada: $updated"
+        } catch (e: Exception) {
+            null
+        }
+    } ?: return
+
+    com.android.settingslib.spa.widget.preference.Preference(
+        object : com.android.settingslib.spa.widget.preference.PreferenceModel {
+            override val title = "Fecha de instalación"
+            override val summary = { installDateStr }
+            override val enabled = { false }
+        }
+    )
+}
+
+@Composable
+private fun AppRenamePreference(app: ApplicationInfo) {
+    val context = LocalContext.current
+    val showDialog = remember { androidx.compose.runtime.mutableStateOf(false) }
+    val currentCustom = remember(app.packageName) {
+        androidx.compose.runtime.mutableStateOf(
+            android.provider.Settings.System.getString(
+                context.contentResolver, "custom_app_label_${app.packageName}"
+            )
+        )
+    }
+    val defaultLabel = remember(app) {
+        try {
+            app.loadLabel(context.packageManager).toString()
+        } catch (e: Exception) {
+            app.packageName
+        }
+    }
+
+    com.android.settingslib.spa.widget.preference.Preference(
+        object : com.android.settingslib.spa.widget.preference.PreferenceModel {
+            override val title = "Nombre de la aplicación"
+            override val summary = {
+                if (!currentCustom.value.isNullOrEmpty()) {
+                    "${currentCustom.value} (Personalizado)"
+                } else {
+                    defaultLabel
+                }
+            }
+            override val onClick = {
+                showDialog.value = true
+            }
+        }
+    )
+
+    if (showDialog.value) {
+        androidx.compose.runtime.DisposableEffect(showDialog.value) {
+            val input = android.widget.EditText(context).apply {
+                isSingleLine = true
+                hint = "Nombre de la app"
+            }
+            val existing = currentCustom.value
+            if (!existing.isNullOrEmpty()) {
+                input.setText(existing)
+                input.setSelection(existing.length)
+            } else {
+                input.setText(defaultLabel)
+                input.setSelection(defaultLabel.length)
+            }
+
+            val container = android.widget.FrameLayout(context).apply {
+                val margin = (24 * context.resources.displayMetrics.density).toInt()
+                val topMarginPx = (8 * context.resources.displayMetrics.density).toInt()
+                val params = android.widget.FrameLayout.LayoutParams(
+                    android.view.ViewGroup.LayoutParams.MATCH_PARENT,
+                    android.view.ViewGroup.LayoutParams.WRAP_CONTENT
+                ).apply {
+                    leftMargin = margin
+                    rightMargin = margin
+                    topMargin = topMarginPx
+                    bottomMargin = topMarginPx
+                }
+                input.layoutParams = params
+                addView(input)
+            }
+
+            val dialog = androidx.appcompat.app.AlertDialog.Builder(context)
+                .setTitle("Cambiar nombre de la app")
+                .setView(container)
+                .setPositiveButton(android.R.string.ok) { _, _ ->
+                    val newName = input.text.toString().trim()
+                    if (newName.isNotEmpty()) {
+                        android.provider.Settings.System.putString(
+                            context.contentResolver,
+                            "custom_app_label_${app.packageName}",
+                            newName
+                        )
+                        currentCustom.value = newName
+                        android.widget.Toast.makeText(context, "Nombre guardado", android.widget.Toast.LENGTH_SHORT).show()
+                    }
+                    showDialog.value = false
+                }
+                .setNeutralButton("Restablecer") { _, _ ->
+                    android.provider.Settings.System.putString(
+                        context.contentResolver,
+                        "custom_app_label_${app.packageName}",
+                        null
+                    )
+                    currentCustom.value = null
+                    android.widget.Toast.makeText(context, "Nombre restablecido", android.widget.Toast.LENGTH_SHORT).show()
+                    showDialog.value = false
+                }
+                .setNegativeButton(android.R.string.cancel) { _, _ ->
+                    showDialog.value = false
+                }
+                .setOnDismissListener {
+                    showDialog.value = false
+                }
+                .create()
+
+            dialog.show()
+
+            onDispose {
+                if (dialog.isShowing) {
+                    dialog.dismiss()
+                }
+            }
+        }
     }
 }
 

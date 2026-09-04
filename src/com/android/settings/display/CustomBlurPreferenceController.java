@@ -19,7 +19,10 @@ package com.android.settings.display;
 import android.content.Context;
 import android.provider.Settings;
 
+import androidx.preference.PreferenceScreen;
+
 import com.android.settings.core.SliderPreferenceController;
+import com.android.settingslib.widget.SliderPreference;
 
 /**
  * Controller for the Custom Background Blur Intensity Slider in Settings -> Display.
@@ -36,6 +39,18 @@ public class CustomBlurPreferenceController extends SliderPreferenceController {
     @Override
     public int getAvailabilityStatus() {
         return AVAILABLE;
+    }
+
+    @Override
+    public void displayPreference(PreferenceScreen screen) {
+        super.displayPreference(screen);
+        SliderPreference preference = screen.findPreference(getPreferenceKey());
+        if (preference != null) {
+            preference.setUpdatesContinuously(true);
+            preference.setMin(getMin());
+            preference.setMax(getMax());
+            preference.setHapticFeedbackMode(SliderPreference.HAPTIC_FEEDBACK_MODE_ON_TICKS);
+        }
     }
 
     @Override
