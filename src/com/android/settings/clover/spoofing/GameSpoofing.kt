@@ -194,20 +194,20 @@ class GameSpoofing : SettingsPreferenceFragment() {
             setPadding(pad, pad, pad, 0)
         }
 
-        val keyFields = mutableListOf<Pair<EditText, EditText>>()
-        for ((key, value) in game.props) {
-            val keyField = EditText(ctx).apply { setText(key); hint = getString(R.string.gs_key) }
-            val valueField = EditText(ctx).apply { setText(value); hint = getString(R.string.gs_value) }
-            container.addView(keyField)
+        val fields = mutableMapOf<String, EditText>()
+        for (key in STANDARD_KEYS) {
+            val label = TextView(ctx).apply {
+                text = key
+                textSize = 12f
+                setPadding(0, (6 * resources.displayMetrics.density).toInt(), 0, (2 * resources.displayMetrics.density).toInt())
+            }
+            val valueField = EditText(ctx).apply {
+                setText(game.props[key] ?: "")
+                hint = key
+            }
+            container.addView(label)
             container.addView(valueField)
-            keyFields.add(keyField to valueField)
-        }
-        if (keyFields.isEmpty()) {
-            val keyField = EditText(ctx).apply { hint = "MODEL" }
-            val valueField = EditText(ctx).apply { hint = getString(R.string.gs_value) }
-            container.addView(keyField)
-            container.addView(valueField)
-            keyFields.add(keyField to valueField)
+            fields[key] = valueField
         }
 
         AlertDialog.Builder(ctx)
@@ -215,10 +215,9 @@ class GameSpoofing : SettingsPreferenceFragment() {
             .setView(container)
             .setPositiveButton(R.string.gs_save) { _, _ ->
                 val newProps = mutableMapOf<String, String>()
-                for ((kf, vf) in keyFields) {
-                    val k = kf.text.toString().trim()
-                    val v = vf.text.toString().trim()
-                    if (k.isNotEmpty()) newProps[k] = v
+                for ((key, field) in fields) {
+                    val v = field.text.toString().trim()
+                    if (v.isNotEmpty()) newProps[key] = v
                 }
                 val idx = gameConfigs.indexOfFirst { it.packageName == game.packageName }
                 if (idx >= 0) {
@@ -315,76 +314,68 @@ class GameSpoofing : SettingsPreferenceFragment() {
         private const val TAG = "GameSpoofing"
         private const val GAMEPROPS_CONFIG_KEY = "spoof_gameprops_config"
 
+        private val STANDARD_KEYS = listOf("MODEL", "MANUFACTURER", "BRAND", "DEVICE")
+
         private val PRESET_PROFILES = listOf(
             "Realme 14 5G (120 FPS)" to mapOf(
                 "MODEL" to "RMX5010",
                 "MANUFACTURER" to "realme",
                 "BRAND" to "realme",
                 "DEVICE" to "RMX5010",
-                "PRODUCT" to "RMX5010"
             ),
             "Realme GT 5 Pro (144 FPS)" to mapOf(
                 "MODEL" to "RMX3888",
                 "MANUFACTURER" to "realme",
                 "BRAND" to "realme",
                 "DEVICE" to "RMX3888",
-                "PRODUCT" to "RMX3888"
             ),
             "ROG Phone 8 Pro (165 FPS)" to mapOf(
                 "MODEL" to "ASUS_AI2401_A",
                 "MANUFACTURER" to "asus",
                 "BRAND" to "asus",
                 "DEVICE" to "ASUS_AI2401_A",
-                "PRODUCT" to "ASUS_AI2401_A"
             ),
             "Galaxy S24 Ultra (120 FPS)" to mapOf(
                 "MODEL" to "SM-S928B",
                 "MANUFACTURER" to "samsung",
                 "BRAND" to "samsung",
                 "DEVICE" to "e3q",
-                "PRODUCT" to "e3qxeea"
             ),
             "Xiaomi 14 Pro (120 FPS)" to mapOf(
                 "MODEL" to "23116PN5BC",
                 "MANUFACTURER" to "Xiaomi",
                 "BRAND" to "Xiaomi",
                 "DEVICE" to "shennong",
-                "PRODUCT" to "shennong"
             ),
             "OnePlus 12 (120 FPS)" to mapOf(
                 "MODEL" to "PJD110",
                 "MANUFACTURER" to "OnePlus",
                 "BRAND" to "OnePlus",
                 "DEVICE" to "OP595DL1",
-                "PRODUCT" to "OnePlus12"
             ),
             "iQOO 12 Pro (144 FPS)" to mapOf(
                 "MODEL" to "V2329A",
                 "MANUFACTURER" to "vivo",
                 "BRAND" to "vivo",
                 "DEVICE" to "V2329A",
-                "PRODUCT" to "V2329A"
             ),
             "Black Shark 5 Pro (144 FPS)" to mapOf(
                 "MODEL" to "SHARK KTUS-H",
                 "MANUFACTURER" to "blackshark",
                 "BRAND" to "blackshark",
                 "DEVICE" to "katyusha",
-                "PRODUCT" to "katyusha"
             ),
             "Lenovo Legion Y700 (144 FPS)" to mapOf(
                 "MODEL" to "Lenovo TB-9707F",
                 "MANUFACTURER" to "Lenovo",
                 "BRAND" to "Lenovo",
                 "DEVICE" to "TB-9707F",
-                "PRODUCT" to "TB-9707F"
             ),
             "iPad Pro 11 (120 FPS)" to mapOf(
                 "MODEL" to "iPad13,8",
                 "MANUFACTURER" to "Apple",
                 "BRAND" to "Apple",
                 "DEVICE" to "iPad13,8",
-                "PRODUCT" to "iPad13,8"
             ),
         )
     }
