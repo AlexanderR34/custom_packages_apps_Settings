@@ -316,12 +316,76 @@ class GameSpoofing : SettingsPreferenceFragment() {
         private const val GAMEPROPS_CONFIG_KEY = "spoof_gameprops_config"
 
         private val PRESET_PROFILES = listOf(
-            "ROG Phone 8 Pro" to mapOf("MODEL" to "ASUS_AI2401_A", "MANUFACTURER" to "asus"),
-            "Galaxy S24 Ultra" to mapOf("MODEL" to "SM-S928B", "MANUFACTURER" to "samsung"),
-            "Xiaomi 13 Pro" to mapOf("MODEL" to "2210132C", "MANUFACTURER" to "Xiaomi"),
-            "OnePlus 9 Pro" to mapOf("MODEL" to "LE2101", "MANUFACTURER" to "OnePlus"),
-            "Black Shark 4" to mapOf("MODEL" to "2SM-X706B", "MANUFACTURER" to "blackshark"),
-            "Lenovo Y700" to mapOf("MODEL" to "Lenovo TB-9707F", "MANUFACTURER" to "Lenovo"),
+            "Realme 14 5G (120 FPS)" to mapOf(
+                "MODEL" to "RMX5010",
+                "MANUFACTURER" to "realme",
+                "BRAND" to "realme",
+                "DEVICE" to "RMX5010",
+                "PRODUCT" to "RMX5010"
+            ),
+            "Realme GT 5 Pro (144 FPS)" to mapOf(
+                "MODEL" to "RMX3888",
+                "MANUFACTURER" to "realme",
+                "BRAND" to "realme",
+                "DEVICE" to "RMX3888",
+                "PRODUCT" to "RMX3888"
+            ),
+            "ROG Phone 8 Pro (165 FPS)" to mapOf(
+                "MODEL" to "ASUS_AI2401_A",
+                "MANUFACTURER" to "asus",
+                "BRAND" to "asus",
+                "DEVICE" to "ASUS_AI2401_A",
+                "PRODUCT" to "ASUS_AI2401_A"
+            ),
+            "Galaxy S24 Ultra (120 FPS)" to mapOf(
+                "MODEL" to "SM-S928B",
+                "MANUFACTURER" to "samsung",
+                "BRAND" to "samsung",
+                "DEVICE" to "e3q",
+                "PRODUCT" to "e3qxeea"
+            ),
+            "Xiaomi 14 Pro (120 FPS)" to mapOf(
+                "MODEL" to "23116PN5BC",
+                "MANUFACTURER" to "Xiaomi",
+                "BRAND" to "Xiaomi",
+                "DEVICE" to "shennong",
+                "PRODUCT" to "shennong"
+            ),
+            "OnePlus 12 (120 FPS)" to mapOf(
+                "MODEL" to "PJD110",
+                "MANUFACTURER" to "OnePlus",
+                "BRAND" to "OnePlus",
+                "DEVICE" to "OP595DL1",
+                "PRODUCT" to "OnePlus12"
+            ),
+            "iQOO 12 Pro (144 FPS)" to mapOf(
+                "MODEL" to "V2329A",
+                "MANUFACTURER" to "vivo",
+                "BRAND" to "vivo",
+                "DEVICE" to "V2329A",
+                "PRODUCT" to "V2329A"
+            ),
+            "Black Shark 5 Pro (144 FPS)" to mapOf(
+                "MODEL" to "SHARK KTUS-H",
+                "MANUFACTURER" to "blackshark",
+                "BRAND" to "blackshark",
+                "DEVICE" to "katyusha",
+                "PRODUCT" to "katyusha"
+            ),
+            "Lenovo Legion Y700 (144 FPS)" to mapOf(
+                "MODEL" to "Lenovo TB-9707F",
+                "MANUFACTURER" to "Lenovo",
+                "BRAND" to "Lenovo",
+                "DEVICE" to "TB-9707F",
+                "PRODUCT" to "TB-9707F"
+            ),
+            "iPad Pro 11 (120 FPS)" to mapOf(
+                "MODEL" to "iPad13,8",
+                "MANUFACTURER" to "Apple",
+                "BRAND" to "Apple",
+                "DEVICE" to "iPad13,8",
+                "PRODUCT" to "iPad13,8"
+            ),
         )
     }
 }
