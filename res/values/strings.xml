@@ -55,14 +55,17 @@
     <!-- Bypass Charging / USB Power Delivery Direct Power -->
     <string name="usb_pd_optimization_title">USB Power Delivery optimization</string>
     <string name="usb_pd_optimization_summary">Dynamically manages power delivery when connected to a compatible USB Power Delivery charger</string>
-    <string name="app_refresh_rate_title">Per-app refresh rate</string>
-    <string name="app_refresh_rate_summary">Set specific refresh rates (60 Hz, 90 Hz, 120 Hz or Automatic) for each app</string>
+    <string name="app_refresh_rate_title">Per-app refresh rate &amp; FPS limit</string>
+    <string name="app_refresh_rate_summary">Configure refresh rate (Hz) and FPS frame pacing for each application</string>
     <string name="app_refresh_rate_category_title">Applications</string>
-    <string name="app_refresh_rate_default">Undefined (Automatic)</string>
-    <string name="game_frame_pacer_title">Game frame pacer</string>
+    <string name="app_refresh_rate_default">Default (Automatic)</string>
+    <string name="app_refresh_rate_hz_label">Refresh rate (Hz)</string>
+    <string name="game_frame_pacer_title">FPS Limit (Frame Pacer)</string>
     <string name="game_frame_pacer_summary">Set rendering FPS limit and frame pacing (30, 45, 60, 90, 120 FPS or Unlimited) per application</string>
     <string name="game_frame_pacer_category_title">Applications</string>
-    <string name="game_frame_pacer_default">Unlimited / Engine default</string>
+    <string name="game_frame_pacer_default">Unlimited / Automatic</string>
+    <string name="app_display_save_btn">Save</string>
+    <string name="app_display_cancel_btn">Cancel</string>
     <string name="app_orientation_title">Per-app orientation</string>
     <string name="app_orientation_summary">Force orientation (Portrait, Landscape, Inverted, or Gyroscope sensor) for apps and games</string>
     <string name="app_orientation_category_title">Applications</string>

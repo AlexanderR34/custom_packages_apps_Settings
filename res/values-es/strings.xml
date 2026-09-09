@@ -49,14 +49,17 @@
     <string name="preview_pager_next_button" msgid="8700907912508927271">"Vista previa siguiente"</string>
     <string name="usb_pd_optimization_title">Optimización de carga USB-PD</string>
     <string name="usb_pd_optimization_summary">Gestiona dinámicamente la entrega de energía al conectar un cargador USB Power Delivery compatible</string>
-    <string name="app_refresh_rate_title">Tasa de refresco por aplicación</string>
-    <string name="app_refresh_rate_summary">Configura 60 Hz, 90 Hz, 120 Hz o No definido para cada aplicación</string>
+    <string name="app_refresh_rate_title">Tasa de refresco y FPS por aplicación</string>
+    <string name="app_refresh_rate_summary">Configura la tasa de refresco (Hz) y límite de FPS / Frame Pacer para cada aplicación</string>
     <string name="app_refresh_rate_category_title">Aplicaciones</string>
-    <string name="app_refresh_rate_default">No definido (Automático)</string>
-    <string name="game_frame_pacer_title">Limitador de FPS / Game Frame Pacer</string>
+    <string name="app_refresh_rate_default">Por defecto (Automático)</string>
+    <string name="app_refresh_rate_hz_label">Tasa de refresco (Hz)</string>
+    <string name="game_frame_pacer_title">Límite de FPS (Frame Pacer)</string>
     <string name="game_frame_pacer_summary">Fija un límite estricto de FPS y estabiliza la cadencia de cuadros por aplicación</string>
     <string name="game_frame_pacer_category_title">Aplicaciones</string>
-    <string name="game_frame_pacer_default">Sin límite / Por defecto del motor</string>
+    <string name="game_frame_pacer_default">Sin límite / Automático</string>
+    <string name="app_display_save_btn">Guardar</string>
+    <string name="app_display_cancel_btn">Cancelar</string>
     <string name="app_orientation_title">Rotación por aplicación</string>
     <string name="app_orientation_summary">Forzar orientación (Vertical, Horizontal, Invertido o Giroscopio) para aplicaciones y juegos</string>
     <string name="app_orientation_category_title">Aplicaciones</string>
