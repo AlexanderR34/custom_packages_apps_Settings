@@ -543,4 +543,16 @@
     <string name="doze_always_on_title">Always-on display</string>
     <string name="touchscreen_gesture_settings_title">Touchscreen gestures</string>
     <string name="touchscreen_gesture_settings_summary">Perform actions using touchscreen gestures</string>
+
+    <!-- Navigation Bar Button Style -->
+    <string name="button_navigation_settings_style_title">Estilo de los botones</string>
+    <string name="button_style_group_purpose">Elige el diseño y estilo visual de los botones de navegación</string>
+    <string name="navbar_style_preference_default_purpose">Diseño de botones estándar de AOSP</string>
+    <string name="navbar_style_preference_hyperos_purpose">Diseño de botones moderno estilo HyperOS</string>
+    <string name="navbar_style_aosp">AOSP estándar</string>
+    <string name="navbar_style_hyperos">HyperOS</string>
+
+    <!-- HyperOS Battery Style -->
+    <string name="status_bar_battery_style_hyperos_title">Diseño de batería HyperOS</string>
+    <string name="status_bar_battery_style_hyperos_summary">Activa el nuevo diseño de batería horizontal estilo HyperOS con nivel dinámico, indicador de carga verde y color amarillo en modo de ahorro</string>
 </resources>

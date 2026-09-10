@@ -77,6 +77,13 @@
             settings:controller="com.android.settings.display.BatteryPercentagePreferenceController" />
 
         <SwitchPreferenceCompat
+            android:key="status_bar_battery_style_hyperos"
+            android:title="@string/status_bar_battery_style_hyperos_title"
+            android:summary="@string/status_bar_battery_style_hyperos_summary"
+            android:defaultValue="false"
+            settings:controller="com.android.settings.fuelgauge.HyperOSBatteryPreferenceController" />
+
+        <SwitchPreferenceCompat
             android:key="usb_pd_optimization"
             android:title="@string/usb_pd_optimization_title"
             android:summary="@string/usb_pd_optimization_summary"
