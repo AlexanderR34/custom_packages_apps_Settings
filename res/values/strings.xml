@@ -15750,4 +15750,18 @@
     <!-- Game Space -->
     <string name="game_space_title">Game Space</string>
     <string name="game_space_summary">Enhance your gaming experience</string>
+
+    <!-- Per-App Location Spoofing -->
+    <string name="app_location_spoofing_title">Spoof location by app</string>
+    <string name="app_location_spoofing_summary">Provide simulated GPS coordinates or silence location per application</string>
+    <string name="app_location_spoofing_footer">When spoofing is enabled for an app, it receives high-accuracy simulated GPS coordinates without mock flags, or silenced updates if no coordinates are configured. Unselected apps continue using genuine satellite GPS.</string>
+    <string name="location_spoof_apps_category_title">Applications with location access</string>
+    <string name="location_spoof_status_disabled">Real GPS (Unaltered)</string>
+    <string name="location_spoof_status_active_coords">Spoofing: %1$s, %2$s</string>
+    <string name="location_spoof_status_active_no_coords">Silenced (No GPS satellites)</string>
+    <string name="location_spoof_coords_label">Coordinates:</string>
+    <string name="location_spoof_clear_btn">Reset / Disable</string>
+    <string name="location_spoof_save_btn">Save Location</string>
+    <string name="location_spoof_saved_toast">Spoofed location saved for %1$s</string>
+    <string name="location_spoof_cleared_toast">Spoofed location disabled</string>
 </resources>

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:settings="http://schemas.android.com/apk/res-auto"
+    android:key="app_location_spoof_settings_screen"
+    android:title="@string/app_location_spoofing_title">
+
+    <com.android.settingslib.widget.FooterPreference
+        android:key="spoof_footer_info"
+        android:title="@string/app_location_spoofing_footer"
+        android:selectable="false"/>
+
+    <PreferenceCategory
+        android:key="category_spoof_apps"
+        android:title="@string/location_spoof_apps_category_title"/>
+
+</PreferenceScreen>

@@ -6369,4 +6369,18 @@
     <string name="wifi_hotspot_generate_password">Generar</string>
     <string name="wifi_hotspot_generate_password_title">Generar contraseña aleatoria</string>
     <string name="wifi_hotspot_password_length_title">Longitud de la contraseña (8–20)</string>
+
+    <!-- Falsificación de ubicación por app (Spanish) -->
+    <string name="app_location_spoofing_title">Falsificar ubicación por app</string>
+    <string name="app_location_spoofing_summary">Proporcionar coordenadas GPS simuladas o silenciar la ubicación por aplicación</string>
+    <string name="app_location_spoofing_footer">Cuando la falsificación está activa para una app, esta recibe coordenadas GPS simuladas de alta precisión sin marcas de mock, o eventos silenciados si no se han configurado coordenadas. Las apps sin seleccionar continúan usando el GPS satelital real.</string>
+    <string name="location_spoof_apps_category_title">Aplicaciones con acceso a ubicación</string>
+    <string name="location_spoof_status_disabled">GPS Real (Sin alterar)</string>
+    <string name="location_spoof_status_active_coords">Simulando: %1$s, %2$s</string>
+    <string name="location_spoof_status_active_no_coords">GPS Silenciado (Sin satélites)</string>
+    <string name="location_spoof_coords_label">Coordenadas:</string>
+    <string name="location_spoof_clear_btn">Restablecer / Desactivar</string>
+    <string name="location_spoof_save_btn">Guardar ubicación</string>
+    <string name="location_spoof_saved_toast">Ubicación simulada guardada para %1$s</string>
+    <string name="location_spoof_cleared_toast">Ubicación simulada desactivada</string>
 </resources>

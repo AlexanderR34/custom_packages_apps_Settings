@@ -78,6 +78,13 @@
             settings:controller="com.android.settings.location.AppLocationPermissionPreferenceController"/>
 
         <Preference
+            android:key="app_location_spoofing"
+            android:title="@string/app_location_spoofing_title"
+            android:summary="@string/app_location_spoofing_summary"
+            android:fragment="com.android.settings.location.AppLocationSpoofSettings"
+            settings:controller="com.android.settings.location.AppLocationSpoofPreferenceController"/>
+
+        <Preference
             android:fragment="com.android.settings.location.LocationServices"
             android:key="location_services"
             android:title="@string/location_services_preference_title"
