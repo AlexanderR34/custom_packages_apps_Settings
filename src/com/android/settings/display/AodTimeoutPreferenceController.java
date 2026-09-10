@@ -17,6 +17,8 @@
 package com.android.settings.display;
 
 import android.content.Context;
+import android.hardware.display.AmbientDisplayConfiguration;
+import android.os.UserHandle;
 import android.provider.Settings;
 
 import androidx.preference.ListPreference;
@@ -25,38 +27,61 @@ import androidx.preference.Preference;
 import com.android.settings.core.BasePreferenceController;
 
 /**
- * Controller for selecting Always On Display (AOD) timeout mode (Always on vs 10s/5s after tap).
+ * Controller for selecting Always On Display (AOD) timeout mode (Never / 5s / 15s / 30s / 60s / 120s).
  */
 public class AodTimeoutPreferenceController extends BasePreferenceController implements Preference.OnPreferenceChangeListener {
 
-    private static final String KEY_AOD_TIMEOUT = "doze_always_on_timeout_mode";
+    private static final String KEY_AOD_TIMEOUT = Settings.Secure.DOZE_ALWAYS_ON_TIMEOUT;
+    private final AmbientDisplayConfiguration mConfig;
 
     public AodTimeoutPreferenceController(Context context, String preferenceKey) {
         super(context, preferenceKey);
+        mConfig = new AmbientDisplayConfiguration(context);
     }
 
     @Override
     public int getAvailabilityStatus() {
-        return AVAILABLE;
+        return mConfig.alwaysOnAvailableForUser(UserHandle.myUserId())
+                ? AVAILABLE
+                : UNSUPPORTED_ON_DEVICE;
     }
 
     @Override
     public void updateState(Preference preference) {
         if (preference instanceof ListPreference) {
             ListPreference listPref = (ListPreference) preference;
-            int mode = Settings.Secure.getInt(
-                    mContext.getContentResolver(), KEY_AOD_TIMEOUT, 0);
-            listPref.setValue(String.valueOf(mode));
+            int timeoutSec = Settings.Secure.getIntForUser(
+                    mContext.getContentResolver(),
+                    KEY_AOD_TIMEOUT,
+                    0,
+                    UserHandle.myUserId());
+            listPref.setValue(String.valueOf(timeoutSec));
             listPref.setSummary(listPref.getEntry());
+
+            boolean aodEnabled = mConfig.alwaysOnEnabled(UserHandle.myUserId());
+            listPref.setEnabled(aodEnabled);
         }
     }
 
     @Override
     public boolean onPreferenceChange(Preference preference, Object newValue) {
-        int mode = Integer.parseInt((String) newValue);
-        Settings.Secure.putInt(
-                mContext.getContentResolver(), KEY_AOD_TIMEOUT, mode);
-        updateState(preference);
+        try {
+            int timeoutSec = Integer.parseInt((String) newValue);
+            Settings.Secure.putIntForUser(
+                    mContext.getContentResolver(),
+                    KEY_AOD_TIMEOUT,
+                    timeoutSec,
+                    UserHandle.myUserId());
+            if (preference instanceof ListPreference) {
+                ListPreference listPref = (ListPreference) preference;
+                int index = listPref.findIndexOfValue((String) newValue);
+                if (index >= 0 && index < listPref.getEntries().length) {
+                    listPref.setSummary(listPref.getEntries()[index]);
+                }
+            }
+        } catch (Exception ignored) {
+        }
         return true;
     }
 }
+

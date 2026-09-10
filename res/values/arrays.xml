@@ -31,15 +31,21 @@
 
     <!-- Always On Display timeout preferences -->
     <string-array name="doze_always_on_timeout_entries">
-        <item>Always on</item>
-        <item>Show for 10 seconds after tapping</item>
-        <item>Show for 5 seconds after tapping</item>
+        <item>Always on (Never)</item>
+        <item>5 seconds</item>
+        <item>15 seconds</item>
+        <item>30 seconds</item>
+        <item>1 minute (60 seconds)</item>
+        <item>2 minutes (120 seconds)</item>
     </string-array>
 
     <string-array name="doze_always_on_timeout_values" translatable="false">
         <item>0</item>
-        <item>10</item>
         <item>5</item>
+        <item>15</item>
+        <item>30</item>
+        <item>60</item>
+        <item>120</item>
     </string-array>
 
     <!-- Do not translate. -->

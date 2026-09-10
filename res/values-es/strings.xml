@@ -6353,4 +6353,15 @@
     <string name="permit_access_hid" msgid="870824396872060949">"Permitir que la aplicación encuentre dispositivos de interfaz humana (HIDs)"</string>
     <string name="allow_access_hid_description" msgid="5950783046013896271">"Si das permiso, las aplicaciones maliciosas podrían reprogramar tus HIDs y poner en riesgo tu sistema. Por ejemplo, las aplicaciones podrían imitar las acciones de tu teclado o ratón para tomar el control de tu sistema incluso cuando no lo estás usando. Asegúrate de que las aplicaciones sean de confianza antes de darles acceso."</string>
     <string name="keywords_access_hid" msgid="682455265293135353">"hid, humana, acceso, dispositivo"</string>
+
+    <!-- Always On Display Timeout (Spanish) -->
+    <string name="doze_always_on_timeout_title">Tiempo de espera</string>
+    <string name="doze_always_on_timeout_summary">Apagar la pantalla tras un período de inactividad en el modo siempre activa</string>
+    <string name="doze_always_on_timeout_purpose">Configurar la duración antes de que se apague la pantalla siempre activa</string>
+    <string name="doze_always_on_timeout_never">Siempre activa</string>
+    <string name="doze_always_on_timeout_5s">5 segundos</string>
+    <string name="doze_always_on_timeout_15s">15 segundos</string>
+    <string name="doze_always_on_timeout_30s">30 segundos</string>
+    <string name="doze_always_on_timeout_60s">1 minuto (60 segundos)</string>
+    <string name="doze_always_on_timeout_120s">2 minutos (120 segundos)</string>
 </resources>

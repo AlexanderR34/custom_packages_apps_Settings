@@ -105,11 +105,11 @@
             settings:controller="com.android.settings.display.AmbientDisplayAlwaysOnPreferenceScreenController"
             settings:userRestriction="no_ambient_display" />
 
-        <!-- Modo de tiempo de espera de AOD (Siempre encendido / 10s tras tocar / 5s tras tocar) -->
+        <!-- Modo de tiempo de espera de AOD (Siempre activa / 5s / 15s / 30s / 60s / 120s) -->
         <ListPreference
-            android:key="doze_always_on_timeout_mode"
+            android:key="doze_always_on_timeout"
             android:title="@string/doze_always_on_timeout_title"
-            android:summary="@string/summary_placeholder"
+            android:summary="%s"
             android:entries="@array/doze_always_on_timeout_entries"
             android:entryValues="@array/doze_always_on_timeout_values"
             android:defaultValue="0"

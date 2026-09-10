@@ -9126,8 +9126,16 @@
     <string name="disable_scoped_storage_restrictions_title">Bypass system folder restrictions</string>
     <string name="disable_scoped_storage_restrictions_summary">Allow third-party apps to access restricted system directories such as Android/data, Android/obb, and Download</string>
     <string name="app_network_isolation_title">Isolate app from network</string>
-    <string name="app_network_isolation_summary">Completely block mobile data and Wi-Fi access so this app believes there is no internet connection</string>
-    <string name="doze_always_on_timeout_title">Always On Display mode</string>
+    <!-- Always On Display Screen Timeout -->
+    <string name="doze_always_on_timeout_title">Screen timeout on AOD</string>
+    <string name="doze_always_on_timeout_summary">Turn off Always On Display after a period of inactivity</string>
+    <string name="doze_always_on_timeout_purpose">Configure duration before screen turns off on always-on display</string>
+    <string name="doze_always_on_timeout_never">Always on (Never)</string>
+    <string name="doze_always_on_timeout_5s">5 seconds</string>
+    <string name="doze_always_on_timeout_15s">15 seconds</string>
+    <string name="doze_always_on_timeout_30s">30 seconds</string>
+    <string name="doze_always_on_timeout_60s">1 minute (60 seconds)</string>
+    <string name="doze_always_on_timeout_120s">2 minutes (120 seconds)</string>
 
     <!-- Dynamic Lockscreen Wallpaper -->
     <string name="lockscreen_multi_wallpaper_title">Dynamic lock screen wallpaper</string>
