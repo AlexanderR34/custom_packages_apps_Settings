@@ -9048,9 +9048,10 @@
     <!-- Sound: Title for Volume Boost [CHAR LIMIT=30] -->
     <string name="volume_boost_title">Volume boost</string>
     <!-- Sound: Summary for Volume Boost [CHAR LIMIT=NONE] -->
-    <string name="volume_boost_summary">Amplify device volume up to 200% using dynamic processing to prevent distortion</string>
-    <!-- Sound: Format for Volume Boost summary [CHAR LIMIT=30] -->
-    <string name="volume_boost_summary_format">Output level: %1$d%% (Dynamic Processing)</string>
+    <string name="volume_boost_summary">Amplify device volume up to 250% using dynamic processing to prevent distortion</string>
+    <string name="volume_boost_summary_normal">Standard volume (100%)</string>
+    <!-- Sound: Format for Volume Boost summary [CHAR LIMIT=40] -->
+    <string name="volume_boost_summary_format">Output level: %1$d%% (+%2$.1f dB Dynamic Processing)</string>
 
     <!-- Sound: Title for Multi-Audio Focus / Simultaneous Audio Playback [CHAR LIMIT=35] -->
     <string name="multi_audio_focus_title">Multi audio focus</string>

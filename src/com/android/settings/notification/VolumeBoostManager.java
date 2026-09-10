@@ -189,7 +189,7 @@ public class VolumeBoostManager {
 
         int gainmB = 0;
         if (clampedLevel > 0) {
-            gainmB = Math.round((clampedLevel / 100.0f) * 3500.0f); // Max +35 dB gain
+            gainmB = Math.round((clampedLevel / 100.0f) * 1500.0f); // Max +15.0 dB gain (1500 mB)
         }
 
         if (mLoudnessEnhancer != null) {

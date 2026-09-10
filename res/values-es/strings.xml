@@ -3819,8 +3819,11 @@
     <string name="sound_dashboard_summary" msgid="8254699132423665654">"Volumen y vibración"</string>
     <string name="media_volume_option_title" msgid="5966569685119475630">"Volumen multimedia"</string>
     <string name="volume_boost_title">"Aumento de volumen"</string>
-    <string name="volume_boost_summary">"Aumenta el volumen del dispositivo hasta un 200% utilizando procesamiento dinámico para evitar la distorsión"</string>
-    <string name="volume_boost_summary_format">"Nivel de salida: %1$d%% (Dynamic Processing)"</string>
+    <string name="volume_boost_summary">"Amplifica el volumen del dispositivo hasta un 250% utilizando procesamiento dinámico para evitar la distorsión"</string>
+    <string name="volume_boost_summary_normal">"Volumen estándar (100%)"</string>
+    <string name="volume_boost_summary_format">"Nivel de salida: %1$d%% (+%2$.1f dB con Dynamic Processing)"</string>
+    <string name="app_volume_title">"Control de volumen por aplicación"</string>
+    <string name="app_volume_summary">"Muestra el botón de volumen individual por aplicación en el panel de volumen"</string>
     <string name="multi_audio_focus_title">"Enfoque de audio múltiple"</string>
     <string name="multi_audio_focus_summary">"Permite que varias aplicaciones reproduzcan sonido al mismo tiempo"</string>
     <string name="blur_intensity_title">"Intensidad de desenfoque"</string>

@@ -17,24 +17,35 @@
 package com.android.settings.sound;
 
 import android.content.Context;
+import android.content.res.ColorStateList;
 import android.util.AttributeSet;
+import android.util.TypedValue;
 import android.view.HapticFeedbackConstants;
+import android.widget.ImageView;
 import android.widget.SeekBar;
 import android.widget.TextView;
 
 import androidx.preference.PreferenceViewHolder;
 
 import com.android.settings.R;
+import com.android.settings.notification.VolumeBoostManager;
 import com.android.settings.widget.SeekBarPreference;
 
+import java.util.Locale;
+
 /**
- * SeekBarPreference designed for volume boost control, mapping progress (0 - 100)
- * to output volume levels from 100% (default) up to 200% (max boosted) with haptic feedback.
+ * Material 3 Expressive SeekBarPreference designed for Volume Boost control.
+ * Smoothly maps slider progress (0 - 100) to device volume output (100% - 250% / up to +15.0 dB)
+ * with a dynamic badge chip, real-time gain summary, and precision haptic feedback.
  */
 public class VolumeBoostSeekBarPreference extends SeekBarPreference {
 
-    private TextView mValueTextView;
-    private int mLastProgress = -1;
+    private TextView mValueBadgeView;
+    private TextView mSummaryView;
+    private ImageView mIconView;
+    private int mLastHapticProgress = -1;
+    private int mAccentColor = 0;
+    private int mNormalIconColor = 0;
 
     public VolumeBoostSeekBarPreference(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
         super(context, attrs, defStyleAttr, defStyleRes);
@@ -57,42 +68,85 @@ public class VolumeBoostSeekBarPreference extends SeekBarPreference {
     }
 
     private void init() {
+        setLayoutResource(R.layout.preference_volume_boost_expressive);
         setMin(0);
         setMax(100);
         setContinuousUpdates(true);
+
+        TypedValue typedValue = new TypedValue();
+        getContext().getTheme().resolveAttribute(android.R.attr.colorAccent, typedValue, true);
+        mAccentColor = typedValue.data;
+
+        getContext().getTheme().resolveAttribute(android.R.attr.colorControlNormal, typedValue, true);
+        mNormalIconColor = typedValue.data;
     }
 
     @Override
     public void onBindViewHolder(PreferenceViewHolder holder) {
         super.onBindViewHolder(holder);
-        mValueTextView = (TextView) holder.findViewById(android.R.id.summary);
-        updateValueText(getProgress());
+        mValueBadgeView = (TextView) holder.findViewById(R.id.volume_boost_badge);
+        mSummaryView = (TextView) holder.findViewById(android.R.id.summary);
+        mIconView = (ImageView) holder.findViewById(android.R.id.icon);
+
+        updateViews(getProgress());
     }
 
     @Override
     public void setProgress(int progress) {
         super.setProgress(progress);
-        updateValueText(progress);
+        updateViews(progress);
     }
 
     @Override
     public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
         super.onProgressChanged(seekBar, progress, fromUser);
-        updateValueText(progress);
-        if (fromUser && Math.abs(progress - mLastProgress) >= 5) {
-            mLastProgress = progress;
-            seekBar.performHapticFeedback(HapticFeedbackConstants.CLOCK_TICK);
+        updateViews(progress);
+
+        if (fromUser) {
+            // Apply live boost preview without latency
+            VolumeBoostManager.getInstance(getContext()).setBoostLevel(progress);
+
+            // Precision Material 3 Expressive haptic tick every 5% step or on bounds
+            if (mLastHapticProgress == -1 || Math.abs(progress - mLastHapticProgress) >= 5
+                    || progress == 0 || progress == 100) {
+                mLastHapticProgress = progress;
+                try {
+                    seekBar.performHapticFeedback(HapticFeedbackConstants.SEGMENT_TICK);
+                } catch (Exception e) {
+                    seekBar.performHapticFeedback(HapticFeedbackConstants.CLOCK_TICK);
+                }
+            }
         }
     }
 
-    private void updateValueText(int progress) {
-        int displayVolumePercent = 100 + Math.round((progress / 100.0f) * 150.0f); // 0% boost = 100% volume; 100% boost = 250% volume (+15 dB)
-        String text = displayVolumePercent + "%";
-        
-        if (mValueTextView != null) {
-            mValueTextView.setText(text);
+    private void updateViews(int progress) {
+        int displayVolumePercent = 100 + Math.round((progress / 100.0f) * 150.0f); // 100% -> 250%
+        float gainDb = (progress / 100.0f) * 15.0f; // 0 dB -> +15.0 dB
+
+        if (mValueBadgeView != null) {
+            mValueBadgeView.setText(String.format(Locale.getDefault(), "%d%%", displayVolumePercent));
         }
-        
-        setSummary(getContext().getString(R.string.volume_boost_summary_format, displayVolumePercent));
+
+        String summaryText;
+        if (progress == 0) {
+            summaryText = getContext().getString(R.string.volume_boost_summary_normal);
+        } else {
+            summaryText = String.format(Locale.getDefault(),
+                    getContext().getString(R.string.volume_boost_summary_format),
+                    displayVolumePercent, gainDb);
+        }
+
+        if (mSummaryView != null) {
+            mSummaryView.setText(summaryText);
+        }
+        setSummary(summaryText);
+
+        if (mIconView != null) {
+            if (progress > 0 && mAccentColor != 0) {
+                mIconView.setImageTintList(ColorStateList.valueOf(mAccentColor));
+            } else if (mNormalIconColor != 0) {
+                mIconView.setImageTintList(ColorStateList.valueOf(mNormalIconColor));
+            }
+        }
     }
 }
