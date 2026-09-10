@@ -128,7 +128,7 @@ public class FirmwareVersionSettings extends DashboardFragment {
         if (tvAndroid != null) tvAndroid.setText(Build.VERSION.RELEASE);
 
         TextView tvDiva = root.findViewById(R.id.tv_diva_version);
-        if (tvDiva != null) tvDiva.setText(SystemProperties.get("ro.diva.version", "1.0 DESTELLO AZUL"));
+        if (tvDiva != null) tvDiva.setText(SystemProperties.get("ro.diva.version", "Project Diva 1.1.2"));
 
         TextView tvMaintainer = root.findViewById(R.id.tv_maintainer);
         // Utilizando tu nombre como fallback en caso de que no exista la propiedad
@@ -150,7 +150,26 @@ public class FirmwareVersionSettings extends DashboardFragment {
         if (tvBuildDate != null) tvBuildDate.setText(SystemProperties.get("ro.build.date", ""));
 
         TextView tvBuildNumber = root.findViewById(R.id.tv_build_number);
-        if (tvBuildNumber != null) tvBuildNumber.setText(Build.DISPLAY);
+        if (tvBuildNumber != null) {
+            String display = Build.DISPLAY != null ? Build.DISPLAY.replace("\\n", " ").replace("\n", " ").trim() : "";
+            String customVersion = com.android.settings.deviceinfo.VersionUtils.getCustomVersion();
+            if (!android.text.TextUtils.isEmpty(customVersion)) {
+                String cleanVersion = customVersion.replace("\\n", " ").replace("\n", " ").trim();
+                if (!cleanVersion.isEmpty()) {
+                    if (display.isEmpty() || display.contains(cleanVersion)) {
+                        tvBuildNumber.setText(cleanVersion);
+                    } else if (cleanVersion.contains(display)) {
+                        tvBuildNumber.setText(cleanVersion);
+                    } else {
+                        tvBuildNumber.setText(cleanVersion + " (" + display + ")");
+                    }
+                } else {
+                    tvBuildNumber.setText(display);
+                }
+            } else {
+                tvBuildNumber.setText(display);
+            }
+        }
     }
 
     private void setupAndroidVersionMenu(View root) {
