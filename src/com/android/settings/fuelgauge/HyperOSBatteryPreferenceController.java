@@ -26,6 +26,8 @@ import androidx.preference.TwoStatePreference;
 import com.android.settings.core.BasePreferenceController;
 import com.android.settings.core.PreferenceControllerMixin;
 
+import com.android.settings.utils.SystemUiRestartUtils;
+
 public class HyperOSBatteryPreferenceController extends BasePreferenceController implements
         PreferenceControllerMixin, Preference.OnPreferenceChangeListener {
 
@@ -56,6 +58,7 @@ public class HyperOSBatteryPreferenceController extends BasePreferenceController
                 KEY_SETTING, enabled ? 1 : 0, UserHandle.USER_CURRENT);
         Settings.System.putIntForUser(mContext.getContentResolver(),
                 "status_bar_battery_style", enabled ? 1 : 0, UserHandle.USER_CURRENT);
+        SystemUiRestartUtils.showRestartDialog(mContext);
         return true;
     }
 }
