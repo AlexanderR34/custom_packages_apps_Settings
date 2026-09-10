@@ -26,12 +26,14 @@ import android.text.TextWatcher;
 import android.util.AttributeSet;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.SeekBar;
 import android.widget.TextView;
 
 import androidx.annotation.VisibleForTesting;
 import androidx.appcompat.app.AlertDialog;
 import androidx.preference.PreferenceViewHolder;
 
+import com.android.settings.R;
 import com.android.settingslib.CustomEditTextPreferenceCompat;
 
 /**
@@ -42,6 +44,11 @@ public class ValidatedEditTextPreference extends CustomEditTextPreferenceCompat 
     public interface Validator {
         boolean isTextValid(String value);
     }
+
+    private static final String PREF_KEY_HOTSPOT_PASS_LENGTH = "wifi_hotspot_password_length_pref";
+    private static final int DEFAULT_HOTSPOT_PASS_LENGTH = 12;
+    private static final int MIN_HOTSPOT_PASS_LENGTH = 8;
+    private static final int MAX_HOTSPOT_PASS_LENGTH = 20;
 
     private final EditTextWatcher mTextWatcher = new EditTextWatcher();
     private Validator mValidator;
@@ -68,6 +75,9 @@ public class ValidatedEditTextPreference extends CustomEditTextPreferenceCompat 
 
     public void setAllowRandomPassword(boolean allow) {
         mAllowRandomPassword = allow;
+        if (allow) {
+            setDialogLayoutResource(R.layout.wifi_tether_password_dialog);
+        }
     }
 
     public boolean isAllowRandomPassword() {
@@ -79,7 +89,8 @@ public class ValidatedEditTextPreference extends CustomEditTextPreferenceCompat 
      * numbers 0-9, and special characters.
      */
     public static String generateStrongRandomPassword(int length) {
-        if (length < 8) length = 12;
+        if (length < MIN_HOTSPOT_PASS_LENGTH) length = MIN_HOTSPOT_PASS_LENGTH;
+        if (length > MAX_HOTSPOT_PASS_LENGTH) length = MAX_HOTSPOT_PASS_LENGTH;
         final String upper = "ABCDEFGHJKLMNPQRSTUVWXYZ";
         final String lower = "abcdefghijkmnopqrstuvwxyz";
         final String numbers = "0123456789";
@@ -141,6 +152,47 @@ public class ValidatedEditTextPreference extends CustomEditTextPreferenceCompat 
             editText.addTextChangedListener(mTextWatcher);
         }
         if (mAllowRandomPassword) {
+            final View lengthContainer = view.findViewById(R.id.password_length_container);
+            final TextView lengthBadge = view.findViewById(R.id.password_length_badge);
+            final SeekBar lengthSlider = view.findViewById(R.id.password_length_slider);
+
+            final android.content.SharedPreferences prefs =
+                    getContext().getSharedPreferences("hotspot_settings_prefs", Context.MODE_PRIVATE);
+            final int savedLength = prefs.getInt(PREF_KEY_HOTSPOT_PASS_LENGTH, DEFAULT_HOTSPOT_PASS_LENGTH);
+            final int[] currentLength = new int[] { Math.max(MIN_HOTSPOT_PASS_LENGTH, Math.min(MAX_HOTSPOT_PASS_LENGTH, savedLength)) };
+
+            if (lengthContainer != null) {
+                lengthContainer.setVisibility(View.VISIBLE);
+            }
+
+            if (lengthBadge != null) {
+                lengthBadge.setText(String.valueOf(currentLength[0]));
+            }
+
+            if (lengthSlider != null) {
+                lengthSlider.setMax(MAX_HOTSPOT_PASS_LENGTH - MIN_HOTSPOT_PASS_LENGTH);
+                lengthSlider.setProgress(currentLength[0] - MIN_HOTSPOT_PASS_LENGTH);
+                lengthSlider.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+                    @Override
+                    public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+                        currentLength[0] = MIN_HOTSPOT_PASS_LENGTH + progress;
+                        if (lengthBadge != null) {
+                            lengthBadge.setText(String.valueOf(currentLength[0]));
+                        }
+                        if (fromUser) {
+                            seekBar.performHapticFeedback(android.view.HapticFeedbackConstants.CLOCK_TICK);
+                            prefs.edit().putInt(PREF_KEY_HOTSPOT_PASS_LENGTH, currentLength[0]).apply();
+                        }
+                    }
+
+                    @Override
+                    public void onStartTrackingTouch(SeekBar seekBar) {}
+
+                    @Override
+                    public void onStopTrackingTouch(SeekBar seekBar) {}
+                });
+            }
+
             view.post(() -> {
                 final AlertDialog dialog = (AlertDialog) getDialog();
                 if (dialog != null) {
@@ -148,7 +200,7 @@ public class ValidatedEditTextPreference extends CustomEditTextPreferenceCompat 
                             dialog.getButton(AlertDialog.BUTTON_NEUTRAL);
                     if (neutralButton != null) {
                         neutralButton.setOnClickListener(v -> {
-                            String newPassword = generateStrongRandomPassword(12);
+                            String newPassword = generateStrongRandomPassword(currentLength[0]);
                             if (editText != null) {
                                 editText.setText(newPassword);
                                 editText.setSelection(newPassword.length());

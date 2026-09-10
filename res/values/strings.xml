@@ -9140,6 +9140,7 @@
     <!-- Wi-Fi Hotspot Random Password Generation -->
     <string name="wifi_hotspot_generate_password">Generate</string>
     <string name="wifi_hotspot_generate_password_title">Generate random password</string>
+    <string name="wifi_hotspot_password_length_title">Password length (8–20)</string>
 
     <!-- Dynamic Lockscreen Wallpaper -->
     <string name="lockscreen_multi_wallpaper_title">Dynamic lock screen wallpaper</string>
