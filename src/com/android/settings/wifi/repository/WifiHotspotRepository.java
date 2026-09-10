@@ -157,9 +157,7 @@ public class WifiHotspotRepository {
     }
 
     private static String generateRandomPassword() {
-        String randomUUID = UUID.randomUUID().toString();
-        //first 12 chars from xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx
-        return randomUUID.substring(0, 8) + randomUUID.substring(9, 13);
+        return com.android.settings.widget.ValidatedEditTextPreference.generateStrongRandomPassword(12);
     }
 
     /**

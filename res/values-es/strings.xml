@@ -6364,4 +6364,8 @@
     <string name="doze_always_on_timeout_30s">30 segundos</string>
     <string name="doze_always_on_timeout_60s">1 minuto (60 segundos)</string>
     <string name="doze_always_on_timeout_120s">2 minutos (120 segundos)</string>
+
+    <!-- Generación aleatoria de contraseña de Hotspot (Spanish) -->
+    <string name="wifi_hotspot_generate_password">Generar</string>
+    <string name="wifi_hotspot_generate_password_title">Generar contraseña aleatoria</string>
 </resources>

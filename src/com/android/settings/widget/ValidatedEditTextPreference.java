@@ -47,6 +47,7 @@ public class ValidatedEditTextPreference extends CustomEditTextPreferenceCompat 
     private Validator mValidator;
     private boolean mIsPassword;
     private boolean mIsSummaryPassword;
+    private boolean mAllowRandomPassword;
 
     public ValidatedEditTextPreference(Context context, AttributeSet attrs,
             int defStyleAttr, int defStyleRes) {
@@ -63,6 +64,60 @@ public class ValidatedEditTextPreference extends CustomEditTextPreferenceCompat 
 
     public ValidatedEditTextPreference(Context context) {
         super(context);
+    }
+
+    public void setAllowRandomPassword(boolean allow) {
+        mAllowRandomPassword = allow;
+    }
+
+    public boolean isAllowRandomPassword() {
+        return mAllowRandomPassword;
+    }
+
+    /**
+     * Generates a strong random password containing uppercase letters, lowercase letters,
+     * numbers 0-9, and special characters.
+     */
+    public static String generateStrongRandomPassword(int length) {
+        if (length < 8) length = 12;
+        final String upper = "ABCDEFGHJKLMNPQRSTUVWXYZ";
+        final String lower = "abcdefghijkmnopqrstuvwxyz";
+        final String numbers = "0123456789";
+        final String special = "!@#$%&*-_+=~?";
+        final String allChars = upper + lower + numbers + special;
+
+        java.security.SecureRandom random = new java.security.SecureRandom();
+        StringBuilder sb = new StringBuilder(length);
+
+        // Guarantee at least 1 uppercase, 1 lowercase, 1 digit (0-9), and 1 special symbol
+        sb.append(upper.charAt(random.nextInt(upper.length())));
+        sb.append(lower.charAt(random.nextInt(lower.length())));
+        sb.append(numbers.charAt(random.nextInt(numbers.length())));
+        sb.append(special.charAt(random.nextInt(special.length())));
+
+        for (int i = 4; i < length; i++) {
+            sb.append(allChars.charAt(random.nextInt(allChars.length())));
+        }
+
+        // Shuffle characters
+        char[] array = sb.toString().toCharArray();
+        for (int i = array.length - 1; i > 0; i--) {
+            int j = random.nextInt(i + 1);
+            char temp = array[i];
+            array[i] = array[j];
+            array[j] = temp;
+        }
+
+        return new String(array);
+    }
+
+    @Override
+    protected void onPrepareDialogBuilder(AlertDialog.Builder builder,
+            android.content.DialogInterface.OnClickListener listener) {
+        super.onPrepareDialogBuilder(builder, listener);
+        if (mAllowRandomPassword) {
+            builder.setNeutralButton(R.string.wifi_hotspot_generate_password, null);
+        }
     }
 
     @Override
@@ -84,6 +139,33 @@ public class ValidatedEditTextPreference extends CustomEditTextPreferenceCompat 
                 editText.setMaxLines(1);
             }
             editText.addTextChangedListener(mTextWatcher);
+        }
+        if (mAllowRandomPassword) {
+            view.post(() -> {
+                final AlertDialog dialog = (AlertDialog) getDialog();
+                if (dialog != null) {
+                    final android.widget.Button neutralButton =
+                            dialog.getButton(AlertDialog.BUTTON_NEUTRAL);
+                    if (neutralButton != null) {
+                        neutralButton.setOnClickListener(v -> {
+                            String newPassword = generateStrongRandomPassword(12);
+                            if (editText != null) {
+                                editText.setText(newPassword);
+                                editText.setSelection(newPassword.length());
+                            }
+                            v.performHapticFeedback(android.view.HapticFeedbackConstants.CONTEXT_CLICK);
+                            if (mValidator != null && editText != null) {
+                                boolean valid = mValidator.isTextValid(newPassword);
+                                final android.widget.Button positiveButton =
+                                        dialog.getButton(AlertDialog.BUTTON_POSITIVE);
+                                if (positiveButton != null) {
+                                    positiveButton.setEnabled(valid);
+                                }
+                            }
+                        });
+                    }
+                }
+            });
         }
     }
 

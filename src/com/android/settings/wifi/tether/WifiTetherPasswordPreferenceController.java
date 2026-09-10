@@ -83,6 +83,7 @@ public class WifiTetherPasswordPreferenceController extends WifiTetherBasePrefer
         ((ValidatedEditTextPreference) mPreference).setValidator(this);
         ((ValidatedEditTextPreference) mPreference).setIsPassword(true);
         ((ValidatedEditTextPreference) mPreference).setIsSummaryPassword(true);
+        ((ValidatedEditTextPreference) mPreference).setAllowRandomPassword(true);
         ((EditTextPreference) mPreference).setOnBindEditTextListener(this);
         updatePasswordDisplay((EditTextPreference) mPreference);
     }

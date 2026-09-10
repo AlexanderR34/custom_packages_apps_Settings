@@ -9137,6 +9137,10 @@
     <string name="doze_always_on_timeout_60s">1 minute (60 seconds)</string>
     <string name="doze_always_on_timeout_120s">2 minutes (120 seconds)</string>
 
+    <!-- Wi-Fi Hotspot Random Password Generation -->
+    <string name="wifi_hotspot_generate_password">Generate</string>
+    <string name="wifi_hotspot_generate_password_title">Generate random password</string>
+
     <!-- Dynamic Lockscreen Wallpaper -->
     <string name="lockscreen_multi_wallpaper_title">Dynamic lock screen wallpaper</string>
     <string name="lockscreen_multi_wallpaper_summary">Change lock screen wallpaper every time the screen turns off or on</string>
