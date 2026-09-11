@@ -3884,7 +3884,6 @@
     <string name="disable_scoped_storage_restrictions_summary">"Permite que aplicaciones de terceros puedan leer y escribir en carpetas restringidas como Android/data, Android/obb y Download"</string>
     <string name="app_network_isolation_title">"Aislar aplicación de la red"</string>
     <string name="app_network_isolation_summary">"Bloquea por completo los datos móviles y Wi-Fi para que esta aplicación crea que no hay conexión a internet"</string>
-    <string name="doze_always_on_timeout_title">"Modo de pantalla siempre activa"</string>
     <string name="lockscreen_multi_wallpaper_title">"Fondo de pantalla dinámico"</string>
     <string name="lockscreen_multi_wallpaper_summary">"Cambia el fondo de pantalla de bloqueo cada vez que apagas o enciendes la pantalla"</string>
     <string name="lockscreen_multi_wallpaper_summary_enabled">"%1$d fotos configuradas para rotación de pantalla"</string>
@@ -6383,4 +6382,6 @@
     <string name="location_spoof_save_btn">Guardar ubicación</string>
     <string name="location_spoof_saved_toast">Ubicación simulada guardada para %1$s</string>
     <string name="location_spoof_cleared_toast">Ubicación simulada desactivada</string>
+    <string name="back_button_label">Atrás</string>
 </resources>
+

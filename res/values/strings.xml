@@ -15764,4 +15764,6 @@
     <string name="location_spoof_save_btn">Save Location</string>
     <string name="location_spoof_saved_toast">Spoofed location saved for %1$s</string>
     <string name="location_spoof_cleared_toast">Spoofed location disabled</string>
+    <string name="back_button_label">Back</string>
 </resources>
+
