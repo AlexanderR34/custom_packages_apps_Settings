@@ -27,26 +27,26 @@
     <string name="app_volume_summary">Show per-app volume button into volume dialog</string>
 
     <!-- Custom Blur Intensity -->
-    <string name="custom_blur_intensity_title">Intensidad de densenfoque</string>
-    <string name="custom_blur_intensity_summary">Ajusta el nivel de desenfoque del sistema</string>
+    <string name="custom_blur_intensity_title">Blur intensity</string>
+    <string name="custom_blur_intensity_summary">Adjust the system background blur radius and intensity</string>
 
     <!-- Status Bar Music Island -->
-    <string name="status_bar_music_island_title">Activar isla musical</string>
-    <string name="status_bar_music_island_summary">Un simple atajo para pasar, retroceder o pausar las canciones desde la status bar</string>
+    <string name="status_bar_music_island_title">Enable Music Island</string>
+    <string name="status_bar_music_island_summary">Quick media playback controls and progress ring in the status bar</string>
 
     <!-- Status Bar Clock Position -->
-    <string name="status_bar_clock_position_title">Posición del reloj</string>
-    <string name="status_bar_clock_position_summary">Elige si deseas el reloj en el lado izquierdo o derecho de la barra de estado</string>
-    <string name="status_bar_clock_position_left">Izquierda</string>
-    <string name="status_bar_clock_position_right">Derecha (al lado de la batería)</string>
+    <string name="status_bar_clock_position_title">Clock position</string>
+    <string name="status_bar_clock_position_summary">Choose whether to position the clock on the left or right side of the status bar</string>
+    <string name="status_bar_clock_position_left">Left</string>
+    <string name="status_bar_clock_position_right">Right (next to battery)</string>
 
     <!-- Custom App Label -->
-    <string name="custom_app_name_title">Nombre personalizado</string>
-    <string name="custom_app_name_hint">Escribe el nuevo nombre</string>
-    <string name="custom_app_name_reset">Restablecer</string>
-    <string name="custom_app_name_saved">Nombre actualizado</string>
-    <string name="custom_app_name_reset_done">Nombre restablecido</string>
+    <string name="custom_app_name_title">Custom app name</string>
+    <string name="custom_app_name_hint">Enter new name</string>
+    <string name="custom_app_name_reset">Reset</string>
+    <string name="custom_app_name_saved">App name updated</string>
+    <string name="custom_app_name_reset_done">App name reset to default</string>
 
     <!-- App Install Time -->
-    <string name="app_install_time_format">Instalada el %1$s a las %2$s</string>
+    <string name="app_install_time_format">Installed on %1$s at %2$s</string>
 </resources>
