@@ -108,22 +108,28 @@ public class LocationMapPickerActivity extends Activity {
         updateCoordsDisplay(mCurrentLat, mCurrentLng);
 
         // Setup WebView with Leaflet OpenStreetMap
-        WebSettings webSettings = mWebView.getSettings();
-        webSettings.setJavaScriptEnabled(true);
-        webSettings.setDomStorageEnabled(true);
-        webSettings.setAllowFileAccess(true);
-        webSettings.setLoadsImagesAutomatically(true);
+        if (mWebView != null) {
+            try {
+                WebSettings webSettings = mWebView.getSettings();
+                webSettings.setJavaScriptEnabled(true);
+                webSettings.setDomStorageEnabled(true);
+                webSettings.setAllowFileAccess(true);
+                webSettings.setLoadsImagesAutomatically(true);
 
-        mWebView.addJavascriptInterface(new MapBridge(), "AndroidBridge");
-        mWebView.setWebViewClient(new WebViewClient() {
-            @Override
-            public void onPageFinished(WebView view, String url) {
-                super.onPageFinished(view, url);
-                setMapLocation(mCurrentLat, mCurrentLng, 14);
+                mWebView.addJavascriptInterface(new MapBridge(), "AndroidBridge");
+                mWebView.setWebViewClient(new WebViewClient() {
+                    @Override
+                    public void onPageFinished(WebView view, String url) {
+                        super.onPageFinished(view, url);
+                        setMapLocation(mCurrentLat, mCurrentLng, 14);
+                    }
+                });
+
+                loadMapHtml();
+            } catch (Exception e) {
+                android.util.Log.e("LocationMapPicker", "Failed to initialize WebView: " + e.getMessage(), e);
             }
-        });
-
-        loadMapHtml();
+        }
 
         // Preset chips
         setupPreset(R.id.btn_preset_tokyo, 35.6895, 139.6917);
