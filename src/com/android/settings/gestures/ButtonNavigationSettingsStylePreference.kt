@@ -62,6 +62,7 @@ sealed class ButtonNavigationSettingsStylePreference(
                 it.isChecked = it == source
             }
         }
+        store.setValue(key, Boolean::class.javaObjectType, true)
     }
 
     override fun getReadPermit(context: Context, callingPid: Int, callingUid: Int) =

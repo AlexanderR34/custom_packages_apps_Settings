@@ -34,6 +34,7 @@ import com.android.settings.display.AmbientDisplayAlwaysOnPreferenceScreenContro
 import com.android.settings.display.ambient.AmbientDisplayIllustration
 import com.android.settings.display.ambient.AmbientDisplayMainSwitchPreference
 import com.android.settings.display.ambient.AmbientDisplayStorage
+import com.android.settings.display.ambient.AmbientDisplayTimeoutPreference
 import com.android.settings.display.ambient.AmbientDisplayTopIntroPreference
 import com.android.settings.display.ambient.AmbientInactivityDetectionPreference
 import com.android.settings.display.ambient.AmbientWallpaperPreference
@@ -171,6 +172,7 @@ open class AmbientDisplayAlwaysOnPreferenceScreen(context: Context) :
             +AmbientDisplayTopIntroPreference()
             +AmbientDisplayIllustration(context)
             +AmbientDisplayMainSwitchPreference()
+            +AmbientDisplayTimeoutPreference(context)
             if (context.isAmbientInactivityDetectionAvailable) {
                 +AmbientInactivityDetectionPreference(context)
             }
