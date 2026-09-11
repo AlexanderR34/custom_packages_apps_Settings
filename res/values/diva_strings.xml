@@ -34,6 +34,12 @@
     <string name="status_bar_music_island_title">Activar isla musical</string>
     <string name="status_bar_music_island_summary">Un simple atajo para pasar, retroceder o pausar las canciones desde la status bar</string>
 
+    <!-- Status Bar Clock Position -->
+    <string name="status_bar_clock_position_title">Posición del reloj</string>
+    <string name="status_bar_clock_position_summary">Elige si deseas el reloj en el lado izquierdo o derecho de la barra de estado</string>
+    <string name="status_bar_clock_position_left">Izquierda</string>
+    <string name="status_bar_clock_position_right">Derecha (al lado de la batería)</string>
+
     <!-- Custom App Label -->
     <string name="custom_app_name_title">Nombre personalizado</string>
     <string name="custom_app_name_hint">Escribe el nuevo nombre</string>
