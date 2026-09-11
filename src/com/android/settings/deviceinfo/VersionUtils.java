@@ -8,11 +8,14 @@ public class VersionUtils {
     public static String getCustomVersion() {
         String divaVer = SystemProperties.get("ro.diva.version", "");
         if (!TextUtils.isEmpty(divaVer)) {
-            return divaVer;
+            if (divaVer.startsWith("Project")) {
+                return divaVer.replace("_", " ");
+            }
+            return "Project Diva " + divaVer;
         }
         String customVer = SystemProperties.get("ro.custom.version", "");
         if (!TextUtils.isEmpty(customVer)) {
-            return customVer;
+            return customVer.replace("_", " ");
         }
         return "Project Diva 1.1.2";
     }
