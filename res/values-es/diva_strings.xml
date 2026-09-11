@@ -50,11 +50,13 @@
 
     <!-- Sonido de aplicación independiente -->
     <string name="separate_app_sound_title">Sonido de aplicación independiente</string>
-    <string name="separate_app_sound_summary">Reproduce el sonido multimedia de una aplicación seleccionada en un dispositivo de audio diferente</string>
+    <string name="separate_app_sound_summary">Reproduce el sonido multimedia de las aplicaciones seleccionadas en un dispositivo de audio diferente</string>
     <string name="separate_app_sound_enable_title">Activar sonido independiente</string>
-    <string name="separate_app_sound_app_select_title">Aplicación</string>
+    <string name="separate_app_sound_app_select_title">Aplicaciones</string>
     <string name="separate_app_sound_device_select_title">Dispositivo de audio</string>
     <string name="separate_app_sound_device_speaker">Altavoz del teléfono</string>
     <string name="separate_app_sound_device_bluetooth">Dispositivo Bluetooth (%1$s)</string>
     <string name="separate_app_sound_no_apps">No hay aplicaciones multimedia disponibles</string>
+    <string name="separate_app_sound_max_apps_reached">Puedes seleccionar un máximo de 5 aplicaciones</string>
+    <string name="separate_app_sound_no_apps_selected">Ninguna aplicación seleccionada</string>
 </resources>

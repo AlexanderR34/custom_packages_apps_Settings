@@ -16,6 +16,7 @@
 
 package com.android.settings.sound;
 
+import android.app.AlertDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.ApplicationInfo;
@@ -23,21 +24,26 @@ import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
 import android.provider.Settings;
 import android.text.TextUtils;
+import android.widget.Toast;
 
-import androidx.preference.DropDownPreference;
 import androidx.preference.Preference;
 
+import com.android.settings.R;
 import com.android.settings.core.BasePreferenceController;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
-public class SeparateAppSoundAppPickerController extends BasePreferenceController
-        implements Preference.OnPreferenceChangeListener {
+public class SeparateAppSoundAppPickerController extends BasePreferenceController {
 
+    private static final int MAX_SELECTED_APPS = 5;
     private final PackageManager mPackageManager;
 
     public SeparateAppSoundAppPickerController(Context context, String preferenceKey) {
@@ -52,53 +58,121 @@ public class SeparateAppSoundAppPickerController extends BasePreferenceControlle
 
     @Override
     public void updateState(Preference preference) {
-        if (!(preference instanceof DropDownPreference)) return;
-        DropDownPreference dropDown = (DropDownPreference) preference;
+        super.updateState(preference);
+        List<String> selectedPackages = getSelectedPackages();
+        if (selectedPackages.isEmpty()) {
+            preference.setSummary(mContext.getString(R.string.separate_app_sound_no_apps_selected));
+            return;
+        }
 
+        List<String> labels = new ArrayList<>();
+        for (String pkg : selectedPackages) {
+            try {
+                ApplicationInfo ai = mPackageManager.getApplicationInfo(pkg, PackageManager.ApplicationInfoFlags.of(0));
+                CharSequence label = ai.loadLabel(mPackageManager);
+                if (!TextUtils.isEmpty(label)) {
+                    labels.add(label.toString());
+                } else {
+                    labels.add(pkg);
+                }
+            } catch (PackageManager.NameNotFoundException e) {
+                // App uninstalled or invalid
+            }
+        }
+
+        if (labels.isEmpty()) {
+            preference.setSummary(mContext.getString(R.string.separate_app_sound_no_apps_selected));
+        } else {
+            preference.setSummary(String.join(", ", labels));
+        }
+    }
+
+    @Override
+    public boolean handlePreferenceTreeClick(Preference preference) {
+        if (!TextUtils.equals(preference.getKey(), getPreferenceKey())) {
+            return super.handlePreferenceTreeClick(preference);
+        }
+
+        showAppSelectionDialog(preference);
+        return true;
+    }
+
+    private void showAppSelectionDialog(Preference preference) {
         List<AppEntry> apps = getInstalledMediaApps();
         if (apps.isEmpty()) {
-            dropDown.setEnabled(false);
+            Toast.makeText(mContext, R.string.separate_app_sound_no_apps, Toast.LENGTH_SHORT).show();
             return;
         }
 
         CharSequence[] entries = new CharSequence[apps.size()];
-        CharSequence[] entryValues = new CharSequence[apps.size()];
+        boolean[] checkedItems = new boolean[apps.size()];
+        Set<String> selectedSet = new HashSet<>(getSelectedPackages());
 
-        String currentPackage = Settings.Secure.getString(mContext.getContentResolver(),
-                Settings.Secure.SEPARATE_APP_SOUND_PACKAGE);
-
-        int selectedIndex = -1;
+        final int[] checkedCount = new int[]{0};
         for (int i = 0; i < apps.size(); i++) {
             entries[i] = apps.get(i).label;
-            entryValues[i] = apps.get(i).packageName;
-            if (TextUtils.equals(currentPackage, apps.get(i).packageName)) {
-                selectedIndex = i;
+            if (selectedSet.contains(apps.get(i).packageName)) {
+                checkedItems[i] = true;
+                checkedCount[0]++;
             }
         }
 
-        dropDown.setEntries(entries);
-        dropDown.setEntryValues(entryValues);
+        AlertDialog.Builder builder = new AlertDialog.Builder(mContext);
+        builder.setTitle(mContext.getString(R.string.separate_app_sound_app_select_title));
+        builder.setMultiChoiceItems(entries, checkedItems, (dialog, which, isChecked) -> {
+            if (isChecked) {
+                if (checkedCount[0] >= MAX_SELECTED_APPS) {
+                    ((AlertDialog) dialog).getListView().setItemChecked(which, false);
+                    checkedItems[which] = false;
+                    Toast.makeText(mContext, mContext.getString(R.string.separate_app_sound_max_apps_reached),
+                            Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                checkedCount[0]++;
+                checkedItems[which] = true;
+            } else {
+                checkedCount[0]--;
+                checkedItems[which] = false;
+            }
+        });
 
-        if (selectedIndex >= 0) {
-            dropDown.setValueIndex(selectedIndex);
-            dropDown.setSummary(entries[selectedIndex]);
-        } else if (entryValues.length > 0) {
-            dropDown.setValueIndex(0);
-            dropDown.setSummary(entries[0]);
-            Settings.Secure.putString(mContext.getContentResolver(),
-                    Settings.Secure.SEPARATE_APP_SOUND_PACKAGE, entryValues[0].toString());
-        }
+        builder.setPositiveButton(android.R.string.ok, (dialog, which) -> {
+            List<String> newSelected = new ArrayList<>();
+            for (int i = 0; i < checkedItems.length; i++) {
+                if (checkedItems[i]) {
+                    newSelected.add(apps.get(i).packageName);
+                }
+            }
+            saveSelectedPackages(newSelected);
+            updateState(preference);
+        });
 
-        dropDown.setOnPreferenceChangeListener(this);
+        builder.setNegativeButton(android.R.string.cancel, null);
+        builder.show();
     }
 
-    @Override
-    public boolean onPreferenceChange(Preference preference, Object newValue) {
-        String packageName = (String) newValue;
+    private List<String> getSelectedPackages() {
+        String raw = Settings.Secure.getString(mContext.getContentResolver(),
+                Settings.Secure.SEPARATE_APP_SOUND_PACKAGE);
+        if (TextUtils.isEmpty(raw)) {
+            return Collections.emptyList();
+        }
+        String[] parts = raw.split("[,;]");
+        List<String> result = new ArrayList<>();
+        for (String p : parts) {
+            String trimmed = p.trim();
+            if (!TextUtils.isEmpty(trimmed) && !result.contains(trimmed)) {
+                result.add(trimmed);
+                if (result.size() >= MAX_SELECTED_APPS) break;
+            }
+        }
+        return result;
+    }
+
+    private void saveSelectedPackages(List<String> packages) {
+        String joined = String.join(",", packages);
         Settings.Secure.putString(mContext.getContentResolver(),
-                Settings.Secure.SEPARATE_APP_SOUND_PACKAGE, packageName);
-        updateState(preference);
-        return true;
+                Settings.Secure.SEPARATE_APP_SOUND_PACKAGE, joined);
     }
 
     private List<AppEntry> getInstalledMediaApps() {

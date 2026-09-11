@@ -52,11 +52,13 @@
 
     <!-- Separate App Sound -->
     <string name="separate_app_sound_title">Separate app sound</string>
-    <string name="separate_app_sound_summary">Play media sound from a selected app on a different audio device</string>
+    <string name="separate_app_sound_summary">Play media sound from selected apps on a different audio device</string>
     <string name="separate_app_sound_enable_title">Turn on Separate app sound</string>
-    <string name="separate_app_sound_app_select_title">App</string>
+    <string name="separate_app_sound_app_select_title">Apps</string>
     <string name="separate_app_sound_device_select_title">Audio device</string>
     <string name="separate_app_sound_device_speaker">Phone speaker</string>
     <string name="separate_app_sound_device_bluetooth">Bluetooth device (%1$s)</string>
     <string name="separate_app_sound_no_apps">No media apps available</string>
+    <string name="separate_app_sound_max_apps_reached">You can select up to 5 apps</string>
+    <string name="separate_app_sound_no_apps_selected">No apps selected</string>
 </resources>

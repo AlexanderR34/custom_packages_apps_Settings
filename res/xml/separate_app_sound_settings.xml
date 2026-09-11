@@ -29,10 +29,9 @@
         android:title="@string/separate_app_sound_title"
         settings:allowDividerAbove="true">
 
-        <DropDownPreference
+        <Preference
             android:key="separate_app_sound_app_picker"
             android:title="@string/separate_app_sound_app_select_title"
-            android:summary="%s"
             settings:controller="com.android.settings.sound.SeparateAppSoundAppPickerController" />
 
         <DropDownPreference
