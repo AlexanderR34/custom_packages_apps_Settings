@@ -58,7 +58,9 @@ public class HyperOSBatteryPreferenceController extends BasePreferenceController
                 KEY_SETTING, enabled ? 1 : 0, UserHandle.USER_CURRENT);
         Settings.System.putIntForUser(mContext.getContentResolver(),
                 "status_bar_battery_style", enabled ? 1 : 0, UserHandle.USER_CURRENT);
-        SystemUiRestartUtils.showRestartDialog(mContext);
+        if (preference instanceof TwoStatePreference) {
+            ((TwoStatePreference) preference).setChecked(enabled);
+        }
         return true;
     }
 }
