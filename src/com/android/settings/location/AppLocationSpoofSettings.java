@@ -167,6 +167,30 @@ public class AppLocationSpoofSettings extends SettingsPreferenceFragment {
                             UserHandle.USER_CURRENT);
                 }
 
+                if (enabled && TextUtils.isEmpty(currentCoords)) {
+                    String[] presets = {
+                        "35.689500,139.691700,40.0,5.0",   // Tokio
+                        "40.712800,-74.006000,10.0,5.0",   // Nueva York
+                        "48.856600,2.352200,35.0,5.0",     // París
+                        "40.416800,-3.703800,650.0,5.0",   // Madrid
+                        "19.432600,-99.133200,2240.0,5.0", // Ciudad de México
+                        "51.507400,-0.127800,15.0,5.0",    // Londres
+                        "37.774900,-122.419400,16.0,5.0",  // San Francisco
+                        "41.902800,12.496400,21.0,5.0",    // Roma
+                    };
+                    currentCoords = presets[Math.abs(app.packageName.hashCode()) % presets.length];
+                    Settings.Secure.putStringForUser(
+                            context.getContentResolver(),
+                            "fake_loc_coords_" + app.packageName,
+                            currentCoords,
+                            UserHandle.USER_CURRENT);
+                    Settings.Secure.putStringForUser(
+                            context.getContentResolver(),
+                            SETTING_SPOOF_COORDS_PREFIX + app.packageName,
+                            currentCoords,
+                            UserHandle.USER_CURRENT);
+                }
+
                 updateSummary((SwitchPreferenceCompat) preference, enabled, currentCoords);
                 return true;
             });
