@@ -6423,5 +6423,11 @@
             android:exported="false"
             android:theme="@style/Theme.Settings.Home"/>
 
+        <activity
+            android:name="com.android.settings.location.LocationPickerActivity"
+            android:label="@string/app_location_spoofing_title"
+            android:exported="false"
+            android:theme="@style/Theme.Settings.Home"/>
+
     </application>
 </manifest>

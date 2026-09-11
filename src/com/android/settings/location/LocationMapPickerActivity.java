@@ -86,8 +86,14 @@ public class LocationMapPickerActivity extends Activity {
         // Load existing coordinates if available
         String savedCoords = Settings.Secure.getStringForUser(
                 getContentResolver(),
-                SETTING_SPOOF_COORDS_PREFIX + mPackageName,
+                "fake_loc_coords_" + mPackageName,
                 UserHandle.USER_CURRENT);
+        if (TextUtils.isEmpty(savedCoords)) {
+            savedCoords = Settings.Secure.getStringForUser(
+                    getContentResolver(),
+                    SETTING_SPOOF_COORDS_PREFIX + mPackageName,
+                    UserHandle.USER_CURRENT);
+        }
 
         if (!TextUtils.isEmpty(savedCoords)) {
             try {
@@ -134,6 +140,17 @@ public class LocationMapPickerActivity extends Activity {
             String coordStr = String.format(Locale.US, "%.6f,%.6f,15.0,3.5", mCurrentLat, mCurrentLng);
             Settings.Secure.putStringForUser(
                     getContentResolver(),
+                    "fake_loc_coords_" + mPackageName,
+                    coordStr,
+                    UserHandle.USER_CURRENT);
+            Settings.Secure.putIntForUser(
+                    getContentResolver(),
+                    "fake_loc_enabled_" + mPackageName,
+                    1,
+                    UserHandle.USER_CURRENT);
+
+            Settings.Secure.putStringForUser(
+                    getContentResolver(),
                     SETTING_SPOOF_COORDS_PREFIX + mPackageName,
                     coordStr,
                     UserHandle.USER_CURRENT);
@@ -153,6 +170,17 @@ public class LocationMapPickerActivity extends Activity {
         Button btnClear = findViewById(R.id.btn_clear_location);
         btnClear.setOnClickListener(v -> {
             v.performHapticFeedback(HapticFeedbackConstants.CONTEXT_CLICK);
+            Settings.Secure.putStringForUser(
+                    getContentResolver(),
+                    "fake_loc_coords_" + mPackageName,
+                    "",
+                    UserHandle.USER_CURRENT);
+            Settings.Secure.putIntForUser(
+                    getContentResolver(),
+                    "fake_loc_enabled_" + mPackageName,
+                    0,
+                    UserHandle.USER_CURRENT);
+
             Settings.Secure.putStringForUser(
                     getContentResolver(),
                     SETTING_SPOOF_COORDS_PREFIX + mPackageName,

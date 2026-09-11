@@ -114,14 +114,31 @@ public class AppLocationSpoofSettings extends SettingsPreferenceFragment {
 
             boolean isSpoofEnabled = Settings.Secure.getIntForUser(
                     context.getContentResolver(),
-                    SETTING_SPOOF_PKG_PREFIX + app.packageName,
-                    0,
+                    "fake_loc_enabled_" + app.packageName,
+                    -1,
                     UserHandle.USER_CURRENT) == 1;
+            if (!isSpoofEnabled && Settings.Secure.getIntForUser(
+                    context.getContentResolver(),
+                    "fake_loc_enabled_" + app.packageName,
+                    -1,
+                    UserHandle.USER_CURRENT) == -1) {
+                isSpoofEnabled = Settings.Secure.getIntForUser(
+                        context.getContentResolver(),
+                        SETTING_SPOOF_PKG_PREFIX + app.packageName,
+                        0,
+                        UserHandle.USER_CURRENT) == 1;
+            }
 
             String coords = Settings.Secure.getStringForUser(
                     context.getContentResolver(),
-                    SETTING_SPOOF_COORDS_PREFIX + app.packageName,
+                    "fake_loc_coords_" + app.packageName,
                     UserHandle.USER_CURRENT);
+            if (TextUtils.isEmpty(coords)) {
+                coords = Settings.Secure.getStringForUser(
+                        context.getContentResolver(),
+                        SETTING_SPOOF_COORDS_PREFIX + app.packageName,
+                        UserHandle.USER_CURRENT);
+            }
 
             updateSummary(pref, isSpoofEnabled, coords);
             pref.setChecked(isSpoofEnabled);
@@ -130,14 +147,25 @@ public class AppLocationSpoofSettings extends SettingsPreferenceFragment {
                 boolean enabled = (Boolean) newValue;
                 Settings.Secure.putIntForUser(
                         context.getContentResolver(),
+                        "fake_loc_enabled_" + app.packageName,
+                        enabled ? 1 : 0,
+                        UserHandle.USER_CURRENT);
+                Settings.Secure.putIntForUser(
+                        context.getContentResolver(),
                         SETTING_SPOOF_PKG_PREFIX + app.packageName,
                         enabled ? 1 : 0,
                         UserHandle.USER_CURRENT);
 
                 String currentCoords = Settings.Secure.getStringForUser(
                         context.getContentResolver(),
-                        SETTING_SPOOF_COORDS_PREFIX + app.packageName,
+                        "fake_loc_coords_" + app.packageName,
                         UserHandle.USER_CURRENT);
+                if (TextUtils.isEmpty(currentCoords)) {
+                    currentCoords = Settings.Secure.getStringForUser(
+                            context.getContentResolver(),
+                            SETTING_SPOOF_COORDS_PREFIX + app.packageName,
+                            UserHandle.USER_CURRENT);
+                }
 
                 updateSummary((SwitchPreferenceCompat) preference, enabled, currentCoords);
                 return true;
