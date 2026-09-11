@@ -49,4 +49,14 @@
 
     <!-- App Install Time -->
     <string name="app_install_time_format">Installed on %1$s at %2$s</string>
+
+    <!-- Separate App Sound -->
+    <string name="separate_app_sound_title">Separate app sound</string>
+    <string name="separate_app_sound_summary">Play media sound from a selected app on a different audio device</string>
+    <string name="separate_app_sound_enable_title">Turn on Separate app sound</string>
+    <string name="separate_app_sound_app_select_title">App</string>
+    <string name="separate_app_sound_device_select_title">Audio device</string>
+    <string name="separate_app_sound_device_speaker">Phone speaker</string>
+    <string name="separate_app_sound_device_bluetooth">Bluetooth device (%1$s)</string>
+    <string name="separate_app_sound_no_apps">No media apps available</string>
 </resources>
