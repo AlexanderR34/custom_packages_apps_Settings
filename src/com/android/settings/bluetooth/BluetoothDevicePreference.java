@@ -560,12 +560,6 @@ public final class BluetoothDevicePreference extends GearPreference {
             summary = mCachedDevice.getConnectionSummary();
         }
 
-        if (summary != null && mCachedDevice.isConnected()) {
-            String codec = mCachedDevice.getActiveAudioCodecName();
-            if (!TextUtils.isEmpty(codec)) {
-                summary = codec + " • " + summary;
-            }
-        }
         return summary;
     }
 }

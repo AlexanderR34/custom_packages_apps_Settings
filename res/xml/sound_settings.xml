@@ -188,12 +188,6 @@
             android:defaultValue="false"
             android:order="-112" />
 
-        <Preference
-            android:key="separate_app_sound"
-            android:title="@string/separate_app_sound_title"
-            android:summary="@string/separate_app_sound_summary"
-            android:fragment="com.android.settings.sound.SeparateAppSoundSettings"
-            android:order="-111" />
 
         <Preference
             android:key="spatial_audio_summary"

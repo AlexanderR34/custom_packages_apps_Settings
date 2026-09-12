@@ -61,4 +61,21 @@
     <string name="separate_app_sound_no_apps">No media apps available</string>
     <string name="separate_app_sound_max_apps_reached">You can select up to 5 apps</string>
     <string name="separate_app_sound_no_apps_selected">No apps selected</string>
+
+    <!-- Navigation Bar Buttons Style -->
+    <string name="nav_bar_buttons_style_title">Navigation bar button style</string>
+    <string name="nav_bar_buttons_style_summary">Choose between classic AOSP or Xiaomi / HyperOS button style</string>
+    <string name="nav_bar_buttons_style_default">Default (AOSP)</string>
+    <string name="nav_bar_buttons_style_hyperos">Xiaomi / HyperOS</string>
+
+    <!-- Per-App Resolution Scaling -->
+    <string name="app_resolution_scale_title">Per-app resolution scaling</string>
+    <string name="app_resolution_scale_summary">Adjust rendering resolution scale (20% - 100%) for individual apps and games</string>
+    <string name="app_resolution_scale_category_title">Applications</string>
+    <string name="app_resolution_preset_native">1220p Native (100%)</string>
+    <string name="app_resolution_preset_1080p">1080p Full HD (88%)</string>
+    <string name="app_resolution_preset_720p">720p HD (59%)</string>
+    <string name="app_resolution_preset_480p">480p SD (39%)</string>
+    <string name="app_resolution_preset_custom">Custom scale</string>
+    <string name="app_resolution_slider_label">Scale: %1$d%%</string>
 </resources>

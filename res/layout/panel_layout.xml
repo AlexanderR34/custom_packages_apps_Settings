@@ -29,13 +29,21 @@
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
+        <View
+            android:layout_width="36dp"
+            android:layout_height="4dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="12dp"
+            android:layout_marginBottom="4dp"
+            android:background="@drawable/panel_drag_handle" />
+
         <LinearLayout
             android:id="@+id/panel_header"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/settings_panel_title_margin"
             android:layout_marginEnd="@dimen/settings_panel_title_margin"
-            android:layout_marginTop="@dimen/settings_panel_title_margin"
+            android:layout_marginTop="8dp"
             android:layout_marginBottom="@dimen/settings_panel_title_margin"
             android:gravity="start|center_vertical"
             android:orientation="horizontal"
@@ -67,7 +75,7 @@
                     android:ellipsize="end"
                     android:maxLines="1"
                     android:textColor="@color/materialColorOnSurface"
-                    android:textSize="24sp"
+                    android:textSize="22sp"
                     android:fontFamily="@*android:string/config_headlineFontFamilyMedium"/>
 
                 <TextView
@@ -86,11 +94,12 @@
             android:id="@+id/panel_title"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/settings_panel_title_margin"
-            android:layout_marginBottom="@dimen/settings_panel_title_margin_bottom"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="16dp"
             android:gravity="center"
             android:textColor="@color/materialColorOnSurface"
-            android:textSize="24sp"
+            android:textSize="22sp"
+            android:textStyle="bold"
             android:fontFamily="@*android:string/config_headlineFontFamilyMedium"/>
 
         <ProgressBar

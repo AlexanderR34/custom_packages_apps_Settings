@@ -309,5 +309,13 @@
             android:summary="@string/app_orientation_summary"
             android:fragment="com.android.settings.display.AppOrientationFragment"
             settings:controller="com.android.settings.display.AppOrientationPreferenceController" />
+
+        <!-- Resolución dinámica por aplicación -->
+        <Preference
+            android:key="app_resolution_scale"
+            android:title="@string/app_resolution_scale_title"
+            android:summary="@string/app_resolution_scale_summary"
+            android:fragment="com.android.settings.display.AppResolutionScaleFragment"
+            settings:controller="com.android.settings.display.AppResolutionScalePreferenceController" />
     </PreferenceCategory>
 </PreferenceScreen>

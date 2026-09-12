@@ -16,20 +16,20 @@
 
 package com.android.settings.location;
 
-import android.annotation.SuppressLint;
 import android.app.Activity;
-import android.content.Intent;
+import android.content.pm.ApplicationInfo;
+import android.content.pm.PackageManager;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.os.UserHandle;
 import android.provider.Settings;
 import android.text.TextUtils;
 import android.view.HapticFeedbackConstants;
-import android.webkit.JavascriptInterface;
-import android.webkit.WebSettings;
-import android.webkit.WebView;
-import android.webkit.WebViewClient;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.ImageView;
+import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -48,15 +48,17 @@ public class LocationMapPickerActivity extends Activity {
     private String mPackageName;
     private String mAppTitle;
 
-    private WebView mWebView;
-    private TextView mTvCoords;
     private TextView mTvAppTitle;
     private TextView mTvAppPackage;
+    private TextView mTvSwitchStatus;
+    private ImageView mIvAppIcon;
+    private Switch mSwitchSpoofEnable;
 
-    private double mCurrentLat = 40.7128;
-    private double mCurrentLng = -74.0060;
+    private EditText mEtLatitude;
+    private EditText mEtLongitude;
+    private EditText mEtAltitude;
+    private EditText mEtAccuracy;
 
-    @SuppressLint("SetJavaScriptEnabled")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -72,16 +74,61 @@ public class LocationMapPickerActivity extends Activity {
 
         mTvAppTitle = findViewById(R.id.tv_app_title);
         mTvAppPackage = findViewById(R.id.tv_app_package);
-        mTvCoords = findViewById(R.id.tv_current_coords);
-        mWebView = findViewById(R.id.map_webview);
+        mTvSwitchStatus = findViewById(R.id.tv_switch_status);
+        mIvAppIcon = findViewById(R.id.iv_app_icon);
+        mSwitchSpoofEnable = findViewById(R.id.switch_spoof_enable);
+
+        mEtLatitude = findViewById(R.id.et_latitude);
+        mEtLongitude = findViewById(R.id.et_longitude);
+        mEtAltitude = findViewById(R.id.et_altitude);
+        mEtAccuracy = findViewById(R.id.et_accuracy);
 
         if (!TextUtils.isEmpty(mAppTitle)) {
             mTvAppTitle.setText(mAppTitle);
+        } else {
+            mTvAppTitle.setText(mPackageName);
         }
         mTvAppPackage.setText(mPackageName);
 
+        // Load app icon
+        try {
+            PackageManager pm = getPackageManager();
+            ApplicationInfo appInfo = pm.getApplicationInfo(mPackageName, 0);
+            Drawable icon = appInfo.loadIcon(pm);
+            if (icon != null && mIvAppIcon != null) {
+                mIvAppIcon.setImageDrawable(icon);
+            }
+        } catch (Exception ignored) {}
+
         ImageButton btnBack = findViewById(R.id.btn_back);
-        btnBack.setOnClickListener(v -> finish());
+        if (btnBack != null) {
+            btnBack.setOnClickListener(v -> finish());
+        }
+
+        // Check if spoofing is currently enabled for this app
+        boolean isSpoofEnabled = Settings.Secure.getIntForUser(
+                getContentResolver(),
+                "fake_loc_enabled_" + mPackageName,
+                -1,
+                UserHandle.USER_CURRENT) == 1;
+        if (!isSpoofEnabled && Settings.Secure.getIntForUser(
+                getContentResolver(),
+                "fake_loc_enabled_" + mPackageName,
+                -1,
+                UserHandle.USER_CURRENT) == -1) {
+            isSpoofEnabled = Settings.Secure.getIntForUser(
+                    getContentResolver(),
+                    SETTING_SPOOF_PKG_PREFIX + mPackageName,
+                    0,
+                    UserHandle.USER_CURRENT) == 1;
+        }
+
+        mSwitchSpoofEnable.setChecked(isSpoofEnabled);
+        updateSwitchStatusText(isSpoofEnabled);
+
+        mSwitchSpoofEnable.setOnCheckedChangeListener((buttonView, isChecked) -> {
+            updateSwitchStatusText(isChecked);
+        });
 
         // Load existing coordinates if available
         String savedCoords = Settings.Secure.getStringForUser(
@@ -99,175 +146,158 @@ public class LocationMapPickerActivity extends Activity {
             try {
                 String[] parts = savedCoords.split(",");
                 if (parts.length >= 2) {
-                    mCurrentLat = Double.parseDouble(parts[0].trim());
-                    mCurrentLng = Double.parseDouble(parts[1].trim());
+                    mEtLatitude.setText(parts[0].trim());
+                    mEtLongitude.setText(parts[1].trim());
+                    if (parts.length > 2) mEtAltitude.setText(parts[2].trim());
+                    if (parts.length > 3) mEtAccuracy.setText(parts[3].trim());
                 }
             } catch (Exception ignored) {}
+        } else {
+            // Default preset
+            setPresetCoords(40.712800, -74.006000, 10.0, 5.0);
         }
 
-        updateCoordsDisplay(mCurrentLat, mCurrentLng);
-
-        // Setup WebView with Leaflet OpenStreetMap
-        if (mWebView != null) {
-            try {
-                WebSettings webSettings = mWebView.getSettings();
-                webSettings.setJavaScriptEnabled(true);
-                webSettings.setDomStorageEnabled(true);
-                webSettings.setAllowFileAccess(true);
-                webSettings.setLoadsImagesAutomatically(true);
-
-                mWebView.addJavascriptInterface(new MapBridge(), "AndroidBridge");
-                mWebView.setWebViewClient(new WebViewClient() {
-                    @Override
-                    public void onPageFinished(WebView view, String url) {
-                        super.onPageFinished(view, url);
-                        setMapLocation(mCurrentLat, mCurrentLng, 14);
-                    }
-                });
-
-                loadMapHtml();
-            } catch (Exception e) {
-                android.util.Log.e("LocationMapPicker", "Failed to initialize WebView: " + e.getMessage(), e);
-            }
-        }
-
-        // Preset chips
-        setupPreset(R.id.btn_preset_tokyo, 35.6895, 139.6917);
-        setupPreset(R.id.btn_preset_ny, 40.7128, -74.0060);
-        setupPreset(R.id.btn_preset_paris, 48.8566, 2.3522);
-        setupPreset(R.id.btn_preset_madrid, 40.4168, -3.7038);
-        setupPreset(R.id.btn_preset_cdmx, 19.4326, -99.1332);
-        setupPreset(R.id.btn_preset_london, 51.5074, -0.1278);
+        // Setup preset chips
+        setupPreset(R.id.btn_preset_tokyo, 35.689500, 139.691700, 40.0, 5.0);
+        setupPreset(R.id.btn_preset_ny, 40.712800, -74.006000, 10.0, 5.0);
+        setupPreset(R.id.btn_preset_paris, 48.856600, 2.352200, 35.0, 5.0);
+        setupPreset(R.id.btn_preset_madrid, 40.416800, -3.703800, 650.0, 5.0);
+        setupPreset(R.id.btn_preset_cdmx, 19.432600, -99.133200, 2240.0, 5.0);
+        setupPreset(R.id.btn_preset_london, 51.507400, -0.127800, 15.0, 5.0);
+        setupPreset(R.id.btn_preset_sf, 37.774900, -122.419400, 16.0, 5.0);
+        setupPreset(R.id.btn_preset_rome, 41.902800, 12.496400, 21.0, 5.0);
+        setupPreset(R.id.btn_preset_buenosaires, -34.603700, -58.381600, 25.0, 5.0);
+        setupPreset(R.id.btn_preset_sydney, -33.868800, 151.209300, 20.0, 5.0);
 
         // Save Button
         Button btnSave = findViewById(R.id.btn_save_location);
-        btnSave.setOnClickListener(v -> {
-            v.performHapticFeedback(HapticFeedbackConstants.CONTEXT_CLICK);
-            String coordStr = String.format(Locale.US, "%.6f,%.6f,15.0,3.5", mCurrentLat, mCurrentLng);
-            Settings.Secure.putStringForUser(
-                    getContentResolver(),
-                    "fake_loc_coords_" + mPackageName,
-                    coordStr,
-                    UserHandle.USER_CURRENT);
-            Settings.Secure.putIntForUser(
-                    getContentResolver(),
-                    "fake_loc_enabled_" + mPackageName,
-                    1,
-                    UserHandle.USER_CURRENT);
-
-            Settings.Secure.putStringForUser(
-                    getContentResolver(),
-                    SETTING_SPOOF_COORDS_PREFIX + mPackageName,
-                    coordStr,
-                    UserHandle.USER_CURRENT);
-            Settings.Secure.putIntForUser(
-                    getContentResolver(),
-                    SETTING_SPOOF_PKG_PREFIX + mPackageName,
-                    1,
-                    UserHandle.USER_CURRENT);
-
-            Toast.makeText(this, getString(R.string.location_spoof_saved_toast,
-                    !TextUtils.isEmpty(mAppTitle) ? mAppTitle : mPackageName), Toast.LENGTH_SHORT).show();
-            setResult(RESULT_OK);
-            finish();
-        });
+        if (btnSave != null) {
+            btnSave.setOnClickListener(v -> {
+                v.performHapticFeedback(HapticFeedbackConstants.CONTEXT_CLICK);
+                saveLocationSettings();
+            });
+        }
 
         // Clear / Reset Button
         Button btnClear = findViewById(R.id.btn_clear_location);
-        btnClear.setOnClickListener(v -> {
-            v.performHapticFeedback(HapticFeedbackConstants.CONTEXT_CLICK);
-            Settings.Secure.putStringForUser(
-                    getContentResolver(),
-                    "fake_loc_coords_" + mPackageName,
-                    "",
-                    UserHandle.USER_CURRENT);
-            Settings.Secure.putIntForUser(
-                    getContentResolver(),
-                    "fake_loc_enabled_" + mPackageName,
-                    0,
-                    UserHandle.USER_CURRENT);
-
-            Settings.Secure.putStringForUser(
-                    getContentResolver(),
-                    SETTING_SPOOF_COORDS_PREFIX + mPackageName,
-                    "",
-                    UserHandle.USER_CURRENT);
-            Settings.Secure.putIntForUser(
-                    getContentResolver(),
-                    SETTING_SPOOF_PKG_PREFIX + mPackageName,
-                    0,
-                    UserHandle.USER_CURRENT);
-
-            Toast.makeText(this, R.string.location_spoof_cleared_toast, Toast.LENGTH_SHORT).show();
-            setResult(RESULT_OK);
-            finish();
-        });
+        if (btnClear != null) {
+            btnClear.setOnClickListener(v -> {
+                v.performHapticFeedback(HapticFeedbackConstants.CONTEXT_CLICK);
+                clearLocationSettings();
+            });
+        }
     }
 
-    private void setupPreset(int btnId, double lat, double lng) {
+    private void updateSwitchStatusText(boolean isEnabled) {
+        if (mTvSwitchStatus != null) {
+            mTvSwitchStatus.setText(isEnabled
+                    ? R.string.location_spoof_status_active_no_coords
+                    : R.string.location_spoof_status_disabled);
+        }
+    }
+
+    private void setupPreset(int btnId, double lat, double lng, double alt, double acc) {
         Button btn = findViewById(btnId);
         if (btn != null) {
             btn.setOnClickListener(v -> {
                 v.performHapticFeedback(HapticFeedbackConstants.CLOCK_TICK);
-                setMapLocation(lat, lng, 14);
+                setPresetCoords(lat, lng, alt, acc);
             });
         }
     }
 
-    private void setMapLocation(double lat, double lng, int zoom) {
-        mCurrentLat = lat;
-        mCurrentLng = lng;
-        updateCoordsDisplay(lat, lng);
-        mWebView.post(() -> mWebView.evaluateJavascript(
-                String.format(Locale.US, "if (window.map) { window.map.setView([%.6f, %.6f], %d); }", lat, lng, zoom),
-                null));
-    }
-
-    private void updateCoordsDisplay(double lat, double lng) {
-        if (mTvCoords != null) {
-            mTvCoords.setText(String.format(Locale.US, "%.6f, %.6f", lat, lng));
+    private void setPresetCoords(double lat, double lng, double alt, double acc) {
+        mEtLatitude.setText(String.format(Locale.US, "%.6f", lat));
+        mEtLongitude.setText(String.format(Locale.US, "%.6f", lng));
+        mEtAltitude.setText(String.format(Locale.US, "%.1f", alt));
+        mEtAccuracy.setText(String.format(Locale.US, "%.1f", acc));
+        if (mSwitchSpoofEnable != null && !mSwitchSpoofEnable.isChecked()) {
+            mSwitchSpoofEnable.setChecked(true);
         }
     }
 
-    private class MapBridge {
-        @JavascriptInterface
-        public void onCenterChanged(double lat, double lng) {
-            runOnUiThread(() -> {
-                mCurrentLat = lat;
-                mCurrentLng = lng;
-                updateCoordsDisplay(lat, lng);
-            });
+    private void saveLocationSettings() {
+        String latStr = mEtLatitude.getText().toString().trim();
+        String lngStr = mEtLongitude.getText().toString().trim();
+        String altStr = mEtAltitude.getText().toString().trim();
+        String accStr = mEtAccuracy.getText().toString().trim();
+
+        if (TextUtils.isEmpty(latStr) || TextUtils.isEmpty(lngStr)) {
+            Toast.makeText(this, "Por favor ingresa latitud y longitud válidas", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        try {
+            double lat = Double.parseDouble(latStr);
+            double lng = Double.parseDouble(lngStr);
+            if (lat < -90.0 || lat > 90.0 || lng < -180.0 || lng > 180.0) {
+                Toast.makeText(this, "Coordenadas fuera de rango válido", Toast.LENGTH_SHORT).show();
+                return;
+            }
+
+            double alt = TextUtils.isEmpty(altStr) ? 15.0 : Double.parseDouble(altStr);
+            float acc = TextUtils.isEmpty(accStr) ? 3.5f : Float.parseFloat(accStr);
+
+            String coordStr = String.format(Locale.US, "%.6f,%.6f,%.1f,%.1f", lat, lng, alt, acc);
+            boolean isEnabled = mSwitchSpoofEnable.isChecked();
+
+            Settings.Secure.putStringForUser(
+                    getContentResolver(),
+                    "fake_loc_coords_" + mPackageName,
+                    coordStr,
+                    UserHandle.USER_CURRENT);
+            Settings.Secure.putIntForUser(
+                    getContentResolver(),
+                    "fake_loc_enabled_" + mPackageName,
+                    isEnabled ? 1 : 0,
+                    UserHandle.USER_CURRENT);
+
+            Settings.Secure.putStringForUser(
+                    getContentResolver(),
+                    SETTING_SPOOF_COORDS_PREFIX + mPackageName,
+                    coordStr,
+                    UserHandle.USER_CURRENT);
+            Settings.Secure.putIntForUser(
+                    getContentResolver(),
+                    SETTING_SPOOF_PKG_PREFIX + mPackageName,
+                    isEnabled ? 1 : 0,
+                    UserHandle.USER_CURRENT);
+
+            String displayName = !TextUtils.isEmpty(mAppTitle) ? mAppTitle : mPackageName;
+            Toast.makeText(this, getString(R.string.location_spoof_saved_toast, displayName), Toast.LENGTH_SHORT).show();
+            setResult(RESULT_OK);
+            finish();
+        } catch (NumberFormatException e) {
+            Toast.makeText(this, "Formato numérico inválido", Toast.LENGTH_SHORT).show();
         }
     }
 
-    private void loadMapHtml() {
-        String html = "<!DOCTYPE html>\n"
-                + "<html>\n"
-                + "<head>\n"
-                + "<meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no'/>\n"
-                + "<link rel='stylesheet' href='https://unpkg.com/leaflet@1.9.4/dist/leaflet.css'/>\n"
-                + "<script src='https://unpkg.com/leaflet@1.9.4/dist/leaflet.js'></script>\n"
-                + "<style>\n"
-                + "  html, body, #map { height: 100%; width: 100%; margin: 0; padding: 0; background: #1a1a1a; }\n"
-                + "</style>\n"
-                + "</head>\n"
-                + "<body>\n"
-                + "<div id='map'></div>\n"
-                + "<script>\n"
-                + "  var map = L.map('map', { zoomControl: false, attributionControl: false }).setView([" + mCurrentLat + ", " + mCurrentLng + "], 14);\n"
-                + "  L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {\n"
-                + "    maxZoom: 19\n"
-                + "  }).addTo(map);\n"
-                + "  map.on('move', function() {\n"
-                + "    var center = map.getCenter();\n"
-                + "    if (window.AndroidBridge && window.AndroidBridge.onCenterChanged) {\n"
-                + "      window.AndroidBridge.onCenterChanged(center.lat, center.lng);\n"
-                + "    }\n"
-                + "  });\n"
-                + "</script>\n"
-                + "</body>\n"
-                + "</html>";
+    private void clearLocationSettings() {
+        Settings.Secure.putStringForUser(
+                getContentResolver(),
+                "fake_loc_coords_" + mPackageName,
+                "",
+                UserHandle.USER_CURRENT);
+        Settings.Secure.putIntForUser(
+                getContentResolver(),
+                "fake_loc_enabled_" + mPackageName,
+                0,
+                UserHandle.USER_CURRENT);
 
-        mWebView.loadDataWithBaseURL("https://openstreetmap.org", html, "text/html", "UTF-8", null);
+        Settings.Secure.putStringForUser(
+                getContentResolver(),
+                SETTING_SPOOF_COORDS_PREFIX + mPackageName,
+                "",
+                UserHandle.USER_CURRENT);
+        Settings.Secure.putIntForUser(
+                getContentResolver(),
+                SETTING_SPOOF_PKG_PREFIX + mPackageName,
+                0,
+                UserHandle.USER_CURRENT);
+
+        mSwitchSpoofEnable.setChecked(false);
+        Toast.makeText(this, R.string.location_spoof_cleared_toast, Toast.LENGTH_SHORT).show();
+        setResult(RESULT_OK);
+        finish();
     }
 }

@@ -38,5 +38,14 @@
         settings:controller="com.android.settings.gestures.ButtonNavigationSettingsAssistController"
     />
 
+    <ListPreference
+        android:key="nav_bar_buttons_style"
+        android:title="@string/nav_bar_buttons_style_title"
+        android:summary="@string/nav_bar_buttons_style_summary"
+        android:entries="@array/nav_bar_buttons_style_entries"
+        android:entryValues="@array/nav_bar_buttons_style_values"
+        android:defaultValue="0"
+        settings:controller="com.android.settings.gestures.NavBarButtonsStylePreferenceController" />
+
 </PreferenceScreen>
 

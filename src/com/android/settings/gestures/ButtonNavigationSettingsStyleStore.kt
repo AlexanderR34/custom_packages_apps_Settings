@@ -46,11 +46,15 @@ class ButtonNavigationSettingsStyleStore(val context: Context) :
 
     override fun <T : Any> setValue(key: String, valueType: Class<T>, value: T?) {
         if (value !is Boolean || !value) return
-        when (key) {
-            DefaultButtonNavigationSettingsStylePreference.KEY ->
-                settingsStore.setInt(KEY, 0)
-            HyperOSButtonNavigationSettingsStylePreference.KEY ->
-                settingsStore.setInt(KEY, 1)
+        val styleVal = when (key) {
+            HyperOSButtonNavigationSettingsStylePreference.KEY -> 1
+            else -> 0
+        }
+        settingsStore.setInt(KEY, styleVal)
+        try {
+            android.provider.Settings.Secure.putInt(context.contentResolver, KEY, styleVal)
+            android.provider.Settings.System.putInt(context.contentResolver, KEY, styleVal)
+        } catch (_: Exception) {
         }
     }
 

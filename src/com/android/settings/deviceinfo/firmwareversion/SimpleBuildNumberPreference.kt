@@ -61,21 +61,11 @@ class SimpleBuildNumberPreference :
         val bidi = BidiFormatter.getInstance(isRtl)
 
         val customVersion = VersionUtils.getCustomVersion().replace("\\n", " ").replace("\n", " ").trim()
-        val display = (Build.DISPLAY ?: "").replace("\\n", " ").replace("\n", " ").trim()
-
-        val summaryText = if (customVersion.isNotEmpty()) {
-            if (display.isEmpty() || display.contains(customVersion)) {
-                customVersion
-            } else if (customVersion.contains(display)) {
-                customVersion
-            } else {
-                "$customVersion ($display)"
-            }
-        } else {
-            display
+        if (customVersion.isNotEmpty()) {
+            return bidi.unicodeWrap(customVersion)
         }
-
-        return bidi.unicodeWrap(summaryText)
+        val display = (Build.DISPLAY ?: "").replace("\\n", " ").replace("\n", " ").trim()
+        return bidi.unicodeWrap(display)
     }
 
     override fun bind(preference: Preference, metadata: PreferenceMetadata) {

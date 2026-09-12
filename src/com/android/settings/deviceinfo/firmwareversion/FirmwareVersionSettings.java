@@ -151,22 +151,11 @@ public class FirmwareVersionSettings extends DashboardFragment {
 
         TextView tvBuildNumber = root.findViewById(R.id.tv_build_number);
         if (tvBuildNumber != null) {
-            String display = Build.DISPLAY != null ? Build.DISPLAY.replace("\\n", " ").replace("\n", " ").trim() : "";
             String customVersion = com.android.settings.deviceinfo.VersionUtils.getCustomVersion();
             if (!android.text.TextUtils.isEmpty(customVersion)) {
-                String cleanVersion = customVersion.replace("\\n", " ").replace("\n", " ").trim();
-                if (!cleanVersion.isEmpty()) {
-                    if (display.isEmpty() || display.contains(cleanVersion)) {
-                        tvBuildNumber.setText(cleanVersion);
-                    } else if (cleanVersion.contains(display)) {
-                        tvBuildNumber.setText(cleanVersion);
-                    } else {
-                        tvBuildNumber.setText(cleanVersion + " (" + display + ")");
-                    }
-                } else {
-                    tvBuildNumber.setText(display);
-                }
+                tvBuildNumber.setText(customVersion.replace("\\n", " ").replace("\n", " ").trim());
             } else {
+                String display = Build.DISPLAY != null ? Build.DISPLAY.replace("\\n", " ").replace("\n", " ").trim() : "";
                 tvBuildNumber.setText(display);
             }
         }
