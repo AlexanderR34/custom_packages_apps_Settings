@@ -73,14 +73,6 @@ class ButtonNavigationSettingsScreen : PreferenceScreenMixin {
                     ButtonNavigationSettingsOrderStore(context)
                 )
             }
-            +StylePreferenceCategory() += {
-                +DefaultButtonNavigationSettingsStylePreference(
-                    ButtonNavigationSettingsStyleStore(context)
-                )
-                +HyperOSButtonNavigationSettingsStylePreference(
-                    ButtonNavigationSettingsStyleStore(context)
-                )
-            }
         }
 
     companion object {
@@ -99,11 +91,4 @@ class ButtonNavigationSettingsScreen : PreferenceScreenMixin {
                     R.string.keywords_button_navigation_settings_order
                 else 0
     }
-
-    class StylePreferenceCategory :
-        PreferenceCategory(
-            key = "button_style_group",
-            purpose = R.string.button_style_group_purpose,
-            title = R.string.button_navigation_settings_style_title,
-        )
 }
