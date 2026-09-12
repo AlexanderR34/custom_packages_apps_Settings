@@ -310,6 +310,13 @@ public class AppResolutionScaleFragment extends SettingsPreferenceFragment {
         String serialized = sb.toString();
         Settings.Global.putString(context.getContentResolver(), SETTING_KEY, serialized);
         Settings.System.putString(context.getContentResolver(), SETTING_KEY, serialized);
+
+        android.app.ActivityManager am = (android.app.ActivityManager) context.getSystemService(Context.ACTIVITY_SERVICE);
+        if (am != null) {
+            try {
+                am.killBackgroundProcesses(packageName);
+            } catch (Throwable ignored) {}
+        }
     }
 
     private static class AppInfo {
