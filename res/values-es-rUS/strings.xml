@@ -6231,4 +6231,36 @@
     <string name="permit_access_hid" msgid="870824396872060949">"Permitir que la app descubra dispositivos de interfaz humana (HID)"</string>
     <string name="allow_access_hid_description" msgid="5950783046013896271">"Si permites el acceso, las apps maliciosas podrían reprogramar tus HID para comprometer el sistema. Por ejemplo, las apps podrían simular las entradas del teclado o del mouse para controlar el sistema cuando no está abierto. Asegúrate de confiar en las apps cuando permitas el acceso."</string>
     <string name="keywords_access_hid" msgid="682455265293135353">"hid, humano, acceso, dispositivo"</string>
+
+    <!-- HyperOS Volume Panel -->
+    <string name="hyperos_volume_panel_title">Panel de volumen estilo HyperOS</string>
+    <string name="hyperos_volume_panel_summary">Usa la barra y controles de volumen con diseño moderno estilo HyperOS</string>
+
+    <!-- Navigation Bar Button Style (Spanish) -->
+    <string name="button_navigation_settings_style_title">Estilo de los botones</string>
+    <string name="button_style_group_purpose">Elige el diseño y estilo visual de los botones de navegación</string>
+    <string name="navbar_style_preference_default_purpose">Diseño de botones estándar de AOSP</string>
+    <string name="navbar_style_preference_hyperos_purpose">Diseño de botones moderno estilo HyperOS</string>
+    <string name="navbar_style_preference_samsung_purpose">Diseño de botones estilo Samsung One UI</string>
+    <string name="navbar_style_aosp">AOSP estándar</string>
+    <string name="navbar_style_hyperos">HyperOS</string>
+    <string name="navbar_style_samsung">Samsung (One UI)</string>
+
+    <!-- Battery Style Selection (Spanish) -->
+    <string name="status_bar_battery_style_title">Estilo de la batería</string>
+    <string name="status_bar_battery_style_summary">Selecciona el diseño del icono de batería en la barra de estado</string>
+    <string name="status_bar_battery_style_aosp">Stock AOSP</string>
+    <string name="status_bar_battery_style_hyperos">HyperOS</string>
+    <string name="status_bar_battery_style_samsung">Samsung (One UI)</string>
+    <string name="status_bar_battery_style_hyperos_title">Diseño de batería HyperOS</string>
+    <string name="status_bar_battery_style_hyperos_summary">Activa el nuevo diseño de batería horizontal estilo HyperOS con nivel dinámico, indicador de carga verde y color amarillo en modo de ahorro</string>
+
+    <!-- SystemUI Restart Dialog (Spanish) -->
+    <string name="systemui_restart_dialog_title">Reiniciar SystemUI</string>
+    <string name="systemui_restart_dialog_message">¿Deseas reiniciar la interfaz del sistema (SystemUI) ahora para aplicar los cambios visuales?</string>
+    <string name="systemui_restart_dialog_positive">Reiniciar ahora</string>
+    <string name="systemui_restart_dialog_negative">Más tarde</string>
+
+    <string name="back_button_label">Atrás</string>
+
 </resources>

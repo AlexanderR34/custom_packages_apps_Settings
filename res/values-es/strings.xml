@@ -6382,6 +6382,36 @@
     <string name="location_spoof_save_btn">Guardar ubicación</string>
     <string name="location_spoof_saved_toast">Ubicación simulada guardada para %1$s</string>
     <string name="location_spoof_cleared_toast">Ubicación simulada desactivada</string>
+    <!-- HyperOS Volume Panel -->
+    <string name="hyperos_volume_panel_title">Panel de volumen estilo HyperOS</string>
+    <string name="hyperos_volume_panel_summary">Usa la barra y controles de volumen con diseño moderno estilo HyperOS</string>
+
+    <!-- Navigation Bar Button Style (Spanish) -->
+    <string name="button_navigation_settings_style_title">Estilo de los botones</string>
+    <string name="button_style_group_purpose">Elige el diseño y estilo visual de los botones de navegación</string>
+    <string name="navbar_style_preference_default_purpose">Diseño de botones estándar de AOSP</string>
+    <string name="navbar_style_preference_hyperos_purpose">Diseño de botones moderno estilo HyperOS</string>
+    <string name="navbar_style_preference_samsung_purpose">Diseño de botones estilo Samsung One UI</string>
+    <string name="navbar_style_aosp">AOSP estándar</string>
+    <string name="navbar_style_hyperos">HyperOS</string>
+    <string name="navbar_style_samsung">Samsung (One UI)</string>
+
+    <!-- Battery Style Selection (Spanish) -->
+    <string name="status_bar_battery_style_title">Estilo de la batería</string>
+    <string name="status_bar_battery_style_summary">Selecciona el diseño del icono de batería en la barra de estado</string>
+    <string name="status_bar_battery_style_aosp">Stock AOSP</string>
+    <string name="status_bar_battery_style_hyperos">HyperOS</string>
+    <string name="status_bar_battery_style_samsung">Samsung (One UI)</string>
+    <string name="status_bar_battery_style_hyperos_title">Diseño de batería HyperOS</string>
+    <string name="status_bar_battery_style_hyperos_summary">Activa el nuevo diseño de batería horizontal estilo HyperOS con nivel dinámico, indicador de carga verde y color amarillo en modo de ahorro</string>
+
+    <!-- SystemUI Restart Dialog (Spanish) -->
+    <string name="systemui_restart_dialog_title">Reiniciar SystemUI</string>
+    <string name="systemui_restart_dialog_message">¿Deseas reiniciar la interfaz del sistema (SystemUI) ahora para aplicar los cambios visuales?</string>
+    <string name="systemui_restart_dialog_positive">Reiniciar ahora</string>
+    <string name="systemui_restart_dialog_negative">Más tarde</string>
+
     <string name="back_button_label">Atrás</string>
+
 </resources>
 

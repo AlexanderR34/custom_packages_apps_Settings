@@ -545,14 +545,41 @@
     <string name="touchscreen_gesture_settings_summary">Perform actions using touchscreen gestures</string>
 
     <!-- Navigation Bar Button Style -->
-    <string name="button_navigation_settings_style_title">Estilo de los botones</string>
-    <string name="button_style_group_purpose">Elige el diseño y estilo visual de los botones de navegación</string>
-    <string name="navbar_style_preference_default_purpose">Diseño de botones estándar de AOSP</string>
-    <string name="navbar_style_preference_hyperos_purpose">Diseño de botones moderno estilo HyperOS</string>
-    <string name="navbar_style_aosp">AOSP estándar</string>
+    <string name="button_navigation_settings_style_title">Button style</string>
+    <string name="button_style_group_purpose">Choose the visual design and style of navigation buttons</string>
+    <string name="navbar_style_preference_default_purpose">Standard AOSP button design</string>
+    <string name="navbar_style_preference_hyperos_purpose">Modern HyperOS style button design</string>
+    <string name="navbar_style_preference_samsung_purpose">Samsung One UI style button design</string>
+    <string name="navbar_style_aosp">Standard AOSP</string>
     <string name="navbar_style_hyperos">HyperOS</string>
+    <string name="navbar_style_samsung">Samsung (One UI)</string>
+
+    <!-- Battery Style Selection -->
+    <string name="status_bar_battery_style_title">Battery style</string>
+    <string name="status_bar_battery_style_summary">Select the battery icon design in the status bar</string>
+    <string name="status_bar_battery_style_aosp">Stock AOSP</string>
+    <string name="status_bar_battery_style_hyperos">HyperOS</string>
+    <string name="status_bar_battery_style_samsung">Samsung (One UI)</string>
+
+    <string-array name="status_bar_battery_style_entries">
+        <item>@string/status_bar_battery_style_aosp</item>
+        <item>@string/status_bar_battery_style_hyperos</item>
+        <item>@string/status_bar_battery_style_samsung</item>
+    </string-array>
+
+    <string-array name="status_bar_battery_style_values" translatable="false">
+        <item>0</item>
+        <item>1</item>
+        <item>2</item>
+    </string-array>
 
     <!-- HyperOS Battery Style -->
-    <string name="status_bar_battery_style_hyperos_title">Diseño de batería HyperOS</string>
-    <string name="status_bar_battery_style_hyperos_summary">Activa el nuevo diseño de batería horizontal estilo HyperOS con nivel dinámico, indicador de carga verde y color amarillo en modo de ahorro</string>
+    <string name="status_bar_battery_style_hyperos_title">HyperOS battery style</string>
+    <string name="status_bar_battery_style_hyperos_summary">Enable sleek HyperOS horizontal capsule battery design in the status bar</string>
+
+    <!-- SystemUI Restart Dialog -->
+    <string name="systemui_restart_dialog_title">Restart SystemUI</string>
+    <string name="systemui_restart_dialog_message">Do you want to restart SystemUI now to apply the visual changes?</string>
+    <string name="systemui_restart_dialog_positive">Restart now</string>
+    <string name="systemui_restart_dialog_negative">Later</string>
 </resources>

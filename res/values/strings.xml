@@ -15765,5 +15765,9 @@
     <string name="location_spoof_saved_toast">Spoofed location saved for %1$s</string>
     <string name="location_spoof_cleared_toast">Spoofed location disabled</string>
     <string name="back_button_label">Back</string>
+    <!-- HyperOS Volume Panel -->
+    <string name="hyperos_volume_panel_title">HyperOS volume panel</string>
+    <string name="hyperos_volume_panel_summary">Use sleek HyperOS style volume slider and controls</string>
+
 </resources>
 
