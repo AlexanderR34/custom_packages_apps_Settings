@@ -15768,6 +15768,8 @@
     <!-- HyperOS Volume Panel -->
     <string name="hyperos_volume_panel_title">HyperOS volume panel</string>
     <string name="hyperos_volume_panel_summary">Use sleek HyperOS style volume slider and controls</string>
+    <string name="call_volume_slider_title">Dual volume controller in calls</string>
+    <string name="call_volume_slider_summary">Show dedicated call volume slider alongside media slider during active calls</string>
 
 </resources>
 
