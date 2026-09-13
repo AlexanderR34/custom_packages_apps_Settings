@@ -63,6 +63,7 @@ sealed class ButtonNavigationSettingsStylePreference(
             }
         }
         store.setValue(key, Boolean::class.javaObjectType, true)
+        com.android.settings.utils.SystemUiRestartUtils.showRestartDialog(source.context)
     }
 
     override fun getReadPermit(context: Context, callingPid: Int, callingUid: Int) =
@@ -146,5 +147,37 @@ class HyperOSButtonNavigationSettingsStylePreference(store: ButtonNavigationSett
 
     companion object {
         const val KEY = "navbar_style_preference_hyperos"
+    }
+}
+
+class SamsungButtonNavigationSettingsStylePreference(store: ButtonNavigationSettingsStyleStore) :
+    ButtonNavigationSettingsStylePreference(store) {
+    override val key
+        get() = KEY
+
+    override val purpose: Int
+        get() = R.string.navbar_style_preference_samsung_purpose
+
+    override val titleRes: Int
+        get() = R.string.navbar_style_samsung
+
+    override val icons
+        get() =
+            listOf(
+                R.drawable.ic_sysbar_back_samsung,
+                R.drawable.ic_sysbar_home_samsung,
+                R.drawable.ic_sysbar_recent_samsung,
+            )
+
+    override val labels
+        get() =
+            listOf(
+                R.string.navbar_back_button,
+                R.string.navbar_home_button,
+                R.string.navbar_recent_button,
+            )
+
+    companion object {
+        const val KEY = "navbar_style_preference_samsung"
     }
 }

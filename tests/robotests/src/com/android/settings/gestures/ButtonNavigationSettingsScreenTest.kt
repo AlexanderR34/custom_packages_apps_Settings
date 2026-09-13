@@ -41,6 +41,9 @@ class ButtonNavigationSettingsScreenTest {
 
         assertThat(hierarchy.find(DefaultButtonNavigationSettingsOrderPreference.KEY)).isNotNull()
         assertThat(hierarchy.find(ReverseButtonNavigationSettingsOrderPreference.KEY)).isNotNull()
+        assertThat(hierarchy.find(DefaultButtonNavigationSettingsStylePreference.KEY)).isNotNull()
+        assertThat(hierarchy.find(HyperOSButtonNavigationSettingsStylePreference.KEY)).isNotNull()
+        assertThat(hierarchy.find(SamsungButtonNavigationSettingsStylePreference.KEY)).isNotNull()
     }
 
     @Test

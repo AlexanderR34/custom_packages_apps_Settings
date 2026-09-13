@@ -33,13 +33,15 @@ class ButtonNavigationSettingsStyleStore(val context: Context) :
 
     override fun contains(key: String) =
         key == DefaultButtonNavigationSettingsStylePreference.KEY ||
-            key == HyperOSButtonNavigationSettingsStylePreference.KEY
+            key == HyperOSButtonNavigationSettingsStylePreference.KEY ||
+            key == SamsungButtonNavigationSettingsStylePreference.KEY
 
     override fun <T : Any> getValue(key: String, valueType: Class<T>): T? {
         val style = settingsStore.getInt(KEY) ?: 0
         return when (key) {
             DefaultButtonNavigationSettingsStylePreference.KEY -> (style == 0) as T?
             HyperOSButtonNavigationSettingsStylePreference.KEY -> (style == 1) as T?
+            SamsungButtonNavigationSettingsStylePreference.KEY -> (style == 2) as T?
             else -> false as T?
         }
     }
@@ -47,14 +49,47 @@ class ButtonNavigationSettingsStyleStore(val context: Context) :
     override fun <T : Any> setValue(key: String, valueType: Class<T>, value: T?) {
         if (value !is Boolean || !value) return
         val styleVal = when (key) {
+            SamsungButtonNavigationSettingsStylePreference.KEY -> 2
             HyperOSButtonNavigationSettingsStylePreference.KEY -> 1
             else -> 0
         }
         settingsStore.setInt(KEY, styleVal)
         try {
             android.provider.Settings.Secure.putInt(context.contentResolver, KEY, styleVal)
+        } catch (_: Exception) {
+        }
+        try {
+            android.provider.Settings.Secure.putIntForUser(
+                context.contentResolver, KEY, styleVal, android.os.UserHandle.USER_CURRENT
+            )
+        } catch (_: Exception) {
+        }
+        try {
             android.provider.Settings.System.putInt(context.contentResolver, KEY, styleVal)
         } catch (_: Exception) {
+        }
+
+        try {
+            val om = context.getSystemService(android.content.om.OverlayManager::class.java)
+            if (om != null) {
+                val user = android.os.UserHandle.CURRENT
+                om.setEnabled("org.pixelos.overlay.navbar.hyperos.pixellauncher", styleVal == 1, user)
+                om.setEnabled("org.pixelos.overlay.navbar.samsung.pixellauncher", styleVal == 2, user)
+                om.setEnabled("org.pixelos.overlay.navbar.hyperos.sysui", styleVal == 1, user)
+                om.setEnabled("org.pixelos.overlay.navbar.samsung.sysui", styleVal == 2, user)
+            }
+        } catch (_: Exception) {
+            try {
+                val om = android.content.om.IOverlayManager.Stub.asInterface(
+                    android.os.ServiceManager.getService(android.content.Context.OVERLAY_SERVICE)
+                )
+                val userId = android.app.ActivityManager.getCurrentUser()
+                om?.setEnabled("org.pixelos.overlay.navbar.hyperos.pixellauncher", styleVal == 1, userId)
+                om?.setEnabled("org.pixelos.overlay.navbar.samsung.pixellauncher", styleVal == 2, userId)
+                om?.setEnabled("org.pixelos.overlay.navbar.hyperos.sysui", styleVal == 1, userId)
+                om?.setEnabled("org.pixelos.overlay.navbar.samsung.sysui", styleVal == 2, userId)
+            } catch (_: Exception) {
+            }
         }
     }
 
