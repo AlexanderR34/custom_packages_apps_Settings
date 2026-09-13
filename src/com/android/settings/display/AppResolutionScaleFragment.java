@@ -314,8 +314,12 @@ public class AppResolutionScaleFragment extends SettingsPreferenceFragment {
         android.app.ActivityManager am = (android.app.ActivityManager) context.getSystemService(Context.ACTIVITY_SERVICE);
         if (am != null) {
             try {
-                am.killBackgroundProcesses(packageName);
-            } catch (Throwable ignored) {}
+                am.forceStopPackage(packageName);
+            } catch (Throwable ignored) {
+                try {
+                    am.killBackgroundProcesses(packageName);
+                } catch (Throwable ignored2) {}
+            }
         }
     }
 

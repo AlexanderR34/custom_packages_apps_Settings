@@ -56,13 +56,19 @@ public class CustomBlurPreferenceController extends SliderPreferenceController {
     @Override
     public int getSliderPosition() {
         return Settings.System.getInt(
-                mContext.getContentResolver(), Settings.System.CUSTOM_BLUR_INTENSITY, DEFAULT_BLUR);
+                mContext.getContentResolver(),
+                Settings.System.CUSTOM_BLUR_INTENSITY,
+                android.os.SystemProperties.getInt("persist.sys.custom_blur_intensity", DEFAULT_BLUR));
     }
 
     @Override
     public boolean setSliderPosition(int position) {
         Settings.System.putInt(
                 mContext.getContentResolver(), Settings.System.CUSTOM_BLUR_INTENSITY, position);
+        try {
+            android.os.SystemProperties.set("persist.sys.custom_blur_intensity", String.valueOf(position));
+        } catch (Exception ignored) {
+        }
         
         // Dynamically toggle window blurs disable state if set to 0
         if (position == 0) {

@@ -18,29 +18,55 @@ package com.android.settings.utils;
 
 import android.app.ActivityManager;
 import android.app.AlertDialog;
+import android.app.IActivityManager;
 import android.content.Context;
+import android.content.pm.PackageManager;
+import android.util.Log;
 
 public class SystemUiRestartUtils {
+    private static final String TAG = "SystemUiRestartUtils";
 
     public static void showRestartDialog(Context context) {
         new AlertDialog.Builder(context)
-                .setTitle("Reiniciar SystemUI")
-                .setMessage("¿Deseas reiniciar la interfaz del sistema (SystemUI) ahora para aplicar los cambios visuales?")
-                .setPositiveButton("Reiniciar ahora", (dialog, which) -> restartSystemUI(context))
-                .setNegativeButton("Más tarde", (dialog, which) -> dialog.dismiss())
+                .setTitle(com.android.settings.R.string.systemui_restart_dialog_title)
+                .setMessage(com.android.settings.R.string.systemui_restart_dialog_message)
+                .setPositiveButton(com.android.settings.R.string.systemui_restart_dialog_positive, (dialog, which) -> restartSystemUI(context))
+                .setNegativeButton(com.android.settings.R.string.systemui_restart_dialog_negative, (dialog, which) -> dialog.dismiss())
                 .show();
     }
 
     public static void restartSystemUI(Context context) {
-        try {
-            ActivityManager am = context.getSystemService(ActivityManager.class);
-            if (am != null) {
-                am.killBackgroundProcesses("com.android.systemui");
-            }
-        } catch (Exception ignored) {}
+        new Thread(() -> {
+            try {
+                IActivityManager am = ActivityManager.getService();
+                if (am != null) {
+                    int uid = -1;
+                    try {
+                        uid = context.getPackageManager().getPackageUid("com.android.systemui", 0);
+                    } catch (PackageManager.NameNotFoundException ignored) {}
 
-        try {
-            Runtime.getRuntime().exec(new String[]{"pkill", "-f", "com.android.systemui"});
-        } catch (Exception ignored) {}
+                    if (uid != -1) {
+                        am.killApplicationProcess("com.android.systemui", uid);
+                        return;
+                    }
+                }
+            } catch (Exception e) {
+                Log.e(TAG, "Failed to kill SystemUI via ActivityManager.getService()", e);
+            }
+
+            try {
+                ActivityManager am = context.getSystemService(ActivityManager.class);
+                if (am != null && am.getRunningAppProcesses() != null) {
+                    for (ActivityManager.RunningAppProcessInfo process : am.getRunningAppProcesses()) {
+                        if ("com.android.systemui".equals(process.processName)) {
+                            ActivityManager.getService().killApplicationProcess(process.processName, process.uid);
+                            return;
+                        }
+                    }
+                }
+            } catch (Exception e) {
+                Log.e(TAG, "Failed to kill SystemUI via RunningAppProcessInfo", e);
+            }
+        }).start();
     }
 }
