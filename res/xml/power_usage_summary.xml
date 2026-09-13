@@ -76,12 +76,15 @@
             android:summary="@string/battery_percentage_description"
             settings:controller="com.android.settings.display.BatteryPercentagePreferenceController" />
 
-        <SwitchPreferenceCompat
-            android:key="status_bar_battery_style_hyperos"
-            android:title="@string/status_bar_battery_style_hyperos_title"
-            android:summary="@string/status_bar_battery_style_hyperos_summary"
-            android:defaultValue="false"
-            settings:controller="com.android.settings.fuelgauge.HyperOSBatteryPreferenceController" />
+        <ListPreference
+            android:key="status_bar_battery_style"
+            android:title="@string/status_bar_battery_style_title"
+            android:summary="%s"
+            android:dialogTitle="@string/status_bar_battery_style_title"
+            android:entries="@array/status_bar_battery_style_entries"
+            android:entryValues="@array/status_bar_battery_style_values"
+            android:defaultValue="0"
+            settings:controller="com.android.settings.fuelgauge.BatteryStylePreferenceController" />
     </com.android.settingslib.widget.UntitledPreferenceCategory>
 
     <Preference

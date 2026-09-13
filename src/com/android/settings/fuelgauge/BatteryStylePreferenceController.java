@@ -20,20 +20,21 @@ import android.content.Context;
 import android.os.UserHandle;
 import android.provider.Settings;
 
+import androidx.preference.ListPreference;
 import androidx.preference.Preference;
-import androidx.preference.TwoStatePreference;
 
 import com.android.settings.core.BasePreferenceController;
 import com.android.settings.core.PreferenceControllerMixin;
 
 import com.android.settings.utils.SystemUiRestartUtils;
 
-public class HyperOSBatteryPreferenceController extends BasePreferenceController implements
+public class BatteryStylePreferenceController extends BasePreferenceController implements
         PreferenceControllerMixin, Preference.OnPreferenceChangeListener {
 
-    public static final String KEY_SETTING = "status_bar_battery_style_hyperos";
+    public static final String KEY_SETTING = "status_bar_battery_style";
+    public static final String KEY_SETTING_LEGACY = "status_bar_battery_style_hyperos";
 
-    public HyperOSBatteryPreferenceController(Context context, String preferenceKey) {
+    public BatteryStylePreferenceController(Context context, String preferenceKey) {
         super(context, preferenceKey);
     }
 
@@ -44,24 +45,35 @@ public class HyperOSBatteryPreferenceController extends BasePreferenceController
 
     @Override
     public void updateState(Preference preference) {
-        int setting = Settings.System.getIntForUser(mContext.getContentResolver(),
-                KEY_SETTING, 0, UserHandle.USER_CURRENT);
-        if (preference instanceof TwoStatePreference) {
-            ((TwoStatePreference) preference).setChecked(setting == 1);
+        if (preference instanceof ListPreference) {
+            ListPreference listPref = (ListPreference) preference;
+            int style = Settings.System.getIntForUser(mContext.getContentResolver(),
+                    KEY_SETTING, -1, UserHandle.USER_CURRENT);
+            if (style == -1) {
+                int hyperOs = Settings.System.getIntForUser(mContext.getContentResolver(),
+                    KEY_SETTING_LEGACY, 0, UserHandle.USER_CURRENT);
+                style = hyperOs == 1 ? 1 : 0;
+            }
+            listPref.setValue(String.valueOf(style));
+            listPref.setSummary(listPref.getEntry());
         }
     }
 
     @Override
     public boolean onPreferenceChange(Preference preference, Object newValue) {
-        boolean enabled = (Boolean) newValue;
+        String val = (String) newValue;
+        int style = Integer.parseInt(val);
         Settings.System.putIntForUser(mContext.getContentResolver(),
-                KEY_SETTING, enabled ? 1 : 0, UserHandle.USER_CURRENT);
+                KEY_SETTING, style, UserHandle.USER_CURRENT);
         Settings.System.putIntForUser(mContext.getContentResolver(),
-                "status_bar_battery_style", enabled ? 1 : 0, UserHandle.USER_CURRENT);
-        if (preference instanceof TwoStatePreference) {
-            ((TwoStatePreference) preference).setChecked(enabled);
+                KEY_SETTING_LEGACY, (style == 1) ? 1 : 0, UserHandle.USER_CURRENT);
+        if (preference instanceof ListPreference) {
+            ListPreference listPref = (ListPreference) preference;
+            int index = listPref.findIndexOfValue(val);
+            if (index >= 0) {
+                listPref.setSummary(listPref.getEntries()[index]);
+            }
         }
-        SystemUiRestartUtils.showRestartDialog(mContext);
         return true;
     }
 }

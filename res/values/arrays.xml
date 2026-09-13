@@ -48,6 +48,8 @@
         <item>120</item>
     </string-array>
 
+    <!-- Sound Theme -->
+
     <!-- Status Bar Clock Position -->
     <string-array name="status_bar_clock_position_entries">
         <item>@string/status_bar_clock_position_left</item>
