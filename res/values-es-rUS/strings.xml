@@ -59,16 +59,6 @@
     <string name="smart_rotate_text_headline" msgid="5878008933992951904">"La Detección de rostro usa la cámara frontal para mejorar la exactitud de la opción girar automáticamente. Las imágenes nunca se almacenan ni se envían a Google."</string>
     <string name="freeform_sidebar_title">Barra lateral</string>
     <string name="freeform_sidebar_summary">Abre apps rápidamente en ventanas flotantes libres</string>
-    <string name="ram_plus_title">RAM Plus</string>
-    <string name="ram_plus_summary">Usa el almacenamiento para ampliar la memoria ZRAM y mantener más aplicaciones abiertas</string>
-    <string name="ram_plus_desc">RAM Plus usa el espacio de almacenamiento de su teléfono para proporcionar ZRAM. Seleccione más ZRAM para permitir que más aplicaciones permanezcan abiertas en segundo plano. Seleccione menos ZRAM para mantener más espacio de almacenamiento libre.</string>
-    <string name="ram_plus_reboot_dialog_title">Reiniciar teléfono</string>
-    <string name="ram_plus_reboot_dialog_message">Para cambiar la cantidad de espacio de almacenamiento utilizada para RAM Plus (ZRAM), el teléfono debe reiniciarse.</string>
-    <string name="ram_plus_reboot_now">Reiniciar</string>
-    <string name="ram_plus_reboot_later">Más tarde</string>
-    <string name="ram_plus_gb_format">%1$d GB</string>
-    <string name="ram_plus_disabled">Desactivado</string>
-    <string name="ram_plus_enabled_format">Activado (%1$s)</string>
     <string name="bluetooth" msgid="8898478620943459654">"Bluetooth"</string>
     <string name="bluetooth_is_discoverable" msgid="4798961627677790935">"Visible para todos los dispositivos Bluetooth cercanos (<xliff:g id="DISCOVERABLE_TIME_PERIOD">%1$s</xliff:g>)"</string>
     <string name="bluetooth_is_discoverable_always" msgid="8122823110652921674">"Visible para todos los dispositivos Bluetooth cercanos"</string>

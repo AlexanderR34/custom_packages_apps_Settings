@@ -93,17 +93,4 @@
         android:key="pref_non_current_users"
         android:title="@string/storage_other_users"
         android:order="204" />
-    <PreferenceCategory
-        android:key="ram_plus_category"
-        android:title="@string/ram_plus_title"
-        android:order="300">
-        <Preference
-            android:key="ram_plus_pref"
-            android:title="@string/ram_plus_title"
-            android:summary="@string/ram_plus_summary"
-            android:icon="@drawable/ic_memory"
-            android:fragment="com.android.settings.deviceinfo.storage.RamPlusSettingsFragment"
-            settings:controller="com.android.settings.deviceinfo.storage.RamPlusPreferenceController"
-            android:order="301"/>
-    </PreferenceCategory>
 </PreferenceScreen>

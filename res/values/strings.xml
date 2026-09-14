@@ -57,16 +57,6 @@
     <string name="freeform_sidebar_summary">Quickly open apps in floating freeform windows</string>
     <string name="usb_pd_optimization_title">USB Power Delivery optimization</string>
     <string name="usb_pd_optimization_summary">Dynamically manages power delivery when connected to a compatible USB Power Delivery charger</string>
-    <string name="ram_plus_title">RAM Plus</string>
-    <string name="ram_plus_summary">Extend RAM using storage (ZRAM) to keep more apps open in the background</string>
-    <string name="ram_plus_desc">RAM Plus uses your phone\'s storage space to provide ZRAM. Select more ZRAM to allow more apps to stay open in the background. Select less ZRAM to keep more storage space free.</string>
-    <string name="ram_plus_reboot_dialog_title">Restart phone</string>
-    <string name="ram_plus_reboot_dialog_message">To change the amount of storage space used for RAM Plus (ZRAM), your phone needs to restart.</string>
-    <string name="ram_plus_reboot_now">Restart</string>
-    <string name="ram_plus_reboot_later">Later</string>
-    <string name="ram_plus_gb_format">%1$d GB</string>
-    <string name="ram_plus_disabled">Off</string>
-    <string name="ram_plus_enabled_format">On (%1$s)</string>
     <string name="app_refresh_rate_title">Per-app refresh rate &amp; FPS limit</string>
     <string name="app_refresh_rate_summary">Configure refresh rate (Hz) and FPS frame pacing for each application</string>
     <string name="app_refresh_rate_category_title">Applications</string>
