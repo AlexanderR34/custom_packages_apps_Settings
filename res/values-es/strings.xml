@@ -6442,5 +6442,10 @@
     <string name="diva_total_ram">Memoria RAM total</string>
     <string name="diva_total_ram_purpose">Muestra la memoria RAM física total del dispositivo</string>
 
+    <!-- Freeform launch mode (Spanish) -->
+    <string name="freeform_launch_mode_title">Ventana flotante</string>
+    <string name="freeform_launch_mode_native">AOSP nativo</string>
+    <string name="freeform_launch_mode_lmo">LMO Libre Formato</string>
+
 </resources>
 

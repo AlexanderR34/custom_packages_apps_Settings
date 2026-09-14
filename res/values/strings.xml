@@ -15799,5 +15799,10 @@
     <string name="diva_total_ram">Total RAM</string>
     <string name="diva_total_ram_purpose">Displays the total physical RAM</string>
 
+    <!-- Freeform launch mode -->
+    <string name="freeform_launch_mode_title">Floating window</string>
+    <string name="freeform_launch_mode_native">Native AOSP</string>
+    <string name="freeform_launch_mode_lmo">LMO Freeform</string>
+
 </resources>
 
