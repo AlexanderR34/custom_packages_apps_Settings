@@ -16,6 +16,17 @@
 
 <resources xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+    <!-- RAM Plus strings -->
+    <string name="ram_plus_title">RAM Plus</string>
+    <string name="ram_plus_summary">Extiende la memoria RAM usando el almacenamiento (ZRAM) para mantener más apps abiertas en segundo plano</string>
+    <string name="ram_plus_desc">RAM Plus usa el espacio de almacenamiento de tu teléfono para proporcionar memoria virtual (ZRAM). Selecciona más ZRAM para permitir que más aplicaciones permanezcan abiertas en segundo plano. Selecciona menos ZRAM para mantener más espacio de almacenamiento libre.</string>
+    <string name="ram_plus_reboot_dialog_title">Reiniciar teléfono</string>
+    <string name="ram_plus_reboot_dialog_message">Para cambiar la cantidad de almacenamiento usado para RAM Plus (ZRAM), es necesario reiniciar tu teléfono.</string>
+    <string name="ram_plus_reboot_now">Reiniciar</string>
+    <string name="ram_plus_reboot_later">Más tarde</string>
+    <string name="ram_plus_gb_format">%1$d GB</string>
+    <string name="ram_plus_disabled">Desactivado</string>
+    <string name="ram_plus_enabled_format">Activado (%1$s)</string>
     <string name="yes" msgid="1999566976857398962">"Sí"</string>
     <string name="no" msgid="5541738710521607130">"No"</string>
     <string name="create" msgid="986997212165228751">"Crear"</string>
