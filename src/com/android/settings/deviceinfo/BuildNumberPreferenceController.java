@@ -82,12 +82,8 @@ public class BuildNumberPreferenceController extends BasePreferenceController im
 
     @Override
     public CharSequence getSummary() {
-        String customVersion = VersionUtils.getCustomVersion();
-        if (!TextUtils.isEmpty(customVersion)) {
-            return BidiFormatter.getInstance().unicodeWrap(customVersion.replace("\\n", " ").replace("\n", " ").trim());
-        }
-        String display = Build.DISPLAY != null ? Build.DISPLAY.replace("\\n", " ").replace("\n", " ").trim() : "";
-        return BidiFormatter.getInstance().unicodeWrap(display);
+        String buildId = Build.ID != null ? Build.ID.replace("\\n", " ").replace("\n", " ").trim() : "";
+        return BidiFormatter.getInstance().unicodeWrap(buildId);
     }
 
     @Override

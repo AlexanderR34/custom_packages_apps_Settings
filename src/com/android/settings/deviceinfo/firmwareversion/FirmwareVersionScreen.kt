@@ -71,6 +71,12 @@ open class FirmwareVersionScreen : PreferenceScreenMixin, PreferenceSummaryProvi
     override fun getPreferenceHierarchy(context: Context, coroutineScope: CoroutineScope) =
         preferenceHierarchy(context) {
             +FirmwareVersionDetailPreference()
+            +DivaVersionPreference()
+            +DivaMaintainerPreference()
+            +DivaBuildTypePreference()
+            +DivaBuildDatePreference()
+            +DivaTotalStoragePreference()
+            +DivaTotalRamPreference()
             +SecurityPatchLevelPreference()
             +MainlineModuleVersionPreference()
             +BasebandVersionPreference()

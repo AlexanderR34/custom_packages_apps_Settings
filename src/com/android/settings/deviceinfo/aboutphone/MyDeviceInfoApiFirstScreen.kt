@@ -98,7 +98,11 @@ class MyDeviceInfoApiFirstScreen :
         ) {
             sensitivityLevel(SensitivityLevel.DO_NOT_EXPOSE)
 
-            get { execute { Build.DISPLAY } }
+            get {
+                execute {
+                    (Build.ID ?: Build.DISPLAY ?: "").replace("\\n", " ").replace("\n", " ").trim()
+                }
+            }
         }
 
         preference(

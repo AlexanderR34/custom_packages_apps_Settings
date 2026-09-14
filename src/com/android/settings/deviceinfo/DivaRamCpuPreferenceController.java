@@ -40,20 +40,7 @@ public class DivaRamCpuPreferenceController extends BasePreferenceController {
     }
 
     private String getRamSize() {
-        ActivityManager actManager = (ActivityManager) mContext.getSystemService(Context.ACTIVITY_SERVICE);
-        ActivityManager.MemoryInfo memInfo = new ActivityManager.MemoryInfo();
-        actManager.getMemoryInfo(memInfo);
-        
-        long totalMemory = memInfo.totalMem;
-        long gb = totalMemory / 1073741824L;
-        long roundedGb = 4;
-        if (gb > 4) roundedGb = 6;
-        if (gb > 6) roundedGb = 8;
-        if (gb > 8) roundedGb = 12;
-        if (gb > 12) roundedGb = 16;
-        if (gb > 16) roundedGb = 24;
-        
-        return roundedGb + ".0GB";
+        return DivaInfoUtils.getTotalRam();
     }
 
     private String getCpuInfo() {

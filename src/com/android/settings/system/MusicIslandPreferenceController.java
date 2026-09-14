@@ -1,6 +1,7 @@
 package com.android.settings.system;
 
 import android.content.Context;
+import android.os.UserHandle;
 import android.provider.Settings;
 import androidx.preference.Preference;
 import com.android.settings.core.TogglePreferenceController;
@@ -23,12 +24,12 @@ public class MusicIslandPreferenceController extends TogglePreferenceController 
 
     @Override
     public boolean isChecked() {
-        return Settings.System.getInt(mContext.getContentResolver(), SETTING_KEY, 0) == 1;
+        return Settings.System.getIntForUser(mContext.getContentResolver(), SETTING_KEY, 0, UserHandle.myUserId()) == 1;
     }
 
     @Override
     public boolean setChecked(boolean isChecked) {
-        return Settings.System.putInt(mContext.getContentResolver(), SETTING_KEY, isChecked ? 1 : 0);
+        return Settings.System.putIntForUser(mContext.getContentResolver(), SETTING_KEY, isChecked ? 1 : 0, UserHandle.myUserId());
     }
 
     @Override

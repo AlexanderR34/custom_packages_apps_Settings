@@ -12,10 +12,46 @@
         android:selectable="false" />
 
     <Preference
-        android:key="diva_os_version_detailed"
-        android:title="OS version"
-        android:summary="1.0.2"
-        android:selectable="false" />
+        android:key="diva_version"
+        android:title="@string/diva_version"
+        android:summary="@string/summary_placeholder"
+        settings:enableCopying="true"
+        settings:controller="com.android.settings.deviceinfo.firmwareversion.DivaVersionPreferenceController" />
+
+    <Preference
+        android:key="diva_maintainer"
+        android:title="@string/diva_maintainer"
+        android:summary="@string/summary_placeholder"
+        settings:enableCopying="true"
+        settings:controller="com.android.settings.deviceinfo.firmwareversion.DivaMaintainerPreferenceController" />
+
+    <Preference
+        android:key="diva_build_type"
+        android:title="@string/diva_build_type"
+        android:summary="@string/summary_placeholder"
+        settings:enableCopying="true"
+        settings:controller="com.android.settings.deviceinfo.firmwareversion.DivaBuildTypePreferenceController" />
+
+    <Preference
+        android:key="diva_build_date"
+        android:title="@string/diva_build_date"
+        android:summary="@string/summary_placeholder"
+        settings:enableCopying="true"
+        settings:controller="com.android.settings.deviceinfo.firmwareversion.DivaBuildDatePreferenceController" />
+
+    <Preference
+        android:key="diva_total_storage"
+        android:title="@string/diva_storage_capacity"
+        android:summary="@string/summary_placeholder"
+        settings:enableCopying="true"
+        settings:controller="com.android.settings.deviceinfo.firmwareversion.DivaTotalStoragePreferenceController" />
+
+    <Preference
+        android:key="diva_total_ram"
+        android:title="@string/diva_total_ram"
+        android:summary="@string/summary_placeholder"
+        settings:enableCopying="true"
+        settings:controller="com.android.settings.deviceinfo.firmwareversion.DivaTotalRamPreferenceController" />
 
     <Preference
         android:key="diva_android_version_detailed"

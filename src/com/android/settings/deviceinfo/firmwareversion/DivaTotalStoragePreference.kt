@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2024 The Android Open Source Project
+ * Copyright (C) 2026 Project Diva
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -17,12 +17,10 @@
 package com.android.settings.deviceinfo.firmwareversion
 
 import android.content.Context
-import android.os.Build
-import android.text.BidiFormatter
-import android.view.View.LAYOUT_DIRECTION_RTL
 import androidx.preference.Preference
 import com.android.settings.R
 import com.android.settings.contract.TAG_DEVICE_STATE_PREFERENCE
+import com.android.settings.deviceinfo.DivaInfoUtils
 import com.android.settingslib.datastore.KeyValueStore
 import com.android.settingslib.metadata.PersistentPreference
 import com.android.settingslib.metadata.PreferenceMetadata
@@ -30,20 +28,17 @@ import com.android.settingslib.metadata.PreferenceSummaryProvider
 import com.android.settingslib.metadata.SensitivityLevel
 import com.android.settingslib.preference.PreferenceBinding
 
-import com.android.settings.deviceinfo.VersionUtils
-
-// LINT.IfChange
-class SimpleBuildNumberPreference :
+class DivaTotalStoragePreference :
     PersistentPreference<String>, PreferenceMetadata, PreferenceSummaryProvider, PreferenceBinding {
 
     override val key: String
-        get() = "os_build_number"
+        get() = "diva_total_storage"
 
     override val purpose: Int
-        get() = R.string.os_build_number_purpose
+        get() = R.string.diva_storage_capacity_purpose
 
     override val title: Int
-        get() = R.string.build_number
+        get() = R.string.diva_storage_capacity
 
     override val indexable
         get() = false
@@ -56,12 +51,7 @@ class SimpleBuildNumberPreference :
 
     override fun storage(context: Context): KeyValueStore = createSummaryStorage(context, key)
 
-    override fun getSummary(context: Context): CharSequence? {
-        val isRtl = context.resources.configuration.layoutDirection == LAYOUT_DIRECTION_RTL
-        val bidi = BidiFormatter.getInstance(isRtl)
-        val buildId = (Build.ID ?: "").replace("\\n", " ").replace("\n", " ").trim()
-        return bidi.unicodeWrap(buildId)
-    }
+    override fun getSummary(context: Context): CharSequence? = DivaInfoUtils.getTotalStorage(context)
 
     override fun bind(preference: Preference, metadata: PreferenceMetadata) {
         super.bind(preference, metadata)
@@ -71,6 +61,4 @@ class SimpleBuildNumberPreference :
 
     override val sensitivityLevel
         get() = SensitivityLevel.NO_SENSITIVITY
-
 }
-// LINT.ThenChange(SimpleBuildNumberPreferenceController.java)

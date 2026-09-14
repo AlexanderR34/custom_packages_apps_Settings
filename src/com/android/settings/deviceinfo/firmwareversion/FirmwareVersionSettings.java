@@ -128,11 +128,10 @@ public class FirmwareVersionSettings extends DashboardFragment {
         if (tvAndroid != null) tvAndroid.setText(Build.VERSION.RELEASE);
 
         TextView tvDiva = root.findViewById(R.id.tv_diva_version);
-        if (tvDiva != null) tvDiva.setText(SystemProperties.get("ro.diva.version", "Project Diva 1.1.2"));
+        if (tvDiva != null) tvDiva.setText(com.android.settings.deviceinfo.DivaInfoUtils.getDivaVersion());
 
         TextView tvMaintainer = root.findViewById(R.id.tv_maintainer);
-        // Utilizando tu nombre como fallback en caso de que no exista la propiedad
-        if (tvMaintainer != null) tvMaintainer.setText(SystemProperties.get("ro.diva.maintainer", "Alexander Reyes"));
+        if (tvMaintainer != null) tvMaintainer.setText(com.android.settings.deviceinfo.DivaInfoUtils.getMaintainer());
 
         TextView tvSecurity = root.findViewById(R.id.tv_security_patch);
         if (tvSecurity != null) tvSecurity.setText(DeviceInfoUtils.getSecurityPatch());
@@ -147,17 +146,12 @@ public class FirmwareVersionSettings extends DashboardFragment {
         if (tvKernel != null) tvKernel.setText(DeviceInfoUtils.getFormattedKernelVersion(getContext()));
 
         TextView tvBuildDate = root.findViewById(R.id.tv_build_date);
-        if (tvBuildDate != null) tvBuildDate.setText(SystemProperties.get("ro.build.date", ""));
+        if (tvBuildDate != null) tvBuildDate.setText(com.android.settings.deviceinfo.DivaInfoUtils.getBuildDate(getContext()));
 
         TextView tvBuildNumber = root.findViewById(R.id.tv_build_number);
         if (tvBuildNumber != null) {
-            String customVersion = com.android.settings.deviceinfo.VersionUtils.getCustomVersion();
-            if (!android.text.TextUtils.isEmpty(customVersion)) {
-                tvBuildNumber.setText(customVersion.replace("\\n", " ").replace("\n", " ").trim());
-            } else {
-                String display = Build.DISPLAY != null ? Build.DISPLAY.replace("\\n", " ").replace("\n", " ").trim() : "";
-                tvBuildNumber.setText(display);
-            }
+            String buildId = Build.ID != null ? Build.ID.replace("\\n", " ").replace("\n", " ").trim() : "";
+            tvBuildNumber.setText(buildId);
         }
     }
 

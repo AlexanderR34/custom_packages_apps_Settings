@@ -15771,5 +15771,21 @@
     <string name="call_volume_slider_title">Dual volume controller in calls</string>
     <string name="call_volume_slider_summary">Show dedicated call volume slider alongside media slider during active calls</string>
 
+    <!-- Project Diva Android Version Screen Info -->
+    <string name="diva_version">Project Diva version</string>
+    <string name="diva_version_purpose">Displays the current Project Diva ROM version</string>
+    <string name="diva_maintainer">Maintainer</string>
+    <string name="diva_maintainer_purpose">Displays the official maintainer for this build</string>
+    <string name="diva_build_type">Build type</string>
+    <string name="diva_build_type_purpose">Displays whether this build is official or unofficial</string>
+    <string name="diva_build_type_official">Official</string>
+    <string name="diva_build_type_unofficial">Unofficial</string>
+    <string name="diva_build_date">Build date</string>
+    <string name="diva_build_date_purpose">Displays the compilation date of this build</string>
+    <string name="diva_storage_capacity">Total storage</string>
+    <string name="diva_storage_capacity_purpose">Displays the total internal storage capacity</string>
+    <string name="diva_total_ram">Total RAM</string>
+    <string name="diva_total_ram_purpose">Displays the total physical RAM</string>
+
 </resources>
 

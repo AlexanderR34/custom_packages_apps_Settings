@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2019 The Android Open Source Project
+ * Copyright (C) 2026 Project Diva
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -17,18 +17,13 @@
 package com.android.settings.deviceinfo.firmwareversion;
 
 import android.content.Context;
-import android.os.Build;
-import android.text.BidiFormatter;
-import android.text.TextUtils;
 
 import com.android.settings.core.BasePreferenceController;
-import com.android.settings.deviceinfo.VersionUtils;
+import com.android.settings.deviceinfo.DivaInfoUtils;
 
-// LINT.IfChange
-public class SimpleBuildNumberPreferenceController extends BasePreferenceController {
+public class DivaTotalStoragePreferenceController extends BasePreferenceController {
 
-    public SimpleBuildNumberPreferenceController(Context context,
-            String preferenceKey) {
+    public DivaTotalStoragePreferenceController(Context context, String preferenceKey) {
         super(context, preferenceKey);
     }
 
@@ -39,8 +34,6 @@ public class SimpleBuildNumberPreferenceController extends BasePreferenceControl
 
     @Override
     public CharSequence getSummary() {
-        String buildId = Build.ID != null ? Build.ID.replace("\\n", " ").replace("\n", " ").trim() : "";
-        return BidiFormatter.getInstance().unicodeWrap(buildId);
+        return DivaInfoUtils.getTotalStorage(mContext);
     }
 }
-// LINT.ThenChange(SimpleBuildNumberPreference.kt)

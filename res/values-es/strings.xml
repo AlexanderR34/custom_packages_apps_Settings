@@ -6412,6 +6412,22 @@
     <string name="systemui_restart_dialog_negative">Más tarde</string>
 
     <string name="back_button_label">Atrás</string>
+ 
+    <!-- Project Diva Android Version Screen Info (Spanish) -->
+    <string name="diva_version">Versión de Project Diva</string>
+    <string name="diva_version_purpose">Muestra la versión actual de la ROM Project Diva</string>
+    <string name="diva_maintainer">Mantenedor</string>
+    <string name="diva_maintainer_purpose">Muestra el mantenedor oficial de esta compilación</string>
+    <string name="diva_build_type">Tipo de compilación</string>
+    <string name="diva_build_type_purpose">Muestra si esta compilación es oficial o no oficial</string>
+    <string name="diva_build_type_official">Oficial</string>
+    <string name="diva_build_type_unofficial">No oficial</string>
+    <string name="diva_build_date">Fecha de compilación</string>
+    <string name="diva_build_date_purpose">Muestra la fecha de compilación de la ROM</string>
+    <string name="diva_storage_capacity">Capacidad de almacenamiento</string>
+    <string name="diva_storage_capacity_purpose">Muestra la capacidad total de almacenamiento interno</string>
+    <string name="diva_total_ram">Memoria RAM total</string>
+    <string name="diva_total_ram_purpose">Muestra la memoria RAM física total del dispositivo</string>
 
 </resources>
 
