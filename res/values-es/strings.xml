@@ -58,16 +58,6 @@
     <string name="preview_pager_email_title" msgid="8767864657910457562">"Correo"</string>
     <string name="preview_pager_previous_button" msgid="607771113300838313">"Vista previa anterior"</string>
     <string name="preview_pager_next_button" msgid="8700907912508927271">"Vista previa siguiente"</string>
-    <string name="ram_plus_title">RAM Plus</string>
-    <string name="ram_plus_summary">Usa el almacenamiento para ampliar la memoria ZRAM y mantener más aplicaciones abiertas</string>
-    <string name="ram_plus_desc">RAM Plus usa el espacio de almacenamiento de su teléfono para proporcionar ZRAM. Seleccione más ZRAM para permitir que más aplicaciones permanezcan abiertas en segundo plano. Seleccione menos ZRAM para mantener más espacio de almacenamiento libre.</string>
-    <string name="ram_plus_reboot_dialog_title">Reiniciar teléfono</string>
-    <string name="ram_plus_reboot_dialog_message">Para cambiar la cantidad de espacio de almacenamiento utilizada para RAM Plus (ZRAM), el teléfono debe reiniciarse.</string>
-    <string name="ram_plus_reboot_now">Reiniciar</string>
-    <string name="ram_plus_reboot_later">Más tarde</string>
-    <string name="ram_plus_gb_format">%1$d GB</string>
-    <string name="ram_plus_disabled">Desactivado</string>
-    <string name="ram_plus_enabled_format">Activado (%1$s)</string>
     <string name="usb_pd_optimization_title">Optimización de carga USB-PD</string>
     <string name="usb_pd_optimization_summary">Gestiona dinámicamente la entrega de energía al conectar un cargador USB Power Delivery compatible</string>
     <string name="app_refresh_rate_title">Tasa de refresco y FPS por aplicación</string>
