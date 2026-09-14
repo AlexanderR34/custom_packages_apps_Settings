@@ -55,6 +55,8 @@
     <!-- Bypass Charging / USB Power Delivery Direct Power -->
     <string name="usb_pd_optimization_title">USB Power Delivery optimization</string>
     <string name="usb_pd_optimization_summary">Dynamically manages power delivery when connected to a compatible USB Power Delivery charger</string>
+    <string name="settings_game_turbo_sidebar">Gaming Sidebar</string>
+    <string name="settings_game_turbo_sidebar_desc">Show tactical overlay and performance tools when playing games</string>
     <string name="app_refresh_rate_title">Per-app refresh rate &amp; FPS limit</string>
     <string name="app_refresh_rate_summary">Configure refresh rate (Hz) and FPS frame pacing for each application</string>
     <string name="app_refresh_rate_category_title">Applications</string>

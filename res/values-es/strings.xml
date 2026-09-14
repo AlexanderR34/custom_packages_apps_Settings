@@ -49,6 +49,8 @@
     <string name="preview_pager_next_button" msgid="8700907912508927271">"Vista previa siguiente"</string>
     <string name="usb_pd_optimization_title">Optimización de carga USB-PD</string>
     <string name="usb_pd_optimization_summary">Gestiona dinámicamente la entrega de energía al conectar un cargador USB Power Delivery compatible</string>
+    <string name="settings_game_turbo_sidebar">Barra lateral para juegos</string>
+    <string name="settings_game_turbo_sidebar_desc">Muestra el menú táctico y herramientas de rendimiento al abrir juegos</string>
     <string name="app_refresh_rate_title">Tasa de refresco y FPS por aplicación</string>
     <string name="app_refresh_rate_summary">Configura la tasa de refresco (Hz) y límite de FPS / Frame Pacer para cada aplicación</string>
     <string name="app_refresh_rate_category_title">Aplicaciones</string>
