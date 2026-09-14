@@ -57,6 +57,8 @@
     <string name="sleep_on_fold_summary" msgid="4191753338303043456">"La pantalla frontal se apaga y se bloquea cuando pliegas el dispositivo"</string>
     <string name="auto_rotate_settings_primary_switch_title" msgid="3440951924928594520">"Girar automáticamente"</string>
     <string name="smart_rotate_text_headline" msgid="5878008933992951904">"La Detección de rostro usa la cámara frontal para mejorar la exactitud de la opción girar automáticamente. Las imágenes nunca se almacenan ni se envían a Google."</string>
+    <string name="freeform_sidebar_title">Barra lateral</string>
+    <string name="freeform_sidebar_summary">Abre apps rápidamente en ventanas flotantes libres</string>
     <string name="ram_plus_title">RAM Plus</string>
     <string name="ram_plus_summary">Usa el almacenamiento para ampliar la memoria ZRAM y mantener más aplicaciones abiertas</string>
     <string name="ram_plus_desc">RAM Plus usa el espacio de almacenamiento de su teléfono para proporcionar ZRAM. Seleccione más ZRAM para permitir que más aplicaciones permanezcan abiertas en segundo plano. Seleccione menos ZRAM para mantener más espacio de almacenamiento libre.</string>

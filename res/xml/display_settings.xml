@@ -220,6 +220,16 @@
             settings:controller="com.android.settings.display.DisplayCutoutForceFullscreenPreferenceController" />
 
         <Preference
+            android:key="freeform_sidebar_settings"
+            android:title="@string/freeform_sidebar_title"
+            android:summary="@string/freeform_sidebar_summary">
+            <intent
+                android:action="android.intent.action.MAIN"
+                android:targetPackage="com.libremobileos.sidebar"
+                android:targetClass="com.libremobileos.sidebar.ui.sidebar.SidebarSettingsActivity" />
+        </Preference>
+
+        <Preference
             android:key="screensaver"
             android:title="@string/screensaver_settings_title"
             android:fragment="com.android.settings.dream.DreamSettings"

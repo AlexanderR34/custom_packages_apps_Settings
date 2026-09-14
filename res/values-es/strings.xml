@@ -58,6 +58,8 @@
     <string name="preview_pager_email_title" msgid="8767864657910457562">"Correo"</string>
     <string name="preview_pager_previous_button" msgid="607771113300838313">"Vista previa anterior"</string>
     <string name="preview_pager_next_button" msgid="8700907912508927271">"Vista previa siguiente"</string>
+    <string name="freeform_sidebar_title">Barra lateral</string>
+    <string name="freeform_sidebar_summary">Abre apps rápidamente en ventanas flotantes libres</string>
     <string name="usb_pd_optimization_title">Optimización de carga USB-PD</string>
     <string name="usb_pd_optimization_summary">Gestiona dinámicamente la entrega de energía al conectar un cargador USB Power Delivery compatible</string>
     <string name="app_refresh_rate_title">Tasa de refresco y FPS por aplicación</string>

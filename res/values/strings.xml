@@ -53,6 +53,8 @@
     <!-- Category headings in left-pane header menu -->
     <skip />
     <!-- Bypass Charging / USB Power Delivery Direct Power -->
+    <string name="freeform_sidebar_title">Sidebar</string>
+    <string name="freeform_sidebar_summary">Quickly open apps in floating freeform windows</string>
     <string name="usb_pd_optimization_title">USB Power Delivery optimization</string>
     <string name="usb_pd_optimization_summary">Dynamically manages power delivery when connected to a compatible USB Power Delivery charger</string>
     <string name="ram_plus_title">RAM Plus</string>
