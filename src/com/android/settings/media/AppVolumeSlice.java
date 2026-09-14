@@ -81,7 +81,7 @@ public class AppVolumeSlice implements CustomSliceable {
         // Only displaying active tracks
         final List<AppVolume> appVols = new ArrayList<>();
         for (AppVolume vol : mAudioManager.listAppVolumes()) {
-            if (vol.isActive()) {
+            if (vol.isActive() && !"android".equals(vol.getPackageName())) {
                 appVols.add(vol);
             }
         }
