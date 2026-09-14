@@ -261,13 +261,6 @@
             android:defaultValue="false"
             settings:controller="com.android.settings.custom.touch.HighTouchSensitivitySettingsPreferenceController" />
 
-        <!-- Barra lateral para juegos (Game Turbo Sidebar) -->
-        <com.android.settings.custom.preference.SystemSettingSwitchPreference
-            android:key="game_sidebar_enabled"
-            android:title="@string/settings_game_turbo_sidebar"
-            android:summary="@string/settings_game_turbo_sidebar_desc"
-            android:defaultValue="true" />
-
         <com.android.settings.custom.preference.GlobalSettingSwitchPreference
             android:key="wake_when_plugged_or_unplugged"
             android:title="@string/wake_when_plugged_or_unplugged_title"
