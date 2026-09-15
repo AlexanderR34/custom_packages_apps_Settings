@@ -86,4 +86,8 @@
     <!-- Always show mobile data icon with Wi-Fi -->
     <string name="show_data_rat_icon_with_wifi_title">Show mobile data icon with Wi-Fi</string>
     <string name="show_data_rat_icon_with_wifi_summary">Display mobile network type icon (e.g. 4G, 5G) even when connected to Wi-Fi</string>
+
+    <!-- Separate SIM signal icons in dual SIM mode -->
+    <string name="show_separate_dual_sim_icons_title">Separate SIM signal icons</string>
+    <string name="show_separate_dual_sim_icons_summary">Display separate status bar signal bars for each SIM in dual SIM mode instead of combining them</string>
 </resources>

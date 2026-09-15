@@ -88,4 +88,8 @@
     <!-- Mostrar icono de datos móviles con Wi-Fi -->
     <string name="show_data_rat_icon_with_wifi_title">Mostrar icono de datos móviles con Wi-Fi</string>
     <string name="show_data_rat_icon_with_wifi_summary">Mostrar el tipo de red móvil (ej. 4G, 5G) incluso al estar conectado a una red Wi-Fi</string>
+
+    <!-- Barras de señal de SIM separadas en doble SIM -->
+    <string name="show_separate_dual_sim_icons_title">Barras de señal de SIM separadas</string>
+    <string name="show_separate_dual_sim_icons_summary">Mostrar un icono de señal independiente para cada tarjeta SIM en lugar de combinarlos</string>
 </resources>

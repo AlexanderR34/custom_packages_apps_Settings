@@ -211,6 +211,13 @@
             android:summary="@string/show_data_rat_icon_with_wifi_summary"
             settings:controller="com.android.settings.network.telephony.ShowDataRatIconWithWifiPreferenceController"/>
 
+        <SwitchPreferenceCompat
+            android:key="show_separate_dual_sim_icons"
+            android:order="207"
+            android:title="@string/show_separate_dual_sim_icons_title"
+            android:summary="@string/show_separate_dual_sim_icons_summary"
+            settings:controller="com.android.settings.network.telephony.ShowSeparateDualSimIconsPreferenceController"/>
+
         <!-- Settings search is handled by CarrierSettingsVersionSearchItem. -->
         <Preference
             android:key="carrier_settings_version_key"
