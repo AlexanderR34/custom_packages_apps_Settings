@@ -6436,9 +6436,7 @@
     <string name="freeform_launch_mode_native">AOSP nativo</string>
     <string name="freeform_launch_mode_lmo">LMO Libre Formato</string>
 
-    <!-- HyperOS Volume Panel & Dual Call Volume Slider (Spanish) -->
-    <string name="hyperos_volume_panel_title">Panel de volumen estilo HyperOS</string>
-    <string name="hyperos_volume_panel_summary">Usa la barra y controles de volumen con diseño moderno estilo HyperOS</string>
+    <!-- Dual Call Volume Slider (Spanish) -->
     <string name="call_volume_slider_title">Control de volumen dual en llamadas</string>
     <string name="call_volume_slider_summary">Muestra una barra de volumen de llamada dedicada junto a la barra multimedia durante las llamadas activas</string>
 
