@@ -80,4 +80,8 @@
     <!-- Mostrar 4G en lugar de LTE -->
     <string name="show_fourg_icon_title">Mostrar 4G en lugar de LTE</string>
     <string name="show_fourg_icon_summary">Mostrar los iconos 4G y 4G+ en lugar de LTE y LTE+ en la barra de estado</string>
+
+    <!-- Control de volumen dual en llamadas -->
+    <string name="call_volume_slider_title">Control de volumen dual en llamadas</string>
+    <string name="call_volume_slider_summary">Muestra una barra de volumen de llamada dedicada junto a la barra multimedia durante las llamadas activas</string>
 </resources>
