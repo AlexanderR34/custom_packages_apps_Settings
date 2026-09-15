@@ -84,4 +84,8 @@
     <!-- Control de volumen dual en llamadas -->
     <string name="call_volume_slider_title">Control de volumen dual en llamadas</string>
     <string name="call_volume_slider_summary">Muestra una barra de volumen de llamada dedicada junto a la barra multimedia durante las llamadas activas</string>
+
+    <!-- Mostrar icono de datos móviles con Wi-Fi -->
+    <string name="show_data_rat_icon_with_wifi_title">Mostrar icono de datos móviles con Wi-Fi</string>
+    <string name="show_data_rat_icon_with_wifi_summary">Mostrar el tipo de red móvil (ej. 4G, 5G) incluso al estar conectado a una red Wi-Fi</string>
 </resources>

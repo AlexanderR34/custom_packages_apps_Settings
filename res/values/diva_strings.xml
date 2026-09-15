@@ -82,4 +82,8 @@
     <!-- Show 4G instead of LTE -->
     <string name="show_fourg_icon_title">Show 4G icon instead of LTE</string>
     <string name="show_fourg_icon_summary">Display 4G and 4G+ icons instead of LTE and LTE+ in the status bar</string>
+
+    <!-- Always show mobile data icon with Wi-Fi -->
+    <string name="show_data_rat_icon_with_wifi_title">Show mobile data icon with Wi-Fi</string>
+    <string name="show_data_rat_icon_with_wifi_summary">Display mobile network type icon (e.g. 4G, 5G) even when connected to Wi-Fi</string>
 </resources>

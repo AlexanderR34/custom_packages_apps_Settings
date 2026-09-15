@@ -204,6 +204,13 @@
             android:summary="@string/show_fourg_icon_summary"
             settings:controller="com.android.settings.network.telephony.Show4gForLtePreferenceController"/>
 
+        <SwitchPreferenceCompat
+            android:key="show_data_rat_icon_with_wifi"
+            android:order="206"
+            android:title="@string/show_data_rat_icon_with_wifi_title"
+            android:summary="@string/show_data_rat_icon_with_wifi_summary"
+            settings:controller="com.android.settings.network.telephony.ShowDataRatIconWithWifiPreferenceController"/>
+
         <!-- Settings search is handled by CarrierSettingsVersionSearchItem. -->
         <Preference
             android:key="carrier_settings_version_key"
