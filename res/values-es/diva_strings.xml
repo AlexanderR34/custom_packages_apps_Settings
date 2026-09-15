@@ -76,4 +76,8 @@
     <string name="app_resolution_preset_480p">480p SD (39%)</string>
     <string name="app_resolution_preset_custom">Escala personalizada</string>
     <string name="app_resolution_slider_label">Escala: %1$d%%</string>
+
+    <!-- Mostrar 4G en lugar de LTE -->
+    <string name="show_fourg_icon_title">Mostrar 4G en lugar de LTE</string>
+    <string name="show_fourg_icon_summary">Mostrar los iconos 4G y 4G+ en lugar de LTE y LTE+ en la barra de estado</string>
 </resources>

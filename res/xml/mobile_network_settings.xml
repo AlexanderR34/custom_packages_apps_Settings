@@ -197,6 +197,13 @@
             settings:searchable="false"
             settings:controller="com.android.settings.network.telephony.EnabledNetworkModePreferenceController"/>
 
+        <SwitchPreferenceCompat
+            android:key="show_4g_for_lte"
+            android:order="205"
+            android:title="@string/show_fourg_icon_title"
+            android:summary="@string/show_fourg_icon_summary"
+            settings:controller="com.android.settings.network.telephony.Show4gForLtePreferenceController"/>
+
         <!-- Settings search is handled by CarrierSettingsVersionSearchItem. -->
         <Preference
             android:key="carrier_settings_version_key"
