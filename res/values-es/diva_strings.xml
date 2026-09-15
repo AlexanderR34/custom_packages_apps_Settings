@@ -92,4 +92,25 @@
     <!-- Barras de señal de SIM separadas en doble SIM -->
     <string name="show_separate_dual_sim_icons_title">Barras de señal de SIM separadas</string>
     <string name="show_separate_dual_sim_icons_summary">Mostrar un icono de señal independiente para cada tarjeta SIM en lugar de combinarlos</string>
+
+    <!-- Icono VoLTE -->
+    <string name="show_volte_icon_title">Icono de VoLTE</string>
+    <string name="show_volte_icon_summary">Muestra el icono de VoLTE en la barra de estado cuando las llamadas de voz HD sobre 4G/5G estén disponibles</string>
+
+    <!-- Icono VoWiFi -->
+    <string name="show_vowifi_icon_title">Icono de VoWiFi</string>
+    <string name="show_vowifi_icon_summary">Muestra el icono de VoWiFi en la barra de estado cuando las llamadas sobre Wi-Fi estén activas</string>
+
+    <!-- Segundos en reloj -->
+    <string name="status_bar_clock_seconds_title">Segundos en el reloj</string>
+    <string name="status_bar_clock_seconds_summary">Muestra la hora con segundos exactos (hh:mm:ss) en la barra de estado</string>
+
+    <!-- Estilo AM/PM -->
+    <string name="status_bar_am_pm_title">Estilo de AM/PM</string>
+    <string name="status_bar_am_pm_summary">Configura el estilo del indicador AM/PM para el formato de 12 horas</string>
+    <string-array name="status_bar_am_pm_entries">
+        <item>Normal</item>
+        <item>Pequeño</item>
+        <item>Oculto</item>
+    </string-array>
 </resources>

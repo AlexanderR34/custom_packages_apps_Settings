@@ -354,6 +354,8 @@ public class MobileNetworkSettings extends AbstractMobileNetworkSettings impleme
         use(Show4gForLtePreferenceController.class).init(mSubId);
         use(ShowDataRatIconWithWifiPreferenceController.class).init(mSubId);
         use(ShowSeparateDualSimIconsPreferenceController.class).init(mSubId);
+        use(ShowVolteIconPreferenceController.class).init(mSubId);
+        use(ShowVoWifiIconPreferenceController.class).init(mSubId);
         use(TransferEsimPreferenceController.class).init(mSubId, mSubscriptionInfoEntity);
         final ConvertToEsimPreferenceController convertToEsimPreferenceController =
                 use(ConvertToEsimPreferenceController.class);

@@ -218,6 +218,20 @@
             android:summary="@string/show_separate_dual_sim_icons_summary"
             settings:controller="com.android.settings.network.telephony.ShowSeparateDualSimIconsPreferenceController"/>
 
+        <SwitchPreferenceCompat
+            android:key="show_volte_icon"
+            android:order="208"
+            android:title="@string/show_volte_icon_title"
+            android:summary="@string/show_volte_icon_summary"
+            settings:controller="com.android.settings.network.telephony.ShowVolteIconPreferenceController"/>
+
+        <SwitchPreferenceCompat
+            android:key="show_vowifi_icon"
+            android:order="209"
+            android:title="@string/show_vowifi_icon_title"
+            android:summary="@string/show_vowifi_icon_summary"
+            settings:controller="com.android.settings.network.telephony.ShowVoWifiIconPreferenceController"/>
+
         <!-- Settings search is handled by CarrierSettingsVersionSearchItem. -->
         <Preference
             android:key="carrier_settings_version_key"
