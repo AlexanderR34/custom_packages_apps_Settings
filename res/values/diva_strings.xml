@@ -114,22 +114,4 @@
     <!-- VoWiFi icon -->
     <string name="show_vowifi_icon_title">VoWiFi icon</string>
     <string name="show_vowifi_icon_summary">Display VoWiFi icon in the status bar when registered for Wi-Fi calling</string>
-
-    <!-- Clock seconds -->
-    <string name="status_bar_clock_seconds_title">Clock seconds</string>
-    <string name="status_bar_clock_seconds_summary">Display time with seconds (hh:mm:ss) in the status bar</string>
-
-    <!-- Status bar AM/PM style -->
-    <string name="status_bar_am_pm_title">AM/PM style</string>
-    <string name="status_bar_am_pm_summary">Configure AM/PM style for 12-hour clock format</string>
-    <string-array name="status_bar_am_pm_entries">
-        <item>Normal</item>
-        <item>Small</item>
-        <item>Hidden</item>
-    </string-array>
-    <string-array name="status_bar_am_pm_values" translatable="false">
-        <item>0</item>
-        <item>1</item>
-        <item>2</item>
-    </string-array>
 </resources>
