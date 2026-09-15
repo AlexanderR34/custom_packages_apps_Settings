@@ -91,6 +91,22 @@
     <string name="show_separate_dual_sim_icons_title">Separate SIM signal icons</string>
     <string name="show_separate_dual_sim_icons_summary">Display separate status bar signal bars for each SIM in dual SIM mode instead of combining them</string>
 
+    <!-- HD voice call icons (VoLTE / VoWiFi) -->
+    <string name="status_bar_ims_icon_title">HD voice call icons</string>
+    <string name="status_bar_ims_icon_summary">Choose to display VoLTE, VoWiFi, or both icons in the status bar</string>
+    <string-array name="status_bar_ims_icon_entries">
+        <item>Disabled</item>
+        <item>VoLTE only</item>
+        <item>VoWiFi only</item>
+        <item>Both (VoLTE &amp; VoWiFi)</item>
+    </string-array>
+    <string-array name="status_bar_ims_icon_values" translatable="false">
+        <item>0</item>
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+    </string-array>
+
     <!-- VoLTE icon -->
     <string name="show_volte_icon_title">VoLTE icon</string>
     <string name="show_volte_icon_summary">Display VoLTE icon in the status bar when registered for 4G/5G HD voice calls</string>

@@ -93,6 +93,16 @@
     <string name="show_separate_dual_sim_icons_title">Barras de señal de SIM separadas</string>
     <string name="show_separate_dual_sim_icons_summary">Mostrar un icono de señal independiente para cada tarjeta SIM en lugar de combinarlos</string>
 
+    <!-- Iconos de llamadas HD (VoLTE / VoWiFi) -->
+    <string name="status_bar_ims_icon_title">Iconos de llamadas HD</string>
+    <string name="status_bar_ims_icon_summary">Elige si deseas mostrar el icono de VoLTE, VoWiFi o ambos en la barra de estado</string>
+    <string-array name="status_bar_ims_icon_entries">
+        <item>Desactivado</item>
+        <item>Solo VoLTE</item>
+        <item>Solo VoWiFi</item>
+        <item>Ambos (VoLTE y VoWiFi)</item>
+    </string-array>
+
     <!-- Icono VoLTE -->
     <string name="show_volte_icon_title">Icono de VoLTE</string>
     <string name="show_volte_icon_summary">Muestra el icono de VoLTE en la barra de estado cuando las llamadas de voz HD sobre 4G/5G estén disponibles</string>
