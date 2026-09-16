@@ -320,4 +320,8 @@
     <!-- High-Frequency PWM Dimming (1920 Hz) -->
     <string name="pwm_dimming_title">High-Frequency PWM Dimming</string>
     <string name="pwm_dimming_summary">Enables 1920 Hz high-frequency modulation to reduce eye fatigue</string>
+
+    <!-- Touch Response Boost (500 Hz) -->
+    <string name="touch_boost_title">High Touch Sampling Rate (500 Hz)</string>
+    <string name="touch_boost_summary">Boosts touch polling rate from 120 Hz to 500 Hz to minimize tap latency</string>
 </resources>

@@ -62,6 +62,12 @@
             android:title="@string/pwm_dimming_title"
             android:summary="@string/pwm_dimming_summary"
             settings:controller="com.android.settings.display.HighPwmDimmingPreferenceController" />
+
+        <SwitchPreferenceCompat
+            android:key="touch_sampling_rate"
+            android:title="@string/touch_boost_title"
+            android:summary="@string/touch_boost_summary"
+            settings:controller="com.android.settings.display.TouchSamplingRatePreferenceController" />
     </PreferenceCategory>
 
     <PreferenceCategory

@@ -312,4 +312,8 @@
     <!-- High-Frequency PWM Dimming (1920 Hz) -->
     <string name="pwm_dimming_title">Atenuación PWM de alta frecuencia</string>
     <string name="pwm_dimming_summary">Activa la modulación de alta frecuencia a 1920 Hz para una visualización más cómoda</string>
+
+    <!-- Touch Response Boost (500 Hz) -->
+    <string name="touch_boost_title">Frecuencia táctil de 500 Hz (Touch Boost)</string>
+    <string name="touch_boost_summary">Aumenta la tasa de muestreo táctil de 120 Hz a 500 Hz para una respuesta instantánea y menor latencia</string>
 </resources>
