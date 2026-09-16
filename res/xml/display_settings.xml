@@ -56,6 +56,12 @@
             android:title="@string/dc_dimming_title"
             android:summary="@string/dc_dimming_summary"
             settings:controller="com.android.settings.display.DcDimmingPreferenceController" />
+
+        <SwitchPreferenceCompat
+            android:key="pwm_dimming_mode"
+            android:title="@string/pwm_dimming_title"
+            android:summary="@string/pwm_dimming_summary"
+            settings:controller="com.android.settings.display.HighPwmDimmingPreferenceController" />
     </PreferenceCategory>
 
     <PreferenceCategory
