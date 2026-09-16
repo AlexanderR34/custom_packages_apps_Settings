@@ -304,4 +304,8 @@
     </string-array>
 
     <string name="lockscreen_lyrics_footer">Las letras se descargan automáticamente en segundo plano para cualquier reproductor multimedia (Spotify, YouTube Music, Apple Music, etc.) y destacan con brillo las palabras activas.</string>
+
+    <!-- Hardware DC Dimming (Anti-flicker) -->
+    <string name="dc_dimming_title">Atenuación DC (Anti-parpadeo)</string>
+    <string name="dc_dimming_summary">Reduce el parpadeo de la pantalla y la fatiga visual en entornos oscuros aplicando corriente continua a los píxeles</string>
 </resources>

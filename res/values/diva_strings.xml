@@ -312,4 +312,8 @@
     </string-array>
 
     <string name="lockscreen_lyrics_footer">Lyrics are automatically retrieved in the background for any active media player (Spotify, Apple Music, YouTube Music, etc.) and highlight sung words in real time.</string>
+
+    <!-- Hardware DC Dimming (Anti-flicker) -->
+    <string name="dc_dimming_title">DC Dimming (Anti-flicker)</string>
+    <string name="dc_dimming_summary">Reduces screen flicker and eye strain in low-light environments by applying continuous direct current to pixels</string>
 </resources>
