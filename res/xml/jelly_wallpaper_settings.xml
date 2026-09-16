@@ -1,0 +1,288 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright (C) 2024 The Android Open Source Project
+
+     Licensed under the Apache License, Version 2.0 (the "License");
+     you may not use this file except in compliance with the License.
+     You may obtain a copy of the License at
+
+          http://www.apache.org/licenses/LICENSE-2.0
+
+     Unless required by applicable law or agreed to in writing, software
+     distributed under the License is distributed on an "AS IS" BASIS,
+     WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+     See the License for the specific language governing permissions and
+     limitations under the License.
+-->
+
+<PreferenceScreen
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:settings="http://schemas.android.com/apk/res-auto"
+    android:title="@string/jelly_wallpaper_title"
+    android:key="jelly_wallpaper_settings_screen">
+
+    <com.android.settingslib.widget.TopIntroPreference
+        android:key="jelly_wallpaper_top_intro"
+        android:title="@string/jelly_wallpaper_top_intro"/>
+
+    <com.android.settingslib.widget.MainSwitchPreference
+        android:key="jelly_wallpaper_main_switch"
+        android:title="@string/jelly_wallpaper_main_switch_title"
+        settings:controller="com.android.settings.display.JellyWallpaperMainSwitchPreferenceController"/>
+
+    <com.android.settingslib.widget.BannerMessagePreference
+        android:key="jelly_wallpaper_aspect_ratio_banner"
+        android:title="@string/jelly_wallpaper_aspect_ratio_warning_title"
+        android:summary="@string/jelly_wallpaper_aspect_ratio_warning_summary"/>
+
+    <ListPreference
+        android:key="jelly_wallpaper_mode"
+        android:title="@string/jelly_wallpaper_target_title"
+        android:summary="%s"
+        android:entries="@array/jelly_wallpaper_mode_entries"
+        android:entryValues="@array/jelly_wallpaper_mode_values"
+        android:defaultValue="2"
+        settings:controller="com.android.settings.display.JellyWallpaperModePreferenceController"/>
+
+    <!-- Ripple on unlock hidden from UI
+    <SwitchPreference
+        android:key="jelly_wallpaper_ripple"
+        android:title="@string/jelly_wallpaper_ripple_title"
+        android:summary="@string/jelly_wallpaper_ripple_summary"
+        android:defaultValue="true"
+        settings:controller="com.android.settings.display.JellyWallpaperRipplePreferenceController"/>
+
+    <com.android.settingslib.widget.SliderPreference
+        android:key="jelly_wallpaper_ripple_strength"
+        android:title="@string/jelly_wallpaper_ripple_strength_title"
+        android:summary="@string/jelly_wallpaper_ripple_strength_summary"
+        android:dependency="jelly_wallpaper_ripple"
+        settings:controller="com.android.settings.display.JellyWallpaperRippleStrengthPreferenceController"/>
+    -->
+
+    <SwitchPreference
+        android:key="jelly_wallpaper_ambient_occlusion"
+        android:title="@string/jelly_wallpaper_ambient_occlusion_title"
+        android:summary="@string/jelly_wallpaper_ambient_occlusion_summary"
+        android:defaultValue="true"
+        settings:controller="com.android.settings.display.JellyWallpaperAmbientOcclusionPreferenceController"/>
+
+    <com.android.settingslib.widget.SliderPreference
+        android:key="jelly_wallpaper_ambient_occlusion_intensity"
+        android:title="@string/jelly_wallpaper_ambient_occlusion_intensity_title"
+        android:summary="@string/jelly_wallpaper_ambient_occlusion_intensity_summary"
+        android:dependency="jelly_wallpaper_ambient_occlusion"
+        settings:controller="com.android.settings.display.JellyWallpaperAmbientOcclusionIntensityPreferenceController"/>
+
+    <SwitchPreference
+        android:key="jelly_wallpaper_snap_back"
+        android:title="@string/jelly_wallpaper_snap_back_title"
+        android:summary="@string/jelly_wallpaper_snap_back_summary"
+        android:defaultValue="true"
+        settings:controller="com.android.settings.display.JellyWallpaperSnapBackPreferenceController"/>
+
+    <SwitchPreference
+        android:key="jelly_wallpaper_music_reactive"
+        android:title="@string/jelly_wallpaper_music_reactive_title"
+        android:summary="@string/jelly_wallpaper_music_reactive_summary"
+        android:defaultValue="false"
+        settings:controller="com.android.settings.display.JellyWallpaperMusicReactivePreferenceController"/>
+
+    <ListPreference
+        android:key="jelly_wallpaper_music_reactive_pattern"
+        android:title="@string/jelly_wallpaper_music_reactive_pattern_title"
+        android:summary="%s"
+        android:entries="@array/jelly_wallpaper_music_pattern_entries"
+        android:entryValues="@array/jelly_wallpaper_music_pattern_values"
+        android:defaultValue="0"
+        android:dependency="jelly_wallpaper_music_reactive"
+        settings:controller="com.android.settings.display.JellyWallpaperMusicReactivePatternPreferenceController"/>
+
+    <com.android.settingslib.widget.SliderPreference
+        android:key="jelly_wallpaper_music_reactive_strength"
+        android:title="@string/jelly_wallpaper_music_reactive_strength_title"
+        android:summary="@string/jelly_wallpaper_music_reactive_strength_summary"
+        android:dependency="jelly_wallpaper_music_reactive"
+        settings:controller="com.android.settings.display.JellyWallpaperMusicReactiveStrengthPreferenceController"/>
+
+    <SwitchPreference
+        android:key="jelly_wallpaper_haptics"
+        android:title="@string/jelly_wallpaper_haptics_title"
+        android:summary="@string/jelly_wallpaper_haptics_summary"
+        android:defaultValue="true"
+        settings:controller="com.android.settings.display.JellyWallpaperHapticsPreferenceController"/>
+
+    <com.android.settingslib.widget.SliderPreference
+        android:key="jelly_wallpaper_haptics_intensity"
+        android:title="@string/jelly_wallpaper_haptics_intensity_title"
+        android:summary="@string/jelly_wallpaper_haptics_intensity_summary"
+        android:dependency="jelly_wallpaper_haptics"
+        settings:controller="com.android.settings.display.JellyWallpaperHapticsIntensityPreferenceController"/>
+
+    <SwitchPreference
+        android:key="jelly_wallpaper_tap_shockwave"
+        android:title="@string/jelly_wallpaper_tap_shockwave_title"
+        android:summary="@string/jelly_wallpaper_tap_shockwave_summary"
+        android:defaultValue="true"
+        settings:controller="com.android.settings.display.JellyWallpaperTapShockwavePreferenceController"/>
+
+    <SwitchPreference
+        android:key="jelly_wallpaper_multitouch"
+        android:title="@string/jelly_wallpaper_multitouch_title"
+        android:summary="@string/jelly_wallpaper_multitouch_summary"
+        android:defaultValue="true"
+        settings:controller="com.android.settings.display.JellyWallpaperMultiTouchPreferenceController"/>
+
+    <!-- Charging wave surge hidden from UI
+    <SwitchPreference
+        android:key="jelly_wallpaper_charging_wave"
+        android:title="@string/jelly_wallpaper_charging_wave_title"
+        android:summary="@string/jelly_wallpaper_charging_wave_summary"
+        android:defaultValue="true"
+        settings:controller="com.android.settings.display.JellyWallpaperChargingWavePreferenceController"/>
+
+    <com.android.settingslib.widget.SliderPreference
+        android:key="jelly_wallpaper_charging_wave_strength"
+        android:title="@string/jelly_wallpaper_charging_wave_strength_title"
+        android:summary="@string/jelly_wallpaper_charging_wave_strength_summary"
+        android:dependency="jelly_wallpaper_charging_wave"
+        settings:controller="com.android.settings.display.JellyWallpaperChargingWaveStrengthPreferenceController"/>
+    -->
+
+    <SwitchPreference
+        android:key="jelly_wallpaper_gyro_parallax"
+        android:title="@string/jelly_wallpaper_gyro_title"
+        android:summary="@string/jelly_wallpaper_gyro_summary"
+        android:defaultValue="false"
+        settings:controller="com.android.settings.display.JellyWallpaperGyroPreferenceController"/>
+
+    <SwitchPreference
+        android:key="jelly_wallpaper_depth_effect"
+        android:title="@string/jelly_wallpaper_depth_effect_title"
+        android:summary="@string/jelly_wallpaper_depth_effect_summary"
+        android:defaultValue="false"
+        settings:controller="com.android.settings.display.JellyWallpaperDepthEffectPreferenceController"/>
+
+    <com.android.settingslib.widget.SliderPreference
+        android:key="jelly_wallpaper_depth_separation"
+        android:title="@string/jelly_wallpaper_depth_separation_title"
+        android:summary="@string/jelly_wallpaper_depth_separation_summary"
+        android:dependency="jelly_wallpaper_depth_effect"
+        settings:controller="com.android.settings.display.JellyWallpaperDepthSeparationPreferenceController"/>
+
+    <SwitchPreference
+        android:key="jelly_wallpaper_gyro_inertia"
+        android:title="@string/jelly_wallpaper_gyro_inertia_title"
+        android:summary="@string/jelly_wallpaper_gyro_inertia_summary"
+        android:defaultValue="true"
+        settings:controller="com.android.settings.display.JellyWallpaperGyroInertiaPreferenceController"/>
+
+    <com.android.settingslib.widget.SliderPreference
+        android:key="jelly_wallpaper_gyro_inertia_strength"
+        android:title="@string/jelly_wallpaper_gyro_inertia_strength_title"
+        android:summary="@string/jelly_wallpaper_gyro_inertia_strength_summary"
+        android:dependency="jelly_wallpaper_gyro_inertia"
+        settings:controller="com.android.settings.display.JellyWallpaperGyroInertiaStrengthPreferenceController"/>
+
+    <ListPreference
+        android:key="jelly_wallpaper_preset"
+        android:title="@string/jelly_wallpaper_preset_title"
+        android:summary="%s"
+        android:entries="@array/jelly_wallpaper_preset_entries"
+        android:entryValues="@array/jelly_wallpaper_preset_values"
+        android:defaultValue="0"
+        settings:allowDividerAbove="true"
+        settings:controller="com.android.settings.display.JellyWallpaperPresetPreferenceController"/>
+
+    <PreferenceCategory
+        android:key="jelly_wallpaper_physics_category"
+        android:title="@string/jelly_wallpaper_physics_category_title">
+
+        <com.android.settingslib.widget.SliderPreference
+            android:key="jelly_wallpaper_stiffness"
+            android:title="@string/jelly_wallpaper_stiffness_title"
+            android:summary="@string/jelly_wallpaper_stiffness_summary"
+            settings:controller="com.android.settings.display.JellyWallpaperStiffnessPreferenceController"/>
+
+        <com.android.settingslib.widget.SliderPreference
+            android:key="jelly_wallpaper_damping"
+            android:title="@string/jelly_wallpaper_damping_title"
+            android:summary="@string/jelly_wallpaper_damping_summary"
+            settings:controller="com.android.settings.display.JellyWallpaperDampingPreferenceController"/>
+
+        <com.android.settingslib.widget.SliderPreference
+            android:key="jelly_wallpaper_radius"
+            android:title="@string/jelly_wallpaper_radius_title"
+            android:summary="@string/jelly_wallpaper_radius_summary"
+            settings:controller="com.android.settings.display.JellyWallpaperRadiusPreferenceController"/>
+
+        <com.android.settingslib.widget.SliderPreference
+            android:key="jelly_wallpaper_elasticity"
+            android:title="@string/jelly_wallpaper_elasticity_title"
+            android:summary="@string/jelly_wallpaper_elasticity_summary"
+            settings:controller="com.android.settings.display.JellyWallpaperElasticityPreferenceController"/>
+
+        <com.android.settingslib.widget.SliderPreference
+            android:key="jelly_wallpaper_snapback_recoil"
+            android:title="@string/jelly_wallpaper_snapback_recoil_title"
+            android:summary="@string/jelly_wallpaper_snapback_recoil_summary"
+            settings:controller="com.android.settings.display.JellyWallpaperSnapBackRecoilPreferenceController"/>
+
+        <com.android.settingslib.widget.SliderPreference
+            android:key="jelly_wallpaper_internal_tension"
+            android:title="@string/jelly_wallpaper_internal_tension_title"
+            android:summary="@string/jelly_wallpaper_internal_tension_summary"
+            settings:controller="com.android.settings.display.JellyWallpaperInternalTensionPreferenceController"/>
+
+        <com.android.settingslib.widget.SliderPreference
+            android:key="jelly_wallpaper_max_stretch"
+            android:title="@string/jelly_wallpaper_max_stretch_title"
+            android:summary="@string/jelly_wallpaper_max_stretch_summary"
+            settings:controller="com.android.settings.display.JellyWallpaperMaxStretchPreferenceController"/>
+
+        <com.android.settingslib.widget.SliderPreference
+            android:key="jelly_wallpaper_surface_mass"
+            android:title="@string/jelly_wallpaper_surface_mass_title"
+            android:summary="@string/jelly_wallpaper_surface_mass_summary"
+            settings:controller="com.android.settings.display.JellyWallpaperSurfaceMassPreferenceController"/>
+
+        <com.android.settingslib.widget.SliderPreference
+            android:key="jelly_wallpaper_wave_speed"
+            android:title="@string/jelly_wallpaper_wave_speed_title"
+            android:summary="@string/jelly_wallpaper_wave_speed_summary"
+            settings:controller="com.android.settings.display.JellyWallpaperWaveSpeedPreferenceController"/>
+
+    </PreferenceCategory>
+
+    <PreferenceCategory
+        android:key="jelly_wallpaper_light_category"
+        android:title="@string/jelly_wallpaper_light_title">
+
+        <SwitchPreference
+            android:key="jelly_wallpaper_light_source"
+            android:title="@string/jelly_wallpaper_light_source_title"
+            android:summary="@string/jelly_wallpaper_light_source_summary"
+            android:defaultValue="false"
+            settings:controller="com.android.settings.display.JellyWallpaperLightSourcePreferenceController"/>
+
+        <com.android.settingslib.widget.SliderPreference
+            android:key="jelly_wallpaper_light_intensity"
+            android:title="@string/jelly_wallpaper_light_intensity_title"
+            android:summary="@string/jelly_wallpaper_light_intensity_summary"
+            android:dependency="jelly_wallpaper_light_source"
+            settings:controller="com.android.settings.display.JellyWallpaperLightIntensityPreferenceController"/>
+
+        <com.android.settingslib.widget.SliderPreference
+            android:key="jelly_wallpaper_light_angle"
+            android:title="@string/jelly_wallpaper_light_angle_title"
+            android:summary="@string/jelly_wallpaper_light_angle_summary"
+            android:dependency="jelly_wallpaper_light_source"
+            settings:controller="com.android.settings.display.JellyWallpaperLightAnglePreferenceController"/>
+
+    </PreferenceCategory>
+
+    <com.android.settingslib.widget.FooterPreference
+        android:key="jelly_wallpaper_footer"
+        android:title="@string/jelly_wallpaper_footer"
+        settings:searchable="false"/>
+
+</PreferenceScreen>

@@ -89,6 +89,13 @@
             android:title="@string/lockscreen_double_line_clock_setting_toggle"
             android:summary="@string/lockscreen_double_line_clock_summary"
             settings:controller="com.android.settings.display.LockscreenClockPreferenceController" />
+
+        <Preference
+            android:key="lockscreen_lyrics_settings_entry"
+            android:title="@string/lockscreen_lyrics_title"
+            android:summary="@string/lockscreen_lyrics_summary"
+            android:fragment="com.android.settings.display.LockscreenLyricsSettings"
+            settings:controller="com.android.settings.display.LockscreenLyricsPreferenceController" />
     </PreferenceCategory>
 
     <PreferenceCategory

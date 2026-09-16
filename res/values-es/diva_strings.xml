@@ -110,4 +110,198 @@
     <!-- Icono VoWiFi -->
     <string name="show_vowifi_icon_title">Icono de VoWiFi</string>
     <string name="show_vowifi_icon_summary">Muestra el icono de VoWiFi en la barra de estado cuando las llamadas sobre Wi-Fi estén activas</string>
+
+    <!-- Fondo de pantalla elástico de gelatina -->
+    <string name="jelly_wallpaper_title">Fondo de pantalla elástico</string>
+    <string name="jelly_wallpaper_summary">Física elástica de gelatina al tocar el fondo estático</string>
+    <string name="jelly_wallpaper_main_switch_title">Usar fondo elástico</string>
+    <string name="jelly_wallpaper_top_intro">Convierte cualquier fondo estático en una superficie elástica de tipo gelatina que se deforma y rebota al interactuar con el dedo.</string>
+    <string name="jelly_wallpaper_target_title">Aplicar en</string>
+    <string name="jelly_wallpaper_footer">La imagen se deforma suavemente al arrastrar el dedo y oscila con física de resortes antes de regresar a su posición neutra. Suspende el renderizado en reposo para 0% de consumo de GPU.</string>
+
+    <string name="jelly_wallpaper_aspect_ratio_warning_title">Aviso de resolución y relación de aspecto</string>
+    <string name="jelly_wallpaper_aspect_ratio_warning_summary">El sistema escala y ajusta automáticamente las imágenes a la resolución del panel (1220 × 2712 px en 20:9). Si en algún caso notas recorte o distorsión en imágenes con proporciones atípicas, puedes recortar o ajustar la imagen manualmente a 20:9 para una deformación elástica óptima.</string>
+
+    <string name="jelly_wallpaper_mode_lockscreen">Solo pantalla de bloqueo</string>
+    <string name="jelly_wallpaper_mode_homescreen">Solo pantalla de inicio</string>
+    <string name="jelly_wallpaper_mode_both">Pantalla de inicio y de bloqueo</string>
+
+    <string-array name="jelly_wallpaper_mode_entries">
+        <item>@string/jelly_wallpaper_mode_lockscreen</item>
+        <item>@string/jelly_wallpaper_mode_homescreen</item>
+        <item>@string/jelly_wallpaper_mode_both</item>
+    </string-array>
+
+    <!-- Jelly Ripple y Ajustes de Física -->
+    <string name="jelly_wallpaper_ripple_title">Efecto de onda al desbloquear</string>
+    <string name="jelly_wallpaper_ripple_summary">Emite una onda elástica desde la posición de la huella al desbloquear</string>
+    <string name="jelly_wallpaper_ripple_strength_title">Fuerza de la onda de desbloqueo</string>
+    <string name="jelly_wallpaper_ripple_strength_summary">Potencia y amplitud de la onda elástica desde la huella</string>
+
+    <string name="jelly_wallpaper_ambient_occlusion_title">Sombra de profundidad y oclusión</string>
+    <string name="jelly_wallpaper_ambient_occlusion_summary">Proyecta sombras sutiles en pliegues comprimidos y hendiduras</string>
+    <string name="jelly_wallpaper_ambient_occlusion_intensity_title">Intensidad de sombra y oclusión</string>
+    <string name="jelly_wallpaper_ambient_occlusion_intensity_summary">Nivel de oscuridad y profundidad en los pliegues elásticos</string>
+    <string name="jelly_wallpaper_snap_back_title">Chasquido por tensión extrema</string>
+    <string name="jelly_wallpaper_snap_back_summary">Suelta el agarre con retroceso háptico al estirar más allá del límite elástico</string>
+    <string name="jelly_wallpaper_music_reactive_title">Pulso al ritmo de la música</string>
+    <string name="jelly_wallpaper_music_reactive_summary">Palpita suavemente al compás de los golpes de bajo de la música en reproducción</string>
+    <string name="jelly_wallpaper_music_reactive_pattern_title">Patrón del pulso de música</string>
+    <string name="jelly_wallpaper_music_reactive_pattern_summary">%s</string>
+    <string name="jelly_wallpaper_music_pattern_radial">Onda radial central</string>
+    <string name="jelly_wallpaper_music_pattern_bounce">Rebote vertical / Subwoofer</string>
+    <string name="jelly_wallpaper_music_pattern_heartbeat">Latido / Altavoz pulsante</string>
+    <string name="jelly_wallpaper_music_pattern_cascade">Cascada de ondas</string>
+    <string name="jelly_wallpaper_music_pattern_corners">Choque en 4 esquinas</string>
+
+    <string-array name="jelly_wallpaper_music_pattern_entries">
+        <item>@string/jelly_wallpaper_music_pattern_radial</item>
+        <item>@string/jelly_wallpaper_music_pattern_bounce</item>
+        <item>@string/jelly_wallpaper_music_pattern_heartbeat</item>
+        <item>@string/jelly_wallpaper_music_pattern_cascade</item>
+        <item>@string/jelly_wallpaper_music_pattern_corners</item>
+    </string-array>
+    <string-array name="jelly_wallpaper_music_pattern_values">
+        <item>0</item>
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+    </string-array>
+
+    <string name="jelly_wallpaper_music_reactive_strength_title">Fuerza del pulso de música</string>
+    <string name="jelly_wallpaper_music_reactive_strength_summary">Potencia y amplitud del pulso elástico según los bajos</string>
+    <string name="jelly_wallpaper_haptics_title">Vibración háptica adaptativa</string>
+    <string name="jelly_wallpaper_haptics_summary">Siente la tensión gomosa al arrastrar y un clic firme al soltar</string>
+    <string name="jelly_wallpaper_haptics_intensity_title">Fuerza de vibración háptica</string>
+    <string name="jelly_wallpaper_haptics_intensity_summary">Nivel de fuerza y respuesta táctil al estirar y soltar</string>
+    <string name="jelly_wallpaper_tap_shockwave_title">Onda de choque por toque rápido</string>
+    <string name="jelly_wallpaper_tap_shockwave_summary">Genera un anillo elástico propagado al dar un toque directo sin arrastre</string>
+    <string name="jelly_wallpaper_multitouch_title">Pellizco y estiramiento con dos dedos</string>
+    <string name="jelly_wallpaper_multitouch_summary">Pellizca y estira la masa gomosa entre dos dedos como chicle</string>
+    <string name="jelly_wallpaper_charging_wave_title">Onda de choque al conectar cargador</string>
+    <string name="jelly_wallpaper_charging_wave_summary">Genera una ola elástica ascendente desde el puerto de carga inferior al conectar el cable</string>
+    <string name="jelly_wallpaper_charging_wave_strength_title">Fuerza de la ola de carga</string>
+    <string name="jelly_wallpaper_charging_wave_strength_summary">Potencia y altura de la ola ascendente</string>
+    <string name="jelly_wallpaper_light_source_title">Foco de luz y reflejo en el borde</string>
+    <string name="jelly_wallpaper_light_source_summary">Proyecta un reflejo y brillo especular dinámico desde el contorno de la pantalla</string>
+    <string name="jelly_wallpaper_light_angle_title">Ángulo del foco de luz</string>
+    <string name="jelly_wallpaper_light_angle_summary">Posición del foco de luz en el contorno (0° - 360°)</string>
+
+    <string name="jelly_wallpaper_preset_title">Estilo de física</string>
+    <string name="jelly_wallpaper_preset_jelly">Gelatina clásica (Suave y elástica)</string>
+    <string name="jelly_wallpaper_preset_rubber">Goma firme (Rápida y tensa)</string>
+    <string name="jelly_wallpaper_preset_water">Agua / Líquido (Ondas fluidas)</string>
+    <string name="jelly_wallpaper_preset_spring">Muelle de acero (Rebote enérgico continuo)</string>
+    <string name="jelly_wallpaper_preset_silk">Seda / Tela (Ondulación suave y amplia)</string>
+    <string name="jelly_wallpaper_preset_slime">Miel / Slime viscoso (Retorno lento y denso)</string>
+    <string name="jelly_wallpaper_preset_foam">Espuma viscoelástica (Deformación amortiguada)</string>
+    <string name="jelly_wallpaper_preset_glass">Cristal templado (Micro-flexión ultra firme)</string>
+    <string name="jelly_wallpaper_preset_custom">Personalizado</string>
+
+    <string-array name="jelly_wallpaper_preset_entries">
+        <item>@string/jelly_wallpaper_preset_jelly</item>
+        <item>@string/jelly_wallpaper_preset_rubber</item>
+        <item>@string/jelly_wallpaper_preset_water</item>
+        <item>@string/jelly_wallpaper_preset_spring</item>
+        <item>@string/jelly_wallpaper_preset_silk</item>
+        <item>@string/jelly_wallpaper_preset_slime</item>
+        <item>@string/jelly_wallpaper_preset_foam</item>
+        <item>@string/jelly_wallpaper_preset_glass</item>
+        <item>@string/jelly_wallpaper_preset_custom</item>
+    </string-array>
+    <string-array name="jelly_wallpaper_preset_values" translatable="false">
+        <item>0</item>
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+        <item>5</item>
+        <item>6</item>
+        <item>7</item>
+        <item>8</item>
+    </string-array>
+
+    <string name="jelly_wallpaper_physics_category_title">Ajuste fino de física</string>
+    <string name="jelly_wallpaper_stiffness_title">Rigidez elástica</string>
+    <string name="jelly_wallpaper_stiffness_summary">Fuerza con la que el fondo regresa a su posición original</string>
+    <string name="jelly_wallpaper_damping_title">Amortiguación de rebote</string>
+    <string name="jelly_wallpaper_damping_summary">Determina el tiempo que tardan las oscilaciones en detenerse</string>
+    <string name="jelly_wallpaper_radius_title">Radio de influencia táctil</string>
+    <string name="jelly_wallpaper_radius_summary">Radio del área deformada alrededor del dedo</string>
+    <string name="jelly_wallpaper_elasticity_title">Fuerza de elasticidad táctil</string>
+    <string name="jelly_wallpaper_elasticity_summary">Nivel de estiramiento y deformación del fondo al arrastrar con los dedos</string>
+    <string name="jelly_wallpaper_snapback_recoil_title">Fuerza de retroceso al soltar</string>
+    <string name="jelly_wallpaper_snapback_recoil_summary">Aceleración y potencia del latigazo de retorno al liberar el fondo</string>
+    <string name="jelly_wallpaper_internal_tension_title">Cohesión interna de membrana</string>
+    <string name="jelly_wallpaper_internal_tension_summary">Tensión de unión entre nodos: deformación localizada vs arrastre armónico continuo</string>
+    <string name="jelly_wallpaper_max_stretch_title">Límite máximo de elongación</string>
+    <string name="jelly_wallpaper_max_stretch_summary">Amplitud máxima permitida antes de alcanzar la resistencia elástica límite</string>
+    <string name="jelly_wallpaper_surface_mass_title">Inercia y masa superficial</string>
+    <string name="jelly_wallpaper_surface_mass_summary">Peso físico del material: respuesta liviana y ágil vs densa y pesada</string>
+    <string name="jelly_wallpaper_wave_speed_title">Velocidad de ondas elásticas</string>
+    <string name="jelly_wallpaper_wave_speed_summary">Rapidez de propagación y expansión de las ondas transversales en la pantalla</string>
+    <string name="jelly_wallpaper_gyro_title">Profundidad 3D y giroscopio</string>
+    <string name="jelly_wallpaper_gyro_summary">Inclina y desplaza el fondo según la orientación e inercia física</string>
+    <string name="jelly_wallpaper_depth_effect_title">Efecto de profundidad con sujeto 3D</string>
+    <string name="jelly_wallpaper_depth_effect_summary">Extrae al sujeto o personaje en una capa flotante 3D con relieve cinemático tipo HyperOS</string>
+    <string name="jelly_wallpaper_depth_separation_title">Separación de capas 3D</string>
+    <string name="jelly_wallpaper_depth_separation_summary">Distancia y desplazamiento parallax entre el sujeto en primer plano y el fondo</string>
+    <string name="jelly_wallpaper_gyro_main_switch_title">Usar profundidad y movimiento 3D</string>
+    <string name="jelly_wallpaper_gyro_top_intro">Aplica perspectiva 3D en tiempo real siguiendo el giroscopio y un vaivén elástico natural al sacudir el dispositivo.</string>
+    <string name="jelly_wallpaper_gyro_inertia_title">Inercia física por sacudida</string>
+    <string name="jelly_wallpaper_gyro_inertia_summary">Añade rebote elástico a la imagen al sacudir o mover el teléfono con rapidez</string>
+    <string name="jelly_wallpaper_gyro_inertia_strength_title">Fuerza de inercia por sacudida</string>
+    <string name="jelly_wallpaper_gyro_inertia_strength_summary">Sensibilidad y fuerza del rebote elástico al sacudir el dispositivo</string>
+    <string name="jelly_wallpaper_gyro_footer">Utiliza sensores de aceleración y orientación con suspensión inteligente para consumir 0% de batería con pantalla apagada.</string>
+
+    <string name="jelly_wallpaper_light_title">Foco de luz y reflejo en el borde</string>
+    <string name="jelly_wallpaper_light_summary">Proyecta un reflejo y brillo especular dinámico desde el contorno de la pantalla</string>
+    <string name="jelly_wallpaper_light_intensity_title">Intensidad del reflejo de luz</string>
+    <string name="jelly_wallpaper_light_intensity_summary">Brillo y resplandor del reflejo solar sobre la imagen</string>
+    <string name="jelly_wallpaper_light_main_switch_title">Usar foco de luz en el borde</string>
+    <string name="jelly_wallpaper_light_top_intro">Proyecta un punto de foco de luz y brillo especular dinámico en el borde de la pantalla según el ángulo seleccionado (0° - 360°).</string>
+    <string name="jelly_wallpaper_light_footer">El punto de foco de luz se ubica en el contorno de la pantalla según los grados elegidos y genera reflejos brillantes en tiempo real sobre el fondo.</string>
+
+    <!-- Letras de canciones en pantalla de bloqueo y AOD -->
+    <string name="lockscreen_lyrics_title">Letras en pantalla de bloqueo</string>
+    <string name="lockscreen_lyrics_summary">Muestra las letras sincronizadas palabra por palabra de la canción en reproducción</string>
+    <string name="lockscreen_lyrics_top_intro">Visualiza las letras de tus canciones favoritas sincronizadas en tiempo real debajo del sensor de huella en la pantalla de bloqueo y Always on Display.</string>
+    <string name="lockscreen_lyrics_main_switch_title">Mostrar letras de canciones</string>
+    <string name="lockscreen_lyrics_display_target_title">Dónde mostrar</string>
+    <string name="lockscreen_lyrics_target_lockscreen">Solo pantalla de bloqueo</string>
+    <string name="lockscreen_lyrics_target_aod">Solo Always on Display (AOD)</string>
+    <string name="lockscreen_lyrics_target_both">Pantalla de bloqueo y Always on Display</string>
+
+    <string-array name="lockscreen_lyrics_display_target_entries">
+        <item>@string/lockscreen_lyrics_target_lockscreen</item>
+        <item>@string/lockscreen_lyrics_target_aod</item>
+        <item>@string/lockscreen_lyrics_target_both</item>
+    </string-array>
+    <string-array name="lockscreen_lyrics_display_target_values" translatable="false">
+        <item>0</item>
+        <item>1</item>
+        <item>2</item>
+    </string-array>
+
+    <string name="lockscreen_lyrics_layout_category_title">Número de líneas mostradas</string>
+    <string name="lockscreen_lyrics_lines_lockscreen_title">Líneas en pantalla de bloqueo</string>
+    <string name="lockscreen_lyrics_lines_aod_title">Líneas en Always on Display (AOD)</string>
+
+    <string name="lockscreen_lyrics_lines_1">1 línea (Solo la línea actual)</string>
+    <string name="lockscreen_lyrics_lines_3">3 líneas (Anterior, actual y siguiente)</string>
+    <string name="lockscreen_lyrics_lines_5">5 líneas (Vista completa de 5 líneas)</string>
+
+    <string-array name="lockscreen_lyrics_lines_entries">
+        <item>@string/lockscreen_lyrics_lines_1</item>
+        <item>@string/lockscreen_lyrics_lines_3</item>
+        <item>@string/lockscreen_lyrics_lines_5</item>
+    </string-array>
+    <string-array name="lockscreen_lyrics_lines_values" translatable="false">
+        <item>1</item>
+        <item>3</item>
+        <item>5</item>
+    </string-array>
+
+    <string name="lockscreen_lyrics_footer">Las letras se descargan automáticamente en segundo plano para cualquier reproductor multimedia (Spotify, YouTube Music, Apple Music, etc.) y destacan con brillo las palabras activas.</string>
 </resources>

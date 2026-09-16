@@ -86,6 +86,13 @@
             android:summary="@string/summary_placeholder"
             android:fragment="com.android.settings.display.ScreenTimeoutSettings"
             settings:controller="com.android.settings.display.ScreenTimeoutPreferenceController"/>
+
+        <com.android.settingslib.PrimarySwitchPreference
+            android:key="jelly_wallpaper_enabled"
+            android:title="@string/jelly_wallpaper_title"
+            android:summary="@string/summary_placeholder"
+            android:fragment="com.android.settings.display.JellyWallpaperSettings"
+            settings:controller="com.android.settings.display.JellyWallpaperPreferenceController" />
     </PreferenceCategory>
 
     <PreferenceCategory
@@ -101,6 +108,7 @@
             settings:widgetLayout="@null"
             settings:controller="com.android.settings.display.DarkUIPreferenceController"
             settings:keywords="@string/keywords_dark_ui_mode"/>
+
 
         <Preference
             android:fragment="com.android.settings.accessibility.TextReadingPreferenceFragment"
