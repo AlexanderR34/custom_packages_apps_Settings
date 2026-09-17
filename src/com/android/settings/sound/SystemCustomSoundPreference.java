@@ -75,8 +75,13 @@ public class SystemCustomSoundPreference extends RingtonePreference {
     }
 
     @Override
+    public void onAttached() {
+        super.onAttached();
+        updateSummary();
+    }
+
+    @Override
     public void onBindViewHolder(PreferenceViewHolder holder) {
         super.onBindViewHolder(holder);
-        updateSummary();
     }
 }

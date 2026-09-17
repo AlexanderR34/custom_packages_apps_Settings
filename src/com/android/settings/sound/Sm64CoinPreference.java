@@ -113,6 +113,12 @@ public class Sm64CoinPreference extends SystemCustomSoundPreference {
     }
 
     @Override
+    public void onAttached() {
+        super.onAttached();
+        updateSummary();
+    }
+
+    @Override
     public void onBindViewHolder(PreferenceViewHolder holder) {
         super.onBindViewHolder(holder);
         View switchView = holder.findViewById(android.R.id.switch_widget);
@@ -133,6 +139,5 @@ public class Sm64CoinPreference extends SystemCustomSoundPreference {
                 setChecked(isChecked);
             });
         }
-        updateSummary();
     }
 }
