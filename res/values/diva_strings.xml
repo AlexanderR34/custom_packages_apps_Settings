@@ -324,8 +324,44 @@
     <string name="jelly_wallpaper_features_category_title">Advanced features &amp; sensors</string>
     <string name="jelly_wallpaper_light_solar_tracking_title">Real-time solar tracking</string>
     <string name="jelly_wallpaper_light_solar_tracking_summary">Follow local time to position the light source and adapt circadian color temperature (sunrise, noon, sunset, moonlight)</string>
-    <string name="jelly_wallpaper_light_specular_column_title">Solar reflection glitter column</string>
-    <string name="jelly_wallpaper_light_specular_column_summary">Project an oceanic vertical shimmering glitter path down across the elastic ripples</string>
+    <string name="jelly_wallpaper_light_specular_column_title">Solar reflection light beam column</string>
+    <string name="jelly_wallpaper_light_specular_column_summary">Project a smooth volumetric light beam and specular glow path across the wallpaper</string>
+    <string name="jelly_wallpaper_light_water_waves_title">Realistic 3D ocean water waves</string>
+    <string name="jelly_wallpaper_light_water_waves_summary">Animate realistic 3D Gerstner ocean wave displacement, surface lighting and sun glitter across the wallpaper</string>
+    <string name="jelly_wallpaper_water_preset_title">Water effect style preset</string>
+    <string name="jelly_wallpaper_water_preset_calm">Calm lake (Gentle ripples &amp; soft reflections)</string>
+    <string name="jelly_wallpaper_water_preset_ocean">Tropical ocean (Realistic waves &amp; sun glitter)</string>
+    <string name="jelly_wallpaper_water_preset_surf">Choppy surf (Deep dynamic ocean swell)</string>
+    <string name="jelly_wallpaper_water_preset_ripples">Wind ripples (High-frequency fine water texture)</string>
+    <string name="jelly_wallpaper_water_preset_sunset">Golden sunset (Rolling tide with radiant sparkle)</string>
+    <string name="jelly_wallpaper_water_preset_custom">Custom (Independent manual control)</string>
+
+    <string-array name="jelly_wallpaper_water_preset_entries">
+        <item>@string/jelly_wallpaper_water_preset_calm</item>
+        <item>@string/jelly_wallpaper_water_preset_ocean</item>
+        <item>@string/jelly_wallpaper_water_preset_surf</item>
+        <item>@string/jelly_wallpaper_water_preset_ripples</item>
+        <item>@string/jelly_wallpaper_water_preset_sunset</item>
+        <item>@string/jelly_wallpaper_water_preset_custom</item>
+    </string-array>
+
+    <string-array name="jelly_wallpaper_water_preset_values" translatable="false">
+        <item>0</item>
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+        <item>5</item>
+    </string-array>
+
+    <string name="jelly_wallpaper_light_water_waves_intensity_title">Wave height &amp; displacement depth</string>
+    <string name="jelly_wallpaper_light_water_waves_intensity_summary">Amplitude and crest height of the 3D ocean waves</string>
+    <string name="jelly_wallpaper_water_wave_size_title">Wave size &amp; wavelength scale</string>
+    <string name="jelly_wallpaper_water_wave_size_summary">Spatial scale and distance between wave crests</string>
+    <string name="jelly_wallpaper_water_wave_speed_title">Wave animation speed</string>
+    <string name="jelly_wallpaper_water_wave_speed_summary">Velocity and rhythm of the flowing ocean waves</string>
+    <string name="jelly_wallpaper_water_glitter_density_title">Sun glitter &amp; sparkle density</string>
+    <string name="jelly_wallpaper_water_glitter_density_summary">Density, bloom glow and star glints of sunlight reflections on the water</string>
     <string name="jelly_wallpaper_light_gyro_parallax_title">3D gyroscope reflection tilt</string>
     <string name="jelly_wallpaper_light_gyro_parallax_summary">Shift specular reflection angle in real-time when physically tilting the phone</string>
     <string name="jelly_wallpaper_light_beam_spread_title">Light beam spread &amp; aperture</string>

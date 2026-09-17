@@ -315,6 +315,52 @@
             settings:controller="com.android.settings.display.JellyWallpaperLightSpecularColumnPreferenceController"/>
 
         <SwitchPreference
+            android:key="jelly_wallpaper_light_water_waves"
+            android:title="@string/jelly_wallpaper_light_water_waves_title"
+            android:summary="@string/jelly_wallpaper_light_water_waves_summary"
+            android:defaultValue="true"
+            android:dependency="jelly_wallpaper_light_source"
+            settings:controller="com.android.settings.display.JellyWallpaperLightWaterWavesPreferenceController"/>
+
+        <ListPreference
+            android:key="jelly_wallpaper_water_preset"
+            android:title="@string/jelly_wallpaper_water_preset_title"
+            android:summary="%s"
+            android:entries="@array/jelly_wallpaper_water_preset_entries"
+            android:entryValues="@array/jelly_wallpaper_water_preset_values"
+            android:defaultValue="1"
+            android:dependency="jelly_wallpaper_light_water_waves"
+            settings:controller="com.android.settings.display.JellyWallpaperWaterPresetPreferenceController"/>
+
+        <com.android.settingslib.widget.SliderPreference
+            android:key="jelly_wallpaper_light_water_waves_intensity"
+            android:title="@string/jelly_wallpaper_light_water_waves_intensity_title"
+            android:summary="@string/jelly_wallpaper_light_water_waves_intensity_summary"
+            android:dependency="jelly_wallpaper_light_water_waves"
+            settings:controller="com.android.settings.display.JellyWallpaperLightWaterWavesIntensityPreferenceController"/>
+
+        <com.android.settingslib.widget.SliderPreference
+            android:key="jelly_wallpaper_water_wave_size"
+            android:title="@string/jelly_wallpaper_water_wave_size_title"
+            android:summary="@string/jelly_wallpaper_water_wave_size_summary"
+            android:dependency="jelly_wallpaper_light_water_waves"
+            settings:controller="com.android.settings.display.JellyWallpaperWaterWaveSizePreferenceController"/>
+
+        <com.android.settingslib.widget.SliderPreference
+            android:key="jelly_wallpaper_water_wave_speed"
+            android:title="@string/jelly_wallpaper_water_wave_speed_title"
+            android:summary="@string/jelly_wallpaper_water_wave_speed_summary"
+            android:dependency="jelly_wallpaper_light_water_waves"
+            settings:controller="com.android.settings.display.JellyWallpaperWaterWaveSpeedPreferenceController"/>
+
+        <com.android.settingslib.widget.SliderPreference
+            android:key="jelly_wallpaper_water_glitter_density"
+            android:title="@string/jelly_wallpaper_water_glitter_density_title"
+            android:summary="@string/jelly_wallpaper_water_glitter_density_summary"
+            android:dependency="jelly_wallpaper_light_water_waves"
+            settings:controller="com.android.settings.display.JellyWallpaperWaterGlitterDensityPreferenceController"/>
+
+        <SwitchPreference
             android:key="jelly_wallpaper_light_gyro_parallax"
             android:title="@string/jelly_wallpaper_light_gyro_parallax_title"
             android:summary="@string/jelly_wallpaper_light_gyro_parallax_summary"

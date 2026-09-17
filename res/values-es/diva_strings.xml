@@ -314,8 +314,44 @@
     <string name="jelly_wallpaper_features_category_title">Opciones avanzadas y sensores</string>
     <string name="jelly_wallpaper_light_solar_tracking_title">Seguir posición solar en tiempo real</string>
     <string name="jelly_wallpaper_light_solar_tracking_summary">Sigue la hora local para ubicar el foco de luz y adaptar la temperatura circadiana (amanecer, cenit, atardecer y luna)</string>
-    <string name="jelly_wallpaper_light_specular_column_title">Columna de reflejo solar (Sun Glitter)</string>
-    <string name="jelly_wallpaper_light_specular_column_summary">Proyecta una columna vertical de destellos centelleantes sobre las ondas como el reflejo del sol en el océano</string>
+    <string name="jelly_wallpaper_light_specular_column_title">Haz de luz y columna de reflejo</string>
+    <string name="jelly_wallpaper_light_specular_column_summary">Proyecta un haz de luz volumétrico suave y columna de resplandor sobre el fondo</string>
+    <string name="jelly_wallpaper_light_water_waves_title">Olas de agua de océano 3D realista</string>
+    <string name="jelly_wallpaper_light_water_waves_summary">Anima desplazamiento realista de olas de océano Gerstner 3D, sombreado de superficie y destellos solares sobre el fondo</string>
+    <string name="jelly_wallpaper_water_preset_title">Estilo predefinido de agua</string>
+    <string name="jelly_wallpaper_water_preset_calm">Lago en calma (Ondas suaves y reflejos tenues)</string>
+    <string name="jelly_wallpaper_water_preset_ocean">Océano tropical (Olas realistas y brillo solar vivo)</string>
+    <string name="jelly_wallpaper_water_preset_surf">Oleaje costero (Olas marcadas de ritmo dinámico)</string>
+    <string name="jelly_wallpaper_water_preset_ripples">Brisa marina (Ondulaciones finas de alta frecuencia)</string>
+    <string name="jelly_wallpaper_water_preset_sunset">Atardecer dorado (Movimiento pausado con destellos radiantes)</string>
+    <string name="jelly_wallpaper_water_preset_custom">Personalizado (Control manual independiente)</string>
+
+    <string-array name="jelly_wallpaper_water_preset_entries">
+        <item>@string/jelly_wallpaper_water_preset_calm</item>
+        <item>@string/jelly_wallpaper_water_preset_ocean</item>
+        <item>@string/jelly_wallpaper_water_preset_surf</item>
+        <item>@string/jelly_wallpaper_water_preset_ripples</item>
+        <item>@string/jelly_wallpaper_water_preset_sunset</item>
+        <item>@string/jelly_wallpaper_water_preset_custom</item>
+    </string-array>
+
+    <string-array name="jelly_wallpaper_water_preset_values" translatable="false">
+        <item>0</item>
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+        <item>5</item>
+    </string-array>
+
+    <string name="jelly_wallpaper_light_water_waves_intensity_title">Altura y profundidad del oleaje</string>
+    <string name="jelly_wallpaper_light_water_waves_intensity_summary">Amplitud y altura de las crestas de olas oceánicas 3D</string>
+    <string name="jelly_wallpaper_water_wave_size_title">Tamaño y escala de longitud de ola</string>
+    <string name="jelly_wallpaper_water_wave_size_summary">Escala espacial y distancia entre crestas de las olas</string>
+    <string name="jelly_wallpaper_water_wave_speed_title">Velocidad del movimiento de olas</string>
+    <string name="jelly_wallpaper_water_wave_speed_summary">Velocidad de propagación y cadencia del flujo del agua</string>
+    <string name="jelly_wallpaper_water_glitter_density_title">Densidad de destellos solares (Glitter)</string>
+    <string name="jelly_wallpaper_water_glitter_density_summary">Cantidad, brillo estelar y fulgor bloom de los reflejos del sol en el agua</string>
     <string name="jelly_wallpaper_light_gyro_parallax_title">Perspectiva 3D con giroscopio</string>
     <string name="jelly_wallpaper_light_gyro_parallax_summary">Desplaza el ángulo de reflexión especular al inclinar físicamente el dispositivo</string>
     <string name="jelly_wallpaper_light_beam_spread_title">Apertura y dispersión del haz</string>
