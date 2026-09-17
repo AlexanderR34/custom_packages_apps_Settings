@@ -309,6 +309,9 @@
         <item>6</item>
         <item>7</item>
     </string-array>
+    <string name="jelly_wallpaper_presets_category_title">Presets de iluminación</string>
+    <string name="jelly_wallpaper_sliders_category_title">Ajustes de haz y destello</string>
+    <string name="jelly_wallpaper_features_category_title">Opciones avanzadas y sensores</string>
     <string name="jelly_wallpaper_light_solar_tracking_title">Seguir posición solar en tiempo real</string>
     <string name="jelly_wallpaper_light_solar_tracking_summary">Sigue la hora local para ubicar el foco de luz y adaptar la temperatura circadiana (amanecer, cenit, atardecer y luna)</string>
     <string name="jelly_wallpaper_light_specular_column_title">Columna de reflejo solar (Sun Glitter)</string>

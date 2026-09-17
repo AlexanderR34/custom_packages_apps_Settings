@@ -319,6 +319,9 @@
         <item>7</item>
     </string-array>
 
+    <string name="jelly_wallpaper_presets_category_title">Lighting presets</string>
+    <string name="jelly_wallpaper_sliders_category_title">Beam &amp; shimmer adjustments</string>
+    <string name="jelly_wallpaper_features_category_title">Advanced features &amp; sensors</string>
     <string name="jelly_wallpaper_light_solar_tracking_title">Real-time solar tracking</string>
     <string name="jelly_wallpaper_light_solar_tracking_summary">Follow local time to position the light source and adapt circadian color temperature (sunrise, noon, sunset, moonlight)</string>
     <string name="jelly_wallpaper_light_specular_column_title">Solar reflection glitter column</string>
