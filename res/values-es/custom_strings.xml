@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+     Copyright (C) 2017-2021 The LineageOS Project
+     Copyright (C) 2024-2026 Project Diva
+
+     Licensed under the Apache License, Version 2.0 (the "License");
+     you may not use this file except in compliance with the License.
+     You may obtain a copy of the License at
+
+          http://www.apache.org/licenses/LICENSE-2.0
+
+     Unless required by applicable law or agreed to in writing, software
+     distributed under the License is distributed on an "AS IS" BASIS,
+     WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+     See the License for the specific language governing permissions and
+     limitations under the License.
+-->
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+    <!-- Spoofing / Suplantación -->
+    <string name="spoof_settings_title">Suplantación (Spoofing)</string>
+
+    <string name="auto_select">Selección automática</string>
+    <string name="cancel">Cancelar</string>
+    <string name="clear_search">Borrar búsqueda</string>
+    <string name="delete">Eliminar</string>
+    <string name="hide_system_apps">Ocultar apps del sistema</string>
+    <string name="ok">Aceptar</string>
+    <string name="search_apps">Buscar aplicaciones</string>
+    <string name="select_all">Seleccionar todo</string>
+    <string name="show_system_apps">Mostrar apps del sistema</string>
+    <string name="system_badge">SIS</string>
+
+    <!-- Play Integrity Fix -->
+    <string name="play_integrity_fix_title">Play Integrity Fix</string>
+    <string name="play_integrity_fix_summary">Gestiona la configuración PIF y huellas de dispositivo para integridad básica</string>
+    <string name="pif_status">Estado</string>
+    <string name="pif_active_config">Configuración activa</string>
+    <string name="pif_no_config">No hay configuración cargada</string>
+    <string name="pif_config_loaded">Configuración cargada</string>
+    <string name="pif_fetch_pixel_beta">Obtener huella de Pixel Beta</string>
+    <string name="pif_fetch_pixel_beta_summary">Descargar la huella digital de Pixel Beta más reciente desde Google</string>
+    <string name="pif_fetching">Obteniendo de Google\u2026</string>
+    <string name="pif_fetched_model">Huella digital obtenida para %s</string>
+    <string name="pif_import_config">Importar configuración</string>
+    <string name="pif_import_config_summary">Importar archivo de configuración PIF</string>
+    <string name="pif_imported_as">Importado como %s</string>
+    <string name="pif_delete_config">Eliminar configuración activa</string>
+    <string name="pif_delete_config_summary">Eliminar el archivo de configuración actualmente activo</string>
+    <string name="pif_delete_title">¿Eliminar %s?</string>
+    <string name="pif_delete_message">Este archivo de configuración se eliminará permanentemente.</string>
+    <string name="pif_delete">Eliminar</string>
+    <string name="pif_deleted">Se eliminó %s</string>
+    <string name="pif_settings">Ajustes</string>
+    <string name="pif_spoof_photos">Suplantar Google Fotos</string>
+    <string name="pif_spoof_photos_summary">Copia de seguridad ilimitada en calidad original</string>
+    <string name="pif_config_details">Detalles de la configuración</string>
+    <string name="pif_failed">Error: %s</string>
+    <string name="pif_select_device">Seleccionar dispositivo</string>
+    <string name="pif_generating">Generando configuración\u2026</string>
+    <string name="pif_footer_title">Aprobación de integridad básica</string>
+    <string name="pif_footer_body">1. Toca \"Obtener huella de Pixel Beta\" y selecciona un dispositivo de la lista disponible.\n2. Si no se encuentran dispositivos, importa una configuración PIF funcional de una fuente confiable. Los archivos de configuración no están incluidos; debes conseguir uno por tu cuenta.\n3. Vuelve a comprobar el estado de Play Integrity.\n\nElimina siempre la configuración activa antes de cargar una nueva. Cargar una configuración PIF caducada hará que falle la integridad fuerte (Strong integrity) en TrickyStore, incluso con un keybox válido.</string>
+    <string name="pif_select_channel">Seleccionar canal</string>
+    <string name="pif_channel_latest_release">Última versión estable</string>
+    <string name="pif_channel_canary_release">Versión Canary</string>
+
+    <!-- TrickyStore -->
+    <string name="tricky_store_title">TrickyStore</string>
+    <string name="tricky_store_summary">Gestiona el keybox y aplicaciones objetivo para atestación de integridad fuerte</string>
+    <string name="ts_keybox_management">Gestión de Keybox</string>
+    <string name="ts_import_keybox">Importar keybox</string>
+    <string name="ts_no_keybox">No hay keybox instalado</string>
+    <string name="ts_keybox_installed">Keybox instalado</string>
+    <string name="ts_keybox_imported">Keybox importado correctamente</string>
+    <string name="ts_delete_keybox">Eliminar keybox</string>
+    <string name="ts_delete_keybox_summary">Eliminar el archivo keybox</string>
+    <string name="ts_delete_keybox_title">¿Eliminar keybox?</string>
+    <string name="ts_delete_keybox_message">El archivo keybox se eliminará permanentemente.</string>
+    <string name="ts_keybox_deleted">Keybox eliminado</string>
+    <string name="ts_target_configuration">Configuración de objetivos</string>
+    <string name="ts_manage_target_apps">Gestionar aplicaciones objetivo</string>
+    <string name="ts_no_targets">No hay aplicaciones objetivo configuradas</string>
+    <string name="ts_target_apps_count">%d aplicaciones configuradas</string>
+    <string name="ts_import_target_list">Importar lista de objetivos</string>
+    <string name="ts_import_target_list_summary">Importar target.txt desde un archivo</string>
+    <string name="ts_target_list_imported">Lista de objetivos importada</string>
+    <string name="ts_failed">Error: %s</string>
+    <string name="ts_footer_title">Aprobación de integridad fuerte (Strong Integrity)</string>
+    <string name="ts_footer_body">1. Obtén un archivo keybox XML válido de una fuente confiable. Los keyboxes no se proporcionan; debes conseguir uno por tu cuenta.\n2. Toca \"Importar keybox\" y carga el archivo.\n3. Abre \"Gestionar aplicaciones objetivo\" y selecciona Servicios de Google Play y Google Play Store.\n4. Establece el modo de objetivo en \"Leaf\" si tu dispositivo tiene un TEE funcional, de lo contrario déjalo en Auto.\n5. Vuelve a comprobar el estado de Play Integrity.\n\nElimina siempre el keybox existente antes de importar uno nuevo. Si Google revoca un keybox, es posible que aún permita pasar hasta la integridad del dispositivo (Device integrity), aunque la integridad fuerte fallará.</string>
+    <string name="ts_verification_mode">Modo de verificación</string>
+    <string name="ts_verification_mode_auto">Automático</string>
+    <string name="ts_verification_auto_count">%1$d auto</string>
+    <string name="ts_verification_cert_count">%1$d cert</string>
+    <string name="ts_verification_leaf_count">%1$d leaf</string>
+    <string name="ts_invalid_patch_date">Formato de fecha no válido. Usa AAAA-MM-DD</string>
+    <string name="ts_security_patch">Fecha del parche de seguridad</string>
+    <string name="ts_no_patch">No establecido (usando el predeterminado del dispositivo)</string>
+    <string name="ts_selected_count">%d seleccionadas</string>
+    <string name="ts_mode_auto">Auto</string>
+    <string name="ts_mode_leaf">Leaf</string>
+    <string name="ts_mode_cert">Cert</string>
+
+    <!-- Game Spoofing / Suplantación para Juegos -->
+    <string name="game_spoofing_title">Suplantación para juegos</string>
+    <string name="game_spoofing_summary">Suplanta propiedades del dispositivo para juegos específicos (FPS altos)</string>
+    <string name="gs_enable">Activar suplantación para juegos</string>
+    <string name="gs_enable_summary">Suplanta propiedades de modelo para los juegos configurados</string>
+    <string name="gs_add_app">Añadir juego</string>
+    <string name="gs_add_app_summary">Selecciona una aplicación y un perfil de dispositivo para suplantar</string>
+    <string name="gs_reload">Recargar</string>
+    <string name="gs_reload_summary">Recargar la configuración desde el almacenamiento</string>
+    <string name="gs_configured_apps">Juegos configurados</string>
+    <string name="gs_no_apps">No hay juegos configurados</string>
+    <string name="gs_no_apps_summary">Toca \"Añadir juego\" para comenzar</string>
+    <string name="gs_select_app">Seleccionar aplicación</string>
+    <string name="gs_select_profile">Seleccionar perfil de dispositivo</string>
+    <string name="gs_edit_props">Editar propiedades</string>
+    <string name="gs_change_profile">Cambiar perfil de dispositivo</string>
+    <string name="gs_remove">Eliminar</string>
+    <string name="gs_remove_title">¿Eliminar juego?</string>
+    <string name="gs_remove_message">¿Deseas eliminar %s de la suplantación para juegos?</string>
+    <string name="gs_edit_app">Editar %s</string>
+    <string name="gs_key">Clave</string>
+    <string name="gs_value">Valor</string>
+    <string name="gs_save">Guardar</string>
+    <string name="gs_config_saved">Configuración guardada</string>
+    <string name="gs_loading_apps">Cargando aplicaciones\u2026</string>
+    <string name="gs_failed">Error: %s</string>
+
+    <!-- Keybox y PIF data -->
+    <string name="keybox_data_title">Configurar keybox XML</string>
+    <string name="keybox_data_summary">Configura la suplantación de atestación de clave a nivel de sistema. Toca Eliminar para restablecer.</string>
+    <string name="pif_data_title">Configurar PIF JSON</string>
+    <string name="pif_data_summary">Configura el JSON de PIF utilizado para suplantar propiedades para GMS y Play Store. Toca Eliminar para restablecer.</string>
+    <string name="cert_overlay_title">Suplantar propiedades certificadas</string>
+    <string name="cert_overlay_summary">Suplanta propiedades certificadas de Play Integrity para GMS\nRequiere reiniciar el dispositivo para aplicar</string>
+
+    <!-- Navegación y Batería -->
+    <string name="button_navigation_settings_style_title">Estilo de botones</string>
+    <string name="button_style_group_purpose">Elige el diseño visual y estilo de los botones de navegación</string>
+    <string name="navbar_style_aosp">AOSP Estándar</string>
+    <string name="navbar_style_hyperos">HyperOS</string>
+    <string name="navbar_style_samsung">Samsung (One UI)</string>
+
+    <string name="status_bar_battery_style_title">Estilo de batería</string>
+    <string name="status_bar_battery_style_summary">Selecciona el diseño del icono de batería en la barra de estado</string>
+    <string name="status_bar_battery_style_aosp">AOSP Stock</string>
+    <string name="status_bar_battery_style_hyperos">HyperOS</string>
+    <string name="status_bar_battery_style_samsung">Samsung (One UI)</string>
+    <string name="status_bar_battery_style_hyperos_title">Estilo de batería HyperOS</string>
+    <string name="status_bar_battery_style_hyperos_summary">Activa el diseño de cápsula horizontal HyperOS en la barra de estado</string>
+
+    <string name="systemui_restart_dialog_title">Reiniciar SystemUI</string>
+    <string name="systemui_restart_dialog_message">¿Deseas reiniciar SystemUI ahora para aplicar los cambios visuales?</string>
+    <string name="systemui_restart_dialog_positive">Reiniciar ahora</string>
+    <string name="systemui_restart_dialog_negative">Más tarde</string>
+</resources>

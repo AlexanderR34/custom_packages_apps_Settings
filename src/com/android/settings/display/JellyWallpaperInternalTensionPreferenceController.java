@@ -68,7 +68,8 @@ public class JellyWallpaperInternalTensionPreferenceController extends SliderPre
 
     @Override
     public CharSequence getSummary() {
-        return getSliderPosition() + "%";
+        return mContext.getString(com.android.settings.R.string.jelly_wallpaper_internal_tension_summary)
+                + " • " + getSliderPosition() + "%";
     }
 
     @Override
@@ -81,7 +82,7 @@ public class JellyWallpaperInternalTensionPreferenceController extends SliderPre
         Settings.System.putInt(mContext.getContentResolver(), SETTING_KEY, position);
         Settings.System.putInt(mContext.getContentResolver(), "jelly_wallpaper_preset", 8);
         if (mPreference != null) {
-            mPreference.setSummary(position + "%");
+            mPreference.setSummary(getSummary());
         }
         return true;
     }

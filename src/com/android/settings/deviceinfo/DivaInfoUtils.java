@@ -33,7 +33,7 @@ import java.util.Date;
 public class DivaInfoUtils {
 
     public static String getDivaVersion() {
-        return SystemProperties.get("ro.diva.version", "1.1.2");
+        return SystemProperties.get("ro.diva.version", "1.2.0");
     }
 
     public static String getMaintainer() {

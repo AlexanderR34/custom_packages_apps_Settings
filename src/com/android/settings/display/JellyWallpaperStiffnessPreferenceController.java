@@ -31,6 +31,8 @@ public class JellyWallpaperStiffnessPreferenceController extends SliderPreferenc
     public static final String SETTING_KEY = "jelly_wallpaper_stiffness";
     public static final int DEFAULT_VALUE = 45;
 
+    private SliderPreference mPreference;
+
     public JellyWallpaperStiffnessPreferenceController(Context context, String key) {
         super(context, key);
     }
@@ -43,12 +45,13 @@ public class JellyWallpaperStiffnessPreferenceController extends SliderPreferenc
     @Override
     public void displayPreference(PreferenceScreen screen) {
         super.displayPreference(screen);
-        SliderPreference preference = screen.findPreference(getPreferenceKey());
-        if (preference != null) {
-            preference.setUpdatesContinuously(true);
-            preference.setMin(getMin());
-            preference.setMax(getMax());
-            preference.setHapticFeedbackMode(SliderPreference.HAPTIC_FEEDBACK_MODE_ON_TICKS);
+        mPreference = screen.findPreference(getPreferenceKey());
+        if (mPreference != null) {
+            mPreference.setUpdatesContinuously(true);
+            mPreference.setMin(getMin());
+            mPreference.setMax(getMax());
+            mPreference.setHapticFeedbackMode(SliderPreference.HAPTIC_FEEDBACK_MODE_ON_TICKS);
+            mPreference.setSummary(getSummary());
         }
     }
 
@@ -58,6 +61,15 @@ public class JellyWallpaperStiffnessPreferenceController extends SliderPreferenc
         boolean isEnabled = Settings.System.getInt(
                 mContext.getContentResolver(), "jelly_wallpaper_enabled", 0) != 0;
         preference.setEnabled(isEnabled);
+        if (preference instanceof SliderPreference) {
+            preference.setSummary(getSummary());
+        }
+    }
+
+    @Override
+    public CharSequence getSummary() {
+        return mContext.getString(com.android.settings.R.string.jelly_wallpaper_stiffness_summary)
+                + " • " + getSliderPosition() + "%";
     }
 
     @Override
@@ -70,6 +82,9 @@ public class JellyWallpaperStiffnessPreferenceController extends SliderPreferenc
         Settings.System.putInt(mContext.getContentResolver(), SETTING_KEY, position);
         // Cuando el usuario mueve manualmente el slider, marcar como Personalizado (8)
         Settings.System.putInt(mContext.getContentResolver(), "jelly_wallpaper_preset", 8);
+        if (mPreference != null) {
+            mPreference.setSummary(getSummary());
+        }
         return true;
     }
 

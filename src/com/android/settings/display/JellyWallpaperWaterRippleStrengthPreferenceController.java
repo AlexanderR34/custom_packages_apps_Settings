@@ -25,15 +25,15 @@ import androidx.preference.PreferenceScreen;
 import com.android.settings.core.SliderPreferenceController;
 import com.android.settingslib.widget.SliderPreference;
 
-public class JellyWallpaperWaveSpeedPreferenceController extends SliderPreferenceController {
+public class JellyWallpaperWaterRippleStrengthPreferenceController extends SliderPreferenceController {
 
-    public static final String KEY = "jelly_wallpaper_wave_speed";
-    public static final String SETTING_KEY = "jelly_wallpaper_wave_speed";
-    public static final int DEFAULT_VALUE = 70;
+    public static final String KEY = "jelly_wallpaper_water_ripple_strength";
+    public static final String SETTING_KEY = "jelly_wallpaper_water_ripple_strength";
+    public static final int DEFAULT_VALUE = 75;
 
     private SliderPreference mPreference;
 
-    public JellyWallpaperWaveSpeedPreferenceController(Context context, String key) {
+    public JellyWallpaperWaterRippleStrengthPreferenceController(Context context, String key) {
         super(context, key);
     }
 
@@ -60,7 +60,9 @@ public class JellyWallpaperWaveSpeedPreferenceController extends SliderPreferenc
         super.updateState(preference);
         boolean isJellyEnabled = Settings.System.getInt(
                 mContext.getContentResolver(), "jelly_wallpaper_enabled", 0) != 0;
-        preference.setEnabled(isJellyEnabled);
+        boolean isWaterRippleEnabled = Settings.System.getInt(
+                mContext.getContentResolver(), "jelly_wallpaper_water_ripple", 1) != 0;
+        preference.setEnabled(isJellyEnabled && isWaterRippleEnabled);
         if (preference instanceof SliderPreference) {
             preference.setSummary(getSummary());
         }
@@ -68,7 +70,7 @@ public class JellyWallpaperWaveSpeedPreferenceController extends SliderPreferenc
 
     @Override
     public CharSequence getSummary() {
-        return mContext.getString(com.android.settings.R.string.jelly_wallpaper_wave_speed_summary)
+        return mContext.getString(com.android.settings.R.string.jelly_wallpaper_water_ripple_strength_summary)
                 + " • " + getSliderPosition() + "%";
     }
 
@@ -79,12 +81,11 @@ public class JellyWallpaperWaveSpeedPreferenceController extends SliderPreferenc
 
     @Override
     public boolean setSliderPosition(int position) {
-        Settings.System.putInt(mContext.getContentResolver(), SETTING_KEY, position);
-        Settings.System.putInt(mContext.getContentResolver(), "jelly_wallpaper_preset", 8);
+        boolean result = Settings.System.putInt(mContext.getContentResolver(), SETTING_KEY, position);
         if (mPreference != null) {
             mPreference.setSummary(getSummary());
         }
-        return true;
+        return result;
     }
 
     @Override
@@ -94,11 +95,6 @@ public class JellyWallpaperWaveSpeedPreferenceController extends SliderPreferenc
 
     @Override
     public int getMin() {
-        return 10;
-    }
-
-    @Override
-    public int getSliceHighlightMenuRes() {
         return 0;
     }
 }

@@ -68,7 +68,8 @@ public class JellyWallpaperSnapBackRecoilPreferenceController extends SliderPref
 
     @Override
     public CharSequence getSummary() {
-        return getSliderPosition() + "%";
+        return mContext.getString(com.android.settings.R.string.jelly_wallpaper_snapback_recoil_summary)
+                + " • " + getSliderPosition() + "%";
     }
 
     @Override
@@ -81,7 +82,7 @@ public class JellyWallpaperSnapBackRecoilPreferenceController extends SliderPref
         Settings.System.putInt(mContext.getContentResolver(), SETTING_KEY, position);
         Settings.System.putInt(mContext.getContentResolver(), "jelly_wallpaper_preset", 8);
         if (mPreference != null) {
-            mPreference.setSummary(position + "%");
+            mPreference.setSummary(getSummary());
         }
         return true;
     }

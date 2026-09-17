@@ -70,7 +70,8 @@ public class JellyWallpaperGyroInertiaStrengthPreferenceController extends Slide
 
     @Override
     public CharSequence getSummary() {
-        return getSliderPosition() + "%";
+        return mContext.getString(com.android.settings.R.string.jelly_wallpaper_gyro_inertia_strength_summary)
+                + " • " + getSliderPosition() + "%";
     }
 
     @Override
@@ -82,7 +83,7 @@ public class JellyWallpaperGyroInertiaStrengthPreferenceController extends Slide
     public boolean setSliderPosition(int position) {
         Settings.System.putInt(mContext.getContentResolver(), SETTING_KEY, position);
         if (mPreference != null) {
-            mPreference.setSummary(position + "%");
+            mPreference.setSummary(getSummary());
         }
         return true;
     }

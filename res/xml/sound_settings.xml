@@ -228,6 +228,14 @@
             android:order="-80"
             android:fragment="com.android.settings.gestures.PreventRingingGestureSettings"
             settings:controller="com.android.settings.gestures.PreventRingingParentPreferenceController"/>
+
+        <Preference
+            android:key="custom_sound_effects_settings"
+            android:title="@string/custom_sound_effects_title"
+            android:summary="@string/custom_sound_effects_summary"
+            android:fragment="com.android.settings.sound.CustomSoundEffectsSettings"
+            android:order="-106"
+            settings:controller="com.android.settings.sound.CustomSoundEffectsPreferenceController"/>
     </PreferenceCategory>
     
     <!-- System sounds and vibrations category -->

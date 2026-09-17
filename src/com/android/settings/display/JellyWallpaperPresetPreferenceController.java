@@ -64,7 +64,7 @@ public class JellyWallpaperPresetPreferenceController extends BasePreferenceCont
         if (val == 0) { // Gelatina clásica (Classic Jelly)
             Settings.System.putInt(mContext.getContentResolver(), "jelly_wallpaper_stiffness", 45);
             Settings.System.putInt(mContext.getContentResolver(), "jelly_wallpaper_damping", 85);
-            Settings.System.putInt(mContext.getContentResolver(), "jelly_wallpaper_radius", 38);
+            Settings.System.putInt(mContext.getContentResolver(), "jelly_wallpaper_radius", 10);
             Settings.System.putInt(mContext.getContentResolver(), "jelly_wallpaper_elasticity", 70);
             Settings.System.putInt(mContext.getContentResolver(), "jelly_wallpaper_snapback_recoil", 75);
             Settings.System.putInt(mContext.getContentResolver(), "jelly_wallpaper_internal_tension", 65);
@@ -74,7 +74,7 @@ public class JellyWallpaperPresetPreferenceController extends BasePreferenceCont
         } else if (val == 1) { // Goma firme (Firm Rubber)
             Settings.System.putInt(mContext.getContentResolver(), "jelly_wallpaper_stiffness", 80);
             Settings.System.putInt(mContext.getContentResolver(), "jelly_wallpaper_damping", 70);
-            Settings.System.putInt(mContext.getContentResolver(), "jelly_wallpaper_radius", 25);
+            Settings.System.putInt(mContext.getContentResolver(), "jelly_wallpaper_radius", 10);
             Settings.System.putInt(mContext.getContentResolver(), "jelly_wallpaper_elasticity", 40);
             Settings.System.putInt(mContext.getContentResolver(), "jelly_wallpaper_snapback_recoil", 90);
             Settings.System.putInt(mContext.getContentResolver(), "jelly_wallpaper_internal_tension", 80);
@@ -84,7 +84,7 @@ public class JellyWallpaperPresetPreferenceController extends BasePreferenceCont
         } else if (val == 2) { // Agua / Líquido fluido (Liquid / Water)
             Settings.System.putInt(mContext.getContentResolver(), "jelly_wallpaper_stiffness", 25);
             Settings.System.putInt(mContext.getContentResolver(), "jelly_wallpaper_damping", 95);
-            Settings.System.putInt(mContext.getContentResolver(), "jelly_wallpaper_radius", 45);
+            Settings.System.putInt(mContext.getContentResolver(), "jelly_wallpaper_radius", 10);
             Settings.System.putInt(mContext.getContentResolver(), "jelly_wallpaper_elasticity", 90);
             Settings.System.putInt(mContext.getContentResolver(), "jelly_wallpaper_snapback_recoil", 40);
             Settings.System.putInt(mContext.getContentResolver(), "jelly_wallpaper_internal_tension", 40);
@@ -92,19 +92,19 @@ public class JellyWallpaperPresetPreferenceController extends BasePreferenceCont
             Settings.System.putInt(mContext.getContentResolver(), "jelly_wallpaper_surface_mass", 35);
             Settings.System.putInt(mContext.getContentResolver(), "jelly_wallpaper_wave_speed", 95);
         } else if (val == 3) { // Muelle de acero (Steel Spring)
-            Settings.System.putInt(mContext.getContentResolver(), "jelly_wallpaper_stiffness", 90);
-            Settings.System.putInt(mContext.getContentResolver(), "jelly_wallpaper_damping", 35);
-            Settings.System.putInt(mContext.getContentResolver(), "jelly_wallpaper_radius", 30);
-            Settings.System.putInt(mContext.getContentResolver(), "jelly_wallpaper_elasticity", 85);
-            Settings.System.putInt(mContext.getContentResolver(), "jelly_wallpaper_snapback_recoil", 100);
-            Settings.System.putInt(mContext.getContentResolver(), "jelly_wallpaper_internal_tension", 70);
-            Settings.System.putInt(mContext.getContentResolver(), "jelly_wallpaper_max_stretch", 75);
-            Settings.System.putInt(mContext.getContentResolver(), "jelly_wallpaper_surface_mass", 40);
-            Settings.System.putInt(mContext.getContentResolver(), "jelly_wallpaper_wave_speed", 100);
+            Settings.System.putInt(mContext.getContentResolver(), "jelly_wallpaper_stiffness", 85);
+            Settings.System.putInt(mContext.getContentResolver(), "jelly_wallpaper_damping", 65);
+            Settings.System.putInt(mContext.getContentResolver(), "jelly_wallpaper_radius", 10);
+            Settings.System.putInt(mContext.getContentResolver(), "jelly_wallpaper_elasticity", 60);
+            Settings.System.putInt(mContext.getContentResolver(), "jelly_wallpaper_snapback_recoil", 80);
+            Settings.System.putInt(mContext.getContentResolver(), "jelly_wallpaper_internal_tension", 60);
+            Settings.System.putInt(mContext.getContentResolver(), "jelly_wallpaper_max_stretch", 50);
+            Settings.System.putInt(mContext.getContentResolver(), "jelly_wallpaper_surface_mass", 50);
+            Settings.System.putInt(mContext.getContentResolver(), "jelly_wallpaper_wave_speed", 75);
         } else if (val == 4) { // Seda / Tela colgante (Silk Cloth)
             Settings.System.putInt(mContext.getContentResolver(), "jelly_wallpaper_stiffness", 20);
             Settings.System.putInt(mContext.getContentResolver(), "jelly_wallpaper_damping", 60);
-            Settings.System.putInt(mContext.getContentResolver(), "jelly_wallpaper_radius", 50);
+            Settings.System.putInt(mContext.getContentResolver(), "jelly_wallpaper_radius", 10);
             Settings.System.putInt(mContext.getContentResolver(), "jelly_wallpaper_elasticity", 60);
             Settings.System.putInt(mContext.getContentResolver(), "jelly_wallpaper_snapback_recoil", 30);
             Settings.System.putInt(mContext.getContentResolver(), "jelly_wallpaper_internal_tension", 85);
@@ -114,7 +114,7 @@ public class JellyWallpaperPresetPreferenceController extends BasePreferenceCont
         } else if (val == 5) { // Miel / Slime viscoso (Viscous Slime / Honey)
             Settings.System.putInt(mContext.getContentResolver(), "jelly_wallpaper_stiffness", 30);
             Settings.System.putInt(mContext.getContentResolver(), "jelly_wallpaper_damping", 120);
-            Settings.System.putInt(mContext.getContentResolver(), "jelly_wallpaper_radius", 40);
+            Settings.System.putInt(mContext.getContentResolver(), "jelly_wallpaper_radius", 10);
             Settings.System.putInt(mContext.getContentResolver(), "jelly_wallpaper_elasticity", 30);
             Settings.System.putInt(mContext.getContentResolver(), "jelly_wallpaper_snapback_recoil", 20);
             Settings.System.putInt(mContext.getContentResolver(), "jelly_wallpaper_internal_tension", 30);
@@ -124,7 +124,7 @@ public class JellyWallpaperPresetPreferenceController extends BasePreferenceCont
         } else if (val == 6) { // Espuma viscoelástica (Memory Foam)
             Settings.System.putInt(mContext.getContentResolver(), "jelly_wallpaper_stiffness", 60);
             Settings.System.putInt(mContext.getContentResolver(), "jelly_wallpaper_damping", 140);
-            Settings.System.putInt(mContext.getContentResolver(), "jelly_wallpaper_radius", 35);
+            Settings.System.putInt(mContext.getContentResolver(), "jelly_wallpaper_radius", 10);
             Settings.System.putInt(mContext.getContentResolver(), "jelly_wallpaper_elasticity", 20);
             Settings.System.putInt(mContext.getContentResolver(), "jelly_wallpaper_snapback_recoil", 15);
             Settings.System.putInt(mContext.getContentResolver(), "jelly_wallpaper_internal_tension", 55);
@@ -134,7 +134,7 @@ public class JellyWallpaperPresetPreferenceController extends BasePreferenceCont
         } else if (val == 7) { // Cristal templado (Rigid Glass)
             Settings.System.putInt(mContext.getContentResolver(), "jelly_wallpaper_stiffness", 100);
             Settings.System.putInt(mContext.getContentResolver(), "jelly_wallpaper_damping", 150);
-            Settings.System.putInt(mContext.getContentResolver(), "jelly_wallpaper_radius", 15);
+            Settings.System.putInt(mContext.getContentResolver(), "jelly_wallpaper_radius", 10);
             Settings.System.putInt(mContext.getContentResolver(), "jelly_wallpaper_elasticity", 10);
             Settings.System.putInt(mContext.getContentResolver(), "jelly_wallpaper_snapback_recoil", 100);
             Settings.System.putInt(mContext.getContentResolver(), "jelly_wallpaper_internal_tension", 100);

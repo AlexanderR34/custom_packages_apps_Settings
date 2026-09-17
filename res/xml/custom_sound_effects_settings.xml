@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright (C) 2024 The Android Open Source Project
+
+     Licensed under the Apache License, Version 2.0 (the "License");
+     you may not use this file except in compliance with the License.
+     You may obtain a copy of the License at
+
+          http://www.apache.org/licenses/LICENSE-2.0
+
+     Unless required by applicable law or agreed to in writing, software
+     distributed under the License is distributed on an "AS IS" BASIS,
+     WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+     See the License for the specific language governing permissions and
+     limitations under the License.
+-->
+
+<PreferenceScreen
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:settings="http://schemas.android.com/apk/res-auto"
+    android:title="@string/custom_sound_effects_title"
+    android:key="custom_sound_effects_screen">
+
+    <!-- Red Coins Sequential Notifications -->
+    <PreferenceCategory
+        android:key="sm64_coins_notification_category"
+        android:title="@string/sm64_coins_category_title">
+
+        <SwitchPreferenceCompat
+            android:key="sm64_red_coins_sound_enabled"
+            android:title="@string/sm64_red_coins_sound_title"
+            android:summary="@string/sm64_red_coins_sound_summary"
+            android:defaultValue="false"
+            settings:controller="com.android.settings.sound.Sm64CoinsNotificationPreferenceController"/>
+
+        <ListPreference
+            android:key="sm64_red_coins_sound_mode"
+            android:title="@string/sm64_red_coins_mode_title"
+            android:summary="%s"
+            android:entries="@array/sm64_red_coins_mode_entries"
+            android:entryValues="@array/sm64_red_coins_mode_values"
+            android:defaultValue="0"
+            android:dependency="sm64_red_coins_sound_enabled"
+            settings:controller="com.android.settings.sound.Sm64CoinsNotificationModePreferenceController"/>
+
+        <ListPreference
+            android:key="sm64_red_coins_burst_timeout"
+            android:title="@string/sm64_red_coins_timeout_title"
+            android:summary="%s"
+            android:entries="@array/sm64_red_coins_timeout_entries"
+            android:entryValues="@array/sm64_red_coins_timeout_values"
+            android:defaultValue="5"
+            android:dependency="sm64_red_coins_sound_enabled"
+            settings:controller="com.android.settings.sound.Sm64CoinsNotificationTimeoutPreferenceController"/>
+    </PreferenceCategory>
+
+    <!-- Active Sequence Notes (Customizable sequence tracks) -->
+    <PreferenceCategory
+        android:key="sm64_coins_tracks_category"
+        android:title="@string/sm64_coins_tracks_category_title">
+
+        <SwitchPreferenceCompat
+            android:key="sm64_coin_1_enabled"
+            android:title="@string/sm64_coin_1_title"
+            android:defaultValue="true"
+            android:dependency="sm64_red_coins_sound_enabled"
+            settings:controller="com.android.settings.sound.Sm64CoinTrackPreferenceController"/>
+
+        <SwitchPreferenceCompat
+            android:key="sm64_coin_2_enabled"
+            android:title="@string/sm64_coin_2_title"
+            android:defaultValue="true"
+            android:dependency="sm64_red_coins_sound_enabled"
+            settings:controller="com.android.settings.sound.Sm64CoinTrackPreferenceController"/>
+
+        <SwitchPreferenceCompat
+            android:key="sm64_coin_3_enabled"
+            android:title="@string/sm64_coin_3_title"
+            android:defaultValue="true"
+            android:dependency="sm64_red_coins_sound_enabled"
+            settings:controller="com.android.settings.sound.Sm64CoinTrackPreferenceController"/>
+
+        <SwitchPreferenceCompat
+            android:key="sm64_coin_4_enabled"
+            android:title="@string/sm64_coin_4_title"
+            android:defaultValue="true"
+            android:dependency="sm64_red_coins_sound_enabled"
+            settings:controller="com.android.settings.sound.Sm64CoinTrackPreferenceController"/>
+
+        <SwitchPreferenceCompat
+            android:key="sm64_coin_5_enabled"
+            android:title="@string/sm64_coin_5_title"
+            android:defaultValue="true"
+            android:dependency="sm64_red_coins_sound_enabled"
+            settings:controller="com.android.settings.sound.Sm64CoinTrackPreferenceController"/>
+
+        <SwitchPreferenceCompat
+            android:key="sm64_coin_6_enabled"
+            android:title="@string/sm64_coin_6_title"
+            android:defaultValue="true"
+            android:dependency="sm64_red_coins_sound_enabled"
+            settings:controller="com.android.settings.sound.Sm64CoinTrackPreferenceController"/>
+
+        <SwitchPreferenceCompat
+            android:key="sm64_coin_7_enabled"
+            android:title="@string/sm64_coin_7_title"
+            android:defaultValue="true"
+            android:dependency="sm64_red_coins_sound_enabled"
+            settings:controller="com.android.settings.sound.Sm64CoinTrackPreferenceController"/>
+
+        <SwitchPreferenceCompat
+            android:key="sm64_coin_8_enabled"
+            android:title="@string/sm64_coin_8_title"
+            android:defaultValue="true"
+            android:dependency="sm64_red_coins_sound_enabled"
+            settings:controller="com.android.settings.sound.Sm64CoinTrackPreferenceController"/>
+
+        <Preference
+            android:key="sm64_coins_reset"
+            android:title="@string/sm64_coins_reset_title"
+            android:summary="@string/sm64_coins_reset_summary"
+            android:dependency="sm64_red_coins_sound_enabled"
+            settings:controller="com.android.settings.sound.Sm64CoinsResetPreferenceController"/>
+    </PreferenceCategory>
+
+    <!-- Power and System Sounds -->
+    <PreferenceCategory
+        android:key="power_sound_category"
+        android:title="@string/power_sounds_category_title">
+
+        <SwitchPreferenceCompat
+            android:key="system_boot_sound_enabled"
+            android:title="@string/boot_sound_title"
+            android:summary="@string/boot_sound_summary"
+            android:defaultValue="false"
+            settings:controller="com.android.settings.sound.SystemBootSoundPreferenceController"/>
+
+        <com.android.settings.sound.SystemCustomSoundPreference
+            android:key="system_boot_sound"
+            android:title="@string/boot_sound_select_title"
+            android:dependency="system_boot_sound_enabled"
+            settings:controller="com.android.settings.sound.SystemBootSoundPickerPreferenceController"/>
+
+        <SwitchPreferenceCompat
+            android:key="system_shutdown_sound_enabled"
+            android:title="@string/shutdown_sound_title"
+            android:summary="@string/shutdown_sound_summary"
+            android:defaultValue="false"
+            settings:controller="com.android.settings.sound.SystemShutdownSoundPreferenceController"/>
+
+        <com.android.settings.sound.SystemCustomSoundPreference
+            android:key="system_shutdown_sound"
+            android:title="@string/shutdown_sound_select_title"
+            android:dependency="system_shutdown_sound_enabled"
+            settings:controller="com.android.settings.sound.SystemShutdownSoundPickerPreferenceController"/>
+
+        <Preference
+            android:key="power_sounds_reset"
+            android:title="@string/power_sounds_reset_title"
+            android:summary="@string/power_sounds_reset_summary"
+            settings:controller="com.android.settings.sound.PowerSoundsResetPreferenceController"/>
+    </PreferenceCategory>
+</PreferenceScreen>

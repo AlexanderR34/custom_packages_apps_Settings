@@ -25,6 +25,6 @@ public class VersionUtils {
             }
             return "Project Diva " + display.replace("_", " ");
         }
-        return "Project Diva 1.1.2";
+        return "Project Diva 1.2.0";
     }
 }

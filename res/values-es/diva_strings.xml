@@ -137,6 +137,26 @@
     <string name="jelly_wallpaper_ripple_summary">Emite una onda elástica desde la posición de la huella al desbloquear</string>
     <string name="jelly_wallpaper_ripple_strength_title">Fuerza de la onda de desbloqueo</string>
     <string name="jelly_wallpaper_ripple_strength_summary">Potencia y amplitud de la onda elástica desde la huella</string>
+    <string name="jelly_wallpaper_water_ripple_title">Efecto de onda de agua</string>
+    <string name="jelly_wallpaper_water_ripple_summary">Emite una onda acuática circular expansiva hacia todas las direcciones al tocar la pantalla</string>
+    <string name="jelly_wallpaper_water_ripple_mode_title">Método de activación</string>
+    <string name="jelly_wallpaper_water_ripple_mode_tap">Solo al tocar la pantalla</string>
+    <string name="jelly_wallpaper_water_ripple_mode_swipe">Al deslizar o pasar el dedo</string>
+    <string name="jelly_wallpaper_water_ripple_mode_both">Al tocar y al deslizar el dedo</string>
+
+    <string-array name="jelly_wallpaper_water_ripple_mode_entries">
+        <item>@string/jelly_wallpaper_water_ripple_mode_tap</item>
+        <item>@string/jelly_wallpaper_water_ripple_mode_swipe</item>
+        <item>@string/jelly_wallpaper_water_ripple_mode_both</item>
+    </string-array>
+    <string-array name="jelly_wallpaper_water_ripple_mode_values" translatable="false">
+        <item>0</item>
+        <item>1</item>
+        <item>2</item>
+    </string-array>
+
+    <string name="jelly_wallpaper_water_ripple_strength_title">Fuerza de la onda de agua</string>
+    <string name="jelly_wallpaper_water_ripple_strength_summary">Potencia y amplitud de propagación de la onda expansiva en el agua</string>
 
     <string name="jelly_wallpaper_ambient_occlusion_title">Sombra de profundidad y oclusión</string>
     <string name="jelly_wallpaper_ambient_occlusion_summary">Proyecta sombras sutiles en pliegues comprimidos y hendiduras</string>
@@ -187,6 +207,7 @@
     <string name="jelly_wallpaper_light_source_summary">Proyecta un reflejo y brillo especular dinámico desde el contorno de la pantalla</string>
     <string name="jelly_wallpaper_light_angle_title">Ángulo del foco de luz</string>
     <string name="jelly_wallpaper_light_angle_summary">Posición del foco de luz en el contorno (0° - 360°)</string>
+    <string name="jelly_wallpaper_light_angle_auto_summary">Automático (Siguiendo hora local y ciclo solar regional)</string>
 
     <string name="jelly_wallpaper_preset_title">Estilo de física</string>
     <string name="jelly_wallpaper_preset_jelly">Gelatina clásica (Suave y elástica)</string>
@@ -229,14 +250,14 @@
     <string name="jelly_wallpaper_damping_summary">Determina el tiempo que tardan las oscilaciones en detenerse</string>
     <string name="jelly_wallpaper_radius_title">Radio de influencia táctil</string>
     <string name="jelly_wallpaper_radius_summary">Radio del área deformada alrededor del dedo</string>
-    <string name="jelly_wallpaper_elasticity_title">Fuerza de elasticidad táctil</string>
-    <string name="jelly_wallpaper_elasticity_summary">Nivel de estiramiento y deformación del fondo al arrastrar con los dedos</string>
+    <string name="jelly_wallpaper_elasticity_title">Elasticidad de estiramiento</string>
+    <string name="jelly_wallpaper_elasticity_summary">Controla la proporción y recorrido con la que se estira la pantalla al arrastrar el dedo</string>
     <string name="jelly_wallpaper_snapback_recoil_title">Fuerza de retroceso al soltar</string>
     <string name="jelly_wallpaper_snapback_recoil_summary">Aceleración y potencia del latigazo de retorno al liberar el fondo</string>
     <string name="jelly_wallpaper_internal_tension_title">Cohesión interna de membrana</string>
     <string name="jelly_wallpaper_internal_tension_summary">Tensión de unión entre nodos: deformación localizada vs arrastre armónico continuo</string>
-    <string name="jelly_wallpaper_max_stretch_title">Límite máximo de elongación</string>
-    <string name="jelly_wallpaper_max_stretch_summary">Amplitud máxima permitida antes de alcanzar la resistencia elástica límite</string>
+    <string name="jelly_wallpaper_max_stretch_title">Distancia máxima de estiramiento</string>
+    <string name="jelly_wallpaper_max_stretch_summary">Límite máximo de longitud que se puede estirar la superficie elástica</string>
     <string name="jelly_wallpaper_surface_mass_title">Inercia y masa superficial</string>
     <string name="jelly_wallpaper_surface_mass_summary">Peso físico del material: respuesta liviana y ágil vs densa y pesada</string>
     <string name="jelly_wallpaper_wave_speed_title">Velocidad de ondas elásticas</string>
@@ -257,8 +278,41 @@
 
     <string name="jelly_wallpaper_light_title">Foco de luz y reflejo en el borde</string>
     <string name="jelly_wallpaper_light_summary">Proyecta un reflejo y brillo especular dinámico desde el contorno de la pantalla</string>
+    <string name="jelly_wallpaper_light_mode_title">Preset de iluminación y reflejo</string>
+    <string name="jelly_wallpaper_light_mode_summary">%s</string>
+    <string name="jelly_wallpaper_light_mode_crystal">Cristal Diamante Puro (Blanco 3D nítido)</string>
+    <string name="jelly_wallpaper_light_mode_solar">Destello Solar Dorado (Rayos solares cálidos)</string>
+    <string name="jelly_wallpaper_light_mode_hybrid">Híbrido Luxe (Foco solar + Reflejo 3D)</string>
+    <string name="jelly_wallpaper_light_mode_iridescent">Prisma Holográfico (Iridiscencia arcoíris)</string>
+    <string name="jelly_wallpaper_light_mode_cyberpunk">Neón Cyberpunk (Cian y Magenta bipolar)</string>
+    <string name="jelly_wallpaper_light_mode_aurora">Aurora Boreal Esmeralda (Resplandor místico)</string>
+    <string name="jelly_wallpaper_light_mode_touch">Seguidor Táctil Linterna (Foco bajo el dedo)</string>
+    <string name="jelly_wallpaper_light_mode_breathing">Pulso Respiratorio Orgánico (Latido armónico)</string>
+
+    <string-array name="jelly_wallpaper_light_mode_entries">
+        <item>@string/jelly_wallpaper_light_mode_hybrid</item>
+        <item>@string/jelly_wallpaper_light_mode_crystal</item>
+        <item>@string/jelly_wallpaper_light_mode_solar</item>
+        <item>@string/jelly_wallpaper_light_mode_iridescent</item>
+        <item>@string/jelly_wallpaper_light_mode_cyberpunk</item>
+        <item>@string/jelly_wallpaper_light_mode_aurora</item>
+        <item>@string/jelly_wallpaper_light_mode_touch</item>
+        <item>@string/jelly_wallpaper_light_mode_breathing</item>
+    </string-array>
+    <string name="jelly_wallpaper_light_solar_tracking_title">Seguir posición solar en tiempo real</string>
+    <string name="jelly_wallpaper_light_solar_tracking_summary">Sigue la hora local para ubicar el foco de luz y adaptar la temperatura circadiana (amanecer, cenit, atardecer y luna)</string>
+    <string name="jelly_wallpaper_light_specular_column_title">Columna de reflejo solar (Sun Glitter)</string>
+    <string name="jelly_wallpaper_light_specular_column_summary">Proyecta una columna vertical de destellos centelleantes sobre las ondas como el reflejo del sol en el océano</string>
+    <string name="jelly_wallpaper_light_gyro_parallax_title">Perspectiva 3D con giroscopio</string>
+    <string name="jelly_wallpaper_light_gyro_parallax_summary">Desplaza el ángulo de reflexión especular al inclinar físicamente el dispositivo</string>
+    <string name="jelly_wallpaper_light_beam_spread_title">Apertura y dispersión del haz</string>
+    <string name="jelly_wallpaper_light_beam_spread_summary">Ancho de la columna de reflejo y apertura del cono de luz sobre el fondo</string>
     <string name="jelly_wallpaper_light_intensity_title">Intensidad del reflejo de luz</string>
     <string name="jelly_wallpaper_light_intensity_summary">Brillo y resplandor del reflejo solar sobre la imagen</string>
+    <string name="jelly_wallpaper_light_hardness_title">Pulido de superficie y nitidez especular</string>
+    <string name="jelly_wallpaper_light_hardness_summary">Reflejo mate satinado vs acabado espejo ultra nítido</string>
+    <string name="jelly_wallpaper_light_shimmer_speed_title">Velocidad de ondulación del destello</string>
+    <string name="jelly_wallpaper_light_shimmer_speed_summary">Velocidad de las microondas y destellos de luz sobre la superficie</string>
     <string name="jelly_wallpaper_light_main_switch_title">Usar foco de luz en el borde</string>
     <string name="jelly_wallpaper_light_top_intro">Proyecta un punto de foco de luz y brillo especular dinámico en el borde de la pantalla según el ángulo seleccionado (0° - 360°).</string>
     <string name="jelly_wallpaper_light_footer">El punto de foco de luz se ubica en el contorno de la pantalla según los grados elegidos y genera reflejos brillantes en tiempo real sobre el fondo.</string>
@@ -316,4 +370,67 @@
     <!-- Touch Response Boost (500 Hz) -->
     <string name="touch_boost_title">Frecuencia táctil de 500 Hz (Touch Boost)</string>
     <string name="touch_boost_summary">Aumenta la tasa de muestreo táctil de 120 Hz a 500 Hz para una respuesta instantánea y menor latencia</string>
+
+    <!-- Super Mario 64 Red Coins Notification Sound Sequence -->
+    <string name="sm64_coins_category_title">Sonido secuencial de monedas SM64</string>
+    <string name="sm64_red_coins_sound_title">Monedas rojas en notificaciones</string>
+    <string name="sm64_red_coins_sound_summary">Reproduce la escala musical de las 8 monedas rojas de Super Mario 64 con cada notificación</string>
+    <string name="sm64_red_coins_mode_title">Modo de secuencia</string>
+    <string name="sm64_red_coins_mode_continuous">Progresión continua (Siempre del 1 al 8)</string>
+    <string name="sm64_red_coins_mode_burst">Ráfaga rápida (Solo mensajes seguidos)</string>
+
+    <string-array name="sm64_red_coins_mode_entries">
+        <item>@string/sm64_red_coins_mode_continuous</item>
+        <item>@string/sm64_red_coins_mode_burst</item>
+    </string-array>
+    <string-array name="sm64_red_coins_mode_values" translatable="false">
+        <item>0</item>
+        <item>1</item>
+    </string-array>
+
+    <string name="sm64_red_coins_timeout_title">Tiempo de espera para ráfaga</string>
+    <string name="sm64_red_coins_timeout_3s">3 segundos</string>
+    <string name="sm64_red_coins_timeout_5s">5 segundos (Recomendado)</string>
+    <string name="sm64_red_coins_timeout_8s">8 segundos</string>
+
+    <string-array name="sm64_red_coins_timeout_entries">
+        <item>@string/sm64_red_coins_timeout_3s</item>
+        <item>@string/sm64_red_coins_timeout_5s</item>
+        <item>@string/sm64_red_coins_timeout_8s</item>
+    </string-array>
+    <string-array name="sm64_red_coins_timeout_values" translatable="false">
+        <item>3</item>
+        <item>5</item>
+        <item>8</item>
+    </string-array>
+
+    <string name="custom_sound_effects_title">Efectos de sonido avanzados</string>
+    <string name="custom_sound_effects_summary">Secuencia de monedas rojas SM64, sonidos personalizados de encendido y apagado</string>
+    <string name="power_sounds_category_title">Sonidos de energía y sistema</string>
+    <string name="boot_sound_title">Sonido de encendido</string>
+    <string name="boot_sound_summary">Reproduce un sonido personalizado al finalizar el inicio del dispositivo</string>
+    <string name="boot_sound_select_title">Seleccionar sonido de encendido</string>
+    <string name="shutdown_sound_title">Sonido de apagado</string>
+    <string name="shutdown_sound_summary">Reproduce un sonido personalizado al apagar el dispositivo</string>
+    <string name="shutdown_sound_select_title">Seleccionar sonido de apagado</string>
+    <string name="custom_sound_none">Ninguno (Seleccionar sonido)</string>
+
+    <!-- SM64 Red Coins Individual Tracks & Reset (Spanish) -->
+    <string name="sm64_coins_tracks_category_title">Notas activas de la secuencia</string>
+    <string name="sm64_coin_1_title">Moneda 1 (Nota Do)</string>
+    <string name="sm64_coin_2_title">Moneda 2 (Nota Re)</string>
+    <string name="sm64_coin_3_title">Moneda 3 (Nota Mi)</string>
+    <string name="sm64_coin_4_title">Moneda 4 (Nota Fa)</string>
+    <string name="sm64_coin_5_title">Moneda 5 (Nota Sol)</string>
+    <string name="sm64_coin_6_title">Moneda 6 (Nota La)</string>
+    <string name="sm64_coin_7_title">Moneda 7 (Nota Si)</string>
+    <string name="sm64_coin_8_title">Moneda 8 (Nota Do agudo)</string>
+
+    <string name="sm64_coins_reset_title">Restablecer secuencia de monedas</string>
+    <string name="sm64_coins_reset_summary">Restaura las 8 notas y la configuración predeterminada</string>
+    <string name="sm64_coins_reset_toast">Secuencia de monedas restablecida</string>
+
+    <string name="power_sounds_reset_title">Restablecer sonidos de encendido y apagado</string>
+    <string name="power_sounds_reset_summary">Desactiva y borra los audios seleccionados</string>
+    <string name="power_sounds_reset_toast">Sonidos de encendido y apagado restablecidos</string>
 </resources>

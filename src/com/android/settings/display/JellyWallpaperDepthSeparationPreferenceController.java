@@ -70,7 +70,8 @@ public class JellyWallpaperDepthSeparationPreferenceController extends SliderPre
 
     @Override
     public CharSequence getSummary() {
-        return getSliderPosition() + "%";
+        return mContext.getString(com.android.settings.R.string.jelly_wallpaper_depth_separation_summary)
+                + " • " + getSliderPosition() + "%";
     }
 
     @Override
@@ -82,7 +83,7 @@ public class JellyWallpaperDepthSeparationPreferenceController extends SliderPre
     public boolean setSliderPosition(int position) {
         Settings.System.putInt(mContext.getContentResolver(), SETTING_KEY, position);
         if (mPreference != null) {
-            mPreference.setSummary(position + "%");
+            mPreference.setSummary(getSummary());
         }
         return true;
     }

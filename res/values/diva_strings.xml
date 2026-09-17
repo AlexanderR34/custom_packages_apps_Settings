@@ -146,6 +146,26 @@
     <string name="jelly_wallpaper_ripple_summary">Emit an elastic wave from the fingerprint sensor or unlock origin</string>
     <string name="jelly_wallpaper_ripple_strength_title">Unlock ripple strength</string>
     <string name="jelly_wallpaper_ripple_strength_summary">Force and amplitude of the elastic wave from fingerprint unlock</string>
+    <string name="jelly_wallpaper_water_ripple_title">Water ripple effect</string>
+    <string name="jelly_wallpaper_water_ripple_summary">Emit an expanding circular water wave in all directions from tap or drop points</string>
+    <string name="jelly_wallpaper_water_ripple_mode_title">Trigger method</string>
+    <string name="jelly_wallpaper_water_ripple_mode_tap">Tap screen only</string>
+    <string name="jelly_wallpaper_water_ripple_mode_swipe">Swipe / Drag finger</string>
+    <string name="jelly_wallpaper_water_ripple_mode_both">Tap and Swipe</string>
+
+    <string-array name="jelly_wallpaper_water_ripple_mode_entries">
+        <item>@string/jelly_wallpaper_water_ripple_mode_tap</item>
+        <item>@string/jelly_wallpaper_water_ripple_mode_swipe</item>
+        <item>@string/jelly_wallpaper_water_ripple_mode_both</item>
+    </string-array>
+    <string-array name="jelly_wallpaper_water_ripple_mode_values" translatable="false">
+        <item>0</item>
+        <item>1</item>
+        <item>2</item>
+    </string-array>
+
+    <string name="jelly_wallpaper_water_ripple_strength_title">Water ripple strength</string>
+    <string name="jelly_wallpaper_water_ripple_strength_summary">Force and propagation amplitude of the expanding water wave</string>
     <string name="jelly_wallpaper_ambient_occlusion_title">Depth shadow &amp; ambient occlusion</string>
     <string name="jelly_wallpaper_ambient_occlusion_summary">Project subtle shadows in compressed creases and depressions</string>
     <string name="jelly_wallpaper_ambient_occlusion_intensity_title">Depth shadow intensity</string>
@@ -195,6 +215,7 @@
     <string name="jelly_wallpaper_light_source_summary">Cast dynamic specular sheen and edge light reflection from the screen border</string>
     <string name="jelly_wallpaper_light_angle_title">Light focus angle</string>
     <string name="jelly_wallpaper_light_angle_summary">Position the light source around the perimeter (0° - 360°)</string>
+    <string name="jelly_wallpaper_light_angle_auto_summary">Automatic (Following local solar &amp; regional cycle)</string>
 
     <string name="jelly_wallpaper_preset_title">Physics style</string>
     <string name="jelly_wallpaper_preset_jelly">Classic jelly (Soft &amp; bouncy)</string>
@@ -237,14 +258,14 @@
     <string name="jelly_wallpaper_damping_summary">Controls how long oscillations continue before settling</string>
     <string name="jelly_wallpaper_radius_title">Touch influence area</string>
     <string name="jelly_wallpaper_radius_summary">Radius of surface deformation around finger</string>
-    <string name="jelly_wallpaper_elasticity_title">Touch drag elasticity</string>
-    <string name="jelly_wallpaper_elasticity_summary">How deeply the surface yields and follows fingertip dragging</string>
+    <string name="jelly_wallpaper_elasticity_title">Touch stretch elasticity</string>
+    <string name="jelly_wallpaper_elasticity_summary">Controls the proportion and depth the wallpaper stretches when dragged</string>
     <string name="jelly_wallpaper_snapback_recoil_title">Snap-back recoil force</string>
     <string name="jelly_wallpaper_snapback_recoil_summary">Acceleration and punch of the release snap-back impulse</string>
     <string name="jelly_wallpaper_internal_tension_title">Internal grid cohesion</string>
     <string name="jelly_wallpaper_internal_tension_summary">Inter-node tension: isolated local stretch vs whole-screen harmonic drag</string>
-    <string name="jelly_wallpaper_max_stretch_title">Maximum stretch limit</string>
-    <string name="jelly_wallpaper_max_stretch_summary">Upper bound of allowable displacement before structural resistance locks in</string>
+    <string name="jelly_wallpaper_max_stretch_title">Maximum stretch distance</string>
+    <string name="jelly_wallpaper_max_stretch_summary">Upper limit of how far the elastic surface can be stretched</string>
     <string name="jelly_wallpaper_surface_mass_title">Surface mass &amp; inertia</string>
     <string name="jelly_wallpaper_surface_mass_summary">Physical weight of the material: feather-light agility vs heavy viscous momentum</string>
     <string name="jelly_wallpaper_wave_speed_title">Elastic wave speed</string>
@@ -265,8 +286,53 @@
 
     <string name="jelly_wallpaper_light_title">Edge light focus reflection</string>
     <string name="jelly_wallpaper_light_summary">Cast dynamic specular sheen and edge light reflection from the screen border</string>
+    <string name="jelly_wallpaper_light_mode_title">Lighting preset</string>
+    <string name="jelly_wallpaper_light_mode_summary">%s</string>
+    <string name="jelly_wallpaper_light_mode_crystal">Pure Crystal Specular (Clean White 3D)</string>
+    <string name="jelly_wallpaper_light_mode_solar">Golden Sunset Flare (Warm Solar Rays)</string>
+    <string name="jelly_wallpaper_light_mode_hybrid">Hybrid Luxe (Border Spotlight &amp; 3D Specular)</string>
+    <string name="jelly_wallpaper_light_mode_iridescent">Prismatic Hologram (Rainbow Spectral Sheen)</string>
+    <string name="jelly_wallpaper_light_mode_cyberpunk">Cyberpunk Neon (Cyan &amp; Magenta Sheen)</string>
+    <string name="jelly_wallpaper_light_mode_aurora">Emerald Aurora (Bioluminescent Glow)</string>
+    <string name="jelly_wallpaper_light_mode_touch">Touch Follower Beam (Interactive Finger Spotlight)</string>
+    <string name="jelly_wallpaper_light_mode_breathing">Organic Breathing Pulse (Harmonic Light Pulse)</string>
+
+    <string-array name="jelly_wallpaper_light_mode_entries">
+        <item>@string/jelly_wallpaper_light_mode_hybrid</item>
+        <item>@string/jelly_wallpaper_light_mode_crystal</item>
+        <item>@string/jelly_wallpaper_light_mode_solar</item>
+        <item>@string/jelly_wallpaper_light_mode_iridescent</item>
+        <item>@string/jelly_wallpaper_light_mode_cyberpunk</item>
+        <item>@string/jelly_wallpaper_light_mode_aurora</item>
+        <item>@string/jelly_wallpaper_light_mode_touch</item>
+        <item>@string/jelly_wallpaper_light_mode_breathing</item>
+    </string-array>
+
+    <string-array name="jelly_wallpaper_light_mode_values" translatable="false">
+        <item>2</item>
+        <item>0</item>
+        <item>1</item>
+        <item>3</item>
+        <item>4</item>
+        <item>5</item>
+        <item>6</item>
+        <item>7</item>
+    </string-array>
+
+    <string name="jelly_wallpaper_light_solar_tracking_title">Real-time solar tracking</string>
+    <string name="jelly_wallpaper_light_solar_tracking_summary">Follow local time to position the light source and adapt circadian color temperature (sunrise, noon, sunset, moonlight)</string>
+    <string name="jelly_wallpaper_light_specular_column_title">Solar reflection glitter column</string>
+    <string name="jelly_wallpaper_light_specular_column_summary">Project an oceanic vertical shimmering glitter path down across the elastic ripples</string>
+    <string name="jelly_wallpaper_light_gyro_parallax_title">3D gyroscope reflection tilt</string>
+    <string name="jelly_wallpaper_light_gyro_parallax_summary">Shift specular reflection angle in real-time when physically tilting the phone</string>
+    <string name="jelly_wallpaper_light_beam_spread_title">Light beam spread &amp; aperture</string>
+    <string name="jelly_wallpaper_light_beam_spread_summary">Width of the solar reflection column and spotlight cone coverage</string>
     <string name="jelly_wallpaper_light_intensity_title">Light reflection intensity</string>
     <string name="jelly_wallpaper_light_intensity_summary">Brightness and glow of the solar specular sheen across the image</string>
+    <string name="jelly_wallpaper_light_hardness_title">Surface polish &amp; specular sharpness</string>
+    <string name="jelly_wallpaper_light_hardness_summary">Matte satin reflection vs ultra-sharp mirror polish</string>
+    <string name="jelly_wallpaper_light_shimmer_speed_title">Ocean glitter wave speed</string>
+    <string name="jelly_wallpaper_light_shimmer_speed_summary">Speed of the shimmering surface waves and glittering reflection ripples</string>
     <string name="jelly_wallpaper_light_main_switch_title">Use edge light reflection</string>
     <string name="jelly_wallpaper_light_top_intro">Projects a dynamic light focus point and specular sheen along the screen edge at any chosen angle (0° - 360°).</string>
     <string name="jelly_wallpaper_light_footer">The light origin sits along the screen border at the selected degree angle and reflects glistening specular highlights across the wallpaper mesh.</string>
@@ -324,4 +390,67 @@
     <!-- Touch Response Boost (500 Hz) -->
     <string name="touch_boost_title">High Touch Sampling Rate (500 Hz)</string>
     <string name="touch_boost_summary">Boosts touch polling rate from 120 Hz to 500 Hz to minimize tap latency</string>
+
+    <!-- Super Mario 64 Red Coins Notification Sound Sequence -->
+    <string name="sm64_coins_category_title">SM64 Red Coins Notification Sound Sequence</string>
+    <string name="sm64_red_coins_sound_title">Red Coins on Notifications</string>
+    <string name="sm64_red_coins_sound_summary">Plays the 8-note musical scale of Super Mario 64 Red Coins sequentially with incoming notifications</string>
+    <string name="sm64_red_coins_mode_title">Sequence Mode</string>
+    <string name="sm64_red_coins_mode_continuous">Continuous Progression (Always 1 through 8)</string>
+    <string name="sm64_red_coins_mode_burst">Rapid Burst (Consecutive messages only)</string>
+
+    <string-array name="sm64_red_coins_mode_entries">
+        <item>@string/sm64_red_coins_mode_continuous</item>
+        <item>@string/sm64_red_coins_mode_burst</item>
+    </string-array>
+    <string-array name="sm64_red_coins_mode_values" translatable="false">
+        <item>0</item>
+        <item>1</item>
+    </string-array>
+
+    <string name="sm64_red_coins_timeout_title">Burst Timeout</string>
+    <string name="sm64_red_coins_timeout_3s">3 seconds</string>
+    <string name="sm64_red_coins_timeout_5s">5 seconds (Recommended)</string>
+    <string name="sm64_red_coins_timeout_8s">8 seconds</string>
+
+    <string-array name="sm64_red_coins_timeout_entries">
+        <item>@string/sm64_red_coins_timeout_3s</item>
+        <item>@string/sm64_red_coins_timeout_5s</item>
+        <item>@string/sm64_red_coins_timeout_8s</item>
+    </string-array>
+    <string-array name="sm64_red_coins_timeout_values" translatable="false">
+        <item>3</item>
+        <item>5</item>
+        <item>8</item>
+    </string-array>
+
+    <string name="custom_sound_effects_title">Advanced sound effects</string>
+    <string name="custom_sound_effects_summary">Super Mario 64 red coins sequence, custom boot and shutdown sounds</string>
+    <string name="power_sounds_category_title">Power &amp; system sounds</string>
+    <string name="boot_sound_title">Device startup sound</string>
+    <string name="boot_sound_summary">Play a custom sound when the device finishes booting</string>
+    <string name="boot_sound_select_title">Choose startup sound</string>
+    <string name="shutdown_sound_title">Device shutdown sound</string>
+    <string name="shutdown_sound_summary">Play a custom sound when turning off the device</string>
+    <string name="shutdown_sound_select_title">Choose shutdown sound</string>
+    <string name="custom_sound_none">None (Select sound)</string>
+
+    <!-- SM64 Red Coins Individual Tracks & Reset -->
+    <string name="sm64_coins_tracks_category_title">Active sequence notes</string>
+    <string name="sm64_coin_1_title">Coin 1 (Note C / Do)</string>
+    <string name="sm64_coin_2_title">Coin 2 (Note D / Re)</string>
+    <string name="sm64_coin_3_title">Coin 3 (Note E / Mi)</string>
+    <string name="sm64_coin_4_title">Coin 4 (Note F / Fa)</string>
+    <string name="sm64_coin_5_title">Coin 5 (Note G / Sol)</string>
+    <string name="sm64_coin_6_title">Coin 6 (Note A / La)</string>
+    <string name="sm64_coin_7_title">Coin 7 (Note B / Si)</string>
+    <string name="sm64_coin_8_title">Coin 8 (Note High C / Do 2)</string>
+
+    <string name="sm64_coins_reset_title">Reset coin sequence</string>
+    <string name="sm64_coins_reset_summary">Restore all 8 notes and default sequence settings</string>
+    <string name="sm64_coins_reset_toast">Coin sequence reset to default</string>
+
+    <string name="power_sounds_reset_title">Reset startup &amp; shutdown sounds</string>
+    <string name="power_sounds_reset_summary">Disable and clear selected audio</string>
+    <string name="power_sounds_reset_toast">Power sounds reset to default</string>
 </resources>

@@ -119,6 +119,30 @@
         settings:controller="com.android.settings.display.JellyWallpaperHapticsIntensityPreferenceController"/>
 
     <SwitchPreference
+        android:key="jelly_wallpaper_water_ripple"
+        android:title="@string/jelly_wallpaper_water_ripple_title"
+        android:summary="@string/jelly_wallpaper_water_ripple_summary"
+        android:defaultValue="false"
+        settings:controller="com.android.settings.display.JellyWallpaperWaterRipplePreferenceController"/>
+
+    <ListPreference
+        android:key="jelly_wallpaper_water_ripple_mode"
+        android:title="@string/jelly_wallpaper_water_ripple_mode_title"
+        android:summary="%s"
+        android:entries="@array/jelly_wallpaper_water_ripple_mode_entries"
+        android:entryValues="@array/jelly_wallpaper_water_ripple_mode_values"
+        android:defaultValue="2"
+        android:dependency="jelly_wallpaper_water_ripple"
+        settings:controller="com.android.settings.display.JellyWallpaperWaterRippleModePreferenceController"/>
+
+    <com.android.settingslib.widget.SliderPreference
+        android:key="jelly_wallpaper_water_ripple_strength"
+        android:title="@string/jelly_wallpaper_water_ripple_strength_title"
+        android:summary="@string/jelly_wallpaper_water_ripple_strength_summary"
+        android:dependency="jelly_wallpaper_water_ripple"
+        settings:controller="com.android.settings.display.JellyWallpaperWaterRippleStrengthPreferenceController"/>
+
+    <SwitchPreference
         android:key="jelly_wallpaper_tap_shockwave"
         android:title="@string/jelly_wallpaper_tap_shockwave_title"
         android:summary="@string/jelly_wallpaper_tap_shockwave_summary"
@@ -193,6 +217,18 @@
         settings:allowDividerAbove="true"
         settings:controller="com.android.settings.display.JellyWallpaperPresetPreferenceController"/>
 
+    <com.android.settingslib.widget.SliderPreference
+        android:key="jelly_wallpaper_elasticity"
+        android:title="@string/jelly_wallpaper_elasticity_title"
+        android:summary="@string/jelly_wallpaper_elasticity_summary"
+        settings:controller="com.android.settings.display.JellyWallpaperElasticityPreferenceController"/>
+
+    <com.android.settingslib.widget.SliderPreference
+        android:key="jelly_wallpaper_max_stretch"
+        android:title="@string/jelly_wallpaper_max_stretch_title"
+        android:summary="@string/jelly_wallpaper_max_stretch_summary"
+        settings:controller="com.android.settings.display.JellyWallpaperMaxStretchPreferenceController"/>
+
     <PreferenceCategory
         android:key="jelly_wallpaper_physics_category"
         android:title="@string/jelly_wallpaper_physics_category_title">
@@ -216,12 +252,6 @@
             settings:controller="com.android.settings.display.JellyWallpaperRadiusPreferenceController"/>
 
         <com.android.settingslib.widget.SliderPreference
-            android:key="jelly_wallpaper_elasticity"
-            android:title="@string/jelly_wallpaper_elasticity_title"
-            android:summary="@string/jelly_wallpaper_elasticity_summary"
-            settings:controller="com.android.settings.display.JellyWallpaperElasticityPreferenceController"/>
-
-        <com.android.settingslib.widget.SliderPreference
             android:key="jelly_wallpaper_snapback_recoil"
             android:title="@string/jelly_wallpaper_snapback_recoil_title"
             android:summary="@string/jelly_wallpaper_snapback_recoil_summary"
@@ -232,12 +262,6 @@
             android:title="@string/jelly_wallpaper_internal_tension_title"
             android:summary="@string/jelly_wallpaper_internal_tension_summary"
             settings:controller="com.android.settings.display.JellyWallpaperInternalTensionPreferenceController"/>
-
-        <com.android.settingslib.widget.SliderPreference
-            android:key="jelly_wallpaper_max_stretch"
-            android:title="@string/jelly_wallpaper_max_stretch_title"
-            android:summary="@string/jelly_wallpaper_max_stretch_summary"
-            settings:controller="com.android.settings.display.JellyWallpaperMaxStretchPreferenceController"/>
 
         <com.android.settingslib.widget.SliderPreference
             android:key="jelly_wallpaper_surface_mass"
@@ -264,12 +288,67 @@
             android:defaultValue="false"
             settings:controller="com.android.settings.display.JellyWallpaperLightSourcePreferenceController"/>
 
+        <ListPreference
+            android:key="jelly_wallpaper_light_mode"
+            android:title="@string/jelly_wallpaper_light_mode_title"
+            android:summary="%s"
+            android:entries="@array/jelly_wallpaper_light_mode_entries"
+            android:entryValues="@array/jelly_wallpaper_light_mode_values"
+            android:defaultValue="2"
+            android:dependency="jelly_wallpaper_light_source"
+            settings:controller="com.android.settings.display.JellyWallpaperLightModePreferenceController"/>
+
+        <SwitchPreference
+            android:key="jelly_wallpaper_light_solar_tracking"
+            android:title="@string/jelly_wallpaper_light_solar_tracking_title"
+            android:summary="@string/jelly_wallpaper_light_solar_tracking_summary"
+            android:defaultValue="false"
+            android:dependency="jelly_wallpaper_light_source"
+            settings:controller="com.android.settings.display.JellyWallpaperLightSolarTrackingPreferenceController"/>
+
+        <SwitchPreference
+            android:key="jelly_wallpaper_light_specular_column"
+            android:title="@string/jelly_wallpaper_light_specular_column_title"
+            android:summary="@string/jelly_wallpaper_light_specular_column_summary"
+            android:defaultValue="true"
+            android:dependency="jelly_wallpaper_light_source"
+            settings:controller="com.android.settings.display.JellyWallpaperLightSpecularColumnPreferenceController"/>
+
+        <SwitchPreference
+            android:key="jelly_wallpaper_light_gyro_parallax"
+            android:title="@string/jelly_wallpaper_light_gyro_parallax_title"
+            android:summary="@string/jelly_wallpaper_light_gyro_parallax_summary"
+            android:defaultValue="true"
+            android:dependency="jelly_wallpaper_light_source"
+            settings:controller="com.android.settings.display.JellyWallpaperLightGyroParallaxPreferenceController"/>
+
+        <com.android.settingslib.widget.SliderPreference
+            android:key="jelly_wallpaper_light_beam_spread"
+            android:title="@string/jelly_wallpaper_light_beam_spread_title"
+            android:summary="@string/jelly_wallpaper_light_beam_spread_summary"
+            android:dependency="jelly_wallpaper_light_source"
+            settings:controller="com.android.settings.display.JellyWallpaperLightBeamSpreadPreferenceController"/>
+
         <com.android.settingslib.widget.SliderPreference
             android:key="jelly_wallpaper_light_intensity"
             android:title="@string/jelly_wallpaper_light_intensity_title"
             android:summary="@string/jelly_wallpaper_light_intensity_summary"
             android:dependency="jelly_wallpaper_light_source"
             settings:controller="com.android.settings.display.JellyWallpaperLightIntensityPreferenceController"/>
+
+        <com.android.settingslib.widget.SliderPreference
+            android:key="jelly_wallpaper_light_hardness"
+            android:title="@string/jelly_wallpaper_light_hardness_title"
+            android:summary="@string/jelly_wallpaper_light_hardness_summary"
+            android:dependency="jelly_wallpaper_light_source"
+            settings:controller="com.android.settings.display.JellyWallpaperLightHardnessPreferenceController"/>
+
+        <com.android.settingslib.widget.SliderPreference
+            android:key="jelly_wallpaper_light_shimmer_speed"
+            android:title="@string/jelly_wallpaper_light_shimmer_speed_title"
+            android:summary="@string/jelly_wallpaper_light_shimmer_speed_summary"
+            android:dependency="jelly_wallpaper_light_source"
+            settings:controller="com.android.settings.display.JellyWallpaperLightShimmerSpeedPreferenceController"/>
 
         <com.android.settingslib.widget.SliderPreference
             android:key="jelly_wallpaper_light_angle"

@@ -62,7 +62,9 @@ public class JellyWallpaperLightAnglePreferenceController extends SliderPreferen
                 mContext.getContentResolver(), "jelly_wallpaper_enabled", 0) != 0;
         boolean isLightEnabled = Settings.System.getInt(
                 mContext.getContentResolver(), "jelly_wallpaper_light_source_enabled", 0) != 0;
-        preference.setEnabled(isJellyEnabled && isLightEnabled);
+        boolean isSolarTracking = Settings.System.getInt(
+                mContext.getContentResolver(), "jelly_wallpaper_light_solar_tracking", 0) != 0;
+        preference.setEnabled(isJellyEnabled && isLightEnabled && !isSolarTracking);
         if (preference instanceof SliderPreference) {
             preference.setSummary(getSummary());
         }
@@ -70,7 +72,13 @@ public class JellyWallpaperLightAnglePreferenceController extends SliderPreferen
 
     @Override
     public CharSequence getSummary() {
-        return getSliderPosition() + "°";
+        boolean isSolarTracking = Settings.System.getInt(
+                mContext.getContentResolver(), "jelly_wallpaper_light_solar_tracking", 0) != 0;
+        if (isSolarTracking) {
+            return mContext.getString(com.android.settings.R.string.jelly_wallpaper_light_angle_auto_summary);
+        }
+        return mContext.getString(com.android.settings.R.string.jelly_wallpaper_light_angle_summary)
+                + " • " + getSliderPosition() + "°";
     }
 
     @Override
@@ -82,7 +90,7 @@ public class JellyWallpaperLightAnglePreferenceController extends SliderPreferen
     public boolean setSliderPosition(int position) {
         Settings.System.putInt(mContext.getContentResolver(), SETTING_KEY, position);
         if (mPreference != null) {
-            mPreference.setSummary(position + "°");
+            mPreference.setSummary(getSummary());
         }
         return true;
     }

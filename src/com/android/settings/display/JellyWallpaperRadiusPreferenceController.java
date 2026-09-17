@@ -29,7 +29,9 @@ public class JellyWallpaperRadiusPreferenceController extends SliderPreferenceCo
 
     public static final String KEY = "jelly_wallpaper_radius";
     public static final String SETTING_KEY = "jelly_wallpaper_radius";
-    public static final int DEFAULT_VALUE = 38;
+    public static final int DEFAULT_VALUE = 10;
+
+    private SliderPreference mPreference;
 
     public JellyWallpaperRadiusPreferenceController(Context context, String key) {
         super(context, key);
@@ -43,12 +45,13 @@ public class JellyWallpaperRadiusPreferenceController extends SliderPreferenceCo
     @Override
     public void displayPreference(PreferenceScreen screen) {
         super.displayPreference(screen);
-        SliderPreference preference = screen.findPreference(getPreferenceKey());
-        if (preference != null) {
-            preference.setUpdatesContinuously(true);
-            preference.setMin(getMin());
-            preference.setMax(getMax());
-            preference.setHapticFeedbackMode(SliderPreference.HAPTIC_FEEDBACK_MODE_ON_TICKS);
+        mPreference = screen.findPreference(getPreferenceKey());
+        if (mPreference != null) {
+            mPreference.setUpdatesContinuously(true);
+            mPreference.setMin(getMin());
+            mPreference.setMax(getMax());
+            mPreference.setHapticFeedbackMode(SliderPreference.HAPTIC_FEEDBACK_MODE_ON_TICKS);
+            mPreference.setSummary(getSummary());
         }
     }
 
@@ -58,6 +61,15 @@ public class JellyWallpaperRadiusPreferenceController extends SliderPreferenceCo
         boolean isEnabled = Settings.System.getInt(
                 mContext.getContentResolver(), "jelly_wallpaper_enabled", 0) != 0;
         preference.setEnabled(isEnabled);
+        if (preference instanceof SliderPreference) {
+            preference.setSummary(getSummary());
+        }
+    }
+
+    @Override
+    public CharSequence getSummary() {
+        return mContext.getString(com.android.settings.R.string.jelly_wallpaper_radius_summary)
+                + " • " + getSliderPosition() + "%";
     }
 
     @Override
@@ -70,6 +82,9 @@ public class JellyWallpaperRadiusPreferenceController extends SliderPreferenceCo
         Settings.System.putInt(mContext.getContentResolver(), SETTING_KEY, position);
         // Cuando el usuario mueve manualmente el slider, marcar como Personalizado (8)
         Settings.System.putInt(mContext.getContentResolver(), "jelly_wallpaper_preset", 8);
+        if (mPreference != null) {
+            mPreference.setSummary(getSummary());
+        }
         return true;
     }
 

@@ -70,7 +70,8 @@ public class JellyWallpaperAmbientOcclusionIntensityPreferenceController extends
 
     @Override
     public CharSequence getSummary() {
-        return getSliderPosition() + "%";
+        return mContext.getString(com.android.settings.R.string.jelly_wallpaper_ambient_occlusion_intensity_summary)
+                + " • " + getSliderPosition() + "%";
     }
 
     @Override
@@ -82,7 +83,7 @@ public class JellyWallpaperAmbientOcclusionIntensityPreferenceController extends
     public boolean setSliderPosition(int position) {
         Settings.System.putInt(mContext.getContentResolver(), SETTING_KEY, position);
         if (mPreference != null) {
-            mPreference.setSummary(position + "%");
+            mPreference.setSummary(getSummary());
         }
         return true;
     }
