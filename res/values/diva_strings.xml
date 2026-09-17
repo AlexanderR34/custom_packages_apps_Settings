@@ -446,6 +446,10 @@
     <string name="sm64_coin_7_title">Coin 7 (Note B / Si)</string>
     <string name="sm64_coin_8_title">Coin 8 (Note High C / Do 2)</string>
 
+    <string name="sm64_coin_default_sound">Default (SM64 Red Coin)</string>
+    <string name="sm64_coin_disabled_sound">Disabled in sequence</string>
+    <string name="sm64_coin_disabled_tag">Disabled</string>
+
     <string name="sm64_coins_reset_title">Reset coin sequence</string>
     <string name="sm64_coins_reset_summary">Restore all 8 notes and default sequence settings</string>
     <string name="sm64_coins_reset_toast">Coin sequence reset to default</string>

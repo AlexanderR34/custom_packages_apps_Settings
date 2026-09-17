@@ -426,6 +426,10 @@
     <string name="sm64_coin_7_title">Moneda 7 (Nota Si)</string>
     <string name="sm64_coin_8_title">Moneda 8 (Nota Do agudo)</string>
 
+    <string name="sm64_coin_default_sound">Predeterminado (Moneda Roja SM64)</string>
+    <string name="sm64_coin_disabled_sound">Desactivada en la secuencia</string>
+    <string name="sm64_coin_disabled_tag">Desactivada</string>
+
     <string name="sm64_coins_reset_title">Restablecer secuencia de monedas</string>
     <string name="sm64_coins_reset_summary">Restaura las 8 notas y la configuración predeterminada</string>
     <string name="sm64_coins_reset_toast">Secuencia de monedas restablecida</string>

@@ -58,61 +58,45 @@
         android:key="sm64_coins_tracks_category"
         android:title="@string/sm64_coins_tracks_category_title">
 
-        <SwitchPreferenceCompat
-            android:key="sm64_coin_1_enabled"
+        <com.android.settings.sound.Sm64CoinPreference
+            android:key="sm64_coin_1"
             android:title="@string/sm64_coin_1_title"
-            android:defaultValue="true"
-            android:dependency="sm64_red_coins_sound_enabled"
-            settings:controller="com.android.settings.sound.Sm64CoinTrackPreferenceController"/>
+            android:dependency="sm64_red_coins_sound_enabled"/>
 
-        <SwitchPreferenceCompat
-            android:key="sm64_coin_2_enabled"
+        <com.android.settings.sound.Sm64CoinPreference
+            android:key="sm64_coin_2"
             android:title="@string/sm64_coin_2_title"
-            android:defaultValue="true"
-            android:dependency="sm64_red_coins_sound_enabled"
-            settings:controller="com.android.settings.sound.Sm64CoinTrackPreferenceController"/>
+            android:dependency="sm64_red_coins_sound_enabled"/>
 
-        <SwitchPreferenceCompat
-            android:key="sm64_coin_3_enabled"
+        <com.android.settings.sound.Sm64CoinPreference
+            android:key="sm64_coin_3"
             android:title="@string/sm64_coin_3_title"
-            android:defaultValue="true"
-            android:dependency="sm64_red_coins_sound_enabled"
-            settings:controller="com.android.settings.sound.Sm64CoinTrackPreferenceController"/>
+            android:dependency="sm64_red_coins_sound_enabled"/>
 
-        <SwitchPreferenceCompat
-            android:key="sm64_coin_4_enabled"
+        <com.android.settings.sound.Sm64CoinPreference
+            android:key="sm64_coin_4"
             android:title="@string/sm64_coin_4_title"
-            android:defaultValue="true"
-            android:dependency="sm64_red_coins_sound_enabled"
-            settings:controller="com.android.settings.sound.Sm64CoinTrackPreferenceController"/>
+            android:dependency="sm64_red_coins_sound_enabled"/>
 
-        <SwitchPreferenceCompat
-            android:key="sm64_coin_5_enabled"
+        <com.android.settings.sound.Sm64CoinPreference
+            android:key="sm64_coin_5"
             android:title="@string/sm64_coin_5_title"
-            android:defaultValue="true"
-            android:dependency="sm64_red_coins_sound_enabled"
-            settings:controller="com.android.settings.sound.Sm64CoinTrackPreferenceController"/>
+            android:dependency="sm64_red_coins_sound_enabled"/>
 
-        <SwitchPreferenceCompat
-            android:key="sm64_coin_6_enabled"
+        <com.android.settings.sound.Sm64CoinPreference
+            android:key="sm64_coin_6"
             android:title="@string/sm64_coin_6_title"
-            android:defaultValue="true"
-            android:dependency="sm64_red_coins_sound_enabled"
-            settings:controller="com.android.settings.sound.Sm64CoinTrackPreferenceController"/>
+            android:dependency="sm64_red_coins_sound_enabled"/>
 
-        <SwitchPreferenceCompat
-            android:key="sm64_coin_7_enabled"
+        <com.android.settings.sound.Sm64CoinPreference
+            android:key="sm64_coin_7"
             android:title="@string/sm64_coin_7_title"
-            android:defaultValue="true"
-            android:dependency="sm64_red_coins_sound_enabled"
-            settings:controller="com.android.settings.sound.Sm64CoinTrackPreferenceController"/>
+            android:dependency="sm64_red_coins_sound_enabled"/>
 
-        <SwitchPreferenceCompat
-            android:key="sm64_coin_8_enabled"
+        <com.android.settings.sound.Sm64CoinPreference
+            android:key="sm64_coin_8"
             android:title="@string/sm64_coin_8_title"
-            android:defaultValue="true"
-            android:dependency="sm64_red_coins_sound_enabled"
-            settings:controller="com.android.settings.sound.Sm64CoinTrackPreferenceController"/>
+            android:dependency="sm64_red_coins_sound_enabled"/>
 
         <Preference
             android:key="sm64_coins_reset"

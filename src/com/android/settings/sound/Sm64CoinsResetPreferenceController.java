@@ -49,6 +49,7 @@ public class Sm64CoinsResetPreferenceController extends BasePreferenceController
             Settings.System.putInt(mContext.getContentResolver(), "sm64_red_coins_burst_timeout", 5);
             for (int i = 1; i <= 8; i++) {
                 Settings.System.putInt(mContext.getContentResolver(), "sm64_coin_" + i + "_enabled", 1);
+                Settings.System.putString(mContext.getContentResolver(), "sm64_coin_" + i + "_uri", "");
             }
             Toast.makeText(mContext, R.string.sm64_coins_reset_toast, Toast.LENGTH_SHORT).show();
 
@@ -67,8 +68,12 @@ public class Sm64CoinsResetPreferenceController extends BasePreferenceController
                     lp.setSummary(lp.getEntry());
                 }
                 for (int i = 1; i <= 8; i++) {
-                    Preference coinPref = screen.findPreference("sm64_coin_" + i + "_enabled");
-                    if (coinPref instanceof TwoStatePreference) {
+                    Preference coinPref = screen.findPreference("sm64_coin_" + i);
+                    if (coinPref instanceof Sm64CoinPreference) {
+                        Sm64CoinPreference cp = (Sm64CoinPreference) coinPref;
+                        cp.setChecked(true);
+                        cp.updateSummary();
+                    } else if (coinPref instanceof TwoStatePreference) {
                         ((TwoStatePreference) coinPref).setChecked(true);
                     }
                 }
