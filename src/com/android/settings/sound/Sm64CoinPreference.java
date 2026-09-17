@@ -27,19 +27,19 @@ import android.util.AttributeSet;
 import android.view.View;
 import android.widget.CompoundButton;
 
-import androidx.appcompat.widget.SwitchCompat;
 import androidx.preference.PreferenceViewHolder;
 
 import com.android.settings.R;
 
 public class Sm64CoinPreference extends SystemCustomSoundPreference {
 
-    private SwitchCompat mSwitch;
+    private CompoundButton mSwitch;
     private boolean mChecked = true;
 
     public Sm64CoinPreference(Context context, AttributeSet attrs) {
         super(context, attrs);
-        setWidgetLayoutResource(com.android.settingslib.R.layout.preference_widget_primary_switch);
+        setLayoutResource(com.android.settingslib.widget.preference.twotarget.R.layout.preference_two_target);
+        setWidgetLayoutResource(androidx.preference.R.layout.preference_widget_switch_compat);
     }
 
     @Override
@@ -121,22 +121,42 @@ public class Sm64CoinPreference extends SystemCustomSoundPreference {
     @Override
     public void onBindViewHolder(PreferenceViewHolder holder) {
         super.onBindViewHolder(holder);
-        View switchView = holder.findViewById(android.R.id.switch_widget);
+        View widgetFrame = holder.findViewById(android.R.id.widget_frame);
+        View switchView = holder.findViewById(com.android.settingslib.widget.theme.R.id.switchWidget);
+        if (switchView == null) {
+            switchView = holder.findViewById(androidx.preference.R.id.switchWidget);
+        }
         if (switchView == null) {
             switchView = holder.findViewById(com.android.settingslib.R.id.switchWidget);
         }
+        if (switchView == null) {
+            switchView = holder.findViewById(android.R.id.switch_widget);
+        }
 
-        if (switchView instanceof SwitchCompat) {
-            mSwitch = (SwitchCompat) switchView;
+        if (switchView instanceof CompoundButton) {
+            mSwitch = (CompoundButton) switchView;
             mSwitch.setOnCheckedChangeListener(null);
             mChecked = isChecked();
             mSwitch.setChecked(mChecked);
+            mSwitch.setContentDescription(getTitle());
+            mSwitch.setClickable(true);
+            mSwitch.setFocusable(true);
             mSwitch.setOnClickListener(v -> {
                 boolean newChecked = mSwitch.isChecked();
                 setChecked(newChecked);
             });
             mSwitch.setOnCheckedChangeListener((buttonView, isChecked) -> {
                 setChecked(isChecked);
+            });
+        }
+
+        if (widgetFrame != null) {
+            widgetFrame.setOnClickListener(v -> {
+                if (mSwitch != null) {
+                    mSwitch.toggle();
+                } else {
+                    setChecked(!isChecked());
+                }
             });
         }
     }
