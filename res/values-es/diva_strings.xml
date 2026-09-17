@@ -299,6 +299,16 @@
         <item>@string/jelly_wallpaper_light_mode_touch</item>
         <item>@string/jelly_wallpaper_light_mode_breathing</item>
     </string-array>
+    <string-array name="jelly_wallpaper_light_mode_values" translatable="false">
+        <item>0</item>
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+        <item>5</item>
+        <item>6</item>
+        <item>7</item>
+    </string-array>
     <string name="jelly_wallpaper_light_solar_tracking_title">Seguir posición solar en tiempo real</string>
     <string name="jelly_wallpaper_light_solar_tracking_summary">Sigue la hora local para ubicar el foco de luz y adaptar la temperatura circadiana (amanecer, cenit, atardecer y luna)</string>
     <string name="jelly_wallpaper_light_specular_column_title">Columna de reflejo solar (Sun Glitter)</string>

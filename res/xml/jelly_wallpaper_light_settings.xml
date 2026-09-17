@@ -29,20 +29,80 @@
         android:title="@string/jelly_wallpaper_light_main_switch_title"
         settings:controller="com.android.settings.display.JellyWallpaperLightMainSwitchPreferenceController"/>
 
-    <ListPreference
-        android:key="jelly_wallpaper_light_mode"
-        android:title="@string/jelly_wallpaper_target_title"
-        android:summary="%s"
-        android:entries="@array/jelly_wallpaper_mode_entries"
-        android:entryValues="@array/jelly_wallpaper_mode_values"
-        android:defaultValue="2"
-        settings:controller="com.android.settings.display.JellyWallpaperLightModePreferenceController"/>
+    <PreferenceCategory
+        android:key="jelly_wallpaper_light_presets_category"
+        android:title="@string/jelly_wallpaper_presets_category_title">
 
-    <com.android.settingslib.widget.SliderPreference
-        android:key="jelly_wallpaper_light_angle"
-        android:title="@string/jelly_wallpaper_light_angle_title"
-        android:summary="@string/jelly_wallpaper_light_angle_summary"
-        settings:controller="com.android.settings.display.JellyWallpaperLightAnglePreferenceController"/>
+        <ListPreference
+            android:key="jelly_wallpaper_light_mode"
+            android:title="@string/jelly_wallpaper_light_mode_title"
+            android:summary="%s"
+            android:entries="@array/jelly_wallpaper_light_mode_entries"
+            android:entryValues="@array/jelly_wallpaper_light_mode_values"
+            android:defaultValue="0"
+            settings:controller="com.android.settings.display.JellyWallpaperLightModePreferenceController"/>
+    </PreferenceCategory>
+
+    <PreferenceCategory
+        android:key="jelly_wallpaper_light_controls_category"
+        android:title="@string/jelly_wallpaper_sliders_category_title">
+
+        <com.android.settingslib.widget.SliderPreference
+            android:key="jelly_wallpaper_light_intensity"
+            android:title="@string/jelly_wallpaper_light_intensity_title"
+            android:summary="@string/jelly_wallpaper_light_intensity_summary"
+            settings:controller="com.android.settings.display.JellyWallpaperLightIntensityPreferenceController"/>
+
+        <com.android.settingslib.widget.SliderPreference
+            android:key="jelly_wallpaper_light_angle"
+            android:title="@string/jelly_wallpaper_light_angle_title"
+            android:summary="@string/jelly_wallpaper_light_angle_summary"
+            settings:controller="com.android.settings.display.JellyWallpaperLightAnglePreferenceController"/>
+
+        <com.android.settingslib.widget.SliderPreference
+            android:key="jelly_wallpaper_light_beam_spread"
+            android:title="@string/jelly_wallpaper_light_beam_spread_title"
+            android:summary="@string/jelly_wallpaper_light_beam_spread_summary"
+            settings:controller="com.android.settings.display.JellyWallpaperLightBeamSpreadPreferenceController"/>
+
+        <com.android.settingslib.widget.SliderPreference
+            android:key="jelly_wallpaper_light_hardness"
+            android:title="@string/jelly_wallpaper_light_hardness_title"
+            android:summary="@string/jelly_wallpaper_light_hardness_summary"
+            settings:controller="com.android.settings.display.JellyWallpaperLightHardnessPreferenceController"/>
+
+        <com.android.settingslib.widget.SliderPreference
+            android:key="jelly_wallpaper_light_shimmer_speed"
+            android:title="@string/jelly_wallpaper_light_shimmer_speed_title"
+            android:summary="@string/jelly_wallpaper_light_shimmer_speed_summary"
+            settings:controller="com.android.settings.display.JellyWallpaperLightShimmerSpeedPreferenceController"/>
+    </PreferenceCategory>
+
+    <PreferenceCategory
+        android:key="jelly_wallpaper_light_features_category"
+        android:title="@string/jelly_wallpaper_features_category_title">
+
+        <SwitchPreferenceCompat
+            android:key="jelly_wallpaper_light_specular_column"
+            android:title="@string/jelly_wallpaper_light_specular_column_title"
+            android:summary="@string/jelly_wallpaper_light_specular_column_summary"
+            android:defaultValue="true"
+            settings:controller="com.android.settings.display.JellyWallpaperLightSpecularColumnPreferenceController"/>
+
+        <SwitchPreferenceCompat
+            android:key="jelly_wallpaper_light_solar_tracking"
+            android:title="@string/jelly_wallpaper_light_solar_tracking_title"
+            android:summary="@string/jelly_wallpaper_light_solar_tracking_summary"
+            android:defaultValue="false"
+            settings:controller="com.android.settings.display.JellyWallpaperLightSolarTrackingPreferenceController"/>
+
+        <SwitchPreferenceCompat
+            android:key="jelly_wallpaper_light_gyro_parallax"
+            android:title="@string/jelly_wallpaper_light_gyro_parallax_title"
+            android:summary="@string/jelly_wallpaper_light_gyro_parallax_summary"
+            android:defaultValue="true"
+            settings:controller="com.android.settings.display.JellyWallpaperLightGyroParallaxPreferenceController"/>
+    </PreferenceCategory>
 
     <com.android.settingslib.widget.FooterPreference
         android:key="jelly_wallpaper_light_footer"
