@@ -63,29 +63,44 @@ public class JellyWallpaperWaterPresetPreferenceController extends BasePreferenc
 
         if (val == 0) { // Calm Lake
             Settings.System.putInt(mContext.getContentResolver(), "jelly_wallpaper_light_water_waves_intensity", 35);
-            Settings.System.putInt(mContext.getContentResolver(), "jelly_wallpaper_water_wave_size", 70);
+            Settings.System.putInt(mContext.getContentResolver(), "jelly_wallpaper_water_wave_size", 75);
             Settings.System.putInt(mContext.getContentResolver(), "jelly_wallpaper_water_wave_speed", 25);
-            Settings.System.putInt(mContext.getContentResolver(), "jelly_wallpaper_water_glitter_density", 40);
+            Settings.System.putInt(mContext.getContentResolver(), "jelly_wallpaper_water_glitter_density", 30);
         } else if (val == 1) { // Tropical Ocean
             Settings.System.putInt(mContext.getContentResolver(), "jelly_wallpaper_light_water_waves_intensity", 75);
             Settings.System.putInt(mContext.getContentResolver(), "jelly_wallpaper_water_wave_size", 50);
             Settings.System.putInt(mContext.getContentResolver(), "jelly_wallpaper_water_wave_speed", 60);
             Settings.System.putInt(mContext.getContentResolver(), "jelly_wallpaper_water_glitter_density", 75);
-        } else if (val == 2) { // Choppy Surf
+        } else if (val == 2) { // Deep Ocean Swell
             Settings.System.putInt(mContext.getContentResolver(), "jelly_wallpaper_light_water_waves_intensity", 95);
-            Settings.System.putInt(mContext.getContentResolver(), "jelly_wallpaper_water_wave_size", 35);
-            Settings.System.putInt(mContext.getContentResolver(), "jelly_wallpaper_water_wave_speed", 90);
-            Settings.System.putInt(mContext.getContentResolver(), "jelly_wallpaper_water_glitter_density", 85);
-        } else if (val == 3) { // Wind Ripples
-            Settings.System.putInt(mContext.getContentResolver(), "jelly_wallpaper_light_water_waves_intensity", 50);
-            Settings.System.putInt(mContext.getContentResolver(), "jelly_wallpaper_water_wave_size", 20);
-            Settings.System.putInt(mContext.getContentResolver(), "jelly_wallpaper_water_wave_speed", 75);
+            Settings.System.putInt(mContext.getContentResolver(), "jelly_wallpaper_water_wave_size", 65);
+            Settings.System.putInt(mContext.getContentResolver(), "jelly_wallpaper_water_wave_speed", 45);
             Settings.System.putInt(mContext.getContentResolver(), "jelly_wallpaper_water_glitter_density", 60);
-        } else if (val == 4) { // Golden Sunset
+        } else if (val == 3) { // Crystal Pool Caustics
             Settings.System.putInt(mContext.getContentResolver(), "jelly_wallpaper_light_water_waves_intensity", 60);
-            Settings.System.putInt(mContext.getContentResolver(), "jelly_wallpaper_water_wave_size", 60);
+            Settings.System.putInt(mContext.getContentResolver(), "jelly_wallpaper_water_wave_size", 40);
+            Settings.System.putInt(mContext.getContentResolver(), "jelly_wallpaper_water_wave_speed", 50);
+            Settings.System.putInt(mContext.getContentResolver(), "jelly_wallpaper_water_glitter_density", 70);
+        } else if (val == 4) { // Golden Sunset Shoreline & Foam
+            Settings.System.putInt(mContext.getContentResolver(), "jelly_wallpaper_light_water_waves_intensity", 70);
+            Settings.System.putInt(mContext.getContentResolver(), "jelly_wallpaper_water_wave_size", 55);
             Settings.System.putInt(mContext.getContentResolver(), "jelly_wallpaper_water_wave_speed", 40);
-            Settings.System.putInt(mContext.getContentResolver(), "jelly_wallpaper_water_glitter_density", 95);
+            Settings.System.putInt(mContext.getContentResolver(), "jelly_wallpaper_water_glitter_density", 90);
+        } else if (val == 5) { // Underwater God Rays
+            Settings.System.putInt(mContext.getContentResolver(), "jelly_wallpaper_light_water_waves_intensity", 80);
+            Settings.System.putInt(mContext.getContentResolver(), "jelly_wallpaper_water_wave_size", 45);
+            Settings.System.putInt(mContext.getContentResolver(), "jelly_wallpaper_water_wave_speed", 35);
+            Settings.System.putInt(mContext.getContentResolver(), "jelly_wallpaper_water_glitter_density", 50);
+        } else if (val == 6) { // Diamond Glitter & Bokeh
+            Settings.System.putInt(mContext.getContentResolver(), "jelly_wallpaper_light_water_waves_intensity", 65);
+            Settings.System.putInt(mContext.getContentResolver(), "jelly_wallpaper_water_wave_size", 35);
+            Settings.System.putInt(mContext.getContentResolver(), "jelly_wallpaper_water_wave_speed", 65);
+            Settings.System.putInt(mContext.getContentResolver(), "jelly_wallpaper_water_glitter_density", 100);
+        } else if (val == 7) { // Splash Droplets & Spray
+            Settings.System.putInt(mContext.getContentResolver(), "jelly_wallpaper_light_water_waves_intensity", 85);
+            Settings.System.putInt(mContext.getContentResolver(), "jelly_wallpaper_water_wave_size", 50);
+            Settings.System.putInt(mContext.getContentResolver(), "jelly_wallpaper_water_wave_speed", 75);
+            Settings.System.putInt(mContext.getContentResolver(), "jelly_wallpaper_water_glitter_density", 85);
         }
 
         if (preference instanceof ListPreference) {

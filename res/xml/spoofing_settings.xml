@@ -25,5 +25,17 @@
         android:title="@string/game_spoofing_title"
         android:summary="@string/game_spoofing_summary"
         android:fragment="com.android.settings.clover.spoofing.GameSpoofing" />
+
+    <!-- Media & Streaming Spoofing -->
+    <PreferenceCategory
+        android:key="media_spoofing_category"
+        android:title="@string/media_spoofing_category_title">
+
+        <androidx.preference.SwitchPreferenceCompat
+            android:key="spoof_streaming"
+            android:title="@string/spoof_streaming_title"
+            android:summary="@string/spoof_streaming_summary"
+            android:defaultValue="true" />
+    </PreferenceCategory>
    
 </PreferenceScreen>

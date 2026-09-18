@@ -120,7 +120,7 @@
     <string name="jelly_wallpaper_footer">La imagen se deforma suavemente al arrastrar el dedo y oscila con física de resortes antes de regresar a su posición neutra. Suspende el renderizado en reposo para 0% de consumo de GPU.</string>
 
     <string name="jelly_wallpaper_aspect_ratio_warning_title">Aviso de resolución y relación de aspecto</string>
-    <string name="jelly_wallpaper_aspect_ratio_warning_summary">El sistema escala y ajusta automáticamente las imágenes a la resolución del panel (1220 × 2712 px en 20:9). Si en algún caso notas recorte o distorsión en imágenes con proporciones atípicas, puedes recortar o ajustar la imagen manualmente a 20:9 para una deformación elástica óptima.</string>
+    <string name="jelly_wallpaper_aspect_ratio_warning_summary">El sistema escala y ajusta automáticamente las imágenes a la resolución del panel (1220 × 2712 px en 20:9). Si utilizas una imagen de menor resolución a la especificada, esta podría quedar con recortes o distorsión, por lo que tendrás que reescalar la imagen a una resolución similar o mayor a esta. Si en algún caso notas recorte o distorsión en imágenes con proporciones atípicas, puedes recortar o ajustar la imagen manualmente a 20:9 para una deformación elástica óptima.</string>
 
     <string name="jelly_wallpaper_mode_lockscreen">Solo pantalla de bloqueo</string>
     <string name="jelly_wallpaper_mode_homescreen">Solo pantalla de inicio</string>
@@ -319,19 +319,25 @@
     <string name="jelly_wallpaper_light_water_waves_title">Olas de agua de océano 3D realista</string>
     <string name="jelly_wallpaper_light_water_waves_summary">Anima desplazamiento realista de olas de océano Gerstner 3D, sombreado de superficie y destellos solares sobre el fondo</string>
     <string name="jelly_wallpaper_water_preset_title">Estilo predefinido de agua</string>
-    <string name="jelly_wallpaper_water_preset_calm">Lago en calma (Ondas suaves y reflejos tenues)</string>
+    <string name="jelly_wallpaper_water_preset_calm">Lago en calma (Ondulaciones suaves de brisa y reflejos)</string>
     <string name="jelly_wallpaper_water_preset_ocean">Océano tropical (Olas realistas y brillo solar vivo)</string>
-    <string name="jelly_wallpaper_water_preset_surf">Oleaje costero (Olas marcadas de ritmo dinámico)</string>
-    <string name="jelly_wallpaper_water_preset_ripples">Brisa marina (Ondulaciones finas de alta frecuencia)</string>
-    <string name="jelly_wallpaper_water_preset_sunset">Atardecer dorado (Movimiento pausado con destellos radiantes)</string>
+    <string name="jelly_wallpaper_water_preset_deep_ocean">Oleaje profundo de alta mar (Olas masivas con senos oscuros)</string>
+    <string name="jelly_wallpaper_water_preset_pool_caustics">Cáusticas de piscina (Red de luz solar turquesa submarina)</string>
+    <string name="jelly_wallpaper_water_preset_golden_shore">Marea dorada y espuma en orilla (Oleaje rítmico y espuma iridiscente)</string>
+    <string name="jelly_wallpaper_water_preset_god_rays">Rayos crepusculares submarinos (Haces de luz solar en el abismo)</string>
+    <string name="jelly_wallpaper_water_preset_diamond_glitter">Centelleo diamante y bokeh (Destellos estelares intensos)</string>
+    <string name="jelly_wallpaper_water_preset_splash_droplets">Salpicaduras y gotas en crestas (Gotas flotantes a contraluz)</string>
     <string name="jelly_wallpaper_water_preset_custom">Personalizado (Control manual independiente)</string>
 
     <string-array name="jelly_wallpaper_water_preset_entries">
         <item>@string/jelly_wallpaper_water_preset_calm</item>
         <item>@string/jelly_wallpaper_water_preset_ocean</item>
-        <item>@string/jelly_wallpaper_water_preset_surf</item>
-        <item>@string/jelly_wallpaper_water_preset_ripples</item>
-        <item>@string/jelly_wallpaper_water_preset_sunset</item>
+        <item>@string/jelly_wallpaper_water_preset_deep_ocean</item>
+        <item>@string/jelly_wallpaper_water_preset_pool_caustics</item>
+        <item>@string/jelly_wallpaper_water_preset_golden_shore</item>
+        <item>@string/jelly_wallpaper_water_preset_god_rays</item>
+        <item>@string/jelly_wallpaper_water_preset_diamond_glitter</item>
+        <item>@string/jelly_wallpaper_water_preset_splash_droplets</item>
         <item>@string/jelly_wallpaper_water_preset_custom</item>
     </string-array>
 
@@ -342,6 +348,9 @@
         <item>3</item>
         <item>4</item>
         <item>5</item>
+        <item>6</item>
+        <item>7</item>
+        <item>8</item>
     </string-array>
 
     <string name="jelly_wallpaper_light_water_waves_intensity_title">Altura y profundidad del oleaje</string>

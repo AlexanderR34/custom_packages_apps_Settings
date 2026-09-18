@@ -582,4 +582,24 @@
     <string name="systemui_restart_dialog_message">Do you want to restart SystemUI now to apply the visual changes?</string>
     <string name="systemui_restart_dialog_positive">Restart now</string>
     <string name="systemui_restart_dialog_negative">Later</string>
+
+    <!-- Streaming Spoofing -->
+    <string name="media_spoofing_category_title">Media &amp; Streaming</string>
+    <string name="spoof_streaming_title">Unlock HDR / 4K Streaming</string>
+    <string name="spoof_streaming_summary">Spoof certified flagship device in Netflix, Disney+, and Prime Video to unlock 4K HDR and Dolby Vision playback</string>
+
+    <!-- Play Integrity Testing -->
+    <string name="pif_test_integrity_title">Check Play Integrity</string>
+    <string name="pif_test_integrity_summary">Test device verdicts and view certification status</string>
+    <string name="pif_test_integrity_dialog_title">Play Integrity Test</string>
+    <string name="pif_test_basic_integrity">Basic Integrity</string>
+    <string name="pif_test_device_integrity">Device Integrity</string>
+    <string name="pif_test_strong_integrity">Strong Integrity (Keybox)</string>
+    <string name="pif_test_pass">PASSED</string>
+    <string name="pif_test_fail">FAILED</string>
+    <string name="pif_test_active_model">Active Fingerprint Model: %s</string>
+    <string name="pif_test_first_api">First API Level: %s</string>
+    <string name="pif_test_keybox_status">TrickyStore Keybox: %s</string>
+    <string name="pif_open_play_store">Open Play Store</string>
+    <string name="pif_close">Close</string>
 </resources>

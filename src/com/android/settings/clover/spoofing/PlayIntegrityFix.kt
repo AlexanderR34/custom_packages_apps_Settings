@@ -21,6 +21,7 @@ import androidx.preference.PreferenceCategory
 import androidx.preference.SwitchPreferenceCompat
 import com.android.settings.R
 import com.android.settings.SettingsPreferenceFragment
+import java.io.File
 import java.net.URL
 import java.nio.charset.StandardCharsets
 import kotlinx.coroutines.CoroutineScope
@@ -54,7 +55,7 @@ class PlayIntegrityFix : SettingsPreferenceFragment() {
                         PIF_CONFIG_KEY,
                         normalized
                     )
-                    killPackage(VENDING_PACKAGE)
+                    killGmsAndVending()
                     toast(getString(R.string.pif_imported_as, PIF_CONFIG_NAME))
                     refreshStatus()
                 } catch (e: Exception) {
@@ -87,35 +88,96 @@ class PlayIntegrityFix : SettingsPreferenceFragment() {
             true
         }
 
-        // --- MANEJO DEL SWITCH SEGURO (Arreglo del Bootloop) ---
+        findPreference<Preference>("pif_test_integrity")?.setOnPreferenceClickListener {
+            showIntegrityTestDialog()
+            true
+        }
+
         val spoofPhotosPref = findPreference<SwitchPreferenceCompat>("spoof_pif_photos")
-        
-        // Usamos un bloque try-catch por si acaso, y solo consultamos cuando requireContext() esté listo
         try {
             val contentResolver = requireContext().contentResolver
             val isSpoofPhotosEnabled = Settings.Secure.getInt(contentResolver, "spoof_pif_photos", 1) == 1
             spoofPhotosPref?.isChecked = isSpoofPhotosEnabled
         } catch (e: Exception) {
-            Log.e("PlayIntegrityFix", "Error leyendo Settings.Secure durante onCreate", e)
-            // Si falla por sincronización temprana, el valor por defecto en XML (true) lo mantendrá a salvo
+            Log.e(TAG, "Error leyendo Settings.Secure durante onCreate", e)
         }
 
-        // El Listener solo se activa cuando el usuario interactúa, por lo que es totalmente seguro
         spoofPhotosPref?.setOnPreferenceChangeListener { _, newValue ->
             val isChecked = newValue as Boolean
             try {
                 Settings.Secure.putInt(requireContext().contentResolver, "spoof_pif_photos", if (isChecked) 1 else 0)
             } catch (e: Exception) {
-                Log.e("PlayIntegrityFix", "Error escribiendo en Settings.Secure", e)
+                Log.e(TAG, "Error escribiendo en Settings.Secure", e)
             }
-            
             killPackage(PHOTOS_PACKAGE)
-            killPackage(VENDING_PACKAGE)
+            killGmsAndVending()
             true
         }
-        // --------------------------------------------------------
 
         refreshStatus()
+    }
+
+    private fun showIntegrityTestDialog() {
+        val hasPif = activeConfigData.isNotEmpty()
+        val model = activeConfigData["MODEL"] ?: android.os.Build.MODEL
+        val fp = activeConfigData["FINGERPRINT"] ?: android.os.Build.FINGERPRINT
+        val firstApiStr = activeConfigData["DEVICE_INITIAL_SDK_INT"] ?: "32"
+        val firstApi = firstApiStr.toIntOrNull() ?: 32
+
+        val keyboxFile = File("/data/adb/tricky_store/keybox.xml")
+        val trickyStoreDir = File("/data/adb/modules/tricky_store")
+        val hasKeybox = keyboxFile.exists() || trickyStoreDir.exists()
+
+        val passText = getString(R.string.pif_test_pass)
+        val failText = getString(R.string.pif_test_fail)
+
+        val basicPass = true
+        val devicePass = hasPif || firstApi <= 32
+        val strongPass = hasKeybox
+
+        val basicIcon = if (basicPass) "✅" else "❌"
+        val deviceIcon = if (devicePass) "✅" else "❌"
+        val strongIcon = if (strongPass) "✅" else "🔒"
+
+        val sb = StringBuilder()
+        sb.append(getString(R.string.pif_test_active_model, model)).append("\n")
+        sb.append(getString(R.string.pif_test_first_api, firstApiStr)).append("\n")
+        sb.append(getString(R.string.pif_test_keybox_status, if (hasKeybox) passText else failText)).append("\n\n")
+
+        sb.append("$basicIcon ").append(getString(R.string.pif_test_basic_integrity))
+            .append(": ").append(if (basicPass) passText else failText).append("\n")
+        sb.append("$deviceIcon ").append(getString(R.string.pif_test_device_integrity))
+            .append(": ").append(if (devicePass) passText else failText).append("\n")
+        sb.append("$strongIcon ").append(getString(R.string.pif_test_strong_integrity))
+            .append(": ").append(if (strongPass) passText else failText).append("\n\n")
+
+        val displayFp = if (fp.length > 45) fp.substring(0, 42) + "..." else fp
+        sb.append("FP: ").append(displayFp)
+
+        AlertDialog.Builder(requireContext())
+            .setTitle(R.string.pif_test_integrity_dialog_title)
+            .setMessage(sb.toString())
+            .setPositiveButton(R.string.pif_open_play_store) { _, _ ->
+                try {
+                    val intent = Intent("com.google.android.finsky.VIEW_MY_DOWNLOADS").apply {
+                        setPackage(VENDING_PACKAGE)
+                        addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+                    }
+                    startActivity(intent)
+                } catch (_: Exception) {
+                    try {
+                        val launchIntent = requireContext().packageManager.getLaunchIntentForPackage(VENDING_PACKAGE)
+                        if (launchIntent != null) {
+                            launchIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+                            startActivity(launchIntent)
+                        }
+                    } catch (e: Exception) {
+                        toast(getString(R.string.pif_failed, e.message ?: ""))
+                    }
+                }
+            }
+            .setNegativeButton(R.string.pif_close, null)
+            .show()
     }
 
     override fun onDestroy() {
@@ -190,6 +252,7 @@ class PlayIntegrityFix : SettingsPreferenceFragment() {
                         PIF_CONFIG_KEY,
                         null
                     )
+                    killGmsAndVending()
                     toast(getString(R.string.pif_deleted, PIF_CONFIG_NAME))
                     refreshStatus()
                 } catch (e: Exception) {
@@ -277,7 +340,7 @@ class PlayIntegrityFix : SettingsPreferenceFragment() {
                             PIF_CONFIG_KEY,
                             result.pifData.toString(2)
                         )
-                        killPackage(VENDING_PACKAGE)
+                        killGmsAndVending()
                         toast(getString(R.string.pif_fetched_model, result.model))
                         refreshStatus()
                     }
@@ -301,6 +364,12 @@ class PlayIntegrityFix : SettingsPreferenceFragment() {
         } catch (_: Exception) {}
     }
 
+    private fun killGmsAndVending() {
+        killPackage(VENDING_PACKAGE)
+        killPackage(GMS_PACKAGE)
+        killPackage(GMS_UNSTABLE_PACKAGE)
+    }
+
     private fun toast(msg: String) {
         Toast.makeText(requireContext(), msg, Toast.LENGTH_SHORT).show()
     }
@@ -317,6 +386,8 @@ class PlayIntegrityFix : SettingsPreferenceFragment() {
         private const val PIXEL_BULLETIN_URL = "https://source.android.com/docs/security/bulletin/pixel"
         private const val VENDING_PACKAGE = "com.android.vending"
         private const val PHOTOS_PACKAGE = "com.google.android.apps.photos"
+        private const val GMS_PACKAGE = "com.google.android.gms"
+        private const val GMS_UNSTABLE_PACKAGE = "com.google.android.gms.unstable"
 
         private val DEVICE_MODEL_MAP = mapOf(
             "oriole" to "Pixel 6",

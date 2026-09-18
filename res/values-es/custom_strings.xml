@@ -153,4 +153,24 @@
     <string name="systemui_restart_dialog_message">¿Deseas reiniciar SystemUI ahora para aplicar los cambios visuales?</string>
     <string name="systemui_restart_dialog_positive">Reiniciar ahora</string>
     <string name="systemui_restart_dialog_negative">Más tarde</string>
+
+    <!-- Streaming Spoofing -->
+    <string name="media_spoofing_category_title">Streaming y Multimedia</string>
+    <string name="spoof_streaming_title">Desbloquear streaming HDR / 4K</string>
+    <string name="spoof_streaming_summary">Suplantar modelo insignia en Netflix, Disney+ y Prime Video para desbloquear reproducción 4K HDR y Dolby Vision</string>
+
+    <!-- Play Integrity Testing -->
+    <string name="pif_test_integrity_title">Comprobar Play Integrity</string>
+    <string name="pif_test_integrity_summary">Verificar estado de atestación y certificación</string>
+    <string name="pif_test_integrity_dialog_title">Prueba de Play Integrity</string>
+    <string name="pif_test_basic_integrity">Integridad Básica (Basic)</string>
+    <string name="pif_test_device_integrity">Integridad de Dispositivo (Device)</string>
+    <string name="pif_test_strong_integrity">Integridad Fuerte (Strong/Keybox)</string>
+    <string name="pif_test_pass">APROBADO</string>
+    <string name="pif_test_fail">NO APROBADO</string>
+    <string name="pif_test_active_model">Modelo de huella activa: %s</string>
+    <string name="pif_test_first_api">Primer nivel de API: %s</string>
+    <string name="pif_test_keybox_status">Keybox TrickyStore: %s</string>
+    <string name="pif_open_play_store">Abrir Play Store</string>
+    <string name="pif_close">Cerrar</string>
 </resources>
