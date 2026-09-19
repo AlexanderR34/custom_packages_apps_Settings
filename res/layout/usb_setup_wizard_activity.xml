@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    Copyright (C) 2026 The LibreMobileOS / Project Diva
+
+    Licensed under the Apache License, Version 2.0 (the "License");
+    you may not use this file except in compliance with the License.
+    You may obtain a copy of the License at
+
+        http://www.apache.org/licenses/LICENSE-2.0
+
+    Unless required by applicable law or agreed to in writing, software
+    distributed under the License is distributed on an "AS IS" BASIS,
+    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+    See the License for the specific language governing permissions and
+    limitations under the License.
+-->
+
+<com.google.android.setupdesign.GlifLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:settings="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/setup_wizard_layout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:icon="@drawable/ic_usb"
+    settings:sucHeaderText="@string/usb_setup_wizard_title">
+
+    <LinearLayout
+        style="@style/SudContentFrame"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:clipChildren="false"
+        android:clipToPadding="false"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/sud_layout_description"
+            style="@style/SudDescription.Glif"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/usb_setup_wizard_description" />
+
+        <!-- USB Debugging Card -->
+        <LinearLayout
+            android:id="@+id/adb_container"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="16dp"
+            android:background="@color/materialColorSurfaceContainer"
+            android:padding="16dp"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/usb_setup_wizard_adb_title"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    android:textColor="?android:attr/textColorPrimary" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:text="@string/usb_setup_wizard_adb_summary"
+                    android:textSize="13sp"
+                    android:textColor="?android:attr/textColorSecondary" />
+            </LinearLayout>
+
+            <Switch
+                android:id="@+id/usb_adb_switch"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="12dp" />
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="@string/usb_setup_wizard_default_mode"
+            android:textSize="14sp"
+            android:textStyle="bold"
+            android:textColor="?android:attr/textColorPrimary" />
+
+        <RadioGroup
+            android:id="@+id/usb_functions_radio_group"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp">
+
+            <com.android.settings.RestrictedRadioButton
+                android:id="@+id/usb_function_mtp"
+                style="@style/SudRadioButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:minHeight="?android:attr/listPreferredItemHeight"
+                android:text="@string/usb_use_file_transfers"
+                android:textColor="@color/materialColorOnSurfaceVariant" />
+
+            <com.android.settings.RestrictedRadioButton
+                android:id="@+id/usb_function_none"
+                style="@style/SudRadioButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:minHeight="?android:attr/listPreferredItemHeight"
+                android:text="@string/usb_use_charging_only"
+                android:textColor="@color/materialColorOnSurfaceVariant" />
+
+            <com.android.settings.RestrictedRadioButton
+                android:id="@+id/usb_function_tethering"
+                style="@style/SudRadioButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:minHeight="?android:attr/listPreferredItemHeight"
+                android:text="@string/usb_use_tethering"
+                android:textColor="@color/materialColorOnSurfaceVariant" />
+
+            <com.android.settings.RestrictedRadioButton
+                android:id="@+id/usb_function_ptp"
+                style="@style/SudRadioButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:minHeight="?android:attr/listPreferredItemHeight"
+                android:text="@string/usb_use_photo_transfers"
+                android:textColor="@color/materialColorOnSurfaceVariant" />
+
+            <com.android.settings.RestrictedRadioButton
+                android:id="@+id/usb_function_webcam"
+                style="@style/SudRadioButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:minHeight="?android:attr/listPreferredItemHeight"
+                android:text="@string/usb_use_uvc_webcam"
+                android:textColor="@color/materialColorOnSurfaceVariant" />
+        </RadioGroup>
+
+    </LinearLayout>
+</com.google.android.setupdesign.GlifLayout>

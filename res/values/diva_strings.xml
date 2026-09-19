@@ -497,4 +497,11 @@
     <string name="power_sounds_reset_title">Reset startup &amp; shutdown sounds</string>
     <string name="power_sounds_reset_summary">Disable and clear selected audio</string>
     <string name="power_sounds_reset_toast">Power sounds reset to default</string>
+
+    <!-- USB Setup Wizard -->
+    <string name="usb_setup_wizard_title">USB &amp; Debugging setup</string>
+    <string name="usb_setup_wizard_description">Choose the default behavior when connected via USB and decide whether to enable USB debugging (ADB).</string>
+    <string name="usb_setup_wizard_adb_title">USB debugging (ADB)</string>
+    <string name="usb_setup_wizard_adb_summary">Allow development and debugging commands when connected via USB</string>
+    <string name="usb_setup_wizard_default_mode">Default USB connection mode</string>
 </resources>

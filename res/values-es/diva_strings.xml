@@ -487,4 +487,11 @@
     <string name="power_sounds_reset_title">Restablecer sonidos de encendido y apagado</string>
     <string name="power_sounds_reset_summary">Desactiva y borra los audios seleccionados</string>
     <string name="power_sounds_reset_toast">Sonidos de encendido y apagado restablecidos</string>
+
+    <!-- USB Setup Wizard -->
+    <string name="usb_setup_wizard_title">Configuración de USB y depuración</string>
+    <string name="usb_setup_wizard_description">Elige el comportamiento predeterminado al conectar por USB y decide si deseas habilitar la depuración por USB (ADB).</string>
+    <string name="usb_setup_wizard_adb_title">Depuración por USB (ADB)</string>
+    <string name="usb_setup_wizard_adb_summary">Permitir comandos de desarrollo y depuración cuando se conecta el cable USB</string>
+    <string name="usb_setup_wizard_default_mode">Modo de conexión USB predeterminado</string>
 </resources>

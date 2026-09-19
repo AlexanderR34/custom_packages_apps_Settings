@@ -2719,6 +2719,18 @@
                        android:value="@string/menu_key_accessibility"/>
         </activity>
 
+        <activity
+            android:name=".connecteddevice.usb.UsbSetupWizardActivity"
+            android:label="@string/usb_setup_wizard_title"
+            android:icon="@drawable/ic_usb"
+            android:theme="@style/SudThemeGlif.DayNight"
+            android:exported="true">
+            <intent-filter android:priority="1">
+                <action android:name="com.android.settings.action.USB_SETUP_WIZARD" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+
         <activity android:name=".accessibility.setupwizard.AccessibilitySetupWizardActivity"
             android:icon="@drawable/ic_accessibility_suggestion"
             android:label="@string/vision_settings_title"

@@ -40,6 +40,7 @@ import androidx.annotation.VisibleForTesting;
 
 import com.android.settings.activityembedding.ActivityEmbeddingUtils;
 import com.android.settings.core.instrumentation.ElapsedTimeUtils;
+import com.android.settings.connecteddevice.usb.UsbSetupWizardActivity;
 import com.android.settings.homepage.DeepLinkHomepageActivity;
 import com.android.settings.search.SearchStateReceiver;
 import com.android.settingslib.utils.ThreadUtils;
@@ -72,6 +73,7 @@ public class SettingsInitialize extends BroadcastReceiver {
         enableTwoPaneDeepLinkActivityIfNecessary(pm, context);
         storeSuwCompleteTimestamp(context, broadcast);
         syncRegulatoryInfoVisibility(context, pm);
+        checkAndLaunchUsbSetup(context, broadcast);
     }
 
     private void managedProfileSetup(Context context, final PackageManager pm, Intent broadcast,
@@ -196,6 +198,22 @@ public class SettingsInitialize extends BroadcastReceiver {
             }
         } catch (IllegalArgumentException e) {
             Log.e(TAG, "Unable to sync RegulatoryInfoDisplayActivity state", e);
+        }
+    }
+
+    private void checkAndLaunchUsbSetup(Context context, Intent broadcast) {
+        if (broadcast == null) return;
+        String action = broadcast.getAction();
+        if (SetupWizardUtils.ACTION_SETUP_WIZARD_FINISHED.equals(action)
+                || Intent.ACTION_PRE_BOOT_COMPLETED.equals(action)) {
+            boolean completed = context.getSharedPreferences(
+                    UsbSetupWizardActivity.PREFS_NAME, Context.MODE_PRIVATE)
+                    .getBoolean(UsbSetupWizardActivity.KEY_COMPLETED, false);
+            if (!completed) {
+                Intent intent = new Intent(context, UsbSetupWizardActivity.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                context.startActivity(intent);
+            }
         }
     }
 }

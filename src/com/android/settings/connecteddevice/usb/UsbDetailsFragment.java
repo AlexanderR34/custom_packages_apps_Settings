@@ -124,6 +124,7 @@ public class UsbDetailsFragment extends DashboardFragment {
         ret.add(new UsbDetailsConnectedDevicesController(context, fragment, usbBackend));
         ret.add(new UsbDetailsDataRoleController(context, fragment, usbBackend));
         ret.add(new UsbDetailsFunctionsController(context, fragment, usbBackend));
+        ret.add(new UsbDetailsAdbController(context, fragment, usbBackend));
         ret.add(new UsbDetailsPowerRoleController(context, fragment, usbBackend));
         ret.add(new UsbDetailsTranscodeMtpController(context, fragment, usbBackend));
         ret.add(new UsbDetailsPciTunnelingController(context, fragment, usbBackend));
