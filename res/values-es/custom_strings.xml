@@ -173,4 +173,8 @@
     <string name="pif_test_keybox_status">Keybox TrickyStore: %s</string>
     <string name="pif_open_play_store">Abrir Play Store</string>
     <string name="pif_close">Cerrar</string>
+
+    <!-- Iconos de notificación coloreados en la barra de estado -->
+    <string name="status_bar_colored_icons_title">Iconos de notificación coloreados</string>
+    <string name="status_bar_colored_icons_summary">Muestra los iconos originales a color de las aplicaciones en la barra de estado</string>
 </resources>

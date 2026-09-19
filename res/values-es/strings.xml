@@ -6440,5 +6440,11 @@
     <string name="call_volume_slider_title">Control de volumen dual en llamadas</string>
     <string name="call_volume_slider_summary">Muestra una barra de volumen de llamada dedicada junto a la barra multimedia durante las llamadas activas</string>
 
+    <!-- Quick Settings Brightness Slider (Spanish) -->
+    <string name="qs_show_brightness_slider_title">Barra de brillo</string>
+    <string name="qs_show_brightness_slider_never">Nunca mostrar</string>
+    <string name="qs_show_brightness_slider_expanded">Solo al expandir</string>
+    <string name="qs_show_brightness_slider_always">Mostrar siempre (en panel compacto y expandido)</string>
+
 </resources>
 

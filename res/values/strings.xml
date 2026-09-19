@@ -15794,5 +15794,11 @@
     <string name="freeform_launch_mode_native">Native AOSP</string>
     <string name="freeform_launch_mode_lmo">LMO Freeform</string>
 
+    <!-- Quick Settings Brightness Slider -->
+    <string name="qs_show_brightness_slider_title">Brightness slider</string>
+    <string name="qs_show_brightness_slider_never">Never show</string>
+    <string name="qs_show_brightness_slider_expanded">Show when expanded</string>
+    <string name="qs_show_brightness_slider_always">Show always (in compact shade and expanded QS)</string>
+
 </resources>
 

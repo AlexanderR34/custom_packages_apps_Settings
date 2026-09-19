@@ -41,6 +41,13 @@
             android:entryValues="@array/jelly_wallpaper_light_mode_values"
             android:defaultValue="0"
             settings:controller="com.android.settings.display.JellyWallpaperLightModePreferenceController"/>
+
+        <EditTextPreference
+            android:key="jelly_wallpaper_light_custom_color"
+            android:title="@string/jelly_wallpaper_light_custom_color_title"
+            android:dialogTitle="@string/jelly_wallpaper_light_custom_color_title"
+            android:summary="@string/jelly_wallpaper_light_custom_color_summary"
+            settings:controller="com.android.settings.display.JellyWallpaperLightCustomColorPreferenceController"/>
     </PreferenceCategory>
 
     <PreferenceCategory

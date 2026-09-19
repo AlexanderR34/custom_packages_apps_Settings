@@ -54,7 +54,7 @@
 
         <SwitchPreferenceCompat
             android:key="spoof_pif_photos"
-            android:title="@string/pif_spoof_photos_title"
+            android:title="@string/pif_spoof_photos"
             android:summary="@string/pif_spoof_photos_summary"
             android:defaultValue="true" />
     </PreferenceCategory>

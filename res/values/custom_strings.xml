@@ -458,6 +458,7 @@
     <string name="pif_deleted">Deleted %s</string>
     <string name="pif_settings">Settings</string>
     <string name="pif_spoof_photos">Spoof Google Photos</string>
+    <string name="pif_spoof_photos_title">Spoof Google Photos</string>
     <string name="pif_spoof_photos_summary">Unlimited original quality backup</string>
     <string name="pif_config_details">Configuration details</string>
     <string name="pif_failed">Failed: %s</string>
@@ -602,4 +603,8 @@
     <string name="pif_test_keybox_status">TrickyStore Keybox: %s</string>
     <string name="pif_open_play_store">Open Play Store</string>
     <string name="pif_close">Close</string>
+
+    <!-- Status Bar Colored Notification Icons -->
+    <string name="status_bar_colored_icons_title">Colored notification icons</string>
+    <string name="status_bar_colored_icons_summary">Show original colored application icons in the status bar</string>
 </resources>

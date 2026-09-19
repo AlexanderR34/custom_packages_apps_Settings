@@ -288,6 +288,8 @@
     <string name="jelly_wallpaper_light_mode_aurora">Aurora Boreal Esmeralda (Resplandor místico)</string>
     <string name="jelly_wallpaper_light_mode_touch">Seguidor Táctil Linterna (Foco bajo el dedo)</string>
     <string name="jelly_wallpaper_light_mode_breathing">Pulso Respiratorio Orgánico (Latido armónico)</string>
+    <string name="jelly_wallpaper_light_custom_color_title">Color de luz personalizado</string>
+    <string name="jelly_wallpaper_light_custom_color_summary">Establecer código hexadecimal (ej. #fcba03, #4d1c78, #ff7d66)</string>
 
     <string-array name="jelly_wallpaper_light_mode_entries">
         <item>@string/jelly_wallpaper_light_mode_hybrid</item>
@@ -333,11 +335,6 @@
         <item>@string/jelly_wallpaper_water_preset_calm</item>
         <item>@string/jelly_wallpaper_water_preset_ocean</item>
         <item>@string/jelly_wallpaper_water_preset_deep_ocean</item>
-        <item>@string/jelly_wallpaper_water_preset_pool_caustics</item>
-        <item>@string/jelly_wallpaper_water_preset_golden_shore</item>
-        <item>@string/jelly_wallpaper_water_preset_god_rays</item>
-        <item>@string/jelly_wallpaper_water_preset_diamond_glitter</item>
-        <item>@string/jelly_wallpaper_water_preset_splash_droplets</item>
         <item>@string/jelly_wallpaper_water_preset_custom</item>
     </string-array>
 
@@ -345,11 +342,6 @@
         <item>0</item>
         <item>1</item>
         <item>2</item>
-        <item>3</item>
-        <item>4</item>
-        <item>5</item>
-        <item>6</item>
-        <item>7</item>
         <item>8</item>
     </string-array>
 
