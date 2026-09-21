@@ -121,7 +121,7 @@ public class VolumeBoostSeekBarPreference extends SeekBarPreference {
 
     private void updateViews(int progress) {
         int displayVolumePercent = 100 + Math.round((progress / 100.0f) * 100.0f); // 100% -> 200%
-        float gainDb = (progress / 100.0f) * 10.0f; // 0 dB -> +10.0 dB
+        float gainDb = (progress / 100.0f) * 8.0f; // 0 dB -> +8.0 dB
 
         if (mValueBadgeView != null) {
             mValueBadgeView.setText(String.format(Locale.getDefault(), "%d%%", displayVolumePercent));
