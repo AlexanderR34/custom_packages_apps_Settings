@@ -77,8 +77,8 @@ public class VolumeBoostPreferenceController extends SliderPreferenceController 
         if (pos <= 0) {
             return mContext.getString(R.string.volume_boost_summary) + " • 100%";
         }
-        int displayVolumePercent = 100 + Math.round((pos / 100.0f) * 100.0f);
-        float gainDb = (pos / 100.0f) * 10.0f;
+        int displayVolumePercent = 100 + Math.round((pos / 100.0f) * 150.0f);
+        float gainDb = (pos / 100.0f) * 15.0f;
         return mContext.getString(R.string.volume_boost_summary) + " • "
                 + String.format(Locale.getDefault(), "%d%% (+%.1f dB)", displayVolumePercent, gainDb);
     }
