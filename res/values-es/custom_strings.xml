@@ -177,4 +177,37 @@
     <!-- Iconos de notificación coloreados en la barra de estado -->
     <string name="status_bar_colored_icons_title">Iconos de notificación coloreados</string>
     <string name="status_bar_colored_icons_summary">Muestra los iconos originales a color de las aplicaciones en la barra de estado</string>
+
+    <!-- Sonidos Personalizados: Temas, Notificaciones y Llamadas -->
+    <string name="custom_sound_customization_title">Sonidos personalizados</string>
+    <string name="custom_sound_customization_summary">Temas del sistema, notificaciones inteligentes y llamadas</string>
+    <string name="ui_sound_theme_category_title">Tema de sonidos del sistema</string>
+    <string name="ui_sound_theme_title">Estilo de sonidos de la interfaz</string>
+    <string name="ui_sound_theme_aosp">Por defecto (AOSP / Pixel)</string>
+    <string name="ui_sound_theme_poco">POCO / HyperOS</string>
+    <string name="ui_sound_theme_samsung">Samsung (One UI)</string>
+
+    <string name="custom_notifications_category_title">Tonos de notificación</string>
+    <string name="waterdrop_notification_title">Gotas de agua (POCO)</string>
+    <string name="waterdrop_notification_summary">Secuencia inteligente según ráfaga (Día 1 → Día 2 → Día 3 → Ráfaga continua)</string>
+    <string name="notification_xylophone_title">Xilófono (POCO)</string>
+    <string name="notification_xylophone_summary">Tono clásico de notificación POCO</string>
+    <string name="notification_spaceline_title">Spaceline (Samsung)</string>
+    <string name="notification_spaceline_summary">Tono moderno de notificación de Samsung One UI</string>
+
+    <string name="custom_ringtones_category_title">Tonos de llamada</string>
+    <string name="ringtone_poco_title">POCO</string>
+    <string name="ringtone_poco_summary">Tono oficial de la marca POCO</string>
+    <string name="ringtone_miremix_title">Mi Remix</string>
+    <string name="ringtone_miremix_summary">Remix electrónico HyperOS / Xiaomi</string>
+    <string name="ringtone_bach_title">Bach - Suite para Cello Nº 1</string>
+    <string name="ringtone_bach_summary">Tono clásico refinado de One UI</string>
+    <string name="ringtone_satie_title">Erik Satie - Gymnopedie</string>
+    <string name="ringtone_satie_summary">Tono acústico relajante de One UI</string>
+    <string name="ringtone_vivaldi_title">Vivaldi - Primavera</string>
+    <string name="ringtone_vivaldi_summary">Melodía clásica de Las Cuatro Estaciones</string>
+    <string name="sound_applied_toast">%1$s establecido como %2$s</string>
+    <string name="sound_type_notification">tono de notificación</string>
+    <string name="sound_type_ringtone">tono de llamada</string>
 </resources>
+

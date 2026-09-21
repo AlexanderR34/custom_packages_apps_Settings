@@ -19,4 +19,13 @@
         <attr name="defaultValuePure" format="float" />
         <attr name="digits" format="integer" />
     </declare-styleable>
+
+    <!-- Custom Sound Item Preference -->
+    <declare-styleable name="CustomSoundItemPreference">
+        <attr name="soundType" format="string" />
+        <attr name="soundPath" format="string" />
+        <attr name="soundTitle" format="string" />
+    </declare-styleable>
 </resources>
+
+

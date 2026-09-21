@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright (C) 2026 The Project Diva
+
+     Licensed under the Apache License, Version 2.0 (the "License");
+     you may not use this file except in compliance with the License.
+     You may obtain a copy of the License at
+
+          http://www.apache.org/licenses/LICENSE-2.0
+
+     Unless required by applicable law or agreed to in writing, software
+     distributed under the License is distributed on an "AS IS" BASIS,
+     WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+     See the License for the specific language governing permissions and
+     limitations under the License.
+-->
+
+<PreferenceScreen
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:settings="http://schemas.android.com/apk/res-auto"
+    android:title="@string/custom_sound_customization_title"
+    android:key="custom_sound_customization_screen">
+
+    <PreferenceCategory
+        android:key="ui_sound_theme_category"
+        android:title="@string/ui_sound_theme_category_title">
+
+        <ListPreference
+            android:key="ui_sounds_theme"
+            android:title="@string/ui_sounds_theme_title"
+            android:summary="%s"
+            android:entries="@array/ui_sounds_theme_entries"
+            android:entryValues="@array/ui_sounds_theme_values"
+            android:defaultValue="0"
+            settings:controller="com.android.settings.sound.UiSoundThemePreferenceController"/>
+    </PreferenceCategory>
+
+    <PreferenceCategory
+        android:key="custom_notifications_category"
+        android:title="@string/custom_notifications_category_title">
+
+        <com.android.settings.sound.CustomSoundItemPreference
+            android:key="sound_notification_waterdrop"
+            android:title="@string/waterdrop_notification_title"
+            android:summary="@string/waterdrop_notification_summary"
+            settings:soundType="notification"
+            settings:soundPath="/system/media/audio/notifications/WaterDropNotificationDay1.ogg"
+            settings:soundTitle="@string/waterdrop_notification_title"/>
+
+        <com.android.settings.sound.CustomSoundItemPreference
+            android:key="sound_notification_xylophone"
+            android:title="@string/notification_xylophone_title"
+            android:summary="@string/notification_xylophone_summary"
+            settings:soundType="notification"
+            settings:soundPath="/system/media/audio/notifications/NotificationXylophone.ogg"
+            settings:soundTitle="@string/notification_xylophone_title"/>
+
+        <com.android.settings.sound.CustomSoundItemPreference
+            android:key="sound_notification_spaceline"
+            android:title="@string/notification_spaceline_title"
+            android:summary="@string/notification_spaceline_summary"
+            settings:soundType="notification"
+            settings:soundPath="/system/media/audio/notifications/Spaceline.ogg"
+            settings:soundTitle="@string/notification_spaceline_title"/>
+    </PreferenceCategory>
+
+    <PreferenceCategory
+        android:key="custom_ringtones_category"
+        android:title="@string/custom_ringtones_category_title">
+
+        <com.android.settings.sound.CustomSoundItemPreference
+            android:key="sound_ringtone_poco"
+            android:title="@string/ringtone_poco_title"
+            android:summary="@string/ringtone_poco_summary"
+            settings:soundType="ringtone"
+            settings:soundPath="/system/media/audio/ringtones/POCO.ogg"
+            settings:soundTitle="@string/ringtone_poco_title"/>
+
+        <com.android.settings.sound.CustomSoundItemPreference
+            android:key="sound_ringtone_miremix"
+            android:title="@string/ringtone_miremix_title"
+            android:summary="@string/ringtone_miremix_summary"
+            settings:soundType="ringtone"
+            settings:soundPath="/system/media/audio/ringtones/MiRemix.ogg"
+            settings:soundTitle="@string/ringtone_miremix_title"/>
+
+        <com.android.settings.sound.CustomSoundItemPreference
+            android:key="sound_ringtone_bach"
+            android:title="@string/ringtone_bach_title"
+            android:summary="@string/ringtone_bach_summary"
+            settings:soundType="ringtone"
+            settings:soundPath="/system/media/audio/ringtones/Bach_Cello_Suite_1.ogg"
+            settings:soundTitle="@string/ringtone_bach_title"/>
+
+        <com.android.settings.sound.CustomSoundItemPreference
+            android:key="sound_ringtone_satie"
+            android:title="@string/ringtone_satie_title"
+            android:summary="@string/ringtone_satie_summary"
+            settings:soundType="ringtone"
+            settings:soundPath="/system/media/audio/ringtones/Erik_Satie_Gymnopedie.ogg"
+            settings:soundTitle="@string/ringtone_satie_title"/>
+
+        <com.android.settings.sound.CustomSoundItemPreference
+            android:key="sound_ringtone_vivaldi"
+            android:title="@string/ringtone_vivaldi_title"
+            android:summary="@string/ringtone_vivaldi_summary"
+            settings:soundType="ringtone"
+            settings:soundPath="/system/media/audio/ringtones/Vivaldi_Spring.ogg"
+            settings:soundTitle="@string/ringtone_vivaldi_title"/>
+    </PreferenceCategory>
+
+</PreferenceScreen>

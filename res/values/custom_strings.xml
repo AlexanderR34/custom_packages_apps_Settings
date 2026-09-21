@@ -607,4 +607,37 @@
     <!-- Status Bar Colored Notification Icons -->
     <string name="status_bar_colored_icons_title">Colored notification icons</string>
     <string name="status_bar_colored_icons_summary">Show original colored application icons in the status bar</string>
+
+    <!-- Custom Sounds: Theme, Notifications and Ringtones -->
+    <string name="custom_sound_customization_title">Custom sounds</string>
+    <string name="custom_sound_customization_summary">System themes, smart notifications, and ringtones</string>
+    <string name="ui_sound_theme_category_title">System Sound Theme</string>
+    <string name="ui_sound_theme_title">System UI sounds style</string>
+    <string name="ui_sound_theme_aosp">Stock AOSP / Pixel</string>
+    <string name="ui_sound_theme_poco">POCO / HyperOS</string>
+    <string name="ui_sound_theme_samsung">Samsung (One UI)</string>
+
+    <string name="custom_notifications_category_title">Notification Sounds</string>
+    <string name="waterdrop_notification_title">Water Drop (POCO)</string>
+    <string name="waterdrop_notification_summary">Smart burst sequence (Day 1 → Day 2 → Day 3 → Full flow)</string>
+    <string name="notification_xylophone_title">Xylophone (POCO)</string>
+    <string name="notification_xylophone_summary">Classic POCO notification tone</string>
+    <string name="notification_spaceline_title">Spaceline (Samsung)</string>
+    <string name="notification_spaceline_summary">Modern Samsung One UI notification tone</string>
+
+    <string name="custom_ringtones_category_title">Ringtones</string>
+    <string name="ringtone_poco_title">POCO</string>
+    <string name="ringtone_poco_summary">Official POCO brand ringtone</string>
+    <string name="ringtone_miremix_title">Mi Remix</string>
+    <string name="ringtone_miremix_summary">Electronic HyperOS / Xiaomi remix</string>
+    <string name="ringtone_bach_title">Bach - Cello Suite No. 1</string>
+    <string name="ringtone_bach_summary">Classical One UI ringtone</string>
+    <string name="ringtone_satie_title">Erik Satie - Gymnopedie</string>
+    <string name="ringtone_satie_summary">Calm One UI acoustic ringtone</string>
+    <string name="ringtone_vivaldi_title">Vivaldi - Spring</string>
+    <string name="ringtone_vivaldi_summary">Classical Four Seasons melody</string>
+    <string name="sound_applied_toast">%1$s set as %2$s</string>
+    <string name="sound_type_notification">notification sound</string>
+    <string name="sound_type_ringtone">phone ringtone</string>
 </resources>
+
