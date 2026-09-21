@@ -16,12 +16,18 @@
 
 package com.android.settings.sound;
 
+import android.content.ContentResolver;
+import android.content.ContentUris;
+import android.content.ContentValues;
 import android.content.Context;
 import android.content.res.TypedArray;
+import android.database.Cursor;
 import android.media.AudioAttributes;
 import android.media.MediaPlayer;
 import android.media.RingtoneManager;
 import android.net.Uri;
+import android.provider.MediaStore;
+import android.provider.Settings;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.widget.Toast;
@@ -85,16 +91,30 @@ public class CustomSoundItemPreference extends Preference {
         }
 
         File soundFile = new File(mSoundPath);
-        Uri soundUri = Uri.fromFile(soundFile);
-
-        playPreview(soundUri);
+        if (!soundFile.exists()) {
+            Log.e(TAG, "Sound file does not exist: " + mSoundPath);
+            return;
+        }
 
         int ringtoneType = "ringtone".equalsIgnoreCase(mSoundType)
                 ? RingtoneManager.TYPE_RINGTONE
                 : RingtoneManager.TYPE_NOTIFICATION;
 
+        Uri soundContentUri = getContentUriForPath(getContext(), soundFile, ringtoneType);
+        if (soundContentUri == null) {
+            soundContentUri = Uri.fromFile(soundFile);
+        }
+
+        playPreview(soundContentUri);
+
         try {
-            RingtoneManager.setActualDefaultRingtoneUri(getContext(), ringtoneType, soundUri);
+            RingtoneManager.setActualDefaultRingtoneUri(getContext(), ringtoneType, soundContentUri);
+
+            // Also guarantee setting in Settings.System
+            String settingKey = (ringtoneType == RingtoneManager.TYPE_RINGTONE)
+                    ? Settings.System.RINGTONE
+                    : Settings.System.NOTIFICATION_SOUND;
+            Settings.System.putString(getContext().getContentResolver(), settingKey, soundContentUri.toString());
 
             String titleDisplay = (mSoundTitle != null && !mSoundTitle.isEmpty())
                     ? mSoundTitle
@@ -108,8 +128,63 @@ public class CustomSoundItemPreference extends Preference {
                     getContext().getString(R.string.sound_applied_toast, titleDisplay, typeStr),
                     Toast.LENGTH_SHORT).show();
         } catch (Exception e) {
-            Log.e(TAG, "Failed to set default sound URI: " + soundUri, e);
+            Log.e(TAG, "Failed to set default sound URI: " + soundContentUri, e);
         }
+    }
+
+    private Uri getContentUriForPath(Context context, File file, int ringtoneType) {
+        if (!file.exists()) {
+            return null;
+        }
+        ContentResolver resolver = context.getContentResolver();
+        Uri internalUri = MediaStore.Audio.Media.INTERNAL_CONTENT_URI;
+
+        // 1. Query by absolute path in DATA
+        try (Cursor cursor = resolver.query(
+                internalUri,
+                new String[]{MediaStore.Audio.Media._ID},
+                MediaStore.Audio.Media.DATA + "=?",
+                new String[]{file.getAbsolutePath()},
+                null)) {
+            if (cursor != null && cursor.moveToFirst()) {
+                long id = cursor.getLong(0);
+                return ContentUris.withAppendedId(internalUri, id);
+            }
+        } catch (Exception e) {
+            Log.w(TAG, "Error querying MediaStore by DATA for " + file.getAbsolutePath(), e);
+        }
+
+        // 2. Query by file name / display name
+        try (Cursor cursor = resolver.query(
+                internalUri,
+                new String[]{MediaStore.Audio.Media._ID},
+                MediaStore.Audio.Media.DISPLAY_NAME + "=?",
+                new String[]{file.getName()},
+                null)) {
+            if (cursor != null && cursor.moveToFirst()) {
+                long id = cursor.getLong(0);
+                return ContentUris.withAppendedId(internalUri, id);
+            }
+        } catch (Exception e) {
+            Log.w(TAG, "Error querying MediaStore by DISPLAY_NAME for " + file.getName(), e);
+        }
+
+        // 3. Insert into MediaStore to produce a valid content:// URI
+        try {
+            ContentValues values = new ContentValues();
+            values.put(MediaStore.Audio.Media.DATA, file.getAbsolutePath());
+            values.put(MediaStore.Audio.Media.TITLE, (mSoundTitle != null && !mSoundTitle.isEmpty()) ? mSoundTitle : file.getName());
+            values.put(MediaStore.Audio.Media.MIME_TYPE, "audio/ogg");
+            values.put(MediaStore.Audio.Media.IS_RINGTONE, ringtoneType == RingtoneManager.TYPE_RINGTONE ? 1 : 0);
+            values.put(MediaStore.Audio.Media.IS_NOTIFICATION, ringtoneType == RingtoneManager.TYPE_NOTIFICATION ? 1 : 0);
+            values.put(MediaStore.Audio.Media.IS_ALARM, 0);
+            values.put(MediaStore.Audio.Media.IS_MUSIC, 0);
+            return resolver.insert(internalUri, values);
+        } catch (Exception e) {
+            Log.e(TAG, "Failed to insert custom sound into MediaStore: " + file.getAbsolutePath(), e);
+        }
+
+        return null;
     }
 
     private void playPreview(Uri uri) {

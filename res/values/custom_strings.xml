@@ -613,11 +613,15 @@
     <string name="custom_sound_customization_summary">System themes, smart notifications, and ringtones</string>
     <string name="ui_sound_theme_category_title">System Sound Theme</string>
     <string name="ui_sound_theme_title">System UI sounds style</string>
+    <string name="ui_sounds_theme_title" translatable="false">@string/ui_sound_theme_title</string>
     <string name="ui_sound_theme_aosp">Stock AOSP / Pixel</string>
     <string name="ui_sound_theme_poco">POCO / HyperOS</string>
     <string name="ui_sound_theme_samsung">Samsung (One UI)</string>
+    <string name="ui_sound_theme_ios">Apple (iOS)</string>
 
     <string name="custom_notifications_category_title">Notification Sounds</string>
+    <string name="notification_note_title">Note (Apple iOS)</string>
+    <string name="notification_note_summary">Classic iconic iPhone notification tone</string>
     <string name="waterdrop_notification_title">Water Drop (POCO)</string>
     <string name="waterdrop_notification_summary">Smart burst sequence (Day 1 → Day 2 → Day 3 → Full flow)</string>
     <string name="notification_xylophone_title">Xylophone (POCO)</string>
@@ -626,6 +630,8 @@
     <string name="notification_spaceline_summary">Modern Samsung One UI notification tone</string>
 
     <string name="custom_ringtones_category_title">Ringtones</string>
+    <string name="ringtone_opening_title">Opening (Apple iOS)</string>
+    <string name="ringtone_opening_summary">Default iconic Apple iOS ringtone</string>
     <string name="ringtone_poco_title">POCO</string>
     <string name="ringtone_poco_summary">Official POCO brand ringtone</string>
     <string name="ringtone_miremix_title">Mi Remix</string>

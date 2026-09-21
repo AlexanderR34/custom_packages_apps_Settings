@@ -26,7 +26,7 @@
 
         <ListPreference
             android:key="ui_sounds_theme"
-            android:title="@string/ui_sounds_theme_title"
+            android:title="@string/ui_sound_theme_title"
             android:summary="%s"
             android:entries="@array/ui_sounds_theme_entries"
             android:entryValues="@array/ui_sounds_theme_values"
@@ -37,6 +37,14 @@
     <PreferenceCategory
         android:key="custom_notifications_category"
         android:title="@string/custom_notifications_category_title">
+
+        <com.android.settings.sound.CustomSoundItemPreference
+            android:key="sound_notification_note"
+            android:title="@string/notification_note_title"
+            android:summary="@string/notification_note_summary"
+            settings:soundType="notification"
+            settings:soundPath="/system/media/audio/notifications/Note.ogg"
+            settings:soundTitle="@string/notification_note_title"/>
 
         <com.android.settings.sound.CustomSoundItemPreference
             android:key="sound_notification_waterdrop"
@@ -66,6 +74,14 @@
     <PreferenceCategory
         android:key="custom_ringtones_category"
         android:title="@string/custom_ringtones_category_title">
+
+        <com.android.settings.sound.CustomSoundItemPreference
+            android:key="sound_ringtone_opening"
+            android:title="@string/ringtone_opening_title"
+            android:summary="@string/ringtone_opening_summary"
+            settings:soundType="ringtone"
+            settings:soundPath="/system/media/audio/ringtones/Opening.ogg"
+            settings:soundTitle="@string/ringtone_opening_title"/>
 
         <com.android.settings.sound.CustomSoundItemPreference
             android:key="sound_ringtone_poco"

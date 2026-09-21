@@ -186,8 +186,11 @@
     <string name="ui_sound_theme_aosp">Por defecto (AOSP / Pixel)</string>
     <string name="ui_sound_theme_poco">POCO / HyperOS</string>
     <string name="ui_sound_theme_samsung">Samsung (One UI)</string>
+    <string name="ui_sound_theme_ios">Apple (iOS)</string>
 
     <string name="custom_notifications_category_title">Tonos de notificación</string>
+    <string name="notification_note_title">Nota (Apple iOS)</string>
+    <string name="notification_note_summary">Tono clásico icónico de notificación de iPhone</string>
     <string name="waterdrop_notification_title">Gotas de agua (POCO)</string>
     <string name="waterdrop_notification_summary">Secuencia inteligente según ráfaga (Día 1 → Día 2 → Día 3 → Ráfaga continua)</string>
     <string name="notification_xylophone_title">Xilófono (POCO)</string>
@@ -196,6 +199,8 @@
     <string name="notification_spaceline_summary">Tono moderno de notificación de Samsung One UI</string>
 
     <string name="custom_ringtones_category_title">Tonos de llamada</string>
+    <string name="ringtone_opening_title">Apertura (Apple iOS)</string>
+    <string name="ringtone_opening_summary">Tono de llamada predeterminado de Apple iOS</string>
     <string name="ringtone_poco_title">POCO</string>
     <string name="ringtone_poco_summary">Tono oficial de la marca POCO</string>
     <string name="ringtone_miremix_title">Mi Remix</string>
