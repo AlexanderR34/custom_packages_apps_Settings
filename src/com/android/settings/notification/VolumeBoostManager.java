@@ -17,54 +17,31 @@
 package com.android.settings.notification;
 
 import android.content.Context;
-import android.media.AudioAttributes;
+import android.media.AudioDeviceInfo;
 import android.media.AudioManager;
-import android.media.AudioPlaybackConfiguration;
-import android.media.audiofx.DynamicsProcessing;
-import android.media.audiofx.LoudnessEnhancer;
-import android.os.Handler;
-import android.os.Looper;
 import android.provider.Settings;
 import android.util.Log;
 
-import java.util.List;
-
 /**
- * Manager responsible for boosting MEDIA audio output up to +15.0 dB using
- * Android's Dynamic Processing / Loudness Enhancer audio effect APIs without audio distortion.
+ * Volume Boost Manager for Settings UI.
  *
- * Automatically bypasses volume boost during notifications, ringtones, and alarms,
- * and completely disables boost when connected to Bluetooth audio devices (A2DP / LE Audio).
+ * Manages the Volume Boost Level (100% to 200%) and Call Audio Gain settings.
  */
 public class VolumeBoostManager {
     private static final String TAG = "VolumeBoostManager";
+
     public static final String SETTING_KEY = Settings.System.VOLUME_BOOST_LEVEL;
     public static final String SETTING_CALL_GAIN_KEY = "volume_boost_call_gain";
     public static final int DEFAULT_BOOST_LEVEL = 0; // 0% boost = 100% standard volume
+    private static final float MAX_BOOST_GAIN_DB = 8.0f;
 
     private static VolumeBoostManager sInstance;
 
     private final Context mContext;
     private final AudioManager mAudioManager;
-    private final Handler mHandler = new Handler(Looper.getMainLooper());
-
-    private LoudnessEnhancer mLoudnessEnhancer;
-    private DynamicsProcessing mDynamicsProcessing;
-    private boolean mCallbackRegistered = false;
-    private int mLastAppliedBoostLevel = -1;
-
-    private final AudioManager.AudioPlaybackCallback mPlaybackCallback =
-            new AudioManager.AudioPlaybackCallback() {
-        @Override
-        public void onPlaybackConfigChanged(List<AudioPlaybackConfiguration> configs) {
-            updateBoostForPlaybackConfigs(configs);
-        }
-    };
-
     private VolumeBoostManager(Context context) {
         mContext = context.getApplicationContext();
         mAudioManager = mContext.getSystemService(AudioManager.class);
-        initAudioFx();
     }
 
     public static synchronized VolumeBoostManager getInstance(Context context) {
@@ -74,141 +51,48 @@ public class VolumeBoostManager {
         return sInstance;
     }
 
-    private void initAudioFx() {
+    /**
+     * Checks if a Bluetooth or LE Audio output device is currently connected.
+     */
+    public boolean isBluetoothAudioConnected() {
+        if (mAudioManager == null) return false;
         try {
-            // Audio session 0 corresponds to the global audio output mix
-            mLoudnessEnhancer = new LoudnessEnhancer(0);
+            AudioDeviceInfo[] devices = mAudioManager.getDevices(AudioManager.GET_DEVICES_OUTPUTS);
+            if (devices != null) {
+                for (AudioDeviceInfo device : devices) {
+                    int type = device.getType();
+                    if (type == AudioDeviceInfo.TYPE_BLUETOOTH_A2DP
+                            || type == AudioDeviceInfo.TYPE_BLUETOOTH_SCO
+                            || type == AudioDeviceInfo.TYPE_BLE_HEADSET
+                            || type == AudioDeviceInfo.TYPE_BLE_SPEAKER
+                            || type == AudioDeviceInfo.TYPE_BLE_BROADCAST
+                            || type == AudioDeviceInfo.TYPE_HEARING_AID) {
+                        return true;
+                    }
+                }
+            }
         } catch (Exception e) {
-            Log.e(TAG, "Failed to initialize LoudnessEnhancer: " + e.getMessage());
+            Log.w(TAG, "Error querying audio devices: " + e.getMessage());
         }
-
-        // Apply saved setting level on init
-        int savedLevel = getBoostLevel();
-        setBoostLevel(savedLevel);
+        return false;
     }
 
     /**
      * Retrieves the current boost level from Settings.System.
-     * @return 0 to 100 (where 0 is 100% volume / default, 100 is max boost).
+     * @return 0 to 100 (where 0 is standard volume 100%, 100 is maximum clean boost 200%).
      */
     public int getBoostLevel() {
         return Settings.System.getInt(mContext.getContentResolver(), SETTING_KEY, DEFAULT_BOOST_LEVEL);
     }
 
     /**
-     * Sets and applies the volume boost level.
+     * Sets the volume boost level in Settings.System.
+     * The persistent VolumeBoostHelper in AudioService handles live audio processing.
      * @param level boost percentage level (0 to 100)
      */
     public void setBoostLevel(int level) {
         int clampedLevel = Math.max(0, Math.min(100, level));
         Settings.System.putInt(mContext.getContentResolver(), SETTING_KEY, clampedLevel);
-
-        if (clampedLevel > 0) {
-            registerCallbacksIfNeeded();
-            updateBoostState();
-        } else {
-            unregisterCallbacksIfNeeded();
-            applyAudioFx(0);
-        }
-    }
-
-    private void registerCallbacksIfNeeded() {
-        if (!mCallbackRegistered && mAudioManager != null) {
-            try {
-                mAudioManager.registerAudioPlaybackCallback(mPlaybackCallback, mHandler);
-                mCallbackRegistered = true;
-            } catch (Exception e) {
-                Log.e(TAG, "Failed to register callbacks: " + e.getMessage());
-            }
-        }
-    }
-
-    private void unregisterCallbacksIfNeeded() {
-        if (mCallbackRegistered && mAudioManager != null) {
-            try {
-                mAudioManager.unregisterAudioPlaybackCallback(mPlaybackCallback);
-                mCallbackRegistered = false;
-            } catch (Exception e) {
-                Log.e(TAG, "Failed to unregister callbacks: " + e.getMessage());
-            }
-        }
-    }
-
-    private void updateBoostState() {
-        if (mAudioManager != null) {
-            updateBoostForPlaybackConfigs(mAudioManager.getActivePlaybackConfigurations());
-        } else {
-            applyAudioFx(getBoostLevel());
-        }
-    }
-
-    private synchronized void updateBoostForPlaybackConfigs(List<AudioPlaybackConfiguration> configs) {
-        int targetLevel = getBoostLevel();
-        if (targetLevel <= 0) {
-            applyAudioFx(0);
-            return;
-        }
-
-        boolean hasActiveMediaPlayback = false;
-        boolean hasActiveNonMediaPlayback = false;
-
-        if (configs != null) {
-            for (AudioPlaybackConfiguration config : configs) {
-                if (config.getPlayerState() == AudioPlaybackConfiguration.PLAYER_STATE_STARTED) {
-                    AudioAttributes attr = config.getAudioAttributes();
-                    int usage = attr != null ? attr.getUsage() : AudioAttributes.USAGE_UNKNOWN;
-
-                    if (usage == AudioAttributes.USAGE_MEDIA || usage == AudioAttributes.USAGE_GAME) {
-                        hasActiveMediaPlayback = true;
-                    } else if (usage == AudioAttributes.USAGE_NOTIFICATION
-                            || usage == AudioAttributes.USAGE_NOTIFICATION_RINGTONE
-                            || usage == AudioAttributes.USAGE_NOTIFICATION_EVENT
-                            || usage == AudioAttributes.USAGE_ALARM
-                            || usage == AudioAttributes.USAGE_ASSISTANT) {
-                        hasActiveNonMediaPlayback = true;
-                        break;
-                    }
-                }
-            }
-        }
-
-        // Apply boost ONLY if MEDIA is playing AND NO Notification/Ringtone/Alarm is playing
-        if (hasActiveMediaPlayback && !hasActiveNonMediaPlayback) {
-            applyAudioFx(targetLevel);
-        } else {
-            applyAudioFx(0);
-        }
-    }
-
-    private synchronized void applyAudioFx(int level) {
-        int clampedLevel = Math.max(0, Math.min(100, level));
-        if (mLastAppliedBoostLevel == clampedLevel) {
-            return;
-        }
-        mLastAppliedBoostLevel = clampedLevel;
-
-        int gainmB = 0;
-        if (clampedLevel > 0) {
-            gainmB = Math.round((clampedLevel / 100.0f) * 1500.0f); // Max +15.0 dB gain (1500 mB)
-        }
-
-        if (mLoudnessEnhancer != null) {
-            try {
-                mLoudnessEnhancer.setTargetGain(gainmB);
-                
-                // If user wants boost, keep the effect enabled (with 0 gain if muted)
-                // to prevent Session 0 unhooking bugs that cause the active track to stay quiet.
-                if (getBoostLevel() > 0) {
-                    if (!mLoudnessEnhancer.getEnabled()) {
-                        mLoudnessEnhancer.setEnabled(true);
-                    }
-                } else {
-                    mLoudnessEnhancer.setEnabled(gainmB > 0);
-                }
-            } catch (Exception e) {
-                Log.e(TAG, "Error setting LoudnessEnhancer target gain: " + e.getMessage());
-            }
-        }
     }
 
     public boolean isCallAudioGainEnabled() {
@@ -217,35 +101,11 @@ public class VolumeBoostManager {
 
     public void setCallAudioGainEnabled(boolean enabled) {
         Settings.System.putInt(mContext.getContentResolver(), SETTING_CALL_GAIN_KEY, enabled ? 1 : 0);
-        applyCallAudioGain(enabled);
-    }
-
-    public void applyCallAudioGain(boolean enabled) {
-        try {
-            if (mLoudnessEnhancer != null) {
-                float currentGain = mLoudnessEnhancer.getTargetGain();
-                float callGain = enabled ? 1000.0f : 0.0f; // +10.0 dB gain for calls (1000 mB)
-                mLoudnessEnhancer.setTargetGain(Math.round(Math.max(currentGain, callGain)));
-                mLoudnessEnhancer.setEnabled(enabled || currentGain > 0);
-            }
-        } catch (Exception e) {
-            Log.e(TAG, "Error applying call audio gain: " + e.getMessage());
-        }
-    }
-
-    public void release() {
-        unregisterCallbacksIfNeeded();
-        if (mLoudnessEnhancer != null) {
-            try {
-                mLoudnessEnhancer.release();
-            } catch (Exception ignored) {}
-            mLoudnessEnhancer = null;
-        }
-        if (mDynamicsProcessing != null) {
-            try {
-                mDynamicsProcessing.release();
-            } catch (Exception ignored) {}
-            mDynamicsProcessing = null;
-        }
     }
 }
+
+
+
+
+
+

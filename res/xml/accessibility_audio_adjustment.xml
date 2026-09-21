@@ -33,10 +33,9 @@
         android:persistent="false"
         android:title="@string/accessibility_toggle_primary_balance_title"/>
 
-    <!-- Volume Boost Slider (DynamicsProcessing 100%-200%) -->
-    <com.android.settings.sound.VolumeBoostSeekBarPreference
+    <!-- Volume Boost Slider (DynamicsProcessing 100%-250%) -->
+    <com.android.settingslib.widget.SliderPreference
         android:key="volume_boost"
-        android:icon="@drawable/ic_volume_up_24dp"
         android:title="@string/volume_boost_title"
         android:summary="@string/volume_boost_summary"
         settings:controller="com.android.settings.notification.VolumeBoostPreferenceController"/>
