@@ -3821,7 +3821,7 @@
     <string name="sound_dashboard_summary" msgid="8254699132423665654">"Volumen y vibración"</string>
     <string name="media_volume_option_title" msgid="5966569685119475630">"Volumen multimedia"</string>
     <string name="volume_boost_title">"Aumento de volumen"</string>
-    <string name="volume_boost_summary">"Amplifica el volumen del dispositivo hasta un 250% con amplificación lineal pura y nítida"</string>
+    <string name="volume_boost_summary">"Amplifica el volumen del dispositivo hasta un 200% con amplificación lineal pura y nítida"</string>
     <string name="volume_boost_summary_normal">"Volumen estándar (100%)"</string>
     <string name="volume_boost_summary_format">"Nivel de salida: %1$d%% (+%2$.1f dB)"</string>
     <string name="app_volume_title">"Control de volumen por aplicación"</string>

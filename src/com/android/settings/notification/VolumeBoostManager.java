@@ -33,7 +33,7 @@ public class VolumeBoostManager {
     public static final String SETTING_KEY = Settings.System.VOLUME_BOOST_LEVEL;
     public static final String SETTING_CALL_GAIN_KEY = "volume_boost_call_gain";
     public static final int DEFAULT_BOOST_LEVEL = 0; // 0% boost = 100% standard volume
-    private static final float MAX_BOOST_GAIN_DB = 15.0f;
+    private static final float MAX_BOOST_GAIN_DB = 10.0f;
 
     private static VolumeBoostManager sInstance;
 
