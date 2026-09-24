@@ -47,7 +47,7 @@ public class VolumeBoostPreferenceController extends SliderPreferenceController 
 
     @Override
     public int getAvailabilityStatus() {
-        return AVAILABLE;
+        return CONDITIONALLY_UNAVAILABLE;
     }
 
     @Override

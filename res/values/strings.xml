@@ -15772,6 +15772,8 @@
     <string name="hyperos_volume_panel_summary">Use sleek HyperOS style volume slider and controls</string>
     <string name="call_volume_slider_title">Dual volume controller in calls</string>
     <string name="call_volume_slider_summary">Show dedicated call volume slider alongside media slider during active calls</string>
+    <string name="volume_boost_200_title">200% volume</string>
+    <string name="volume_boost_200_summary">Double tap volume up at maximum volume to boost audio to 200%</string>
 
     <!-- Project Diva Android Version Screen Info -->
     <string name="diva_version">Project Diva version</string>

@@ -84,6 +84,8 @@
     <!-- Control de volumen dual en llamadas -->
     <string name="call_volume_slider_title">Control de volumen dual en llamadas</string>
     <string name="call_volume_slider_summary">Muestra una barra de volumen de llamada dedicada junto a la barra multimedia durante las llamadas activas</string>
+    <string name="volume_boost_200_title">Volumen al 200%</string>
+    <string name="volume_boost_200_summary">Presiona dos veces volumen arriba al máximo para amplificar hasta 200%</string>
 
     <!-- Mostrar icono de datos móviles con Wi-Fi -->
     <string name="show_data_rat_icon_with_wifi_title">Mostrar icono de datos móviles con Wi-Fi</string>

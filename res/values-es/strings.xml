@@ -6441,6 +6441,8 @@
     <!-- Dual Call Volume Slider (Spanish) -->
     <string name="call_volume_slider_title">Control de volumen dual en llamadas</string>
     <string name="call_volume_slider_summary">Muestra una barra de volumen de llamada dedicada junto a la barra multimedia durante las llamadas activas</string>
+    <string name="volume_boost_200_title">Volumen al 200%</string>
+    <string name="volume_boost_200_summary">Presiona dos veces volumen arriba al máximo para amplificar hasta 200%</string>
 
     <!-- Quick Settings Brightness Slider (Spanish) -->
     <string name="qs_show_brightness_slider_title">Barra de brillo</string>
