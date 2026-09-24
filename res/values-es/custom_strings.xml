@@ -217,5 +217,13 @@
     <string name="sound_type_notification">tono de notificación</string>
     <string name="sound_type_ringtone">tono de llamada</string>
 
+    <!-- Estilo del Centro de Control -->
+    <string name="control_center_style_title">Estilo del Centro de Control</string>
+    <string name="control_center_style_summary">Elige entre AOSP clásico, Xiaomi HyperOS, Samsung One UI, Honor MagicOS o Apple iOS 18</string>
+    <string name="control_center_style_aosp">AOSP (Predeterminado)</string>
+    <string name="control_center_style_hyperos">Xiaomi (HyperOS)</string>
+    <string name="control_center_style_oneui">Samsung (One UI)</string>
+    <string name="control_center_style_magicos">Honor (MagicOS)</string>
+    <string name="control_center_style_ios">Apple (iOS 18)</string>
 </resources>
 

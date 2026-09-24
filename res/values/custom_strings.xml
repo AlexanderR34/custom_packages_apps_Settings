@@ -652,5 +652,13 @@
     <string name="sound_type_notification">notification sound</string>
     <string name="sound_type_ringtone">phone ringtone</string>
 
+    <!-- Control Center Style -->
+    <string name="control_center_style_title">Control Center style</string>
+    <string name="control_center_style_summary">Choose between AOSP stock style, Xiaomi HyperOS, Samsung One UI, Honor MagicOS, or Apple iOS 18</string>
+    <string name="control_center_style_aosp">AOSP (Default)</string>
+    <string name="control_center_style_hyperos">Xiaomi (HyperOS)</string>
+    <string name="control_center_style_oneui">Samsung (One UI)</string>
+    <string name="control_center_style_magicos">Honor (MagicOS)</string>
+    <string name="control_center_style_ios">Apple (iOS 18)</string>
 </resources>
 

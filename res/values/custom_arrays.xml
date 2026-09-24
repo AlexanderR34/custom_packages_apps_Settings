@@ -99,5 +99,21 @@
         <item>3</item>
     </string-array>
 
+    <!-- Control Center Style Selection -->
+    <string-array name="control_center_style_entries">
+        <item>@string/control_center_style_aosp</item>
+        <item>@string/control_center_style_hyperos</item>
+        <item>@string/control_center_style_oneui</item>
+        <item>@string/control_center_style_magicos</item>
+        <item>@string/control_center_style_ios</item>
+    </string-array>
+
+    <string-array name="control_center_style_values" translatable="false">
+        <item>0</item>
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+    </string-array>
 </resources>
 
