@@ -561,17 +561,23 @@
     <string name="status_bar_battery_style_aosp">Stock AOSP</string>
     <string name="status_bar_battery_style_hyperos">HyperOS</string>
     <string name="status_bar_battery_style_samsung">Samsung (One UI)</string>
+    <string name="status_bar_battery_style_miui">MIUI</string>
+    <string name="status_bar_battery_style_coloros">ColorOS</string>
 
     <string-array name="status_bar_battery_style_entries">
         <item>@string/status_bar_battery_style_aosp</item>
         <item>@string/status_bar_battery_style_hyperos</item>
         <item>@string/status_bar_battery_style_samsung</item>
+        <item>@string/status_bar_battery_style_miui</item>
+        <item>@string/status_bar_battery_style_coloros</item>
     </string-array>
 
     <string-array name="status_bar_battery_style_values" translatable="false">
         <item>0</item>
         <item>1</item>
         <item>2</item>
+        <item>3</item>
+        <item>4</item>
     </string-array>
 
     <!-- HyperOS Battery Style -->
@@ -645,5 +651,6 @@
     <string name="sound_applied_toast">%1$s set as %2$s</string>
     <string name="sound_type_notification">notification sound</string>
     <string name="sound_type_ringtone">phone ringtone</string>
+
 </resources>
 

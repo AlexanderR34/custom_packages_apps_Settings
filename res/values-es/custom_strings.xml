@@ -146,6 +146,8 @@
     <string name="status_bar_battery_style_aosp">AOSP Stock</string>
     <string name="status_bar_battery_style_hyperos">HyperOS</string>
     <string name="status_bar_battery_style_samsung">Samsung (One UI)</string>
+    <string name="status_bar_battery_style_miui">MIUI</string>
+    <string name="status_bar_battery_style_coloros">ColorOS</string>
     <string name="status_bar_battery_style_hyperos_title">Estilo de batería HyperOS</string>
     <string name="status_bar_battery_style_hyperos_summary">Activa el diseño de cápsula horizontal HyperOS en la barra de estado</string>
 
@@ -214,5 +216,6 @@
     <string name="sound_applied_toast">%1$s establecido como %2$s</string>
     <string name="sound_type_notification">tono de notificación</string>
     <string name="sound_type_ringtone">tono de llamada</string>
+
 </resources>
 

@@ -6404,6 +6404,8 @@
     <string name="status_bar_battery_style_aosp">Stock AOSP</string>
     <string name="status_bar_battery_style_hyperos">HyperOS</string>
     <string name="status_bar_battery_style_samsung">Samsung (One UI)</string>
+    <string name="status_bar_battery_style_miui">MIUI</string>
+    <string name="status_bar_battery_style_coloros">ColorOS</string>
     <string name="status_bar_battery_style_hyperos_title">Diseño de batería HyperOS</string>
     <string name="status_bar_battery_style_hyperos_summary">Activa el nuevo diseño de batería horizontal estilo HyperOS con nivel dinámico, indicador de carga verde y color amarillo en modo de ahorro</string>
 
