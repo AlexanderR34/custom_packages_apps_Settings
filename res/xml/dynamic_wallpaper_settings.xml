@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:settings="http://schemas.android.com/apk/res-auto"
+    android:key="dynamic_wallpaper_settings_screen"
+    android:title="@string/dynamic_wallpaper_title">
+
+    <com.android.settingslib.widget.MainSwitchPreference
+        android:key="dynamic_wallpaper_main_switch"
+        android:title="@string/dynamic_wallpaper_enable_title"
+        settings:controller="com.android.settings.wallpaper.DynamicWallpaperMainSwitchPreferenceController" />
+
+    <com.android.settingslib.widget.LayoutPreference
+        android:key="dynamic_wallpaper_preview_layout"
+        android:layout="@layout/dynamic_wallpaper_preview"
+        android:selectable="false" />
+
+    <DropDownPreference
+        android:key="dynamic_wallpaper_target"
+        android:title="@string/dynamic_wallpaper_target_title"
+        android:summary="%s"
+        android:entries="@array/dynamic_wallpaper_target_entries"
+        android:entryValues="@array/dynamic_wallpaper_target_values"
+        android:defaultValue="3" />
+
+    <PreferenceCategory
+        android:key="dynamic_wallpaper_mode_category"
+        android:title="@string/dynamic_wallpaper_mode_category">
+
+        <SwitchPreferenceCompat
+            android:key="dynamic_wallpaper_freeze_monet"
+            android:title="@string/dynamic_wallpaper_freeze_monet_title"
+            android:summary="@string/dynamic_wallpaper_freeze_monet_summary"
+            android:defaultValue="true" />
+
+    </PreferenceCategory>
+
+</PreferenceScreen>

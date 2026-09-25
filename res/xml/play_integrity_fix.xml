@@ -42,10 +42,6 @@
             android:title="@string/pif_delete_config"
             android:summary="@string/pif_delete_config_summary" />
 
-        <Preference
-            android:key="pif_test_integrity"
-            android:title="@string/pif_test_integrity_title"
-            android:summary="@string/pif_test_integrity_summary" />
     </PreferenceCategory>
 
     <PreferenceCategory

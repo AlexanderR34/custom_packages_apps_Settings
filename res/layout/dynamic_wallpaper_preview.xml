@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:gravity="center_horizontal"
+    android:clipChildren="true"
+    android:clipToPadding="true"
+    android:paddingTop="16dp"
+    android:paddingBottom="16dp"
+    android:paddingStart="16dp"
+    android:paddingEnd="16dp">
+
+    <!-- Phone Preview Frame Card -->
+    <androidx.cardview.widget.CardView
+        android:id="@+id/preview_card_frame"
+        android:layout_width="190dp"
+        android:layout_height="380dp"
+        app:cardCornerRadius="28dp"
+        app:cardElevation="6dp"
+        app:cardBackgroundColor="#1C1C1E"
+        app:cardPreventCornerOverlap="false"
+        app:cardUseCompatPadding="false"
+        android:clipChildren="true"
+        android:clipToPadding="true"
+        android:layout_gravity="center_horizontal">
+
+        <FrameLayout
+            android:id="@+id/preview_inner_container"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:clipChildren="true"
+            android:clipToPadding="true">
+
+            <!-- Background Image 1 (outgoing or back) -->
+            <ImageView
+                android:id="@+id/preview_image_back"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:scaleType="centerCrop"
+                android:visibility="gone" />
+
+            <!-- Foreground Image 2 (active front) -->
+            <ImageView
+                android:id="@+id/preview_image_front"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:scaleType="centerCrop"
+                android:background="#2C2C2E" />
+
+            <!-- Empty Placeholder if no images selected -->
+            <LinearLayout
+                android:id="@+id/preview_empty_container"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:gravity="center"
+                android:padding="20dp"
+                android:visibility="visible">
+
+                <ImageView
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:src="@drawable/ic_wallpaper"
+                    android:tint="#8E8E93"
+                    android:layout_marginBottom="12dp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/dynamic_wallpaper_no_photos_selected"
+                    android:textColor="#8E8E93"
+                    android:textSize="13sp"
+                    android:gravity="center" />
+            </LinearLayout>
+
+            <!-- Mock Lock Screen Clock Overlay -->
+            <LinearLayout
+                android:id="@+id/preview_overlay_lock"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:paddingTop="36dp"
+                android:gravity="center_horizontal|top">
+
+                <TextClock
+                    android:id="@+id/preview_clock_big"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:format12Hour="hh:mm"
+                    android:format24Hour="HH:mm"
+                    android:textColor="#FFFFFF"
+                    android:textSize="44sp"
+                    android:textStyle="bold"
+                    android:shadowColor="#80000000"
+                    android:shadowDx="0"
+                    android:shadowDy="2"
+                    android:shadowRadius="6" />
+
+                <TextClock
+                    android:id="@+id/preview_date"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:format12Hour="EEE, d 'de' MMM"
+                    android:format24Hour="EEE, d 'de' MMM"
+                    android:textColor="#E5FFFFFF"
+                    android:textSize="12sp"
+                    android:layout_marginTop="-4dp"
+                    android:shadowColor="#80000000"
+                    android:shadowDx="0"
+                    android:shadowDy="1"
+                    android:shadowRadius="4" />
+            </LinearLayout>
+
+            <!-- Bottom Counter Badge (e.g. "1 / 4") -->
+            <TextView
+                android:id="@+id/preview_badge_counter"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom|center_horizontal"
+                android:layout_marginBottom="16dp"
+                android:background="@drawable/dynamic_wallpaper_badge_bg"
+                android:paddingStart="12dp"
+                android:paddingEnd="12dp"
+                android:paddingTop="4dp"
+                android:paddingBottom="4dp"
+                android:textColor="#FFFFFF"
+                android:textSize="11sp"
+                android:textStyle="bold"
+                android:visibility="gone" />
+
+        </FrameLayout>
+    </androidx.cardview.widget.CardView>
+
+    <!-- Action Buttons below the preview -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:gravity="center_horizontal"
+        android:layout_marginTop="20dp"
+        android:paddingStart="16dp"
+        android:paddingEnd="16dp">
+
+        <Button
+            android:id="@+id/btn_select_images"
+            style="@style/ActionPrimaryButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:minHeight="48dp"
+            android:text="@string/dynamic_wallpaper_select_photos"
+            android:layout_marginBottom="8dp" />
+
+        <Button
+            android:id="@+id/btn_clear_images"
+            style="@style/ActionSecondaryButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:minHeight="48dp"
+            android:text="@string/dynamic_wallpaper_clear_all"
+            android:visibility="gone" />
+    </LinearLayout>
+
+</LinearLayout>

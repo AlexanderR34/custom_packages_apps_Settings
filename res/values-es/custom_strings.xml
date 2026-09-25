@@ -217,13 +217,52 @@
     <string name="sound_type_notification">tono de notificación</string>
     <string name="sound_type_ringtone">tono de llamada</string>
 
-    <!-- Estilo del Centro de Control -->
-    <string name="control_center_style_title">Estilo del Centro de Control</string>
-    <string name="control_center_style_summary">Elige entre AOSP clásico, Xiaomi HyperOS, Samsung One UI, Honor MagicOS o Apple iOS 18</string>
-    <string name="control_center_style_aosp">AOSP (Predeterminado)</string>
-    <string name="control_center_style_hyperos">Xiaomi (HyperOS)</string>
-    <string name="control_center_style_oneui">Samsung (One UI)</string>
-    <string name="control_center_style_magicos">Honor (MagicOS)</string>
-    <string name="control_center_style_ios">Apple (iOS 18)</string>
+
+
+    <!-- Fondos de pantalla dinámicos -->
+    <string name="dynamic_wallpaper_title">Fondos de pantalla dinámicos</string>
+    <string name="dynamic_wallpaper_summary">Cambio automático de imágenes de la galería por tiempo o bloqueo</string>
+    <string name="dynamic_wallpaper_enable_title">Habilitar fondos de pantalla dinámicos</string>
+    <string name="dynamic_wallpaper_enable_summary">Cambia periódicamente los fondos según las fotos elegidas de tu galería</string>
+    <string name="dynamic_wallpaper_select_photos">Seleccionar imágenes de la galería</string>
+    <string name="dynamic_wallpaper_select_photos_summary">Elige múltiples fotos sin límite (%1$d seleccionadas)</string>
+    <string name="dynamic_wallpaper_no_photos_selected">Ninguna imagen seleccionada</string>
+    <string name="dynamic_wallpaper_photos_count">%1$d imágenes seleccionadas</string>
+    <string name="dynamic_wallpaper_clear_all">Borrar todas las imágenes</string>
+    <string name="dynamic_wallpaper_target_title">Aplicar fondo de pantalla a</string>
+    <string name="dynamic_wallpaper_target_summary">Elige si aplicar a la pantalla de inicio, de bloqueo o ambas</string>
+    <string name="dynamic_wallpaper_target_home">Pantalla de inicio</string>
+    <string name="dynamic_wallpaper_target_lock">Pantalla de bloqueo</string>
+    <string name="dynamic_wallpaper_target_both">Inicio y bloqueo</string>
+    <string name="dynamic_wallpaper_mode_category">Modo de cambio</string>
+    <string name="dynamic_wallpaper_lock_trigger_title">Cambiar al apagar / encender pantalla</string>
+    <string name="dynamic_wallpaper_lock_trigger_summary">Cambia a la siguiente imagen con efecto Fadeout cada vez que se bloquea o apaga la pantalla</string>
+    <string name="dynamic_wallpaper_timer_trigger_title">Cambiar por intervalo de tiempo</string>
+    <string name="dynamic_wallpaper_timer_trigger_summary">Rota los fondos periódicamente según el temporizador configurado</string>
+    <string name="dynamic_wallpaper_interval_title">Intervalo de cambio</string>
+    <string name="dynamic_wallpaper_interval_5s">5 segundos</string>
+    <string name="dynamic_wallpaper_interval_15s">15 segundos</string>
+    <string name="dynamic_wallpaper_interval_30s">30 segundos</string>
+    <string name="dynamic_wallpaper_interval_1m">1 minuto</string>
+    <string name="dynamic_wallpaper_interval_2m">2 minutos</string>
+    <string name="dynamic_wallpaper_interval_5m">5 minutos</string>
+    <string name="dynamic_wallpaper_interval_10m">10 minutos</string>
+    <string name="dynamic_wallpaper_interval_30m">30 minutos</string>
+    <string name="dynamic_wallpaper_interval_1h">1 hora</string>
+    <string name="dynamic_wallpaper_anim_effect_title">Efecto de animación de transición</string>
+    <string name="dynamic_wallpaper_anim_effect_summary">Elige el estilo de animación al cambiar de fondo</string>
+    <string name="dynamic_wallpaper_anim_fade">Disolución suave (Crossfade)</string>
+    <string name="dynamic_wallpaper_anim_zoom_drop">Zoom y Caída cinematográfica</string>
+    <string name="dynamic_wallpaper_anim_parallax">Deslizamiento Parallax (Estilo iOS)</string>
+    <string name="dynamic_wallpaper_anim_depth">Profundidad 3D y Expansión</string>
+    <string name="dynamic_wallpaper_anim_circle">Apertura circular (Ripple)</string>
+    <string name="dynamic_wallpaper_anim_vertical">Despliegue vertical (Cortina HyperOS)</string>
+    <string name="dynamic_wallpaper_anim_cube">Giro en cubo 3D</string>
+    <string name="dynamic_wallpaper_anim_random">Aleatorio (Ciclo dinámico)</string>
+    <string name="dynamic_wallpaper_cinema_anim_title">Transición cinematográfica (Zoom y Caída)</string>
+    <string name="dynamic_wallpaper_cinema_anim_summary">Expande y desvanece la imagen actual mientras la siguiente cae desde el centro con efecto suave de zoom y fadein</string>
+    <string name="dynamic_wallpaper_dialog_apply_title">Aplicar fondos dinámicos</string>
+    <string name="dynamic_wallpaper_dialog_apply_msg">¿Dónde deseas aplicar el carrusel de fondos de pantalla dinámicos?</string>
+    <string name="dynamic_wallpaper_preview_label">Vista previa en vivo</string>
 </resources>
 

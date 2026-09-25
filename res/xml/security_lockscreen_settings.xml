@@ -96,6 +96,9 @@
             android:summary="@string/lockscreen_lyrics_summary"
             android:fragment="com.android.settings.display.LockscreenLyricsSettings"
             settings:controller="com.android.settings.display.LockscreenLyricsPreferenceController" />
+
+
+
     </PreferenceCategory>
 
     <PreferenceCategory

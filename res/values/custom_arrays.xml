@@ -99,21 +99,65 @@
         <item>3</item>
     </string-array>
 
-    <!-- Control Center Style Selection -->
-    <string-array name="control_center_style_entries">
-        <item>@string/control_center_style_aosp</item>
-        <item>@string/control_center_style_hyperos</item>
-        <item>@string/control_center_style_oneui</item>
-        <item>@string/control_center_style_magicos</item>
-        <item>@string/control_center_style_ios</item>
+    <!-- Dynamic Wallpaper Target Selection -->
+    <string-array name="dynamic_wallpaper_target_entries">
+        <item>@string/dynamic_wallpaper_target_home</item>
+        <item>@string/dynamic_wallpaper_target_lock</item>
+        <item>@string/dynamic_wallpaper_target_both</item>
     </string-array>
 
-    <string-array name="control_center_style_values" translatable="false">
+    <string-array name="dynamic_wallpaper_target_values" translatable="false">
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+    </string-array>
+
+    <!-- Dynamic Wallpaper Interval Selection -->
+    <string-array name="dynamic_wallpaper_interval_entries">
+        <item>@string/dynamic_wallpaper_interval_5s</item>
+        <item>@string/dynamic_wallpaper_interval_15s</item>
+        <item>@string/dynamic_wallpaper_interval_30s</item>
+        <item>@string/dynamic_wallpaper_interval_1m</item>
+        <item>@string/dynamic_wallpaper_interval_2m</item>
+        <item>@string/dynamic_wallpaper_interval_5m</item>
+        <item>@string/dynamic_wallpaper_interval_10m</item>
+        <item>@string/dynamic_wallpaper_interval_30m</item>
+        <item>@string/dynamic_wallpaper_interval_1h</item>
+    </string-array>
+
+    <string-array name="dynamic_wallpaper_interval_values" translatable="false">
+        <item>5</item>
+        <item>15</item>
+        <item>30</item>
+        <item>60</item>
+        <item>120</item>
+        <item>300</item>
+        <item>600</item>
+        <item>1800</item>
+        <item>3600</item>
+    </string-array>
+
+    <!-- Dynamic Wallpaper Animation Effects -->
+    <string-array name="dynamic_wallpaper_animation_entries">
+        <item>@string/dynamic_wallpaper_anim_fade</item>
+        <item>@string/dynamic_wallpaper_anim_zoom_drop</item>
+        <item>@string/dynamic_wallpaper_anim_parallax</item>
+        <item>@string/dynamic_wallpaper_anim_depth</item>
+        <item>@string/dynamic_wallpaper_anim_circle</item>
+        <item>@string/dynamic_wallpaper_anim_vertical</item>
+        <item>@string/dynamic_wallpaper_anim_cube</item>
+        <item>@string/dynamic_wallpaper_anim_random</item>
+    </string-array>
+
+    <string-array name="dynamic_wallpaper_animation_values" translatable="false">
         <item>0</item>
         <item>1</item>
         <item>2</item>
         <item>3</item>
         <item>4</item>
+        <item>5</item>
+        <item>6</item>
+        <item>7</item>
     </string-array>
 </resources>
 

@@ -652,13 +652,56 @@
     <string name="sound_type_notification">notification sound</string>
     <string name="sound_type_ringtone">phone ringtone</string>
 
-    <!-- Control Center Style -->
-    <string name="control_center_style_title">Control Center style</string>
-    <string name="control_center_style_summary">Choose between AOSP stock style, Xiaomi HyperOS, Samsung One UI, Honor MagicOS, or Apple iOS 18</string>
-    <string name="control_center_style_aosp">AOSP (Default)</string>
-    <string name="control_center_style_hyperos">Xiaomi (HyperOS)</string>
-    <string name="control_center_style_oneui">Samsung (One UI)</string>
-    <string name="control_center_style_magicos">Honor (MagicOS)</string>
-    <string name="control_center_style_ios">Apple (iOS 18)</string>
+
+
+    <!-- iOS Spring Animations -->
+
+    <!-- Dynamic Wallpapers -->
+    <string name="dynamic_wallpaper_title">Dynamic wallpapers</string>
+    <string name="dynamic_wallpaper_summary">Auto-rotate multiple gallery wallpapers on screen lock or time interval</string>
+    <string name="dynamic_wallpaper_enable_title">Enable dynamic wallpapers</string>
+    <string name="dynamic_wallpaper_enable_summary">Automatically change wallpapers from your selected gallery photos</string>
+    <string name="dynamic_wallpaper_select_photos">Select images from gallery</string>
+    <string name="dynamic_wallpaper_select_photos_summary">Choose multiple photos without limit (%1$d selected)</string>
+    <string name="dynamic_wallpaper_no_photos_selected">No images selected</string>
+    <string name="dynamic_wallpaper_photos_count">%1$d images selected</string>
+    <string name="dynamic_wallpaper_clear_all">Clear all images</string>
+    <string name="dynamic_wallpaper_target_title">Apply wallpaper to</string>
+    <string name="dynamic_wallpaper_target_summary">Choose whether to apply to home screen, lock screen, or both</string>
+    <string name="dynamic_wallpaper_target_home">Home screen</string>
+    <string name="dynamic_wallpaper_target_lock">Lock screen</string>
+    <string name="dynamic_wallpaper_target_both">Home and lock screen</string>
+    <string name="dynamic_wallpaper_mode_category">Trigger mode</string>
+    <string name="dynamic_wallpaper_lock_trigger_title">Change on screen lock / unlock</string>
+    <string name="dynamic_wallpaper_lock_trigger_summary">Switch to next wallpaper with fadeout effect each time the screen turns off/locks</string>
+    <string name="dynamic_wallpaper_timer_trigger_title">Change on time interval</string>
+    <string name="dynamic_wallpaper_timer_trigger_summary">Periodically change wallpaper according to the set timer</string>
+    <string name="dynamic_wallpaper_interval_title">Change interval</string>
+    <string name="dynamic_wallpaper_interval_5s">5 seconds</string>
+    <string name="dynamic_wallpaper_interval_15s">15 seconds</string>
+    <string name="dynamic_wallpaper_interval_30s">30 seconds</string>
+    <string name="dynamic_wallpaper_interval_1m">1 minute</string>
+    <string name="dynamic_wallpaper_interval_2m">2 minutes</string>
+    <string name="dynamic_wallpaper_interval_5m">5 minutes</string>
+    <string name="dynamic_wallpaper_interval_10m">10 minutes</string>
+    <string name="dynamic_wallpaper_interval_30m">30 minutes</string>
+    <string name="dynamic_wallpaper_interval_1h">1 hour</string>
+    <string name="dynamic_wallpaper_anim_effect_title">Transition animation effect</string>
+    <string name="dynamic_wallpaper_anim_effect_summary">Choose the animation style when switching wallpapers</string>
+    <string name="dynamic_wallpaper_anim_fade">Smooth crossfade</string>
+    <string name="dynamic_wallpaper_anim_zoom_drop">Cinematic Zoom &amp; Drop</string>
+    <string name="dynamic_wallpaper_anim_parallax">Parallax slide (iOS style)</string>
+    <string name="dynamic_wallpaper_anim_depth">3D Depth &amp; Pop</string>
+    <string name="dynamic_wallpaper_anim_circle">Circular ripple reveal</string>
+    <string name="dynamic_wallpaper_anim_vertical">Vertical curtain (HyperOS)</string>
+    <string name="dynamic_wallpaper_anim_cube">3D Cube rotation</string>
+    <string name="dynamic_wallpaper_anim_random">Random cycle (Shuffle)</string>
+    <string name="dynamic_wallpaper_cinema_anim_title">Cinematic transition effect (Zoom &amp; Drop)</string>
+    <string name="dynamic_wallpaper_cinema_anim_summary">Smoothly expand &amp; fade out outgoing wallpaper while the new image drops in from the center with zoom-fade in</string>
+    <string name="dynamic_wallpaper_dialog_apply_title">Apply dynamic wallpapers</string>
+    <string name="dynamic_wallpaper_dialog_apply_msg">Where would you like to apply your dynamic wallpaper carousel?</string>
+    <string name="dynamic_wallpaper_preview_label">Live Preview Carousel</string>
+    <string name="dynamic_wallpaper_freeze_monet_title">Pin Monet theme colors</string>
+    <string name="dynamic_wallpaper_freeze_monet_summary">Keeps your current system color palette and prevents running apps from restarting when wallpapers change</string>
 </resources>
 

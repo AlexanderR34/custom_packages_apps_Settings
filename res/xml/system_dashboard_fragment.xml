@@ -281,28 +281,5 @@
         android:order="51"
         settings:controller="com.android.settings.system.ClockPositionPreferenceController" />
 
-    <!-- Quick Settings Brightness Slider -->
-    <ListPreference
-        android:key="qs_show_brightness_slider"
-        android:title="@string/qs_show_brightness_slider_title"
-        android:summary="%s"
-        android:icon="@drawable/ic_settings_display"
-        android:entries="@array/qs_show_brightness_slider_entries"
-        android:entryValues="@array/qs_show_brightness_slider_values"
-        android:defaultValue="1"
-        android:order="52"
-        settings:controller="com.android.settings.system.QsBrightnessSliderPreferenceController" />
-
-    <!-- Control Center Style (AOSP vs HyperOS) -->
-    <ListPreference
-        android:key="control_center_style"
-        android:title="@string/control_center_style_title"
-        android:summary="%s"
-        android:icon="@drawable/ic_settings_display"
-        android:entries="@array/control_center_style_entries"
-        android:entryValues="@array/control_center_style_values"
-        android:defaultValue="1"
-        android:order="53"
-        settings:controller="com.android.settings.system.ControlCenterStylePreferenceController" />
-
 </PreferenceScreen>
+

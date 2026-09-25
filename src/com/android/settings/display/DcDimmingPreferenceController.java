@@ -38,9 +38,14 @@ public class DcDimmingPreferenceController extends TogglePreferenceController {
     private static final String TAG = "DcDimmingPrefCtrl";
     public static final String KEY_DC_DIMMING = "dc_dimming_state";
 
-    private static final String[] DC_NODES = {
-        "/sys/devices/virtual/mi_display/disp_feature/disp-DSI-0/dc_status",
-        "/sys/class/mi_display/disp-DSI-0/dc_status"
+    private static final String[] DISP_PARAM_NODES = {
+        "/sys/class/mi_display/disp-DSI-0/disp_param",
+        "/sys/devices/virtual/mi_display/disp_feature/disp-DSI-0/disp_param"
+    };
+
+    private static final String[] DC_STATUS_NODES = {
+        "/sys/class/mi_display/disp-DSI-0/dc_status",
+        "/sys/devices/virtual/mi_display/disp_feature/disp-DSI-0/dc_status"
     };
 
     public DcDimmingPreferenceController(Context context, String key) {
@@ -49,33 +54,11 @@ public class DcDimmingPreferenceController extends TogglePreferenceController {
 
     @Override
     public int getAvailabilityStatus() {
-        boolean hasNode = false;
-        for (String path : DC_NODES) {
-            if (new File(path).exists()) {
-                hasNode = true;
-                break;
-            }
-        }
-        boolean hasService = ServiceManager.checkService(
-                "vendor.xiaomi.hardware.displayfeature_aidl.IDisplayFeature/default") != null;
-        return (hasNode || hasService) ? AVAILABLE : UNSUPPORTED_ON_DEVICE;
+        return UNSUPPORTED_ON_DEVICE;
     }
 
     @Override
     public boolean isChecked() {
-        for (String path : DC_NODES) {
-            try {
-                File file = new File(path);
-                if (file.exists() && file.canRead()) {
-                    try (java.io.BufferedReader reader = new java.io.BufferedReader(new java.io.FileReader(file))) {
-                        String line = reader.readLine();
-                        if (line != null && !line.trim().isEmpty()) {
-                            return "1".equals(line.trim());
-                        }
-                    }
-                }
-            } catch (Throwable ignored) {}
-        }
         return Settings.System.getInt(
                 mContext.getContentResolver(), KEY_DC_DIMMING, 0) != 0;
     }
@@ -89,8 +72,23 @@ public class DcDimmingPreferenceController extends TogglePreferenceController {
     }
 
     private void applyDcDimming(boolean enabled) {
-        // 1. Direct sysfs node write
-        for (String path : DC_NODES) {
+        // 1. Direct sysfs disp_param node write (MediaTek disp_param: feature 8 = DISP_FEATURE_DC_MODE)
+        for (String path : DISP_PARAM_NODES) {
+            try {
+                File node = new File(path);
+                if (node.exists()) {
+                    try (FileOutputStream fos = new FileOutputStream(node)) {
+                        fos.write((enabled ? "8 1" : "8 0").getBytes());
+                        fos.flush();
+                    }
+                }
+            } catch (Throwable ignored) {
+                // Handled gracefully, fallback to AIDL
+            }
+        }
+
+        // 2. Direct sysfs dc_status node write (Qualcomm / legacy)
+        for (String path : DC_STATUS_NODES) {
             try {
                 File node = new File(path);
                 if (node.exists()) {
@@ -99,12 +97,11 @@ public class DcDimmingPreferenceController extends TogglePreferenceController {
                         fos.flush();
                     }
                 }
-            } catch (Throwable t) {
-                // Ignore sysfs permissions failure and fallback to AIDL
+            } catch (Throwable ignored) {
             }
         }
 
-        // 2. Dispatch to Xiaomi DisplayFeature AIDL
+        // 3. Dispatch to Xiaomi DisplayFeature AIDL (Feature 8: DISP_FEATURE_DC)
         try {
             IBinder binder = ServiceManager.checkService(
                     "vendor.xiaomi.hardware.displayfeature_aidl.IDisplayFeature/default");

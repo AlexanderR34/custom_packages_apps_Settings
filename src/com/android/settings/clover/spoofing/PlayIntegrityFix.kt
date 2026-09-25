@@ -88,11 +88,6 @@ class PlayIntegrityFix : SettingsPreferenceFragment() {
             true
         }
 
-        findPreference<Preference>("pif_test_integrity")?.setOnPreferenceClickListener {
-            showIntegrityTestDialog()
-            true
-        }
-
         val spoofPhotosPref = findPreference<SwitchPreferenceCompat>("spoof_pif_photos")
         try {
             val contentResolver = requireContext().contentResolver
@@ -115,69 +110,6 @@ class PlayIntegrityFix : SettingsPreferenceFragment() {
         }
 
         refreshStatus()
-    }
-
-    private fun showIntegrityTestDialog() {
-        val hasPif = activeConfigData.isNotEmpty()
-        val model = activeConfigData["MODEL"] ?: android.os.Build.MODEL
-        val fp = activeConfigData["FINGERPRINT"] ?: android.os.Build.FINGERPRINT
-        val firstApiStr = activeConfigData["DEVICE_INITIAL_SDK_INT"] ?: "32"
-        val firstApi = firstApiStr.toIntOrNull() ?: 32
-
-        val keyboxFile = File("/data/adb/tricky_store/keybox.xml")
-        val trickyStoreDir = File("/data/adb/modules/tricky_store")
-        val hasKeybox = keyboxFile.exists() || trickyStoreDir.exists()
-
-        val passText = getString(R.string.pif_test_pass)
-        val failText = getString(R.string.pif_test_fail)
-
-        val basicPass = true
-        val devicePass = hasPif || firstApi <= 32
-        val strongPass = hasKeybox
-
-        val basicIcon = if (basicPass) "✅" else "❌"
-        val deviceIcon = if (devicePass) "✅" else "❌"
-        val strongIcon = if (strongPass) "✅" else "🔒"
-
-        val sb = StringBuilder()
-        sb.append(getString(R.string.pif_test_active_model, model)).append("\n")
-        sb.append(getString(R.string.pif_test_first_api, firstApiStr)).append("\n")
-        sb.append(getString(R.string.pif_test_keybox_status, if (hasKeybox) passText else failText)).append("\n\n")
-
-        sb.append("$basicIcon ").append(getString(R.string.pif_test_basic_integrity))
-            .append(": ").append(if (basicPass) passText else failText).append("\n")
-        sb.append("$deviceIcon ").append(getString(R.string.pif_test_device_integrity))
-            .append(": ").append(if (devicePass) passText else failText).append("\n")
-        sb.append("$strongIcon ").append(getString(R.string.pif_test_strong_integrity))
-            .append(": ").append(if (strongPass) passText else failText).append("\n\n")
-
-        val displayFp = if (fp.length > 45) fp.substring(0, 42) + "..." else fp
-        sb.append("FP: ").append(displayFp)
-
-        AlertDialog.Builder(requireContext())
-            .setTitle(R.string.pif_test_integrity_dialog_title)
-            .setMessage(sb.toString())
-            .setPositiveButton(R.string.pif_open_play_store) { _, _ ->
-                try {
-                    val intent = Intent("com.google.android.finsky.VIEW_MY_DOWNLOADS").apply {
-                        setPackage(VENDING_PACKAGE)
-                        addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
-                    }
-                    startActivity(intent)
-                } catch (_: Exception) {
-                    try {
-                        val launchIntent = requireContext().packageManager.getLaunchIntentForPackage(VENDING_PACKAGE)
-                        if (launchIntent != null) {
-                            launchIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
-                            startActivity(launchIntent)
-                        }
-                    } catch (e: Exception) {
-                        toast(getString(R.string.pif_failed, e.message ?: ""))
-                    }
-                }
-            }
-            .setNegativeButton(R.string.pif_close, null)
-            .show()
     }
 
     override fun onDestroy() {

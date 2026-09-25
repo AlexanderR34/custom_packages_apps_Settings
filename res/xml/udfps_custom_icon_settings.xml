@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:settings="http://schemas.android.com/apk/res-auto"
+    android:title="Icono de huella">
+
+    <com.android.settingslib.widget.LayoutPreference
+        android:key="udfps_custom_icon_preview_layout"
+        android:layout="@layout/udfps_custom_icon_preview"
+        android:selectable="false" />
+
+</PreferenceScreen>

@@ -1626,6 +1626,45 @@
                        android:value="@string/menu_key_wallpaper"/>
         </activity>
 
+        <activity android:name="Settings$DynamicWallpaperSettingsActivity"
+                  android:label="@string/dynamic_wallpaper_title"
+                  android:icon="@drawable/ic_wallpaper"
+                  android:exported="true">
+            <intent-filter android:priority="1">
+                <action android:name="android.settings.DYNAMIC_WALLPAPER_SETTINGS" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+            <meta-data android:name="com.android.settings.FRAGMENT_CLASS"
+                       android:value="com.android.settings.wallpaper.DynamicWallpaperSettings" />
+            <meta-data android:name="com.android.settings.HIGHLIGHT_MENU_KEY"
+                       android:value="@string/menu_key_display"/>
+        </activity>
+
+        <activity android:name="Settings$UdfpsCustomIconSettingsActivity"
+                  android:label="Personalización de Huella en Pantalla"
+                  android:icon="@drawable/ic_fingerprint_24dp"
+                  android:exported="true">
+            <intent-filter android:priority="1">
+                <action android:name="android.settings.UDFPS_CUSTOM_ICON_SETTINGS" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+            <meta-data android:name="com.android.settings.FRAGMENT_CLASS"
+                       android:value="com.android.settings.biometrics.UdfpsCustomIconSettings" />
+            <meta-data android:name="com.android.settings.HIGHLIGHT_MENU_KEY"
+                       android:value="@string/menu_key_security"/>
+        </activity>
+
+        <service android:name=".wallpaper.DynamicWallpaperService"
+                 android:exported="false" />
+
+        <receiver android:name=".wallpaper.DynamicWallpaperBootReceiver"
+                  android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+                <action android:name="android.intent.action.MY_PACKAGE_REPLACED" />
+            </intent-filter>
+        </receiver>
+
         <activity android:name=".wallpaper.WallpaperSuggestionActivity"
                   android:label="@string/wallpaper_settings_title"
                   android:icon="@drawable/ic_wallpaper"
@@ -2724,12 +2763,8 @@
             android:label="@string/usb_setup_wizard_title"
             android:icon="@drawable/ic_usb"
             android:theme="@style/SudThemeGlif.DayNight"
-            android:exported="true">
-            <intent-filter android:priority="1">
-                <action android:name="com.android.settings.action.USB_SETUP_WIZARD" />
-                <category android:name="android.intent.category.DEFAULT" />
-            </intent-filter>
-        </activity>
+            android:enabled="false"
+            android:exported="false" />
 
         <activity android:name=".accessibility.setupwizard.AccessibilitySetupWizardActivity"
             android:icon="@drawable/ic_accessibility_suggestion"
