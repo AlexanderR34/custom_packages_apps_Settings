@@ -67,7 +67,7 @@ public class DcDimmingPreferenceController extends TogglePreferenceController {
     public boolean setChecked(boolean isChecked) {
         boolean success = Settings.System.putInt(
                 mContext.getContentResolver(), KEY_DC_DIMMING, isChecked ? 1 : 0);
-        applyDcDimming(isChecked);
+        com.android.settingslib.utils.ThreadUtils.postOnBackgroundThread(() -> applyDcDimming(isChecked));
         return success;
     }
 
