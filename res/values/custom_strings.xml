@@ -563,6 +563,7 @@
     <string name="status_bar_battery_style_samsung">Samsung (One UI)</string>
     <string name="status_bar_battery_style_miui">MIUI</string>
     <string name="status_bar_battery_style_coloros">ColorOS</string>
+    <string name="status_bar_battery_style_windows11">Windows 11</string>
 
     <string-array name="status_bar_battery_style_entries">
         <item>@string/status_bar_battery_style_aosp</item>
@@ -570,6 +571,7 @@
         <item>@string/status_bar_battery_style_samsung</item>
         <item>@string/status_bar_battery_style_miui</item>
         <item>@string/status_bar_battery_style_coloros</item>
+        <item>@string/status_bar_battery_style_windows11</item>
     </string-array>
 
     <string-array name="status_bar_battery_style_values" translatable="false">
@@ -578,6 +580,7 @@
         <item>2</item>
         <item>3</item>
         <item>4</item>
+        <item>5</item>
     </string-array>
 
     <!-- HyperOS Battery Style -->

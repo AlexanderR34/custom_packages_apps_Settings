@@ -123,7 +123,7 @@ public class DynamicWallpaperManager {
     public boolean isFreezeMonetEnabled() {
         return Settings.System.getIntForUser(
                 mContext.getContentResolver(),
-                KEY_FREEZE_MONET, 1, UserHandle.USER_CURRENT) == 1;
+                KEY_FREEZE_MONET, 0, UserHandle.USER_CURRENT) == 1;
     }
 
     public void setFreezeMonetEnabled(boolean enabled) {

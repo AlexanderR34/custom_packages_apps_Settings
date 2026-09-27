@@ -148,6 +148,7 @@
     <string name="status_bar_battery_style_samsung">Samsung (One UI)</string>
     <string name="status_bar_battery_style_miui">MIUI</string>
     <string name="status_bar_battery_style_coloros">ColorOS</string>
+    <string name="status_bar_battery_style_windows11">Windows 11</string>
     <string name="status_bar_battery_style_hyperos_title">Estilo de batería HyperOS</string>
     <string name="status_bar_battery_style_hyperos_summary">Activa el diseño de cápsula horizontal HyperOS en la barra de estado</string>
 
