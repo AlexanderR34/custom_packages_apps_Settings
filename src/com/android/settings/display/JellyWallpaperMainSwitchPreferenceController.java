@@ -54,7 +54,7 @@ public class JellyWallpaperMainSwitchPreferenceController extends TogglePreferen
 
     @Override
     public boolean isChecked() {
-        return Settings.System.getInt(mContext.getContentResolver(), SETTING_KEY, 1) != 0;
+        return Settings.System.getInt(mContext.getContentResolver(), SETTING_KEY, 0) != 0;
     }
 
     @Override
