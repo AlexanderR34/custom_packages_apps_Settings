@@ -100,6 +100,13 @@
         android:fragment="com.android.settings.gestures.SwipeToScreenshotGestureSettings"
         settings:controller="com.android.settings.gestures.SwipeToScreenshotPreferenceController" />
 
+    <Preference
+        android:key="shake_gesture_summary"
+        android:title="@string/shake_gesture_title"
+        android:summary="@string/shake_gesture_summary"
+        android:fragment="com.android.settings.gestures.ShakeGestureSettings"
+        settings:controller="com.android.settings.gestures.ShakeGesturePreferenceController" />
+
     <SwitchPreferenceCompat
         android:key="search_gesture_press_hold"
         android:title="@string/search_gesture_feature_title"
