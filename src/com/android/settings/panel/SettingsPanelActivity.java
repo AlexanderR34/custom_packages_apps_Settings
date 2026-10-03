@@ -143,17 +143,32 @@ public class SettingsPanelActivity extends FragmentActivity {
             mPanelFragment.setArguments(new Bundle(mBundle));
             mPanelFragment.updatePanelWithAnimation();
         } else {
-            setContentView(R.layout.settings_panel);
+            final boolean isHyperOS = android.provider.Settings.System.getIntForUser(
+                    getContentResolver(),
+                    android.provider.Settings.System.HYPEROS_VOLUME_PANEL_STYLE,
+                    0,
+                    android.os.UserHandle.USER_CURRENT) == 1;
 
-            // Move the window to the bottom of screen, and make it take up the entire screen width.
-            final Window window = getWindow();
-            window.setGravity(Gravity.BOTTOM);
-            window.setLayout(WindowManager.LayoutParams.MATCH_PARENT,
-                    WindowManager.LayoutParams.WRAP_CONTENT);
-            setupNavigationBar();
-            mPanelFragment = new PanelFragment();
-            mPanelFragment.setArguments(new Bundle(mBundle));
-            fragmentManager.beginTransaction().add(R.id.main_content, mPanelFragment).commit();
+            if (isHyperOS && android.provider.Settings.Panel.ACTION_APP_VOLUME.equals(action)) {
+                final Window window = getWindow();
+                window.setGravity(Gravity.CENTER);
+                window.setLayout(WindowManager.LayoutParams.MATCH_PARENT,
+                        WindowManager.LayoutParams.MATCH_PARENT);
+                window.setBackgroundDrawable(new android.graphics.drawable.ColorDrawable(android.graphics.Color.TRANSPARENT));
+                setContentView(HyperOSAppVolumeViewHelper.createView(this));
+            } else {
+                setContentView(R.layout.settings_panel);
+
+                // Move the window to the bottom of screen, and make it take up the entire screen width.
+                final Window window = getWindow();
+                window.setGravity(Gravity.BOTTOM);
+                window.setLayout(WindowManager.LayoutParams.MATCH_PARENT,
+                        WindowManager.LayoutParams.WRAP_CONTENT);
+                setupNavigationBar();
+                mPanelFragment = new PanelFragment();
+                mPanelFragment.setArguments(new Bundle(mBundle));
+                fragmentManager.beginTransaction().add(R.id.main_content, mPanelFragment).commit();
+            }
         }
     }
 
