@@ -5051,10 +5051,12 @@
     <string name="shade_panels_title" msgid="6816157397029469997">"Notificaciones y ajustes rápidos"</string>
     <string name="keywords_shade_panels" msgid="6181844937287087945">"tonalidad, paneles, notificaciones, ajustes rápidos, ar, separado, combinado, dual, único"</string>
     <string name="shade_panels_category" msgid="3262351355390846546">"Paneles"</string>
-    <string name="shade_panels_separate_title" msgid="7839124123668116363">"Dividir"</string>
-    <string name="shade_panels_separate_summary" msgid="4879360492042964895">"Desliza hacia abajo desde la parte superior derecha para abrir los ajustes rápidos. Desliza hacia abajo desde la parte superior izquierda para abrir las notificaciones."</string>
-    <string name="shade_panels_combined_title" msgid="2812149031368941984">"Combinado (clásico)"</string>
-    <string name="shade_panels_combined_summary" msgid="5884627562590432068">"Desliza hacia abajo desde la parte superior de la pantalla para acceder al panel clásico en el que se combinan las notificaciones y los ajustes rápidos."</string>
+    <string name="shade_panels_separate_title" msgid="7839124123668116363">"HyperOS (Xiaomi)"</string>
+    <string name="shade_panels_separate_summary" msgid="4879360492042964895">"Centro de control HyperOS con paneles separados. Desliza hacia abajo desde la parte superior derecha para abrir el Centro de control. Desliza hacia abajo desde la parte superior izquierda para abrir las notificaciones."</string>
+    <string name="shade_panels_combined_title" msgid="2812149031368941984">"AOSP Nativo"</string>
+    <string name="shade_panels_combined_summary" msgid="5884627562590432068">"Panel clásico unificado de Android con diseño Material You."</string>
+    <string name="shade_panels_show_tile_labels_title">"Mostrar etiquetas de los iconos"</string>
+    <string name="shade_panels_show_tile_labels_summary">"Muestra los nombres debajo de los botones en el Centro de control"</string>
     <string name="shade_panels_foldables_footer_message" msgid="3974376428811063936">"La vista combinada (clásica) se limita a la pantalla exterior del dispositivo plegable"</string>
     <string name="emergency_settings_preference_title" msgid="6183455153241187148">"Seguridad personal y emergencias"</string>
     <string name="emergency_dashboard_summary" msgid="401033951074039302">"Emergencia SOS, información médica, alertas"</string>
@@ -6387,6 +6389,24 @@
     <!-- HyperOS Volume Panel -->
     <string name="hyperos_volume_panel_title">Panel de volumen estilo HyperOS</string>
     <string name="hyperos_volume_panel_summary">Usa la barra y controles de volumen con diseño moderno estilo HyperOS</string>
+    <string name="internal_audio_mic_title">Inyección de audio interno al micrófono</string>
+    <string name="internal_audio_mic_summary">Redirige el audio digital del sistema directamente al micrófono para llamadas o grabaciones</string>
+
+    <!-- Shake Gesture (Moto Actions Style) -->
+    <string name="shake_gesture_title">Gesto de agitar</string>
+    <string name="shake_gesture_summary">Agita el dispositivo para realizar acciones rápidamente</string>
+    <string name="shake_gesture_use_title">Usar gesto de agitar</string>
+    <string name="shake_gesture_action_category_title">Agitar el dispositivo para</string>
+    <string name="shake_action_screenshot">Hacer captura de pantalla</string>
+    <string name="shake_action_assistant">Acceder al asistente digital</string>
+    <string name="shake_action_media">Reproducir o pausar contenido</string>
+    <string name="shake_action_recents">Ver aplicaciones recientes</string>
+    <string name="shake_action_notifications">Mostrar notificaciones</string>
+    <string name="shake_action_torch">Encender/Apagar linterna</string>
+    <string name="shake_action_app">Abrir aplicación</string>
+    <string name="shake_action_app_no_app">Ninguna aplicación seleccionada</string>
+    <string name="shake_gesture_sensitivity_title">Sensibilidad</string>
+    <string name="shake_gesture_select_app_title">Seleccionar aplicación</string>
 
     <!-- Navigation Bar Button Style (Spanish) -->
     <string name="button_navigation_settings_style_title">Estilo de los botones</string>

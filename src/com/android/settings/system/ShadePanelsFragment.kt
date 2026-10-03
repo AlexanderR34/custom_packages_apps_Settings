@@ -18,9 +18,11 @@ package com.android.settings.system
 
 import android.app.settings.SettingsEnums
 import android.content.Context
+import android.provider.Settings
 import android.view.View.LAYOUT_DIRECTION_RTL
 import androidx.annotation.VisibleForTesting
 import androidx.preference.PreferenceScreen
+import androidx.preference.SwitchPreferenceCompat
 import com.android.settings.R
 import com.android.settings.Utils.isDeviceFoldable
 import com.android.settings.search.BaseSearchIndexProvider
@@ -37,7 +39,7 @@ import com.android.settingslib.widget.SelectorWithWidgetPreference
 
 /**
  * The preference fragment for the Settings page controlling Notifications & Quick Settings panels,
- * allowing the user to switch between "Dual Shade" and "Single Shade".
+ * allowing the user to switch between "Dual Shade" (HyperOS) and "Single Shade" (AOSP Nativo).
  */
 @SearchIndexable
 class ShadePanelsFragment : RadioButtonPickerFragment(), HelpResourceProvider {
@@ -58,14 +60,14 @@ class ShadePanelsFragment : RadioButtonPickerFragment(), HelpResourceProvider {
     override fun getCandidates(): List<CandidateInfo> {
         val context = requireContext()
         return listOf(
-            // Separate panels option (aka Dual Shade)
+            // HyperOS Control Center (Dual Shade separated panels)
             CandidateInfoExtra(
                 context.getText(R.string.shade_panels_separate_title),
                 context.getText(R.string.shade_panels_separate_summary),
                 KEY_DUAL_SHADE_PREFERENCE,
                 true
             ),
-            // Combined panels option (aka Single Shade)
+            // AOSP Native (Single / Classic Material You)
             CandidateInfoExtra(
                 context.getText(R.string.shade_panels_combined_title),
                 context.getText(R.string.shade_panels_combined_summary),
@@ -77,6 +79,23 @@ class ShadePanelsFragment : RadioButtonPickerFragment(), HelpResourceProvider {
 
     override fun addStaticPreferences(screen: PreferenceScreen) {
         val context = requireContext()
+
+        val labelsPref = SwitchPreferenceCompat(context).apply {
+            key = KEY_SHOW_QS_TILE_LABELS
+            title = context.getText(R.string.shade_panels_show_tile_labels_title)
+            summary = context.getText(R.string.shade_panels_show_tile_labels_summary)
+            isChecked = Settings.System.getInt(context.contentResolver, "show_qs_tile_labels", 0) == 1
+            setOnPreferenceChangeListener { _, newValue ->
+                Settings.System.putInt(
+                    context.contentResolver,
+                    "show_qs_tile_labels",
+                    if (newValue as Boolean) 1 else 0
+                )
+                true
+            }
+        }
+        screen.addPreference(labelsPref)
+
         if (isDeviceFoldable(context)) {
             screen.addPreference(
                 FooterPreference(context).apply {
@@ -144,6 +163,8 @@ class ShadePanelsFragment : RadioButtonPickerFragment(), HelpResourceProvider {
         const val KEY_DUAL_SHADE_PREFERENCE = "dual_shade"
         @VisibleForTesting
         const val KEY_SINGLE_SHADE_PREFERENCE = "single_shade"
+        @VisibleForTesting
+        const val KEY_SHOW_QS_TILE_LABELS = "show_qs_tile_labels"
 
         // Expose as a static field for the @SearchIndexable annotation processor.
         @JvmField
