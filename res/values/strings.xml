@@ -15794,6 +15794,9 @@
     <string name="shake_action_app">Open application</string>
     <string name="shake_action_app_no_app">No application selected</string>
     <string name="shake_gesture_sensitivity_title">Sensitivity</string>
+    <string name="shake_gesture_sensitivity_summary">Adjust how firmly you need to shake your device to trigger the action</string>
+    <string name="shake_gesture_sensitivity_low">Low</string>
+    <string name="shake_gesture_sensitivity_high">High</string>
     <string name="shake_gesture_select_app_title">Select application</string>
 
     <!-- Project Diva Android Version Screen Info -->

@@ -37,11 +37,11 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.preference.Preference;
 import androidx.preference.PreferenceCategory;
-import androidx.preference.SeekBarPreference;
 
 import com.android.settings.R;
 import com.android.settings.dashboard.DashboardFragment;
 import com.android.settings.search.BaseSearchIndexProvider;
+import com.android.settings.widget.SeekBarPreference;
 import com.android.settingslib.search.SearchIndexable;
 import com.android.settingslib.widget.MainSwitchPreference;
 import com.android.settingslib.widget.SelectorWithWidgetPreference;
@@ -56,7 +56,7 @@ import java.util.Map;
 
 @SearchIndexable
 public class ShakeGestureSettings extends DashboardFragment implements
-        SelectorWithWidgetPreference.OnClickListener, Preference.OnPreferenceChangeListener {
+        SelectorWithWidgetPreference.OnClickListener {
 
     private static final String TAG = "ShakeGestureSettings";
 
@@ -138,6 +138,7 @@ public class ShakeGestureSettings extends DashboardFragment implements
         }
 
         if (mPrefSensitivity != null) {
+            mPrefSensitivity.setContinuousUpdates(true);
             mPrefSensitivity.setOnPreferenceChangeListener((preference, newValue) -> {
                 int val = (Integer) newValue;
                 Settings.System.putInt(getContentResolver(),
@@ -176,7 +177,7 @@ public class ShakeGestureSettings extends DashboardFragment implements
         final int sensitivity = Settings.System.getInt(getContentResolver(),
                 Settings.System.SHAKE_GESTURE_SENSITIVITY, 3);
         if (mPrefSensitivity != null) {
-            mPrefSensitivity.setValue(sensitivity);
+            mPrefSensitivity.setProgress(sensitivity);
         }
 
         updateEnabledStates(isEnabled);

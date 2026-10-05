@@ -56,8 +56,7 @@
         <com.android.settingslib.widget.SelectorWithWidgetPreference
             android:key="shake_action_app"
             android:title="@string/shake_action_app"
-            android:summary="@string/shake_action_app_no_app"
-            settings:extraWidget="@drawable/ic_settings_accent" />
+            android:summary="@string/shake_action_app_no_app" />
 
     </PreferenceCategory>
 
@@ -70,8 +69,7 @@
             android:title="@string/shake_gesture_sensitivity_title"
             android:min="1"
             android:max="5"
-            android:defaultValue="3"
-            settings:continuousUpdates="true" />
+            android:defaultValue="3" />
 
     </PreferenceCategory>
 

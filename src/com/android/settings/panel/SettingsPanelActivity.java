@@ -74,6 +74,24 @@ public class SettingsPanelActivity extends FragmentActivity {
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
+        final boolean isHyperOS = android.provider.Settings.System.getIntForUser(
+                getContentResolver(),
+                android.provider.Settings.System.HYPEROS_VOLUME_PANEL_STYLE,
+                1,
+                android.os.UserHandle.USER_CURRENT) == 1;
+        final String action = getIntent() != null ? getIntent().getAction() : null;
+        if (isHyperOS && android.provider.Settings.Panel.ACTION_APP_VOLUME.equals(action)) {
+            requestWindowFeature(Window.FEATURE_NO_TITLE);
+            final Window window = getWindow();
+            window.setBackgroundDrawable(new android.graphics.drawable.ColorDrawable(android.graphics.Color.TRANSPARENT));
+            window.clearFlags(WindowManager.LayoutParams.FLAG_DIM_BEHIND);
+            window.addFlags(WindowManager.LayoutParams.FLAG_LAYOUT_IN_SCREEN
+                    | WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS
+                    | WindowManager.LayoutParams.FLAG_HARDWARE_ACCELERATED);
+            window.setDimAmount(0f);
+            window.setGravity(Gravity.CENTER);
+            window.setLayout(WindowManager.LayoutParams.MATCH_PARENT, WindowManager.LayoutParams.MATCH_PARENT);
+        }
         super.onCreate(savedInstanceState);
         getApplicationContext().getTheme().rebase();
         createOrUpdatePanel(true /* shouldForceCreation */);
@@ -146,7 +164,7 @@ public class SettingsPanelActivity extends FragmentActivity {
             final boolean isHyperOS = android.provider.Settings.System.getIntForUser(
                     getContentResolver(),
                     android.provider.Settings.System.HYPEROS_VOLUME_PANEL_STYLE,
-                    0,
+                    1,
                     android.os.UserHandle.USER_CURRENT) == 1;
 
             if (isHyperOS && android.provider.Settings.Panel.ACTION_APP_VOLUME.equals(action)) {
@@ -155,6 +173,8 @@ public class SettingsPanelActivity extends FragmentActivity {
                 window.setLayout(WindowManager.LayoutParams.MATCH_PARENT,
                         WindowManager.LayoutParams.MATCH_PARENT);
                 window.setBackgroundDrawable(new android.graphics.drawable.ColorDrawable(android.graphics.Color.TRANSPARENT));
+                window.clearFlags(WindowManager.LayoutParams.FLAG_DIM_BEHIND);
+                window.setDimAmount(0f);
                 setContentView(HyperOSAppVolumeViewHelper.createView(this));
             } else {
                 setContentView(R.layout.settings_panel);

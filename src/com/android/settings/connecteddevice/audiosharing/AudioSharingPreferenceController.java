@@ -146,18 +146,14 @@ public class AudioSharingPreferenceController extends BasePreferenceController
     public void displayPreference(@NonNull PreferenceScreen screen) {
         super.displayPreference(screen);
         mPreference = screen.findPreference(getPreferenceKey());
-        // super.displayPreference set the visibility based on isAvailable()
-        // immediately set the preference invisible on Connected devices page to avoid the audio
-        // sharing entrance being shown before updateVisibility(need binder call) take effects.
-        if (mPreference != null && CONNECTED_DEVICES_PREF_KEY.equals(getPreferenceKey())) {
-            mPreference.setVisible(false);
+        if (mPreference != null) {
+            mPreference.setVisible(true);
         }
     }
 
     @Override
     public int getAvailabilityStatus() {
-        return BluetoothUtils.isAudioSharingUIAvailable(mContext) ? AVAILABLE
-                : UNSUPPORTED_ON_DEVICE;
+        return AVAILABLE;
     }
 
     @Override
@@ -206,19 +202,13 @@ public class AudioSharingPreferenceController extends BasePreferenceController
         }
         switch (getPreferenceKey()) {
             case CONNECTED_DEVICES_PREF_KEY -> {
-                var unused =
-                        ThreadUtils.postOnBackgroundThread(
-                                () -> {
-                                    boolean visible = BluetoothUtils.isBroadcasting(mBtManager);
-                                    AudioSharingUtils.postOnMainThread(
-                                            mContext,
-                                            () -> {
-                                                // Check nullability to pass NullAway check
-                                                if (mPreference != null) {
-                                                    mPreference.setVisible(visible);
-                                                }
-                                            });
-                                });
+                AudioSharingUtils.postOnMainThread(
+                        mContext,
+                        () -> {
+                            if (mPreference != null) {
+                                mPreference.setVisible(true);
+                            }
+                        });
             }
         }
     }

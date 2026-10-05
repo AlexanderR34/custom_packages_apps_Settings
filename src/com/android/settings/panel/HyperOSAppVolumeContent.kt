@@ -16,7 +16,10 @@
 
 package com.android.settings.panel
 
+import android.content.BroadcastReceiver
 import android.content.Context
+import android.content.Intent
+import android.content.IntentFilter
 import android.content.pm.PackageManager
 import android.content.res.Configuration
 import android.graphics.Bitmap
@@ -26,6 +29,7 @@ import android.graphics.drawable.Drawable
 import android.media.AudioManager
 import android.media.AppVolume
 import android.view.HapticFeedbackConstants
+import androidx.activity.compose.BackHandler
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.core.Spring
 import androidx.compose.animation.core.animateFloatAsState
@@ -45,16 +49,22 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.BoxWithConstraints
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.layout.WindowInsets
+import androidx.compose.foundation.layout.asPaddingValues
+import androidx.compose.foundation.layout.calculateEndPadding
+import androidx.compose.foundation.layout.calculateStartPadding
+import androidx.compose.foundation.layout.navigationBars
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Icon
-import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.DisposableEffect
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableFloatStateOf
@@ -65,6 +75,7 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.asImageBitmap
 import androidx.compose.ui.input.pointer.pointerInput
@@ -74,6 +85,8 @@ import androidx.compose.ui.platform.LocalView
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import com.android.settings.R
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.isActive
 import kotlin.math.roundToInt
 
 object HyperOSAppVolumeViewHelper {
@@ -103,37 +116,59 @@ fun HyperOSAppVolumeContent(
 
     var isVisible by remember { mutableStateOf(false) }
 
+    BackHandler {
+        isVisible = false
+        onDismiss()
+    }
+
     LaunchedEffect(Unit) {
         isVisible = true
     }
 
-    // Active apps playing volume
-    val activeAppVolumes = remember(audioManager) {
-        val list = mutableListOf<AppVolume>()
-        try {
-            for (vol in audioManager.listAppVolumes()) {
-                if (vol.isActive && vol.packageName != "android") {
-                    list.add(vol)
-                }
+    // Active apps playing volume - periodically polled for real-time reactivity
+    var activeAppVolumes by remember {
+        mutableStateOf(
+            try {
+                audioManager.listAppVolumes().filter { it.isActive && it.packageName != "android" }
+            } catch (_: Exception) {
+                emptyList<AppVolume>()
             }
-        } catch (e: Exception) {
-        }
-        list
+        )
     }
 
-    val sliderHeight = if (isLandscape) 140.dp else 190.dp
-    val sliderWidth = if (isLandscape) 52.dp else 60.dp
+    LaunchedEffect(Unit) {
+        while (isActive) {
+            try {
+                val currentList = audioManager.listAppVolumes().filter { it.isActive && it.packageName != "android" }
+                if (currentList.map { "${it.packageName}:${it.volume}:${it.isActive}" } != 
+                    activeAppVolumes.map { "${it.packageName}:${it.volume}:${it.isActive}" }) {
+                    activeAppVolumes = currentList
+                }
+            } catch (_: Exception) {}
+            delay(150)
+        }
+    }
 
+    val navBarStart = WindowInsets.navigationBars.asPaddingValues().calculateStartPadding(androidx.compose.ui.unit.LayoutDirection.Ltr)
+    val navBarEnd = WindowInsets.navigationBars.asPaddingValues().calculateEndPadding(androidx.compose.ui.unit.LayoutDirection.Ltr)
+
+    // Completely transparent backdrop with tap-to-dismiss outside
     Box(
         modifier = modifier
             .fillMaxSize()
-            .background(Color.Black.copy(alpha = 0.45f))
-            .pointerInput(Unit) {
-                detectTapGestures {
-                    isVisible = false
-                    onDismiss()
-                }
-            },
+            .background(Color.Transparent)
+            .clickable(
+                interactionSource = remember { MutableInteractionSource() },
+                indication = null
+            ) {
+                isVisible = false
+                onDismiss()
+            }
+            .then(
+                if (isLandscape) {
+                    Modifier.padding(start = navBarStart, end = navBarEnd)
+                } else Modifier
+            ),
         contentAlignment = Alignment.Center
     ) {
         AnimatedVisibility(
@@ -147,25 +182,26 @@ fun HyperOSAppVolumeContent(
                 animationSpec = spring(stiffness = Spring.StiffnessMedium)
             ) + fadeOut()
         ) {
+            val sliderWidth = if (isLandscape) 56.dp else 64.dp
+            val sliderHeight = if (isLandscape) 170.dp else 220.dp
+            val spacing = if (isLandscape) 16.dp else 18.dp
+
             Row(
-                horizontalArrangement = Arrangement.spacedBy(14.dp),
+                horizontalArrangement = Arrangement.spacedBy(spacing),
                 verticalAlignment = Alignment.CenterVertically,
                 modifier = Modifier
-                    .pointerInput(Unit) {
-                        // Consume taps inside so clicking between sliders doesn't dismiss
-                        detectTapGestures {}
-                    }
-                    .padding(16.dp)
+                    .padding(horizontal = 16.dp, vertical = 16.dp)
             ) {
-                // 1. General Media Volume Slider (Speaker icon)
+                // 1. General Media Volume Slider (Vertical Capsule)
                 HyperOSMediaVolumeSlider(
                     audioManager = audioManager,
                     sliderWidth = sliderWidth,
                     sliderHeight = sliderHeight,
+                    isLandscape = isLandscape,
                     view = view
                 )
 
-                // 2. Individual App Volume Sliders (One per active sound app)
+                // 2. Individual App Volume Sliders (Vertical Capsule)
                 for (appVol in activeAppVolumes) {
                     HyperOSSingleAppVolumeSlider(
                         appVolume = appVol,
@@ -173,6 +209,7 @@ fun HyperOSAppVolumeContent(
                         packageManager = packageManager,
                         sliderWidth = sliderWidth,
                         sliderHeight = sliderHeight,
+                        isLandscape = isLandscape,
                         view = view
                     )
                 }
@@ -181,13 +218,19 @@ fun HyperOSAppVolumeContent(
     }
 }
 
+/* ========================================================================== */
+/*                             VERTICAL SLIDERS                               */
+/* ========================================================================== */
+
 @Composable
 private fun HyperOSMediaVolumeSlider(
     audioManager: AudioManager,
     sliderWidth: androidx.compose.ui.unit.Dp,
     sliderHeight: androidx.compose.ui.unit.Dp,
+    isLandscape: Boolean,
     view: android.view.View,
 ) {
+    val context = LocalContext.current
     val streamType = AudioManager.STREAM_MUSIC
     val maxVol = remember { audioManager.getStreamMaxVolume(streamType).coerceAtLeast(1) }
     val minVol = remember { audioManager.getStreamMinVolume(streamType) }
@@ -196,10 +239,54 @@ private fun HyperOSMediaVolumeSlider(
         mutableIntStateOf(
             try {
                 audioManager.getStreamVolume(streamType)
-            } catch (e: Exception) {
+            } catch (_: Exception) {
                 maxVol / 2
             }
         )
+    }
+
+    var isDragging by remember { mutableStateOf(false) }
+
+    // Listen to real-time volume changes from hardware keys, bluetooth, etc.
+    DisposableEffect(context) {
+        val receiver = object : BroadcastReceiver() {
+            override fun onReceive(c: Context?, intent: Intent?) {
+                if (intent?.action == "android.media.VOLUME_CHANGED_ACTION") {
+                    val st = intent.getIntExtra("android.media.EXTRA_VOLUME_STREAM_TYPE", -1)
+                    if (st == streamType || st == -1) {
+                        if (!isDragging) {
+                            try {
+                                currentVol = audioManager.getStreamVolume(streamType)
+                            } catch (_: Exception) {}
+                        }
+                    }
+                }
+            }
+        }
+        val filter = IntentFilter("android.media.VOLUME_CHANGED_ACTION")
+        try {
+            context.registerReceiver(receiver, filter)
+        } catch (_: Exception) {}
+        onDispose {
+            try {
+                context.unregisterReceiver(receiver)
+            } catch (_: Exception) {}
+        }
+    }
+
+    // Periodic polling to keep media volume in absolute sync
+    LaunchedEffect(Unit) {
+        while (isActive) {
+            if (!isDragging) {
+                try {
+                    val latest = audioManager.getStreamVolume(streamType)
+                    if (latest != currentVol) {
+                        currentVol = latest
+                    }
+                } catch (_: Exception) {}
+            }
+            delay(150)
+        }
     }
 
     val fraction = ((currentVol - minVol).toFloat() / (maxVol - minVol).toFloat()).coerceIn(0f, 1f)
@@ -209,20 +296,30 @@ private fun HyperOSMediaVolumeSlider(
         label = "HyperOSMediaFraction"
     )
 
+    val cornerRadius = if (isLandscape) 28.dp else 32.dp
+
     Column(
         modifier = Modifier
             .width(sliderWidth)
             .height(sliderHeight)
-            .clip(RoundedCornerShape(26.dp))
-            .background(MaterialTheme.colorScheme.surfaceVariant.copy(alpha = 0.35f)),
+            .shadow(elevation = 12.dp, shape = RoundedCornerShape(cornerRadius))
+            .clip(RoundedCornerShape(cornerRadius))
+            .background(Color(0x597F7F7F))
+            .clickable(
+                interactionSource = remember { MutableInteractionSource() },
+                indication = null
+            ) {
+                // Consume click so tapping on the slider body doesn't dismiss
+            },
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
         BoxWithConstraints(
             modifier = Modifier
                 .fillMaxSize()
-                .pointerInput(Unit) {
+                .pointerInput(minVol, maxVol) {
                     detectVerticalDragGestures(
                         onDragStart = { offset ->
+                            isDragging = true
                             val h = size.height
                             val calcFrac = 1f - (offset.y / h).coerceIn(0f, 1f)
                             val target = (minVol + calcFrac * (maxVol - minVol)).roundToInt()
@@ -230,9 +327,15 @@ private fun HyperOSMediaVolumeSlider(
                                 currentVol = target
                                 try {
                                     audioManager.setStreamVolume(streamType, target, 0)
-                                } catch (e: Exception) {}
+                                } catch (_: Exception) {}
                                 view.performHapticFeedback(HapticFeedbackConstants.SEGMENT_TICK)
                             }
+                        },
+                        onDragEnd = {
+                            isDragging = false
+                        },
+                        onDragCancel = {
+                            isDragging = false
                         },
                         onVerticalDrag = { change, _ ->
                             change.consume()
@@ -243,30 +346,45 @@ private fun HyperOSMediaVolumeSlider(
                                 currentVol = target
                                 try {
                                     audioManager.setStreamVolume(streamType, target, 0)
-                                } catch (e: Exception) {}
+                                } catch (_: Exception) {}
                                 view.performHapticFeedback(HapticFeedbackConstants.SEGMENT_TICK)
                             }
                         }
                     )
                 }
+                .pointerInput(minVol, maxVol) {
+                    detectTapGestures { offset ->
+                        val h = size.height
+                        // If not tapping directly on the bottom icon badge
+                        if (offset.y < (h - 40f)) {
+                            val calcFrac = 1f - (offset.y / h).coerceIn(0f, 1f)
+                            val target = (minVol + calcFrac * (maxVol - minVol)).roundToInt()
+                            if (target != currentVol) {
+                                currentVol = target
+                                try {
+                                    audioManager.setStreamVolume(streamType, target, 0)
+                                } catch (_: Exception) {}
+                                view.performHapticFeedback(HapticFeedbackConstants.SEGMENT_TICK)
+                            }
+                        }
+                    }
+                }
         ) {
-            val totalH = maxHeight
-
-            // Filled level (from bottom)
+            // Filled level (from bottom) - Pure White matching HyperOS
             Box(
                 modifier = Modifier
                     .align(Alignment.BottomCenter)
                     .fillMaxWidth()
-                    .height(totalH * animatedFraction)
-                    .background(MaterialTheme.colorScheme.primary)
+                    .fillMaxHeight(animatedFraction.coerceIn(0f, 1f))
+                    .background(Color.White)
             )
 
             // Bottom Speaker Icon badge
             Box(
                 modifier = Modifier
                     .align(Alignment.BottomCenter)
-                    .padding(bottom = 12.dp)
-                    .size(36.dp)
+                    .padding(bottom = if (isLandscape) 10.dp else 14.dp)
+                    .size(if (isLandscape) 36.dp else 40.dp)
                     .clickable(
                         interactionSource = remember { MutableInteractionSource() },
                         indication = null
@@ -276,18 +394,18 @@ private fun HyperOSMediaVolumeSlider(
                         currentVol = target
                         try {
                             audioManager.setStreamVolume(streamType, target, 0)
-                        } catch (e: Exception) {}
+                        } catch (_: Exception) {}
                     },
                 contentAlignment = Alignment.Center
             ) {
-                val iconTint = if (animatedFraction > 0.18f) MaterialTheme.colorScheme.onPrimary
-                               else MaterialTheme.colorScheme.onSurface
+                val iconTint = if (animatedFraction > 0.18f) Color(0xFF0D84FF)
+                               else Color.White
 
                 Icon(
                     painter = painterResource(id = R.drawable.ic_hyperos_speaker_mid),
                     contentDescription = "Media",
                     tint = iconTint,
-                    modifier = Modifier.size(24.dp)
+                    modifier = Modifier.size(if (isLandscape) 22.dp else 24.dp)
                 )
             }
         }
@@ -301,9 +419,18 @@ private fun HyperOSSingleAppVolumeSlider(
     packageManager: PackageManager,
     sliderWidth: androidx.compose.ui.unit.Dp,
     sliderHeight: androidx.compose.ui.unit.Dp,
+    isLandscape: Boolean,
     view: android.view.View,
 ) {
-    var volumeFraction by remember(appVolume) { mutableFloatStateOf(appVolume.volume.coerceIn(0f, 1f)) }
+    var volumeFraction by remember(appVolume.packageName) { mutableFloatStateOf(appVolume.volume.coerceIn(0f, 1f)) }
+    var isDragging by remember { mutableStateOf(false) }
+
+    // Keep app volume in sync with latest changes from system/audio track
+    LaunchedEffect(appVolume.volume) {
+        if (!isDragging) {
+            volumeFraction = appVolume.volume.coerceIn(0f, 1f)
+        }
+    }
 
     val animatedFraction by animateFloatAsState(
         targetValue = volumeFraction,
@@ -315,32 +442,48 @@ private fun HyperOSSingleAppVolumeSlider(
         try {
             val drawable = packageManager.getApplicationIcon(appVolume.packageName)
             drawableToBitmap(drawable)
-        } catch (e: Exception) {
+        } catch (_: Exception) {
             null
         }
     }
+
+    val cornerRadius = if (isLandscape) 28.dp else 32.dp
 
     Column(
         modifier = Modifier
             .width(sliderWidth)
             .height(sliderHeight)
-            .clip(RoundedCornerShape(26.dp))
-            .background(MaterialTheme.colorScheme.surfaceVariant.copy(alpha = 0.35f)),
+            .shadow(elevation = 12.dp, shape = RoundedCornerShape(cornerRadius))
+            .clip(RoundedCornerShape(cornerRadius))
+            .background(Color(0x597F7F7F))
+            .clickable(
+                interactionSource = remember { MutableInteractionSource() },
+                indication = null
+            ) {
+                // Consume click so tapping on the slider body doesn't dismiss
+            },
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
         BoxWithConstraints(
             modifier = Modifier
                 .fillMaxSize()
-                .pointerInput(Unit) {
+                .pointerInput(appVolume.packageName) {
                     detectVerticalDragGestures(
                         onDragStart = { offset ->
+                            isDragging = true
                             val h = size.height
                             val calcFrac = (1f - (offset.y / h)).coerceIn(0f, 1f)
                             volumeFraction = calcFrac
                             try {
                                 audioManager.setAppVolume(appVolume.packageName, calcFrac)
-                            } catch (e: Exception) {}
+                            } catch (_: Exception) {}
                             view.performHapticFeedback(HapticFeedbackConstants.SEGMENT_TICK)
+                        },
+                        onDragEnd = {
+                            isDragging = false
+                        },
+                        onDragCancel = {
+                            isDragging = false
                         },
                         onVerticalDrag = { change, _ ->
                             change.consume()
@@ -349,29 +492,41 @@ private fun HyperOSSingleAppVolumeSlider(
                             volumeFraction = calcFrac
                             try {
                                 audioManager.setAppVolume(appVolume.packageName, calcFrac)
-                            } catch (e: Exception) {}
+                            } catch (_: Exception) {}
                             view.performHapticFeedback(HapticFeedbackConstants.SEGMENT_TICK)
                         }
                     )
                 }
+                .pointerInput(appVolume.packageName) {
+                    detectTapGestures { offset ->
+                        val h = size.height
+                        // If not tapping directly on the bottom icon badge
+                        if (offset.y < (h - 40f)) {
+                            val calcFrac = (1f - (offset.y / h)).coerceIn(0f, 1f)
+                            volumeFraction = calcFrac
+                            try {
+                                audioManager.setAppVolume(appVolume.packageName, calcFrac)
+                            } catch (_: Exception) {}
+                            view.performHapticFeedback(HapticFeedbackConstants.SEGMENT_TICK)
+                        }
+                    }
+                }
         ) {
-            val totalH = maxHeight
-
-            // Filled level (from bottom)
+            // Filled level (from bottom) - Pure White matching HyperOS
             Box(
                 modifier = Modifier
                     .align(Alignment.BottomCenter)
                     .fillMaxWidth()
-                    .height(totalH * animatedFraction)
-                    .background(MaterialTheme.colorScheme.primary)
+                    .fillMaxHeight(animatedFraction.coerceIn(0f, 1f))
+                    .background(Color.White)
             )
 
             // Bottom App Icon badge
             Box(
                 modifier = Modifier
                     .align(Alignment.BottomCenter)
-                    .padding(bottom = 12.dp)
-                    .size(36.dp)
+                    .padding(bottom = if (isLandscape) 10.dp else 14.dp)
+                    .size(if (isLandscape) 36.dp else 40.dp)
                     .clickable(
                         interactionSource = remember { MutableInteractionSource() },
                         indication = null
@@ -381,7 +536,7 @@ private fun HyperOSSingleAppVolumeSlider(
                         volumeFraction = target
                         try {
                             audioManager.setAppVolume(appVolume.packageName, target)
-                        } catch (e: Exception) {}
+                        } catch (_: Exception) {}
                     },
                 contentAlignment = Alignment.Center
             ) {
@@ -389,15 +544,15 @@ private fun HyperOSSingleAppVolumeSlider(
                     Image(
                         bitmap = appIconBitmap.asImageBitmap(),
                         contentDescription = appVolume.packageName,
-                        modifier = Modifier.size(24.dp)
+                        modifier = Modifier.size(if (isLandscape) 24.dp else 26.dp)
                     )
                 } else {
                     Icon(
                         painter = painterResource(id = R.drawable.ic_hyperos_speaker_mid),
                         contentDescription = appVolume.packageName,
-                        tint = if (animatedFraction > 0.18f) MaterialTheme.colorScheme.onPrimary
-                               else MaterialTheme.colorScheme.onSurface,
-                        modifier = Modifier.size(24.dp)
+                        tint = if (animatedFraction > 0.18f) Color(0xFF0D84FF)
+                               else Color.White,
+                        modifier = Modifier.size(if (isLandscape) 22.dp else 24.dp)
                     )
                 }
             }
