@@ -30,9 +30,93 @@
     <string name="custom_blur_intensity_title">Blur intensity</string>
     <string name="custom_blur_intensity_summary">Adjust the system background blur radius and intensity</string>
 
-    <!-- Status Bar Music Island -->
-    <string name="status_bar_music_island_title">Enable Music Island</string>
-    <string name="status_bar_music_island_summary">Quick media playback controls and progress ring in the status bar</string>
+    <!-- Status Bar Dynamic Chips Sub-dashboard -->
+    <string name="status_bar_chips_settings_title">Dynamic activity island &amp; chips</string>
+    <string name="status_bar_chips_settings_summary">Configure chips limit, activity timeouts, Monet colors, and privacy alert duration</string>
+    <string name="status_bar_chips_general_category">General</string>
+    <string name="status_bar_chips_visible_category">Visible activity chips</string>
+    <string name="status_bar_chips_timeouts_category">Activity Timeouts</string>
+
+    <string name="status_bar_chip_enable_privacy_title">Privacy alerts (Camera, Mic, GPS)</string>
+    <string name="status_bar_chip_enable_privacy_summary">Show real-time active hardware sensor indicator</string>
+    <string name="status_bar_chip_enable_bluetooth_title">Bluetooth device battery</string>
+    <string name="status_bar_chip_enable_bluetooth_summary">Show connected headphones/earbuds battery percentage</string>
+    <string name="status_bar_chip_enable_media_title">Music &amp; media island</string>
+    <string name="status_bar_chip_enable_media_summary">Show current playback artist and track title</string>
+    <string name="status_bar_chip_enable_download_title">Download progress</string>
+    <string name="status_bar_chip_enable_download_summary">Show active download speed and percentage</string>
+    <string name="status_bar_chip_enable_call_title">Ongoing phone calls</string>
+    <string name="status_bar_chip_enable_call_summary">Show active call duration timer</string>
+    <string name="status_bar_chip_enable_timer_title">Timers and stopwatches</string>
+    <string name="status_bar_chip_enable_timer_summary">Show running countdown timer</string>
+    <string name="status_bar_chip_enable_navigation_title">Live turn-by-turn navigation</string>
+    <string name="status_bar_chip_enable_navigation_summary">Show Maps navigation route guidance</string>
+    <string name="status_bar_chip_enable_screen_record_title">Screen recording</string>
+    <string name="status_bar_chip_enable_screen_record_summary">Show ongoing screen capture recorder</string>
+    <string name="status_bar_chip_enable_share_to_app_title">Screen sharing with apps</string>
+    <string name="status_bar_chip_enable_share_to_app_summary">Show screen share projection indicator</string>
+    <string name="status_bar_chip_enable_cast_title">Cast to display/device</string>
+    <string name="status_bar_chip_enable_cast_summary">Show media casting status</string>
+    <string name="status_bar_chip_enable_hotspot_title">Hotspot / Tethering</string>
+    <string name="status_bar_chip_enable_hotspot_summary">Show Wi-Fi hotspot active clients</string>
+    <string name="status_bar_chip_enable_notifs_title">Promoted app activities</string>
+    <string name="status_bar_chip_enable_notifs_summary">Show live activities from delivery, ride, or sports apps</string>
+
+    <string name="status_bar_chips_limit_title">Status bar chips limit</string>
+    <string name="status_bar_chips_limit_summary">Select maximum number of concurrent ongoing activity chips in status bar</string>
+    <string name="status_bar_chips_limit_1">1 chip</string>
+    <string name="status_bar_chips_limit_2">2 chips</string>
+    <string name="status_bar_chips_limit_3">3 chips (Default)</string>
+    <string name="status_bar_chips_limit_disabled">Disabled (0 chips)</string>
+
+    <string name="status_bar_chips_multi_style_title">Multi-activity display style</string>
+    <string name="status_bar_chips_multi_style_summary">Choose how to display chips when multiple activities are ongoing</string>
+    <string name="status_bar_chips_multi_style_all_expanded">All expanded (Full text and details)</string>
+    <string name="status_bar_chips_multi_style_secondary_compact">Primary expanded, secondaries compact</string>
+    <string name="status_bar_chips_multi_style_all_compact">All compact (Icons only)</string>
+
+    <string name="status_bar_chips_monet_title">Monet theme adaptation</string>
+    <string name="status_bar_chips_monet_summary">Tint status bar chips dynamically with the system wallpaper palette</string>
+    <string name="status_bar_chips_monet_icons_title">Adaptive Monet icons</string>
+    <string name="status_bar_chips_monet_icons_summary">Apply secondary Monet palette color to chip icons for distinct contrast</string>
+
+    <string name="status_bar_chips_media_timeout_title">Music inactivity timeout</string>
+    <string name="status_bar_chips_media_timeout_summary">How long the music chip stays visible in the status bar after playback is paused</string>
+
+    <string name="status_bar_chips_media_art_style_title">Music album cover style</string>
+    <string name="status_bar_chips_media_art_style_summary">Choose the shape and appearance of album artwork in the music chip</string>
+    <string name="status_bar_chips_media_art_style_spinning_vinyl">Spinning vinyl (Animated)</string>
+    <string name="status_bar_chips_media_art_style_circle">Circular (Static vinyl)</string>
+    <string name="status_bar_chips_media_art_style_squircle">Squircle (Rounded corners)</string>
+    <string name="status_bar_chips_media_art_style_square">Classic square</string>
+    <string name="status_bar_chips_media_art_style_app_icon">App icon only</string>
+
+    <string name="status_bar_chips_privacy_timeout_title">Hardware privacy alert duration</string>
+    <string name="status_bar_chips_privacy_timeout_summary">How long camera, microphone, and location indicator chip remains visible</string>
+
+    <string name="status_bar_chips_timeout_5s">5 seconds</string>
+    <string name="status_bar_chips_timeout_10s">10 seconds</string>
+    <string name="status_bar_chips_timeout_15s">15 seconds</string>
+    <string name="status_bar_chips_timeout_15s_default">15 seconds (Default)</string>
+    <string name="status_bar_chips_timeout_30s">30 seconds</string>
+    <string name="status_bar_chips_timeout_30s_default">30 seconds (Default)</string>
+    <string name="status_bar_chips_timeout_60s">60 seconds (1 minute)</string>
+    <string name="status_bar_chips_timeout_always">Always visible</string>
+    <string name="status_bar_chips_timeout_always_sensor">Always visible while in use</string>
+
+    <!-- Status Bar Chips Privacy Colors (HEX) -->
+    <string name="status_bar_chips_colors_category">Hardware indicator colors (HEX)</string>
+    <string name="status_bar_chips_color_cam_mic_title">Camera &amp; Microphone color</string>
+    <string name="status_bar_chips_color_cam_mic_summary">HEX color for camera and microphone indicator (Default: #00E676)</string>
+    <string name="status_bar_chips_color_location_title">Location (GPS) color</string>
+    <string name="status_bar_chips_color_location_summary">HEX color for location indicator (Default: #0091EA)</string>
+    <string name="status_bar_chips_color_combo_title">Camera/Mic + Location color</string>
+    <string name="status_bar_chips_color_combo_summary">HEX color when location is combined with camera or mic (Default: #00F5D4)</string>
+    <string name="status_bar_chips_color_all_title">All sensors active color</string>
+    <string name="status_bar_chips_color_all_summary">HEX color when camera, microphone, and location are all in use (Default: #FFB300)</string>
+    <string name="status_bar_chips_colors_reset_title">Reset colors to defaults</string>
+    <string name="status_bar_chips_colors_reset_summary">Restore default indicator HEX colors in one tap</string>
+    <string name="status_bar_chips_colors_reset_toast">Hardware colors restored to defaults</string>
 
     <!-- Status Bar Clock Position -->
     <string name="status_bar_clock_position_title">Clock position</string>

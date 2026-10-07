@@ -261,14 +261,14 @@
         android:order="40"
         settings:controller="com.android.settings.system.DisableScopedStorageRestrictionsPreferenceController" />
 
-    <!-- Status Bar Music Island -->
-    <SwitchPreferenceCompat
-        android:key="status_bar_music_island"
-        android:title="@string/status_bar_music_island_title"
-        android:summary="@string/status_bar_music_island_summary"
-        android:defaultValue="false"
+    <!-- Status Bar Dynamic Chips Sub-dashboard -->
+    <Preference
+        android:key="status_bar_chips_settings"
+        android:title="@string/status_bar_chips_settings_title"
+        android:summary="@string/status_bar_chips_settings_summary"
+        android:icon="@drawable/ic_status_bar_chips"
         android:order="50"
-        settings:controller="com.android.settings.system.MusicIslandPreferenceController" />
+        android:fragment="com.android.settings.system.StatusBarChipsSettingsFragment" />
 
     <!-- Status Bar Clock Position -->
     <ListPreference

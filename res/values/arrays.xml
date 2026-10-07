@@ -63,6 +63,85 @@
 
     <!-- Sound Theme -->
 
+    <!-- Status Bar Chips Limit -->
+    <string-array name="status_bar_chips_limit_entries">
+        <item>@string/status_bar_chips_limit_1</item>
+        <item>@string/status_bar_chips_limit_2</item>
+        <item>@string/status_bar_chips_limit_3</item>
+        <item>@string/status_bar_chips_limit_disabled</item>
+    </string-array>
+
+    <string-array name="status_bar_chips_limit_values" translatable="false">
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>0</item>
+    </string-array>
+
+    <!-- Status Bar Chips Multi-Activity Display Style -->
+    <string-array name="status_bar_chips_multi_style_entries">
+        <item>@string/status_bar_chips_multi_style_all_expanded</item>
+        <item>@string/status_bar_chips_multi_style_secondary_compact</item>
+        <item>@string/status_bar_chips_multi_style_all_compact</item>
+    </string-array>
+
+    <string-array name="status_bar_chips_multi_style_values" translatable="false">
+        <item>0</item>
+        <item>1</item>
+        <item>2</item>
+    </string-array>
+
+    <!-- Status Bar Media Chip Timeout -->
+    <string-array name="status_bar_chips_media_timeout_entries">
+        <item>@string/status_bar_chips_timeout_5s</item>
+        <item>@string/status_bar_chips_timeout_15s</item>
+        <item>@string/status_bar_chips_timeout_30s_default</item>
+        <item>@string/status_bar_chips_timeout_60s</item>
+        <item>@string/status_bar_chips_timeout_always</item>
+    </string-array>
+
+    <string-array name="status_bar_chips_media_timeout_values" translatable="false">
+        <item>5</item>
+        <item>15</item>
+        <item>30</item>
+        <item>60</item>
+        <item>0</item>
+    </string-array>
+
+    <!-- Status Bar Media Chip Album Art Style -->
+    <string-array name="status_bar_chips_media_art_style_entries">
+        <item>@string/status_bar_chips_media_art_style_spinning_vinyl</item>
+        <item>@string/status_bar_chips_media_art_style_circle</item>
+        <item>@string/status_bar_chips_media_art_style_squircle</item>
+        <item>@string/status_bar_chips_media_art_style_square</item>
+        <item>@string/status_bar_chips_media_art_style_app_icon</item>
+    </string-array>
+
+    <string-array name="status_bar_chips_media_art_style_values" translatable="false">
+        <item>0</item>
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+    </string-array>
+
+    <!-- Status Bar Privacy Chip Timeout -->
+    <string-array name="status_bar_chips_privacy_timeout_entries">
+        <item>@string/status_bar_chips_timeout_5s</item>
+        <item>@string/status_bar_chips_timeout_10s</item>
+        <item>@string/status_bar_chips_timeout_15s_default</item>
+        <item>@string/status_bar_chips_timeout_30s</item>
+        <item>@string/status_bar_chips_timeout_always_sensor</item>
+    </string-array>
+
+    <string-array name="status_bar_chips_privacy_timeout_values" translatable="false">
+        <item>5</item>
+        <item>10</item>
+        <item>15</item>
+        <item>30</item>
+        <item>0</item>
+    </string-array>
+
     <!-- Status Bar Clock Position -->
     <string-array name="status_bar_clock_position_entries">
         <item>@string/status_bar_clock_position_left</item>

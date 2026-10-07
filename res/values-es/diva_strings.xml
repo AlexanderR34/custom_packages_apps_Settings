@@ -28,9 +28,93 @@
     <string name="custom_blur_intensity_title">Intensidad de desenfoque</string>
     <string name="custom_blur_intensity_summary">Ajusta el nivel y radio de desenfoque del fondo del sistema</string>
 
-    <!-- Isla Musical en Barra de Estado -->
-    <string name="status_bar_music_island_title">Activar isla musical</string>
-    <string name="status_bar_music_island_summary">Un simple atajo para pasar, retroceder o pausar las canciones desde la barra de estado</string>
+    <!-- Submenú de Isla de Actividades y Chips -->
+    <string name="status_bar_chips_settings_title">Isla dinámica y chips de actividad</string>
+    <string name="status_bar_chips_settings_summary">Configura el límite de chips, tiempos de desaparición, colores Monet y duración de privacidad</string>
+    <string name="status_bar_chips_general_category">General</string>
+    <string name="status_bar_chips_visible_category">Chips de actividad visibles</string>
+    <string name="status_bar_chips_timeouts_category">Tiempos de inactividad</string>
+
+    <string name="status_bar_chip_enable_privacy_title">Avisos de Privacidad (Cámara, Mic, GPS)</string>
+    <string name="status_bar_chip_enable_privacy_summary">Mostrar indicador de hardware activo en tiempo real</string>
+    <string name="status_bar_chip_enable_bluetooth_title">Batería de accesorios Bluetooth</string>
+    <string name="status_bar_chip_enable_bluetooth_summary">Mostrar porcentaje de batería de auriculares y relojes</string>
+    <string name="status_bar_chip_enable_media_title">Isla de música y multimedia</string>
+    <string name="status_bar_chip_enable_media_summary">Mostrar pista y artista de la reproducción en curso</string>
+    <string name="status_bar_chip_enable_download_title">Progreso de descargas</string>
+    <string name="status_bar_chip_enable_download_summary">Mostrar porcentaje y velocidad de descargas activas</string>
+    <string name="status_bar_chip_enable_call_title">Llamadas telefónicas en curso</string>
+    <string name="status_bar_chip_enable_call_summary">Mostrar cronómetro de duración de llamada</string>
+    <string name="status_bar_chip_enable_timer_title">Temporizadores y alarmas</string>
+    <string name="status_bar_chip_enable_timer_summary">Mostrar cuenta regresiva de temporizador activo</string>
+    <string name="status_bar_chip_enable_navigation_title">Navegación en vivo (GPS / Mapas)</string>
+    <string name="status_bar_chip_enable_navigation_summary">Mostrar indicaciones de ruta en tiempo real</string>
+    <string name="status_bar_chip_enable_screen_record_title">Grabación de pantalla</string>
+    <string name="status_bar_chip_enable_screen_record_summary">Mostrar indicador de grabadora de pantalla activa</string>
+    <string name="status_bar_chip_enable_share_to_app_title">Compartir pantalla con aplicaciones</string>
+    <string name="status_bar_chip_enable_share_to_app_summary">Mostrar indicador de proyección de pantalla</string>
+    <string name="status_bar_chip_enable_cast_title">Transmitir pantalla (Cast)</string>
+    <string name="status_bar_chip_enable_cast_summary">Mostrar transmisión multimedia a otros dispositivos</string>
+    <string name="status_bar_chip_enable_hotspot_title">Punto de acceso / Zona Wi-Fi</string>
+    <string name="status_bar_chip_enable_hotspot_summary">Mostrar clientes conectados a la zona compartida</string>
+    <string name="status_bar_chip_enable_notifs_title">Actividades en vivo de aplicaciones</string>
+    <string name="status_bar_chip_enable_notifs_summary">Mostrar actividades dinámicas de apps de delivery, transporte o deportes</string>
+
+    <string name="status_bar_chips_limit_title">Límite de chips en barra de estado</string>
+    <string name="status_bar_chips_limit_summary">Elige la cantidad máxima de actividades en vivo simultáneas en la barra de estado</string>
+    <string name="status_bar_chips_limit_1">1 chip</string>
+    <string name="status_bar_chips_limit_2">2 chips</string>
+    <string name="status_bar_chips_limit_3">3 chips (Predeterminado)</string>
+    <string name="status_bar_chips_limit_disabled">Desactivado (0 chips)</string>
+
+    <string name="status_bar_chips_multi_style_title">Estilo con múltiples actividades</string>
+    <string name="status_bar_chips_multi_style_summary">Elige cómo mostrar los chips cuando hay varias actividades en vivo</string>
+    <string name="status_bar_chips_multi_style_all_expanded">Todos completos (Texto y detalles)</string>
+    <string name="status_bar_chips_multi_style_secondary_compact">Principal completo, secundarios compactos</string>
+    <string name="status_bar_chips_multi_style_all_compact">Todos compactos (Solo iconos)</string>
+
+    <string name="status_bar_chips_monet_title">Adaptar colores a Monet</string>
+    <string name="status_bar_chips_monet_summary">Tiñe los chips de la barra de estado con la paleta dinámica del fondo de pantalla</string>
+    <string name="status_bar_chips_monet_icons_title">Iconos adaptados a Monet</string>
+    <string name="status_bar_chips_monet_icons_summary">Aplica el color secundario de Monet a los iconos para un contraste nítido con el chip</string>
+
+    <string name="status_bar_chips_media_timeout_title">Tiempo de desaparición tras pausar música</string>
+    <string name="status_bar_chips_media_timeout_summary">Tiempo que permanece visible la isla de música en la barra de estado tras pausar</string>
+
+    <string name="status_bar_chips_media_art_style_title">Estilo de carátula de música</string>
+    <string name="status_bar_chips_media_art_style_summary">Elige la forma y diseño de la portada del álbum en el chip de música</string>
+    <string name="status_bar_chips_media_art_style_spinning_vinyl">Disco giratorio (Vinilo animado)</string>
+    <string name="status_bar_chips_media_art_style_circle">Circular (Vinilo estático)</string>
+    <string name="status_bar_chips_media_art_style_squircle">Bordes redondeados (Squircle)</string>
+    <string name="status_bar_chips_media_art_style_square">Cuadrada clásica</string>
+    <string name="status_bar_chips_media_art_style_app_icon">Solo icono de aplicación</string>
+
+    <string name="status_bar_chips_privacy_timeout_title">Duración del aviso de Privacidad</string>
+    <string name="status_bar_chips_privacy_timeout_summary">Tiempo que permanece visible el aviso de acceso a cámara, micrófono o ubicación</string>
+
+    <string name="status_bar_chips_timeout_5s">5 segundos</string>
+    <string name="status_bar_chips_timeout_10s">10 segundos</string>
+    <string name="status_bar_chips_timeout_15s">15 segundos</string>
+    <string name="status_bar_chips_timeout_15s_default">15 segundos (Predeterminado)</string>
+    <string name="status_bar_chips_timeout_30s">30 segundos</string>
+    <string name="status_bar_chips_timeout_30s_default">30 segundos (Predeterminado)</string>
+    <string name="status_bar_chips_timeout_60s">60 segundos (1 minuto)</string>
+    <string name="status_bar_chips_timeout_always">Mantener siempre visible</string>
+    <string name="status_bar_chips_timeout_always_sensor">Siempre visible mientras se use</string>
+
+    <!-- Personalización de colores de hardware por código HEX -->
+    <string name="status_bar_chips_colors_category">Colores de indicadores de hardware (HEX)</string>
+    <string name="status_bar_chips_color_cam_mic_title">Color de Cámara y Micrófono</string>
+    <string name="status_bar_chips_color_cam_mic_summary">Código HEX para avisos de cámara y micrófono (Predeterminado: #00E676)</string>
+    <string name="status_bar_chips_color_location_title">Color de Ubicación (GPS)</string>
+    <string name="status_bar_chips_color_location_summary">Código HEX para avisos de ubicación (Predeterminado: #0091EA)</string>
+    <string name="status_bar_chips_color_combo_title">Color Combinado (Cámara/Mic + Ubicación)</string>
+    <string name="status_bar_chips_color_combo_summary">Código HEX cuando se usa ubicación junto a cámara o mic (Predeterminado: #00F5D4)</string>
+    <string name="status_bar_chips_color_all_title">Color de Todos los sensores activos</string>
+    <string name="status_bar_chips_color_all_summary">Código HEX cuando se usan cámara, micrófono y ubicación a la vez (Predeterminado: #FFB300)</string>
+    <string name="status_bar_chips_colors_reset_title">Restablecer colores predeterminados</string>
+    <string name="status_bar_chips_colors_reset_summary">Restaura los colores HEX originales de cada indicador con un solo toque</string>
+    <string name="status_bar_chips_colors_reset_toast">Colores de hardware restablecidos a los valores predeterminados</string>
 
     <!-- Posición del reloj -->
     <string name="status_bar_clock_position_title">Posición del reloj</string>
