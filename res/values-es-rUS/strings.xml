@@ -6237,6 +6237,8 @@
     <!-- HyperOS Volume Panel -->
     <string name="hyperos_volume_panel_title">Panel de volumen estilo HyperOS</string>
     <string name="hyperos_volume_panel_summary">Usa la barra y controles de volumen con diseño moderno estilo HyperOS</string>
+    <string name="hyperos_volume_monet_title">Usar colores Monet en panel de volumen</string>
+    <string name="hyperos_volume_monet_summary">Adaptar barras y controles al color del fondo de pantalla en vez del blanco y azul clásico de HyperOS</string>
 
     <!-- Navigation Bar Button Style (Spanish) -->
     <string name="button_navigation_settings_style_title">Estilo de los botones</string>

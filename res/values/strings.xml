@@ -15773,6 +15773,8 @@
     <!-- HyperOS Volume Panel -->
     <string name="hyperos_volume_panel_title">HyperOS volume panel</string>
     <string name="hyperos_volume_panel_summary">Use sleek HyperOS style volume slider and controls</string>
+    <string name="hyperos_volume_monet_title">Use Monet colors in volume panel</string>
+    <string name="hyperos_volume_monet_summary">Adapt volume sliders and controls to wallpaper colors instead of classic HyperOS white and blue</string>
     <string name="internal_audio_mic_title">Direct internal audio to mic</string>
     <string name="internal_audio_mic_summary">Route system audio output directly into microphone input stream for recording or calls</string>
     <string name="call_volume_slider_title">Dual volume controller in calls</string>

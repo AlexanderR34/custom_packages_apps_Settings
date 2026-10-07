@@ -189,6 +189,15 @@
             android:order="-105"
             settings:controller="com.android.settings.sound.HyperOSVolumeStylePreferenceController"/>
 
+        <SwitchPreferenceCompat
+            android:key="hyperos_volume_use_monet"
+            android:title="@string/hyperos_volume_monet_title"
+            android:summary="@string/hyperos_volume_monet_summary"
+            android:defaultValue="true"
+            android:dependency="hyperos_volume_panel_style"
+            android:order="-104"
+            settings:controller="com.android.settings.sound.HyperOSVolumeMonetPreferenceController"/>
+
 
         <Preference
             android:key="media_controls"
