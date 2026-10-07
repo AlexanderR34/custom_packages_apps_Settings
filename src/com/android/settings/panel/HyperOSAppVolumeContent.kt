@@ -95,9 +95,17 @@ object HyperOSAppVolumeViewHelper {
     fun createView(activity: android.app.Activity): android.view.View {
         val composeView = androidx.compose.ui.platform.ComposeView(activity)
         composeView.setContent {
-            HyperOSAppVolumeContent(
-                onDismiss = { activity.finish() }
-            )
+            val isDark = androidx.compose.foundation.isSystemInDarkTheme()
+            val colorScheme = if (isDark) {
+                androidx.compose.material3.dynamicDarkColorScheme(activity)
+            } else {
+                androidx.compose.material3.dynamicLightColorScheme(activity)
+            }
+            androidx.compose.material3.MaterialTheme(colorScheme = colorScheme) {
+                HyperOSAppVolumeContent(
+                    onDismiss = { activity.finish() }
+                )
+            }
         }
         return composeView
     }
