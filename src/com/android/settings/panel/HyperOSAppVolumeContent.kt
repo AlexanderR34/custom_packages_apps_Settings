@@ -63,6 +63,7 @@ import androidx.compose.foundation.layout.calculateStartPadding
 import androidx.compose.foundation.layout.navigationBars
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Icon
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.DisposableEffect
 import androidx.compose.runtime.LaunchedEffect
@@ -115,6 +116,43 @@ fun HyperOSAppVolumeContent(
     val isLandscape = configuration.orientation == Configuration.ORIENTATION_LANDSCAPE
 
     var isVisible by remember { mutableStateOf(false) }
+
+    var useMonet by remember {
+        mutableStateOf(
+            try {
+                android.provider.Settings.System.getIntForUser(
+                    context.contentResolver,
+                    "hyperos_volume_use_monet",
+                    1,
+                    android.os.UserHandle.USER_CURRENT
+                ) == 1
+            } catch (_: Exception) { true }
+        )
+    }
+
+    DisposableEffect(context) {
+        val observer = object : android.database.ContentObserver(android.os.Handler(android.os.Looper.getMainLooper())) {
+            override fun onChange(selfChange: Boolean) {
+                useMonet = try {
+                    android.provider.Settings.System.getIntForUser(
+                        context.contentResolver,
+                        "hyperos_volume_use_monet",
+                        1,
+                        android.os.UserHandle.USER_CURRENT
+                    ) == 1
+                } catch (_: Exception) { true }
+            }
+        }
+        val uri = android.provider.Settings.System.getUriFor("hyperos_volume_use_monet")
+        try {
+            context.contentResolver.registerContentObserver(uri, false, observer, android.os.UserHandle.USER_CURRENT)
+        } catch (_: Exception) {}
+        onDispose {
+            try {
+                context.contentResolver.unregisterContentObserver(observer)
+            } catch (_: Exception) {}
+        }
+    }
 
     BackHandler {
         isVisible = false
@@ -198,6 +236,7 @@ fun HyperOSAppVolumeContent(
                     sliderWidth = sliderWidth,
                     sliderHeight = sliderHeight,
                     isLandscape = isLandscape,
+                    useMonet = useMonet,
                     view = view
                 )
 
@@ -210,6 +249,7 @@ fun HyperOSAppVolumeContent(
                         sliderWidth = sliderWidth,
                         sliderHeight = sliderHeight,
                         isLandscape = isLandscape,
+                        useMonet = useMonet,
                         view = view
                     )
                 }
@@ -228,6 +268,7 @@ private fun HyperOSMediaVolumeSlider(
     sliderWidth: androidx.compose.ui.unit.Dp,
     sliderHeight: androidx.compose.ui.unit.Dp,
     isLandscape: Boolean,
+    useMonet: Boolean,
     view: android.view.View,
 ) {
     val context = LocalContext.current
@@ -370,13 +411,15 @@ private fun HyperOSMediaVolumeSlider(
                     }
                 }
         ) {
-            // Filled level (from bottom) - Pure White matching HyperOS
+            val mediaFillColor = if (useMonet) MaterialTheme.colorScheme.primary else Color.White
+
+            // Filled level (from bottom)
             Box(
                 modifier = Modifier
                     .align(Alignment.BottomCenter)
                     .fillMaxWidth()
                     .fillMaxHeight(animatedFraction.coerceIn(0f, 1f))
-                    .background(Color.White)
+                    .background(mediaFillColor)
             )
 
             // Bottom Speaker Icon badge
@@ -398,8 +441,9 @@ private fun HyperOSMediaVolumeSlider(
                     },
                 contentAlignment = Alignment.Center
             ) {
-                val iconTint = if (animatedFraction > 0.18f) Color(0xFF0D84FF)
-                               else Color.White
+                val iconTint = if (animatedFraction > 0.18f) {
+                    if (useMonet) MaterialTheme.colorScheme.onPrimary else Color(0xFF0D84FF)
+                } else Color.White
 
                 Icon(
                     painter = painterResource(id = R.drawable.ic_hyperos_speaker_mid),
@@ -420,6 +464,7 @@ private fun HyperOSSingleAppVolumeSlider(
     sliderWidth: androidx.compose.ui.unit.Dp,
     sliderHeight: androidx.compose.ui.unit.Dp,
     isLandscape: Boolean,
+    useMonet: Boolean,
     view: android.view.View,
 ) {
     var volumeFraction by remember(appVolume.packageName) { mutableFloatStateOf(appVolume.volume.coerceIn(0f, 1f)) }
@@ -512,13 +557,15 @@ private fun HyperOSSingleAppVolumeSlider(
                     }
                 }
         ) {
-            // Filled level (from bottom) - Pure White matching HyperOS
+            val appFillColor = if (useMonet) MaterialTheme.colorScheme.primary else Color.White
+
+            // Filled level (from bottom)
             Box(
                 modifier = Modifier
                     .align(Alignment.BottomCenter)
                     .fillMaxWidth()
                     .fillMaxHeight(animatedFraction.coerceIn(0f, 1f))
-                    .background(Color.White)
+                    .background(appFillColor)
             )
 
             // Bottom App Icon badge
@@ -547,11 +594,14 @@ private fun HyperOSSingleAppVolumeSlider(
                         modifier = Modifier.size(if (isLandscape) 24.dp else 26.dp)
                     )
                 } else {
+                    val fallbackIconTint = if (animatedFraction > 0.18f) {
+                        if (useMonet) MaterialTheme.colorScheme.onPrimary else Color(0xFF0D84FF)
+                    } else Color.White
+
                     Icon(
                         painter = painterResource(id = R.drawable.ic_hyperos_speaker_mid),
                         contentDescription = appVolume.packageName,
-                        tint = if (animatedFraction > 0.18f) Color(0xFF0D84FF)
-                               else Color.White,
+                        tint = fallbackIconTint,
                         modifier = Modifier.size(if (isLandscape) 22.dp else 24.dp)
                     )
                 }

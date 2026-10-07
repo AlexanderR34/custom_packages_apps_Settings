@@ -77,7 +77,7 @@ public class SettingsPanelActivity extends FragmentActivity {
         final boolean isHyperOS = android.provider.Settings.System.getIntForUser(
                 getContentResolver(),
                 android.provider.Settings.System.HYPEROS_VOLUME_PANEL_STYLE,
-                1,
+                0,
                 android.os.UserHandle.USER_CURRENT) == 1;
         final String action = getIntent() != null ? getIntent().getAction() : null;
         if (isHyperOS && android.provider.Settings.Panel.ACTION_APP_VOLUME.equals(action)) {
@@ -164,7 +164,7 @@ public class SettingsPanelActivity extends FragmentActivity {
             final boolean isHyperOS = android.provider.Settings.System.getIntForUser(
                     getContentResolver(),
                     android.provider.Settings.System.HYPEROS_VOLUME_PANEL_STYLE,
-                    1,
+                    0,
                     android.os.UserHandle.USER_CURRENT) == 1;
 
             if (isHyperOS && android.provider.Settings.Panel.ACTION_APP_VOLUME.equals(action)) {
