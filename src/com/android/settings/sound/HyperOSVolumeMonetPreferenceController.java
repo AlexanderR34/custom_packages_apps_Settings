@@ -57,7 +57,7 @@ public class HyperOSVolumeMonetPreferenceController extends TogglePreferenceCont
     }
 
     @Override
-    public int getSliceType() {
-        return SliceType.SWITCH;
+    public int getSliceHighlightMenuRes() {
+        return 0;
     }
 }
