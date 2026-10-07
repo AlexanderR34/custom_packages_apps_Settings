@@ -12452,13 +12452,13 @@
     <string name="shade_panels_separate_summary">HyperOS Control Center with separated panels. Swipe down from top right for Control Center, swipe down from top left for notifications.</string>
 
     <!-- Title text for the combined panels mode. In this mode, notifications and Quick Settings are shown a single panel, opened by swiping down from the top edge of the screen. In the past this used to be the only mode, so it is also referred to as "classic" mode. [CHAR_LIMIT=60] -->
-    <string name="shade_panels_combined_title">AOSP Nativo</string>
+    <string name="shade_panels_combined_title">Native AOSP</string>
 
     <!-- Summary text for the combined panels mode. In this mode, notifications and Quick Settings are shown a single panel, opened by swiping down from the top edge of the screen. In the past this used to be the only mode, so it is also referred to as "classic" mode. [CHAR_LIMIT=NONE] -->
     <string name="shade_panels_combined_summary">Classic unified Android shade with Material You design.</string>
 
-    <string name="shade_panels_show_tile_labels_title">Mostrar etiquetas de los iconos</string>
-    <string name="shade_panels_show_tile_labels_summary">Muestra los nombres debajo de los botones en el Centro de control</string>
+    <string name="shade_panels_show_tile_labels_title">Show icon labels</string>
+    <string name="shade_panels_show_tile_labels_summary">Show names below icons in Control Center</string>
 
     <!-- Informational message shown to users of foldable devices, explaining that the combined shade view is only available on the outer (narrow) screen of their device. [CHAR LIMIT=200]-->
     <string name="shade_panels_foldables_footer_message">Combined (classic) view is limited to the outer screen of your foldable device</string>
