@@ -1,7 +1,9 @@
 package com.android.settings.display;
 
 import android.app.ActivityManager;
+import android.app.WallpaperManager;
 import android.content.Context;
+import android.graphics.Point;
 import android.hardware.display.DisplayManager;
 import android.os.Bundle;
 import android.os.RemoteException;
@@ -9,6 +11,7 @@ import android.os.UserHandle;
 import android.provider.Settings;
 import android.util.Log;
 import android.view.Display;
+import android.view.HapticFeedbackConstants;
 import android.view.IWindowManager;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -60,10 +63,20 @@ public class CustomScreenResolutionFragment extends SettingsPreferenceFragment {
     private ImageView mRadio1220p;
     private ImageView mRadio1440p;
 
+    private LinearLayout mContainerPreviewHd;
+    private LinearLayout mContainerPreviewFhd;
+    private LinearLayout mContainerPreviewStock;
+    private LinearLayout mContainerPreviewQhd;
+
     private FrameLayout mFrameHd;
     private FrameLayout mFrameFhd;
     private FrameLayout mFrameStock;
     private FrameLayout mFrameQhd;
+
+    private TextView mTextPreviewHd;
+    private TextView mTextPreviewFhd;
+    private TextView mTextPreviewStock;
+    private TextView mTextPreviewQhd;
 
     private TextView mTextDescription;
     private Button mButtonApply;
@@ -85,8 +98,7 @@ public class CustomScreenResolutionFragment extends SettingsPreferenceFragment {
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View root = super.onCreateView(inflater, container, savedInstanceState);
-        return root;
+        return super.onCreateView(inflater, container, savedInstanceState);
     }
 
     @Override
@@ -107,10 +119,27 @@ public class CustomScreenResolutionFragment extends SettingsPreferenceFragment {
 
         mAppliedKey = Settings.System.getString(context.getContentResolver(), SETTINGS_KEY);
         if (mAppliedKey == null || mAppliedKey.isEmpty()) {
-            mAppliedKey = KEY_1220P;
+            mAppliedKey = detectResolutionKey(context);
+            Settings.System.putString(context.getContentResolver(), SETTINGS_KEY, mAppliedKey);
         }
         mSelectedKey = mAppliedKey;
         updateSelectionUi(mSelectedKey);
+    }
+
+    static String detectResolutionKey(Context context) {
+        try {
+            Display display = context.getDisplay();
+            if (display != null) {
+                Point size = new Point();
+                display.getRealSize(size);
+                int w = Math.min(size.x, size.y);
+                if (w <= 800) return KEY_720P;
+                if (w <= 1120) return KEY_1080P;
+                if (w >= 1350) return KEY_1440P;
+                return KEY_1220P;
+            }
+        } catch (Exception ignored) {}
+        return KEY_1220P;
     }
 
     private void initViews() {
@@ -130,10 +159,20 @@ public class CustomScreenResolutionFragment extends SettingsPreferenceFragment {
         mRadio1220p = layoutPref.findViewById(R.id.radio_res_1220p);
         mRadio1440p = layoutPref.findViewById(R.id.radio_res_1440p);
 
+        mContainerPreviewHd = layoutPref.findViewById(R.id.container_preview_hd);
+        mContainerPreviewFhd = layoutPref.findViewById(R.id.container_preview_fhd);
+        mContainerPreviewStock = layoutPref.findViewById(R.id.container_preview_stock);
+        mContainerPreviewQhd = layoutPref.findViewById(R.id.container_preview_qhd);
+
         mFrameHd = layoutPref.findViewById(R.id.frame_preview_hd);
         mFrameFhd = layoutPref.findViewById(R.id.frame_preview_fhd);
         mFrameStock = layoutPref.findViewById(R.id.frame_preview_stock);
         mFrameQhd = layoutPref.findViewById(R.id.frame_preview_qhd);
+
+        mTextPreviewHd = layoutPref.findViewById(R.id.text_preview_hd);
+        mTextPreviewFhd = layoutPref.findViewById(R.id.text_preview_fhd);
+        mTextPreviewStock = layoutPref.findViewById(R.id.text_preview_stock);
+        mTextPreviewQhd = layoutPref.findViewById(R.id.text_preview_qhd);
 
         mTextDescription = layoutPref.findViewById(R.id.text_resolution_description);
         mButtonApply = layoutPref.findViewById(R.id.button_apply_resolution);
@@ -143,6 +182,7 @@ public class CustomScreenResolutionFragment extends SettingsPreferenceFragment {
     }
 
     private void setupListeners() {
+        // Bottom selector cards
         if (mCard720p != null) {
             mCard720p.setOnClickListener(v -> selectResolution(KEY_720P));
         }
@@ -156,12 +196,48 @@ public class CustomScreenResolutionFragment extends SettingsPreferenceFragment {
             mCard1440p.setOnClickListener(v -> selectResolution(KEY_1440P));
         }
 
+        // Top preview containers & frames
+        if (mContainerPreviewHd != null) {
+            mContainerPreviewHd.setOnClickListener(v -> selectResolution(KEY_720P));
+        }
+        if (mFrameHd != null) {
+            mFrameHd.setOnClickListener(v -> selectResolution(KEY_720P));
+        }
+
+        if (mContainerPreviewFhd != null) {
+            mContainerPreviewFhd.setOnClickListener(v -> selectResolution(KEY_1080P));
+        }
+        if (mFrameFhd != null) {
+            mFrameFhd.setOnClickListener(v -> selectResolution(KEY_1080P));
+        }
+
+        if (mContainerPreviewStock != null) {
+            mContainerPreviewStock.setOnClickListener(v -> selectResolution(KEY_1220P));
+        }
+        if (mFrameStock != null) {
+            mFrameStock.setOnClickListener(v -> selectResolution(KEY_1220P));
+        }
+
+        if (mContainerPreviewQhd != null) {
+            mContainerPreviewQhd.setOnClickListener(v -> selectResolution(KEY_1440P));
+        }
+        if (mFrameQhd != null) {
+            mFrameQhd.setOnClickListener(v -> selectResolution(KEY_1440P));
+        }
+
         if (mButtonApply != null) {
             mButtonApply.setOnClickListener(v -> applyResolution());
         }
     }
 
     private void selectResolution(String key) {
+        if (key == null || key.equals(mSelectedKey)) return;
+
+        View root = getView();
+        if (root != null) {
+            root.performHapticFeedback(HapticFeedbackConstants.CLOCK_TICK);
+        }
+
         mSelectedKey = key;
         updateSelectionUi(key);
     }
@@ -171,41 +247,65 @@ public class CustomScreenResolutionFragment extends SettingsPreferenceFragment {
             activeKey = KEY_1220P;
         }
 
-        // Reset all radio icons (only the radio point indicates the selection)
-        if (mRadio720p != null) mRadio720p.setImageResource(R.drawable.m3_radio_unchecked);
-        if (mRadio1080p != null) mRadio1080p.setImageResource(R.drawable.m3_radio_unchecked);
-        if (mRadio1220p != null) mRadio1220p.setImageResource(R.drawable.m3_radio_unchecked);
-        if (mRadio1440p != null) mRadio1440p.setImageResource(R.drawable.m3_radio_unchecked);
+        // Update cards background (active card gets M3 accent stroke and highlight container)
+        if (mCard720p != null) {
+            mCard720p.setBackgroundResource(KEY_720P.equals(activeKey) ? R.drawable.m3_selector_card_selected : R.drawable.m3_selector_card_normal);
+        }
+        if (mCard1080p != null) {
+            mCard1080p.setBackgroundResource(KEY_1080P.equals(activeKey) ? R.drawable.m3_selector_card_selected : R.drawable.m3_selector_card_normal);
+        }
+        if (mCard1220p != null) {
+            mCard1220p.setBackgroundResource(KEY_1220P.equals(activeKey) ? R.drawable.m3_selector_card_selected : R.drawable.m3_selector_card_normal);
+        }
+        if (mCard1440p != null) {
+            mCard1440p.setBackgroundResource(KEY_1440P.equals(activeKey) ? R.drawable.m3_selector_card_selected : R.drawable.m3_selector_card_normal);
+        }
 
-        // Reset zoom circle frames
-        if (mFrameHd != null) mFrameHd.setBackgroundResource(R.drawable.m3_zoom_circle_bg);
-        if (mFrameFhd != null) mFrameFhd.setBackgroundResource(R.drawable.m3_zoom_circle_bg);
-        if (mFrameStock != null) mFrameStock.setBackgroundResource(R.drawable.m3_zoom_circle_bg);
-        if (mFrameQhd != null) mFrameQhd.setBackgroundResource(R.drawable.m3_zoom_circle_bg);
+        // Update radio buttons
+        if (mRadio720p != null) {
+            mRadio720p.setImageResource(KEY_720P.equals(activeKey) ? R.drawable.m3_radio_checked : R.drawable.m3_radio_unchecked);
+        }
+        if (mRadio1080p != null) {
+            mRadio1080p.setImageResource(KEY_1080P.equals(activeKey) ? R.drawable.m3_radio_checked : R.drawable.m3_radio_unchecked);
+        }
+        if (mRadio1220p != null) {
+            mRadio1220p.setImageResource(KEY_1220P.equals(activeKey) ? R.drawable.m3_radio_checked : R.drawable.m3_radio_unchecked);
+        }
+        if (mRadio1440p != null) {
+            mRadio1440p.setImageResource(KEY_1440P.equals(activeKey) ? R.drawable.m3_radio_checked : R.drawable.m3_radio_unchecked);
+        }
 
-        // Activate only the selected radio point and zoom frame
-        switch (activeKey) {
-            case KEY_720P:
-                if (mRadio720p != null) mRadio720p.setImageResource(R.drawable.m3_radio_checked);
-                if (mFrameHd != null) mFrameHd.setBackgroundResource(R.drawable.m3_zoom_circle_active_bg);
-                if (mTextDescription != null) mTextDescription.setText(R.string.custom_screen_resolution_desc_720p);
-                break;
-            case KEY_1080P:
-                if (mRadio1080p != null) mRadio1080p.setImageResource(R.drawable.m3_radio_checked);
-                if (mFrameFhd != null) mFrameFhd.setBackgroundResource(R.drawable.m3_zoom_circle_active_bg);
-                if (mTextDescription != null) mTextDescription.setText(R.string.custom_screen_resolution_desc_1080p);
-                break;
-            case KEY_1440P:
-                if (mRadio1440p != null) mRadio1440p.setImageResource(R.drawable.m3_radio_checked);
-                if (mFrameQhd != null) mFrameQhd.setBackgroundResource(R.drawable.m3_zoom_circle_active_bg);
-                if (mTextDescription != null) mTextDescription.setText(R.string.custom_screen_resolution_desc_1440p);
-                break;
-            case KEY_1220P:
-            default:
-                if (mRadio1220p != null) mRadio1220p.setImageResource(R.drawable.m3_radio_checked);
-                if (mFrameStock != null) mFrameStock.setBackgroundResource(R.drawable.m3_zoom_circle_active_bg);
-                if (mTextDescription != null) mTextDescription.setText(R.string.custom_screen_resolution_desc_stock);
-                break;
+        // Update zoom circle preview frames
+        if (mFrameHd != null) {
+            mFrameHd.setBackgroundResource(KEY_720P.equals(activeKey) ? R.drawable.m3_zoom_circle_active_bg : R.drawable.m3_zoom_circle_bg);
+        }
+        if (mFrameFhd != null) {
+            mFrameFhd.setBackgroundResource(KEY_1080P.equals(activeKey) ? R.drawable.m3_zoom_circle_active_bg : R.drawable.m3_zoom_circle_bg);
+        }
+        if (mFrameStock != null) {
+            mFrameStock.setBackgroundResource(KEY_1220P.equals(activeKey) ? R.drawable.m3_zoom_circle_active_bg : R.drawable.m3_zoom_circle_bg);
+        }
+        if (mFrameQhd != null) {
+            mFrameQhd.setBackgroundResource(KEY_1440P.equals(activeKey) ? R.drawable.m3_zoom_circle_active_bg : R.drawable.m3_zoom_circle_bg);
+        }
+
+        // Update dynamic description
+        if (mTextDescription != null) {
+            switch (activeKey) {
+                case KEY_720P:
+                    mTextDescription.setText(R.string.custom_screen_resolution_desc_720p);
+                    break;
+                case KEY_1080P:
+                    mTextDescription.setText(R.string.custom_screen_resolution_desc_1080p);
+                    break;
+                case KEY_1440P:
+                    mTextDescription.setText(R.string.custom_screen_resolution_desc_1440p);
+                    break;
+                case KEY_1220P:
+                default:
+                    mTextDescription.setText(R.string.custom_screen_resolution_desc_stock);
+                    break;
+            }
         }
 
         // Check if there are changes relative to the applied system state
@@ -219,6 +319,11 @@ public class CustomScreenResolutionFragment extends SettingsPreferenceFragment {
     private void applyResolution() {
         Context context = getContext();
         if (context == null || mSelectedKey == null) return;
+
+        View root = getView();
+        if (root != null) {
+            root.performHapticFeedback(HapticFeedbackConstants.CONFIRM);
+        }
 
         int width = BASE_WIDTH;
         int height = BASE_HEIGHT;
@@ -265,18 +370,22 @@ public class CustomScreenResolutionFragment extends SettingsPreferenceFragment {
             Log.e(TAG, "Failed to apply resolution via WindowManagerGlobal", e);
         }
 
-        // Optional Android 14/15/16/17 hardware display mode fallback
+        // Hardware display mode fallback / restore via DisplayManager
         try {
             DisplayManager dm = context.getSystemService(DisplayManager.class);
             if (dm != null) {
                 Display display = dm.getDisplay(Display.DEFAULT_DISPLAY);
                 if (display != null) {
-                    Display.Mode currentMode = display.getMode();
-                    for (Display.Mode mode : display.getSupportedModes()) {
-                        if (mode.getPhysicalWidth() == newWidth && mode.getPhysicalHeight() == newHeight) {
-                            if (currentMode != null && mode.getRefreshRate() == currentMode.getRefreshRate()) {
-                                display.setUserPreferredDisplayMode(mode);
-                                break;
+                    if (newWidth == BASE_WIDTH) {
+                        display.clearUserPreferredDisplayMode();
+                    } else {
+                        Display.Mode currentMode = display.getMode();
+                        for (Display.Mode mode : display.getSupportedModes()) {
+                            if (mode.getPhysicalWidth() == newWidth && mode.getPhysicalHeight() == newHeight) {
+                                if (currentMode != null && mode.getRefreshRate() == currentMode.getRefreshRate()) {
+                                    display.setUserPreferredDisplayMode(mode);
+                                    break;
+                                }
                             }
                         }
                     }
@@ -284,6 +393,16 @@ public class CustomScreenResolutionFragment extends SettingsPreferenceFragment {
             }
         } catch (Exception e) {
             Log.d(TAG, "DisplayManager setUserPreferredDisplayMode not available or failed", e);
+        }
+
+        // Notify wallpaper service to recompute bounds immediately without stretching
+        try {
+            WallpaperManager wallpaperManager = WallpaperManager.getInstance(context);
+            if (wallpaperManager != null) {
+                wallpaperManager.sendWallpaperCommand(null, "android.wallpaper.recompute", 0, 0, 0, null);
+            }
+        } catch (Exception e) {
+            Log.d(TAG, "Failed to send wallpaper recompute command", e);
         }
     }
 }
