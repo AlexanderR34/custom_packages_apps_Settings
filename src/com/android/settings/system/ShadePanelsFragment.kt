@@ -18,9 +18,11 @@ package com.android.settings.system
 
 import android.app.settings.SettingsEnums
 import android.content.Context
+import android.os.UserHandle
 import android.provider.Settings
 import android.view.View.LAYOUT_DIRECTION_RTL
 import androidx.annotation.VisibleForTesting
+import androidx.preference.ListPreference
 import androidx.preference.PreferenceScreen
 import androidx.preference.SwitchPreferenceCompat
 import com.android.settings.R
@@ -96,6 +98,118 @@ class ShadePanelsFragment : RadioButtonPickerFragment(), HelpResourceProvider {
         }
         screen.addPreference(labelsPref)
 
+        val brightnessSliderPref = ListPreference(context).apply {
+            key = KEY_QS_SHOW_BRIGHTNESS_SLIDER
+            title = context.getText(R.string.qs_show_brightness_slider_title)
+            dialogTitle = context.getText(R.string.qs_show_brightness_slider_title)
+            setEntries(R.array.qs_show_brightness_slider_entries)
+            setEntryValues(R.array.qs_show_brightness_slider_values)
+            val currentVal = Settings.Secure.getIntForUser(
+                context.contentResolver,
+                Settings.Secure.QS_SHOW_BRIGHTNESS_SLIDER,
+                1,
+                UserHandle.myUserId()
+            )
+            value = currentVal.toString()
+            summary = entry
+            setOnPreferenceChangeListener { pref, newValue ->
+                val strVal = newValue as String
+                val intVal = strVal.toIntOrNull() ?: 1
+                Settings.Secure.putIntForUser(
+                    context.contentResolver,
+                    Settings.Secure.QS_SHOW_BRIGHTNESS_SLIDER,
+                    intVal,
+                    UserHandle.myUserId()
+                )
+                val listPref = pref as ListPreference
+                val index = listPref.findIndexOfValue(strVal)
+                if (index >= 0 && index < listPref.entries.size) {
+                    listPref.summary = listPref.entries[index]
+                }
+                true
+            }
+        }
+        screen.addPreference(brightnessSliderPref)
+
+        val brightnessPositionPref = ListPreference(context).apply {
+            key = KEY_QS_BRIGHTNESS_POSITION
+            title = context.getText(R.string.qs_brightness_position_title)
+            dialogTitle = context.getText(R.string.qs_brightness_position_title)
+            setEntries(R.array.qs_brightness_position_entries)
+            setEntryValues(R.array.qs_brightness_position_values)
+            val currentVal = Settings.System.getInt(
+                context.contentResolver,
+                "qs_brightness_position",
+                0
+            )
+            value = currentVal.toString()
+            summary = entry
+            setOnPreferenceChangeListener { pref, newValue ->
+                val strVal = newValue as String
+                val intVal = strVal.toIntOrNull() ?: 0
+                Settings.System.putInt(
+                    context.contentResolver,
+                    "qs_brightness_position",
+                    intVal
+                )
+                val listPref = pref as ListPreference
+                val index = listPref.findIndexOfValue(strVal)
+                if (index >= 0 && index < listPref.entries.size) {
+                    listPref.summary = listPref.entries[index]
+                }
+                true
+            }
+        }
+        screen.addPreference(brightnessPositionPref)
+
+        val autoBrightnessPref = SwitchPreferenceCompat(context).apply {
+            key = KEY_QS_SHOW_AUTO_BRIGHTNESS_BUTTON
+            title = context.getText(R.string.qs_show_auto_brightness_button_title)
+            summary = context.getText(R.string.qs_show_auto_brightness_button_summary)
+            isChecked = Settings.System.getInt(context.contentResolver, "qs_show_auto_brightness_button", 1) == 1
+            setOnPreferenceChangeListener { _, newValue ->
+                Settings.System.putInt(
+                    context.contentResolver,
+                    "qs_show_auto_brightness_button",
+                    if (newValue as Boolean) 1 else 0
+                )
+                true
+            }
+        }
+        screen.addPreference(autoBrightnessPref)
+
+        val volumeSliderPref = SwitchPreferenceCompat(context).apply {
+            key = KEY_QS_SHOW_VOLUME_SLIDER
+            title = context.getText(R.string.qs_show_volume_slider_title)
+            summary = context.getText(R.string.qs_show_volume_slider_summary)
+            isChecked = Settings.System.getInt(context.contentResolver, "qs_show_volume_slider", 0) == 1
+            setOnPreferenceChangeListener { _, newValue ->
+                Settings.System.putInt(
+                    context.contentResolver,
+                    "qs_show_volume_slider",
+                    if (newValue as Boolean) 1 else 0
+                )
+                true
+            }
+        }
+        screen.addPreference(volumeSliderPref)
+
+        val invertSidesPref = SwitchPreferenceCompat(context).apply {
+            key = KEY_DUAL_SHADE_INVERT_SIDES
+            title = context.getText(R.string.dual_shade_invert_sides_title)
+            summary = context.getText(R.string.dual_shade_invert_sides_summary)
+            isChecked = Settings.System.getInt(context.contentResolver, "dual_shade_invert_sides", 0) == 1
+            setOnPreferenceChangeListener { _, newValue ->
+                Settings.System.putInt(
+                    context.contentResolver,
+                    "dual_shade_invert_sides",
+                    if (newValue as Boolean) 1 else 0
+                )
+                true
+            }
+        }
+        screen.addPreference(invertSidesPref)
+
         if (isDeviceFoldable(context)) {
             screen.addPreference(
                 FooterPreference(context).apply {
@@ -165,6 +279,16 @@ class ShadePanelsFragment : RadioButtonPickerFragment(), HelpResourceProvider {
         const val KEY_SINGLE_SHADE_PREFERENCE = "single_shade"
         @VisibleForTesting
         const val KEY_SHOW_QS_TILE_LABELS = "show_qs_tile_labels"
+        @VisibleForTesting
+        const val KEY_QS_SHOW_BRIGHTNESS_SLIDER = "qs_show_brightness_slider"
+        @VisibleForTesting
+        const val KEY_QS_BRIGHTNESS_POSITION = "qs_brightness_position"
+        @VisibleForTesting
+        const val KEY_QS_SHOW_AUTO_BRIGHTNESS_BUTTON = "qs_show_auto_brightness_button"
+        @VisibleForTesting
+        const val KEY_QS_SHOW_VOLUME_SLIDER = "qs_show_volume_slider"
+        @VisibleForTesting
+        const val KEY_DUAL_SHADE_INVERT_SIDES = "dual_shade_invert_sides"
 
         // Expose as a static field for the @SearchIndexable annotation processor.
         @JvmField

@@ -15827,6 +15827,15 @@
     <string name="qs_show_brightness_slider_never">Never show</string>
     <string name="qs_show_brightness_slider_expanded">Show when expanded</string>
     <string name="qs_show_brightness_slider_always">Show always (in compact shade and expanded QS)</string>
+    <string name="qs_brightness_position_title">Brightness slider position</string>
+    <string name="qs_brightness_position_top">Top (above tiles)</string>
+    <string name="qs_brightness_position_bottom">Bottom (below tiles - ideal for one-hand use)</string>
+    <string name="qs_show_auto_brightness_button_title">Auto-brightness button</string>
+    <string name="qs_show_auto_brightness_button_summary">Show toggle button next to brightness slider</string>
+    <string name="qs_show_volume_slider_title">Volume slider in Quick Settings</string>
+    <string name="qs_show_volume_slider_summary">Show multimedia volume control in Quick Settings panel</string>
+    <string name="dual_shade_invert_sides_title">Invert pulldown sides</string>
+    <string name="dual_shade_invert_sides_summary">Swipe down left for Quick Settings, right for Notifications</string>
 
 </resources>
 

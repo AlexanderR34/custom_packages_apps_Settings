@@ -6472,6 +6472,15 @@
     <string name="qs_show_brightness_slider_never">Nunca mostrar</string>
     <string name="qs_show_brightness_slider_expanded">Solo al expandir</string>
     <string name="qs_show_brightness_slider_always">Mostrar siempre (en panel compacto y expandido)</string>
+    <string name="qs_brightness_position_title">Posición de la barra de brillo</string>
+    <string name="qs_brightness_position_top">Arriba (sobre los botones)</string>
+    <string name="qs_brightness_position_bottom">Abajo (bajo los botones - ideal para una mano)</string>
+    <string name="qs_show_auto_brightness_button_title">Botón de brillo automático</string>
+    <string name="qs_show_auto_brightness_button_summary">Mostrar botón \'A\' junto a la barra de brillo</string>
+    <string name="qs_show_volume_slider_title">Control de volumen en Quick Settings</string>
+    <string name="qs_show_volume_slider_summary">Mostrar barra de volumen multimedia en el panel de Quick Settings</string>
+    <string name="dual_shade_invert_sides_title">Invertir lados de apertura</string>
+    <string name="dual_shade_invert_sides_summary">Deslizar desde la izquierda para Quick Settings, y derecha para Notificaciones</string>
 
 </resources>
 

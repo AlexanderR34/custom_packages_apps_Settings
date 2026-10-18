@@ -52,6 +52,17 @@
         <item>2</item>
     </string-array>
 
+    <!-- Quick Settings Brightness Slider Position -->
+    <string-array name="qs_brightness_position_entries">
+        <item>@string/qs_brightness_position_top</item>
+        <item>@string/qs_brightness_position_bottom</item>
+    </string-array>
+
+    <string-array name="qs_brightness_position_values" translatable="false">
+        <item>0</item>
+        <item>1</item>
+    </string-array>
+
     <string-array name="doze_always_on_timeout_values" translatable="false">
         <item>0</item>
         <item>5</item>
