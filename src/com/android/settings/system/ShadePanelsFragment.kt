@@ -82,21 +82,7 @@ class ShadePanelsFragment : RadioButtonPickerFragment(), HelpResourceProvider {
     override fun addStaticPreferences(screen: PreferenceScreen) {
         val context = requireContext()
 
-        val labelsPref = SwitchPreferenceCompat(context).apply {
-            key = KEY_SHOW_QS_TILE_LABELS
-            title = context.getText(R.string.shade_panels_show_tile_labels_title)
-            summary = context.getText(R.string.shade_panels_show_tile_labels_summary)
-            isChecked = Settings.System.getInt(context.contentResolver, "show_qs_tile_labels", 0) == 1
-            setOnPreferenceChangeListener { _, newValue ->
-                Settings.System.putInt(
-                    context.contentResolver,
-                    "show_qs_tile_labels",
-                    if (newValue as Boolean) 1 else 0
-                )
-                true
-            }
-        }
-        screen.addPreference(labelsPref)
+
 
         val brightnessSliderPref = ListPreference(context).apply {
             key = KEY_QS_SHOW_BRIGHTNESS_SLIDER
@@ -177,6 +163,37 @@ class ShadePanelsFragment : RadioButtonPickerFragment(), HelpResourceProvider {
             }
         }
         screen.addPreference(autoBrightnessPref)
+
+        val mediaCardModePref = ListPreference(context).apply {
+            key = KEY_QS_MEDIA_CARD_MODE
+            title = context.getText(R.string.qs_media_card_mode_title)
+            dialogTitle = context.getText(R.string.qs_media_card_mode_title)
+            setEntries(R.array.qs_media_card_mode_entries)
+            setEntryValues(R.array.qs_media_card_mode_values)
+            val currentVal = Settings.System.getInt(
+                context.contentResolver,
+                "qs_media_card_mode",
+                3
+            )
+            value = currentVal.toString()
+            summary = entry
+            setOnPreferenceChangeListener { pref, newValue ->
+                val strVal = newValue as String
+                val intVal = strVal.toIntOrNull() ?: 3
+                Settings.System.putInt(
+                    context.contentResolver,
+                    "qs_media_card_mode",
+                    intVal
+                )
+                val listPref = pref as ListPreference
+                val index = listPref.findIndexOfValue(strVal)
+                if (index >= 0 && index < listPref.entries.size) {
+                    listPref.summary = listPref.entries[index]
+                }
+                true
+            }
+        }
+        screen.addPreference(mediaCardModePref)
 
         val volumeSliderPref = SwitchPreferenceCompat(context).apply {
             key = KEY_QS_SHOW_VOLUME_SLIDER
@@ -278,8 +295,6 @@ class ShadePanelsFragment : RadioButtonPickerFragment(), HelpResourceProvider {
         @VisibleForTesting
         const val KEY_SINGLE_SHADE_PREFERENCE = "single_shade"
         @VisibleForTesting
-        const val KEY_SHOW_QS_TILE_LABELS = "show_qs_tile_labels"
-        @VisibleForTesting
         const val KEY_QS_SHOW_BRIGHTNESS_SLIDER = "qs_show_brightness_slider"
         @VisibleForTesting
         const val KEY_QS_BRIGHTNESS_POSITION = "qs_brightness_position"
@@ -287,6 +302,7 @@ class ShadePanelsFragment : RadioButtonPickerFragment(), HelpResourceProvider {
         const val KEY_QS_SHOW_AUTO_BRIGHTNESS_BUTTON = "qs_show_auto_brightness_button"
         @VisibleForTesting
         const val KEY_QS_SHOW_VOLUME_SLIDER = "qs_show_volume_slider"
+        const val KEY_QS_MEDIA_CARD_MODE = "qs_media_card_mode"
         @VisibleForTesting
         const val KEY_DUAL_SHADE_INVERT_SIDES = "dual_shade_invert_sides"
 

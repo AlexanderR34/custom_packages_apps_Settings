@@ -15837,5 +15837,14 @@
     <string name="dual_shade_invert_sides_title">Invert pulldown sides</string>
     <string name="dual_shade_invert_sides_summary">Swipe down left for Quick Settings, right for Notifications</string>
 
+    <!-- Quick Settings Media Card Mode -->
+    <string name="qs_media_card_mode_title">Media player card</string>
+    <string name="qs_media_card_mode_none">None</string>
+    <string name="qs_media_card_mode_classic">Classic mode</string>
+    <string name="qs_media_card_mode_dual_shade">Dual Shade</string>
+    <string name="qs_media_card_mode_both">Both</string>
+    <!-- Quick Settings Circular Tiles -->
+    <string name="qs_tile_style_circular_title">Circular tile design</string>
+    <string name="qs_tile_style_circular_summary">Use compact circular icons instead of wide stock pill tiles</string>
 </resources>
 

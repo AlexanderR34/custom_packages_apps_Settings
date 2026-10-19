@@ -1972,4 +1972,18 @@
         <item>0</item>
         <item>1</item>
     </string-array>
+    <!-- Quick Settings Media Card Mode -->
+    <string-array name="qs_media_card_mode_entries">
+        <item>@string/qs_media_card_mode_none</item>
+        <item>@string/qs_media_card_mode_classic</item>
+        <item>@string/qs_media_card_mode_dual_shade</item>
+        <item>@string/qs_media_card_mode_both</item>
+    </string-array>
+
+    <string-array name="qs_media_card_mode_values" translatable="false">
+        <item>0</item>
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+    </string-array>
 </resources>
