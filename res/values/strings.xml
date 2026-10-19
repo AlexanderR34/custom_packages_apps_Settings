@@ -15846,5 +15846,8 @@
     <!-- Quick Settings Circular Tiles -->
     <string name="qs_tile_style_circular_title">Circular tile design</string>
     <string name="qs_tile_style_circular_summary">Use compact circular icons instead of wide stock pill tiles</string>
+    <!-- Media in notifications shade -->
+    <string name="qs_media_in_notifications_title">Media player in notifications</string>
+    <string name="qs_media_in_notifications_summary">Show media player card in the notifications shade</string>
 </resources>
 

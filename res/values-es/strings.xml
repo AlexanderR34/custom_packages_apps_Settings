@@ -6491,5 +6491,8 @@
     <!-- Quick Settings Circular Tiles (Spanish) -->
     <string name="qs_tile_style_circular_title">Botones redondos</string>
     <string name="qs_tile_style_circular_summary">Usar iconos circulares compactos en lugar de píldoras anchas stock</string>
+    <!-- Media in notifications shade (Spanish) -->
+    <string name="qs_media_in_notifications_title">Reproductor en notificaciones</string>
+    <string name="qs_media_in_notifications_summary">Mostrar reproductor multimedia en la cortina de notificaciones</string>
 </resources>
 

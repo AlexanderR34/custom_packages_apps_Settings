@@ -164,32 +164,26 @@ class ShadePanelsFragment : RadioButtonPickerFragment(), HelpResourceProvider {
         }
         screen.addPreference(autoBrightnessPref)
 
-        val mediaCardModePref = ListPreference(context).apply {
+        val mediaCardModePref = SwitchPreferenceCompat(context).apply {
             key = KEY_QS_MEDIA_CARD_MODE
-            title = context.getText(R.string.qs_media_card_mode_title)
-            dialogTitle = context.getText(R.string.qs_media_card_mode_title)
-            setEntries(R.array.qs_media_card_mode_entries)
-            setEntryValues(R.array.qs_media_card_mode_values)
-            val currentVal = Settings.System.getInt(
-                context.contentResolver,
-                "qs_media_card_mode",
-                3
-            )
-            value = currentVal.toString()
-            summary = entry
-            setOnPreferenceChangeListener { pref, newValue ->
-                val strVal = newValue as String
-                val intVal = strVal.toIntOrNull() ?: 3
+            title = context.getText(R.string.qs_media_in_notifications_title)
+            summary = context.getText(R.string.qs_media_in_notifications_summary)
+            val isEnabled = Settings.System.getInt(context.contentResolver, "qs_show_notifications_media", -1).let {
+                if (it != -1) it == 1 else Settings.System.getInt(context.contentResolver, "qs_media_card_mode", 3) != 0
+            }
+            isChecked = isEnabled
+            setOnPreferenceChangeListener { _, newValue ->
+                val checked = newValue as Boolean
+                Settings.System.putInt(
+                    context.contentResolver,
+                    "qs_show_notifications_media",
+                    if (checked) 1 else 0
+                )
                 Settings.System.putInt(
                     context.contentResolver,
                     "qs_media_card_mode",
-                    intVal
+                    if (checked) 3 else 0
                 )
-                val listPref = pref as ListPreference
-                val index = listPref.findIndexOfValue(strVal)
-                if (index >= 0 && index < listPref.entries.size) {
-                    listPref.summary = listPref.entries[index]
-                }
                 true
             }
         }
