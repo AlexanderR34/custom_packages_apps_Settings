@@ -193,9 +193,10 @@
             android:fragment="com.android.settings.system.ShadePanelsFragment"
             settings:controller="com.android.settings.system.ShadePanelsPreferenceController"/>
 
+
         <SwitchPreferenceCompat
              android:key="silent_icons"
-             android:order="25"
+             android:order="26"
              android:title="@string/silent_notifications_status_bar"
              settings:controller="com.android.settings.notification.SilentStatusBarPreferenceController"/>
 
@@ -232,6 +233,21 @@
             android:order="24"
             android:title="@string/heads_up_notifications_enabled_title"
             android:summary="@string/heads_up_notifications_enabled_summary" />
+
+
+        <SwitchPreferenceCompat
+            android:key="screenshot_notification_enabled"
+            android:order="100"
+            android:title="@string/screenshot_notification_title"
+            android:summary="@string/screenshot_notification_summary"
+            settings:controller="com.android.settings.notification.ScreenshotNotificationPreferenceController"/>
+
+        <SwitchPreferenceCompat
+            android:key="notification_auto_expand_images"
+            android:order="101"
+            android:title="@string/notification_auto_expand_images_title"
+            android:summary="@string/notification_auto_expand_images_summary"
+            settings:controller="com.android.settings.notification.NotificationAutoExpandImagesPreferenceController"/>
 
     </PreferenceCategory>
 </PreferenceScreen>
