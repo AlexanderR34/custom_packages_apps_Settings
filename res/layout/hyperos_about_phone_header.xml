@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:gravity="center_horizontal"
+    android:layout_marginStart="16dp"
+    android:layout_marginEnd="16dp"
+    android:layout_marginTop="12dp"
+    android:layout_marginBottom="8dp"
+    android:paddingTop="28dp"
+    android:paddingBottom="24dp"
+    android:paddingStart="20dp"
+    android:paddingEnd="20dp"
+    android:background="@drawable/material_you_card_preference_bg">
+
+    <!-- Big Title: Project Diva -->
+    <TextView
+        android:id="@+id/hyperos_header_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Project Diva"
+        android:textColor="?android:attr/textColorPrimary"
+        android:textSize="30sp"
+        android:fontFamily="google-sans-flex"
+        android:textStyle="bold"
+        android:gravity="center"
+        android:letterSpacing="-0.02" />
+
+    <!-- Subtitle: 1.2.2 in a HyperOS-style pill badge -->
+    <TextView
+        android:id="@+id/hyperos_header_version"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="1.2.2"
+        android:textColor="?android:attr/colorAccent"
+        android:textSize="14sp"
+        android:fontFamily="google-sans-flex"
+        android:textStyle="bold"
+        android:gravity="center"
+        android:layout_marginTop="8dp"
+        android:paddingStart="14dp"
+        android:paddingEnd="14dp"
+        android:paddingTop="3dp"
+        android:paddingBottom="3dp"
+        android:background="?android:attr/selectableItemBackground" />
+
+</LinearLayout>

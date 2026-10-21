@@ -113,6 +113,48 @@ public class MyDeviceInfoFragment extends DashboardFragment
         }
     }
 
+    private MonetAmbientGlowDrawable mAmbientGlowDrawable;
+
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        mAmbientGlowDrawable = new MonetAmbientGlowDrawable(getContext());
+        view.setBackground(mAmbientGlowDrawable);
+
+        final androidx.recyclerview.widget.RecyclerView listView = getListView();
+        if (listView != null) {
+            listView.setBackground(null);
+        }
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        if (mAmbientGlowDrawable != null) {
+            mAmbientGlowDrawable.updateMonetColors();
+            mAmbientGlowDrawable.startGlowAnimation();
+        }
+        final androidx.preference.Preference firmwarePref = findPreference("firmware_version");
+        if (firmwarePref != null) {
+            String version = android.os.Build.VERSION.RELEASE_OR_PREVIEW_DISPLAY;
+            if (version == null || version.isEmpty() || "null".equalsIgnoreCase(version)) {
+                version = android.os.Build.VERSION.RELEASE;
+            }
+            if (version == null || version.isEmpty() || "null".equalsIgnoreCase(version)) {
+                version = android.os.SystemProperties.get("ro.build.version.release", "17");
+            }
+            firmwarePref.setSummary(version);
+        }
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        if (mAmbientGlowDrawable != null) {
+            mAmbientGlowDrawable.stopGlowAnimation();
+        }
+    }
+
     @Override
     public void onStart() {
         super.onStart();

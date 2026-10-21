@@ -27,24 +27,71 @@
         android:selectable="false"
         settings:isPreferenceVisible="false"/>
 
-    <PreferenceCategory
-        android:key="basic_info_category"
+    <!-- Header: Project Diva & 1.2.2 -->
+    <com.android.settingslib.widget.LayoutPreference
+        android:key="hyperos_about_phone_header"
+        android:layout="@layout/hyperos_about_phone_header"
         android:selectable="false"
-        android:title="@string/my_device_info_basic_info_category_title">
+        android:order="-100"/>
 
-        <!-- Device name -->
+    <!-- Material You Standalone Cards -->
+    <PreferenceCategory
+        android:key="material_you_cards_category"
+        android:layout="@layout/preference_category_no_label"
+        android:selectable="false"
+        android:order="-90">
+
+        <!-- 1. Nombre del dispositivo -->
         <com.android.settings.widget.ValidatedEditTextPreference
             android:key="device_name"
             android:order="1"
+            android:layout="@layout/material_you_card_preference"
             android:title="@string/my_device_info_device_name_preference_title"
             android:summary="@string/summary_placeholder"
             settings:controller="com.android.settings.deviceinfo.DeviceNamePreferenceController"
             settings:enableCopying="true"/>
 
+        <!-- 2. Versión del sistema (Zip del compilador) -->
+        <Preference
+            android:key="diva_system_version"
+            android:order="2"
+            android:layout="@layout/material_you_card_preference"
+            android:title="@string/diva_system_version_title"
+            android:summary="@string/summary_placeholder"
+            settings:controller="com.android.settings.deviceinfo.aboutphone.DivaSystemVersionPreferenceController"
+            settings:enableCopying="true"/>
+
+        <!-- 3. Número de compilación -->
+        <Preference
+            android:key="build_number"
+            android:order="3"
+            android:layout="@layout/material_you_card_preference"
+            android:title="@string/build_number"
+            android:summary="@string/summary_placeholder"
+            settings:enableCopying="true"
+            settings:controller="com.android.settings.deviceinfo.BuildNumberPreferenceController"/>
+
+        <!-- 4. Versión de Android -->
+        <Preference
+            android:key="firmware_version"
+            android:order="4"
+            android:layout="@layout/material_you_card_preference"
+            android:title="@string/firmware_version"
+            android:summary="@string/summary_placeholder"
+            android:fragment="com.android.settings.deviceinfo.firmwareversion.FirmwareVersionSettings"
+            settings:controller="com.android.settings.deviceinfo.firmwareversion.FirmwareVersionPreferenceController"/>
+
+    </PreferenceCategory>
+
+    <PreferenceCategory
+        android:key="basic_info_category"
+        android:selectable="false"
+        android:title="@string/my_device_info_basic_info_category_title">
+
         <!-- Account name -->
         <Preference
             android:key="branded_account"
-            android:order="2"
+            android:order="5"
             android:title="@string/my_device_info_account_preference_title"
             android:summary="@string/summary_placeholder"
             settings:enableCopying="true"
@@ -146,14 +193,6 @@
             settings:isPreferenceVisible="@bool/config_show_sim_info"
             settings:controller="com.android.settings.deviceinfo.imei.ImeiInfoPreferenceController"/>
 
-        <!-- Android version -->
-        <Preference
-            android:key="firmware_version"
-            android:order="42"
-            android:title="@string/firmware_version"
-            android:summary="@string/summary_placeholder"
-            android:fragment="com.android.settings.deviceinfo.firmwareversion.FirmwareVersionSettings"
-            settings:controller="com.android.settings.deviceinfo.firmwareversion.FirmwareVersionPreferenceController"/>
 
         <!-- Battery information -->
         <Preference
@@ -236,14 +275,6 @@
             android:title="@string/fcc_equipment_id"
             android:summary="@string/summary_placeholder"/>
 
-        <!-- Build number -->
-        <Preference
-            android:key="build_number"
-            android:order="53"
-            android:title="@string/build_number"
-            android:summary="@string/summary_placeholder"
-            settings:enableCopying="true"
-            settings:controller="com.android.settings.deviceinfo.BuildNumberPreferenceController"/>
     </PreferenceCategory>
 
 </PreferenceScreen>
