@@ -129,5 +129,9 @@
     <color name="about_phone_bg_gradient_start">@android:color/system_accent1_800</color>
     <color name="about_phone_bg_gradient_center">@android:color/system_accent1_900</color>
     <color name="about_phone_bg_gradient_end">#FF000000</color>
+
+    <!-- Frosted Glass Cards (Dark Mode: 72% dark surface + subtle border for glowing light to pass through) -->
+    <color name="about_phone_card_bg">#B81E1E22</color>
+    <color name="about_phone_card_border">#2EFFFFFF</color>
 </resources>
 

@@ -152,7 +152,7 @@ public class MonetAmbientGlowView extends View {
         final float cx1 = w * 0.5f + (float) Math.cos(mProgress) * (w * 0.28f);
         final float cy1 = h * 0.22f + (float) Math.sin(mProgress * 0.8f) * (h * 0.12f);
 
-        final int primaryAlpha = Color.argb(160, Color.red(mColorPrimary),
+        final int primaryAlpha = Color.argb(210, Color.red(mColorPrimary),
                 Color.green(mColorPrimary), Color.blue(mColorPrimary));
         final int primaryTransparent = Color.argb(0, Color.red(mColorPrimary),
                 Color.green(mColorPrimary), Color.blue(mColorPrimary));
@@ -168,7 +168,7 @@ public class MonetAmbientGlowView extends View {
         final float cx2 = w * 0.5f + (float) Math.cos(mProgress * 0.7f + Math.PI) * (w * 0.26f);
         final float cy2 = h * 0.35f + (float) Math.sin(mProgress * 1.1f + 1.2f) * (h * 0.14f);
 
-        final int secondaryAlpha = Color.argb(140, Color.red(mColorSecondary),
+        final int secondaryAlpha = Color.argb(190, Color.red(mColorSecondary),
                 Color.green(mColorSecondary), Color.blue(mColorSecondary));
         final int secondaryTransparent = Color.argb(0, Color.red(mColorSecondary),
                 Color.green(mColorSecondary), Color.blue(mColorSecondary));
@@ -184,7 +184,7 @@ public class MonetAmbientGlowView extends View {
         final float cx3 = w * 0.5f + (float) (Math.sin(mProgress * 1.3f + 2.5f) * Math.cos(mProgress * 0.7f)) * (w * 0.35f);
         final float cy3 = h * 0.48f + (float) (Math.cos(mProgress * 0.9f + 1.8f) * Math.sin(mProgress * 1.5f)) * (h * 0.20f);
 
-        final int tertiaryAlpha = Color.argb(130, Color.red(mColorTertiary),
+        final int tertiaryAlpha = Color.argb(180, Color.red(mColorTertiary),
                 Color.green(mColorTertiary), Color.blue(mColorTertiary));
         final int tertiaryTransparent = Color.argb(0, Color.red(mColorTertiary),
                 Color.green(mColorTertiary), Color.blue(mColorTertiary));

@@ -129,7 +129,7 @@ public class MonetAmbientGlowDrawable extends Drawable {
         final float cx1 = bounds.left + w * 0.5f + (float) Math.cos(mProgress) * (w * 0.28f);
         final float cy1 = bounds.top + h * 0.22f + (float) Math.sin(mProgress) * (h * 0.12f);
 
-        final int primaryAlpha = Color.argb(160, Color.red(mColorPrimary),
+        final int primaryAlpha = Color.argb(210, Color.red(mColorPrimary),
                 Color.green(mColorPrimary), Color.blue(mColorPrimary));
         final int primaryTransparent = Color.argb(0, Color.red(mColorPrimary),
                 Color.green(mColorPrimary), Color.blue(mColorPrimary));
@@ -145,7 +145,7 @@ public class MonetAmbientGlowDrawable extends Drawable {
         final float cx2 = bounds.left + w * 0.5f + (float) Math.cos(-mProgress + Math.PI) * (w * 0.26f);
         final float cy2 = bounds.top + h * 0.35f + (float) Math.sin(2 * mProgress) * (h * 0.14f);
 
-        final int secondaryAlpha = Color.argb(140, Color.red(mColorSecondary),
+        final int secondaryAlpha = Color.argb(190, Color.red(mColorSecondary),
                 Color.green(mColorSecondary), Color.blue(mColorSecondary));
         final int secondaryTransparent = Color.argb(0, Color.red(mColorSecondary),
                 Color.green(mColorSecondary), Color.blue(mColorSecondary));
@@ -161,7 +161,7 @@ public class MonetAmbientGlowDrawable extends Drawable {
         final float cx3 = bounds.left + w * 0.5f + (float) Math.sin(2 * mProgress + Math.PI / 2) * (w * 0.32f);
         final float cy3 = bounds.top + h * 0.48f + (float) Math.cos(mProgress) * (h * 0.18f);
 
-        final int tertiaryAlpha = Color.argb(130, Color.red(mColorTertiary),
+        final int tertiaryAlpha = Color.argb(180, Color.red(mColorTertiary),
                 Color.green(mColorTertiary), Color.blue(mColorTertiary));
         final int tertiaryTransparent = Color.argb(0, Color.red(mColorTertiary),
                 Color.green(mColorTertiary), Color.blue(mColorTertiary));
