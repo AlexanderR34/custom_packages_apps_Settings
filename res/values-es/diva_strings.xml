@@ -118,6 +118,16 @@
     <string name="status_bar_chips_colors_reset_summary">Restaura los colores HEX originales de cada indicador con un solo toque</string>
     <string name="status_bar_chips_colors_reset_toast">Colores de hardware restablecidos a los valores predeterminados</string>
 
+    <!-- Progress bar color mode & custom color -->
+    <string name="status_bar_chips_progress_bar_category">Estilo de la barra de progreso (Música y Descargas)</string>
+    <string name="status_bar_chips_progress_bar_color_mode_title">Modo de color de la barra</string>
+    <string name="status_bar_chips_progress_bar_color_mode_summary">Elige el estilo de color para la barrita de progreso</string>
+    <string name="status_bar_chips_progress_bar_color_mode_monet">Monet / Portada del álbum (Predeterminado)</string>
+    <string name="status_bar_chips_progress_bar_color_mode_rainbow">Modo Arcoíris (Onda cromática en movimiento)</string>
+    <string name="status_bar_chips_progress_bar_color_mode_custom">Color personalizado (HEX)</string>
+    <string name="status_bar_chips_progress_bar_custom_color_title">Color personalizado de la barra</string>
+    <string name="status_bar_chips_progress_bar_custom_color_summary">Código HEX con resplandor neón lateral (Predeterminado: #00E676)</string>
+
     <!-- Submenu / Draw notch -->
     <string name="status_bar_chips_sub_settings_title">Dibujar notch</string>
     <string name="status_bar_chips_sub_settings_summary">Personaliza el recorte visual del notch o cámara frontal</string>

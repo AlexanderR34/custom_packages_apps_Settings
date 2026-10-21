@@ -120,6 +120,16 @@
     <string name="status_bar_chips_colors_reset_summary">Restore default indicator HEX colors in one tap</string>
     <string name="status_bar_chips_colors_reset_toast">Hardware colors restored to defaults</string>
 
+    <!-- Progress bar color mode & custom color -->
+    <string name="status_bar_chips_progress_bar_category">Progress bar style (Media &amp; Downloads)</string>
+    <string name="status_bar_chips_progress_bar_color_mode_title">Bar color mode</string>
+    <string name="status_bar_chips_progress_bar_color_mode_summary">Choose the color style for the progress bar</string>
+    <string name="status_bar_chips_progress_bar_color_mode_monet">Monet / App artwork (Default)</string>
+    <string name="status_bar_chips_progress_bar_color_mode_rainbow">Rainbow mode (Smooth chromatic wave)</string>
+    <string name="status_bar_chips_progress_bar_color_mode_custom">Custom HEX color</string>
+    <string name="status_bar_chips_progress_bar_custom_color_title">Custom bar color</string>
+    <string name="status_bar_chips_progress_bar_custom_color_summary">HEX color code with side neon glow (Default: #00E676)</string>
+
     <!-- Submenu / Draw camera notch -->
     <string name="status_bar_chips_sub_settings_title">Draw camera notch</string>
     <string name="status_bar_chips_sub_settings_summary">Render and customize the camera notch cutout</string>

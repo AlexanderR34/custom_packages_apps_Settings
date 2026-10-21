@@ -2015,4 +2015,17 @@
         <item>1</item>
     </string-array>
 
+    <!-- Status bar chips progress bar color mode -->
+    <string-array name="status_bar_chips_progress_bar_color_mode_entries">
+        <item>@string/status_bar_chips_progress_bar_color_mode_monet</item>
+        <item>@string/status_bar_chips_progress_bar_color_mode_rainbow</item>
+        <item>@string/status_bar_chips_progress_bar_color_mode_custom</item>
+    </string-array>
+
+    <string-array name="status_bar_chips_progress_bar_color_mode_values" translatable="false">
+        <item>0</item>
+        <item>1</item>
+        <item>2</item>
+    </string-array>
+
 </resources>
