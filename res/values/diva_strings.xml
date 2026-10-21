@@ -59,6 +59,8 @@
     <string name="status_bar_chip_enable_cast_summary">Show media casting status</string>
     <string name="status_bar_chip_enable_hotspot_title">Hotspot / Tethering</string>
     <string name="status_bar_chip_enable_hotspot_summary">Show Wi-Fi hotspot active clients</string>
+    <string name="status_bar_chip_enable_flashlight_title">Flashlight indicator</string>
+    <string name="status_bar_chip_enable_flashlight_summary">Show chip and quick controls while flashlight is turned on</string>
     <string name="status_bar_chip_enable_notifs_title">Promoted app activities</string>
     <string name="status_bar_chip_enable_notifs_summary">Show live activities from delivery, ride, or sports apps</string>
 
@@ -117,6 +119,48 @@
     <string name="status_bar_chips_colors_reset_title">Reset colors to defaults</string>
     <string name="status_bar_chips_colors_reset_summary">Restore default indicator HEX colors in one tap</string>
     <string name="status_bar_chips_colors_reset_toast">Hardware colors restored to defaults</string>
+
+    <!-- Submenu / Draw camera notch -->
+    <string name="status_bar_chips_sub_settings_title">Draw camera notch</string>
+    <string name="status_bar_chips_sub_settings_summary">Render and customize the camera notch cutout</string>
+    <string name="status_bar_camera_cutout_category">Draw camera notch</string>
+    <string name="status_bar_draw_camera_cutout_title">Draw camera notch</string>
+    <string name="status_bar_draw_camera_cutout_summary">Render a visual cutout behind the front camera lens like iOS</string>
+    <string name="status_bar_camera_cutout_style_title">Drawing style</string>
+    <string name="status_bar_camera_cutout_style_summary">Choose between solid filled cutout or outline ring</string>
+    <string name="status_bar_camera_cutout_style_solid">Solid fill (Default)</string>
+    <string name="status_bar_camera_cutout_style_ring">Outline ring only</string>
+    <string name="status_bar_camera_cutout_color_title">Cutout color</string>
+    <string name="status_bar_camera_cutout_color_summary">HEX color code for the camera cutout (Default: #000000)</string>
+    <string name="status_bar_camera_cutout_width_title">Horizontal length (Width)</string>
+    <string name="status_bar_camera_cutout_height_title">Vertical length (Height)</string>
+    <string name="status_bar_camera_cutout_offset_x_title">Horizontal position (Offset X)</string>
+    <string name="status_bar_camera_cutout_offset_y_title">Vertical position (Offset Y)</string>
+    <string name="status_bar_camera_cutout_offset_center">Center (0 dp)</string>
+    <string name="status_bar_camera_cutout_size_auto">Auto (Native hardware size)</string>
+    <string name="status_bar_camera_cutout_reset_title">Reset cutout settings</string>
+    <string name="status_bar_camera_cutout_reset_summary">Restore default camera cutout parameters (Black, Auto size, Center)</string>
+    <string name="status_bar_camera_cutout_reset_toast">Camera cutout settings restored to defaults</string>
+    <!-- Diva Desktop & External Displays -->
+    <string name="diva_desktop_category_title">Diva Desktop (PC &amp; Streaming)</string>
+    <string name="diva_desktop_enable_title">Desktop Mode (Diva Desktop)</string>
+    <string name="diva_desktop_enable_summary_on">Desktop server active on port 7272. Ready to connect from PC.</string>
+    <string name="diva_desktop_enable_summary_off">Start desktop streaming engine to control your phone from PC over USB or Wi-Fi.</string>
+    <string name="diva_desktop_trackpad_title">Virtual trackpad</string>
+    <string name="diva_desktop_trackpad_summary">Use your phone screen as a touchpad and keyboard for your PC.</string>
+    <string name="diva_desktop_instructions_title">Connection instructions &amp; status</string>
+    <string name="diva_desktop_instructions_summary">Run «python diva-desktop-client.py» on your computer (or use ADB port forwarding: adb forward tcp:7272 tcp:7272).</string>
+    <string name="diva_desktop_status_running">● Server ACTIVE (Port 7272)\n• USB: adb forward tcp:7272 tcp:7272\n• Wi-Fi: %1$s\nTap for detailed instructions &amp; commands.</string>
+    <string name="diva_desktop_status_stopped">Server inactive. Turn on Desktop Mode above to view IP address and connection commands.</string>
+    <string name="diva_desktop_no_wifi">Wi-Fi not connected</string>
+    <string name="diva_desktop_dialog_title">Connect PC to Diva Desktop</string>
+    <string name="diva_desktop_dialog_message">🖥️ Desktop Mode on your PC\n\n1. Over USB cable (Lowest latency - Recommended):\n• Enable «USB Debugging» in Developer Options.\n• Connect your phone via USB cable.\n• In your PC terminal, run:\n  %2$s\n• Open your client or viewer connected to localhost:7272.\n\n2. Over Wi-Fi network (Wireless):\n• Ensure phone and PC are connected to the same Wi-Fi.\n• Connect to:\n  %1$s\n\n3. PC Companion Client:\n• Run «python diva-desktop-client.py» or compile native «diva-desktop-client».</string>
+    <string name="diva_desktop_copy_adb">Copy ADB command</string>
+    <string name="diva_desktop_adb_copied">ADB command copied to clipboard</string>
+    <string name="diva_desktop_external_title">Wired displays (DisplayPort / HDMI)</string>
+    <string name="diva_desktop_force_desktop_title">Force desktop mode on external displays</string>
+    <string name="diva_desktop_force_desktop_summary">Enable desktop freeform window UI on secondary displays connected via cable.</string>
+    <string name="external_display_settings_summary">Desktop mode, Diva Desktop and external displays</string>
 
     <!-- Status Bar Clock Position -->
     <string name="status_bar_clock_position_title">Clock position</string>
@@ -588,4 +632,23 @@
     <string name="usb_setup_wizard_adb_title">USB debugging (ADB)</string>
     <string name="usb_setup_wizard_adb_summary">Allow development and debugging commands when connected via USB</string>
     <string name="usb_setup_wizard_default_mode">Default USB connection mode</string>
+
+    <!-- App Lock Master Switch -->
+    <string name="app_lock_enable_switch_title">Enable app lock</string>
+    <string name="app_lock_enable_switch_summary">Require biometric authentication or security PIN before opening protected apps</string>
+
+    <!-- Status Bar Brightness Control -->
+    <string name="status_bar_brightness_control_title">Status bar brightness control</string>
+    <string name="status_bar_brightness_control_summary">Swipe across the status bar to quickly adjust screen brightness</string>
+
+    <!-- Notification Ticker -->
+    <string name="status_bar_notification_ticker_title">Notification ticker</string>
+    <string name="status_bar_notification_ticker_summary">Scroll notification text in the status bar instead of pop-up heads-up banners</string>
+
+    <!-- Pocket Mode -->
+    <string name="pocket_mode_title">Pocket mode</string>
+    <string name="pocket_mode_summary">Prevent accidental touch gestures while the device is inside a pocket or bag</string>
+
+    <!-- System Version -->
+    <string name="diva_system_version_title">System version</string>
 </resources>

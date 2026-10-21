@@ -124,5 +124,10 @@
     <color name="sc_materialColorSurfaceContainer">@android:color/system_surface_container_dark</color>
     <color name="sc_materialColorOutline">@android:color/system_outline_dark</color>
     <color name="sc_materialColorOutlineVariant">@android:color/system_outline_variant_dark</color>
+
+    <!-- About Phone Dynamic Gradient Background (Dark Mode) -->
+    <color name="about_phone_bg_gradient_start">@android:color/system_accent1_800</color>
+    <color name="about_phone_bg_gradient_center">@android:color/system_accent1_900</color>
+    <color name="about_phone_bg_gradient_end">#FF000000</color>
 </resources>
 

@@ -69,6 +69,18 @@ public class AppLockSettingsFragment extends InstrumentedFragment {
         searchBox = view.findViewById(R.id.search_box);
         recyclerView = view.findViewById(R.id.apps_recycler_view);
 
+        android.widget.Switch switchMaster =
+                view.findViewById(R.id.switch_master_app_lock);
+        boolean isEnabled = Settings.Secure.getInt(
+                requireContext().getContentResolver(), "app_lock_enabled", 1) == 1;
+        if (switchMaster != null) {
+            switchMaster.setChecked(isEnabled);
+            switchMaster.setOnCheckedChangeListener((btn, isChecked) -> {
+                Settings.Secure.putInt(
+                        requireContext().getContentResolver(), "app_lock_enabled", isChecked ? 1 : 0);
+            });
+        }
+
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
 
         updatePinStatus();
@@ -144,25 +156,39 @@ public class AppLockSettingsFragment extends InstrumentedFragment {
 
                 List<AppLockItem> items = new ArrayList<>();
                 for (ApplicationInfo appInfo : packages) {
-                    // Ignorar la propia app de Ajustes
-                    if (appInfo.packageName.equals(context.getPackageName())) {
-                        continue;
-                    }
-                    String label = pm.getApplicationLabel(appInfo).toString();
-                    boolean isLocked = lockedSet.contains(appInfo.packageName);
-                    int enabledState = pm.getApplicationEnabledSetting(appInfo.packageName);
-                    boolean isHidden = (enabledState == PackageManager.COMPONENT_ENABLED_STATE_DISABLED_USER);
+                    try {
+                        // Ignorar la propia app de Ajustes
+                        if (appInfo.packageName.equals(context.getPackageName())) {
+                            continue;
+                        }
+                        // Solo mostrar apps que el usuario puede abrir o lanzar
+                        if (pm.getLaunchIntentForPackage(appInfo.packageName) == null) {
+                            continue;
+                        }
+                        CharSequence appLabelSeq = pm.getApplicationLabel(appInfo);
+                        String label = appLabelSeq != null ? appLabelSeq.toString() : appInfo.packageName;
+                        boolean isLocked = lockedSet.contains(appInfo.packageName);
+                        int enabledState = PackageManager.COMPONENT_ENABLED_STATE_DEFAULT;
+                        try {
+                            enabledState = pm.getApplicationEnabledSetting(appInfo.packageName);
+                        } catch (Exception ignored) {}
+                        boolean isHidden = (enabledState == PackageManager.COMPONENT_ENABLED_STATE_DISABLED_USER);
 
-                    items.add(new AppLockItem(
-                            appInfo.packageName,
-                            label,
-                            pm.getApplicationIcon(appInfo),
-                            isLocked,
-                            isHidden
-                    ));
+                        items.add(new AppLockItem(
+                                appInfo.packageName,
+                                label,
+                                pm.getApplicationIcon(appInfo),
+                                isLocked,
+                                isHidden
+                        ));
+                    } catch (Exception ignored) {}
                 }
 
-                items.sort((a, b) -> a.getAppName().compareToIgnoreCase(b.getAppName()));
+                items.sort((a, b) -> {
+                    String nameA = a.getAppName() != null ? a.getAppName() : "";
+                    String nameB = b.getAppName() != null ? b.getAppName() : "";
+                    return nameA.compareToIgnoreCase(nameB);
+                });
                 return items;
             }
 

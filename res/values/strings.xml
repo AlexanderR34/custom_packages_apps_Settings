@@ -15836,6 +15836,8 @@
     <string name="qs_show_volume_slider_summary">Show multimedia volume control in Quick Settings panel</string>
     <string name="dual_shade_invert_sides_title">Invert pulldown sides</string>
     <string name="dual_shade_invert_sides_summary">Swipe down left for Quick Settings, right for Notifications</string>
+    <string name="dual_shade_smart_pull_down_title">Smart pull-down</string>
+    <string name="dual_shade_smart_pull_down_summary">Open Quick Settings directly when there are no pending notifications</string>
 
     <!-- Quick Settings Media Card Mode -->
     <string name="qs_media_card_mode_title">Media player card</string>
@@ -15849,5 +15851,23 @@
     <!-- Media in notifications shade -->
     <string name="qs_media_in_notifications_title">Media player in notifications</string>
     <string name="qs_media_in_notifications_summary">Show media player card in the notifications shade</string>
+    <!-- Media player timeout -->
+    <string name="qs_media_player_timeout_title">Hide media player on inactivity</string>
+    <string name="qs_media_player_timeout_1min">1 minute</string>
+    <string name="qs_media_player_timeout_2min">2 minutes</string>
+    <string name="qs_media_player_timeout_5min">5 minutes</string>
+    <string name="qs_media_player_timeout_10min">10 minutes</string>
+    <string name="qs_media_player_timeout_never">Never hide</string>
+
+    <!-- Group notifications by application -->
+
+    <!-- Screenshot notification -->
+    <string name="screenshot_notification_title">Screenshot notification</string>
+    <string name="screenshot_notification_summary">Show a notification with a preview and timestamp when a screenshot is taken</string>
+
+    <!-- Auto-expand notifications with images -->
+    <string name="notification_auto_expand_images_title">Auto-expand media notifications</string>
+    <string name="notification_auto_expand_images_summary">Automatically expand notifications containing images, photos, or stickers</string>
+
 </resources>
 

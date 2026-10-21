@@ -6481,6 +6481,8 @@
     <string name="qs_show_volume_slider_summary">Mostrar barra de volumen multimedia en el panel de Quick Settings</string>
     <string name="dual_shade_invert_sides_title">Invertir lados de apertura</string>
     <string name="dual_shade_invert_sides_summary">Deslizar desde la izquierda para Quick Settings, y derecha para Notificaciones</string>
+    <string name="dual_shade_smart_pull_down_title">Despliegue inteligente</string>
+    <string name="dual_shade_smart_pull_down_summary">Abrir Ajustes rápidos directamente si no hay notificaciones pendientes</string>
 
     <!-- Quick Settings Media Card Mode (Spanish) -->
     <string name="qs_media_card_mode_title">Reproductor multimedia</string>
@@ -6494,5 +6496,23 @@
     <!-- Media in notifications shade (Spanish) -->
     <string name="qs_media_in_notifications_title">Reproductor en notificaciones</string>
     <string name="qs_media_in_notifications_summary">Mostrar reproductor multimedia en la cortina de notificaciones</string>
+    <!-- Media player timeout (Spanish) -->
+    <string name="qs_media_player_timeout_title">Ocultar reproductor tras inactividad</string>
+    <string name="qs_media_player_timeout_1min">1 minuto</string>
+    <string name="qs_media_player_timeout_2min">2 minutos</string>
+    <string name="qs_media_player_timeout_5min">5 minutos</string>
+    <string name="qs_media_player_timeout_10min">10 minutos</string>
+    <string name="qs_media_player_timeout_never">Nunca ocultar</string>
+
+    <!-- Group notifications by application -->
+
+    <!-- Screenshot notification -->
+    <string name="screenshot_notification_title">Notificación de captura de pantalla</string>
+    <string name="screenshot_notification_summary">Mostrar una notificación con vista previa y la hora al tomar una captura</string>
+
+    <!-- Auto-expand notifications with images -->
+    <string name="notification_auto_expand_images_title">Autoexpandir notificaciones con imágenes</string>
+    <string name="notification_auto_expand_images_summary">Expandir automáticamente las notificaciones que contienen imágenes, fotos o stickers</string>
+
 </resources>
 

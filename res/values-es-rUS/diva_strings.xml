@@ -57,6 +57,8 @@
     <string name="status_bar_chip_enable_cast_summary">Mostrar transmisión multimedia a otros dispositivos</string>
     <string name="status_bar_chip_enable_hotspot_title">Punto de acceso / Zona Wi-Fi</string>
     <string name="status_bar_chip_enable_hotspot_summary">Mostrar clientes conectados a la zona compartida</string>
+    <string name="status_bar_chip_enable_flashlight_title">Indicador de linterna</string>
+    <string name="status_bar_chip_enable_flashlight_summary">Mostrar chip y controles rápidos cuando la linterna esté encendida</string>
     <string name="status_bar_chip_enable_notifs_title">Actividades en vivo de aplicaciones</string>
     <string name="status_bar_chip_enable_notifs_summary">Mostrar actividades dinámicas de apps de delivery, transporte o deportes</string>
 
@@ -116,6 +118,48 @@
     <string name="status_bar_chips_colors_reset_summary">Restaura los colores HEX originales de cada indicador con un solo toque</string>
     <string name="status_bar_chips_colors_reset_toast">Colores de hardware restablecidos a los valores predeterminados</string>
 
+    <!-- Submenu / Draw notch -->
+    <string name="status_bar_chips_sub_settings_title">Dibujar notch</string>
+    <string name="status_bar_chips_sub_settings_summary">Personaliza el recorte visual del notch o cámara frontal</string>
+    <string name="status_bar_camera_cutout_category">Dibujar notch</string>
+    <string name="status_bar_draw_camera_cutout_title">Dibujar notch de la cámara</string>
+    <string name="status_bar_draw_camera_cutout_summary">Renderiza un recorte visual en el lente de la cámara frontal como en iOS</string>
+    <string name="status_bar_camera_cutout_style_title">Estilo de dibujo</string>
+    <string name="status_bar_camera_cutout_style_summary">Elige entre relleno sólido o solo contorno/anillo</string>
+    <string name="status_bar_camera_cutout_style_solid">Relleno sólido (Predeterminado)</string>
+    <string name="status_bar_camera_cutout_style_ring">Solo contorno / Anillo</string>
+    <string name="status_bar_camera_cutout_color_title">Color del recorte</string>
+    <string name="status_bar_camera_cutout_color_summary">Código HEX del color del recorte (Predeterminado: #000000)</string>
+    <string name="status_bar_camera_cutout_width_title">Largo horizontal (Ancho)</string>
+    <string name="status_bar_camera_cutout_height_title">Largo vertical (Alto)</string>
+    <string name="status_bar_camera_cutout_offset_x_title">Posición horizontal (Calibración X)</string>
+    <string name="status_bar_camera_cutout_offset_y_title">Posición vertical (Calibración Y)</string>
+    <string name="status_bar_camera_cutout_offset_center">Centro (0 dp)</string>
+    <string name="status_bar_camera_cutout_size_auto">Automático (Tamaño nativo del hardware)</string>
+    <string name="status_bar_camera_cutout_reset_title">Restablecer ajustes del recorte</string>
+    <string name="status_bar_camera_cutout_reset_summary">Restaura los valores por defecto (Negro, tamaño automático y centrado)</string>
+    <string name="status_bar_camera_cutout_reset_toast">Ajustes del recorte restablecidos a los valores por defecto</string>
+    <!-- Diva Desktop y Pantallas externas -->
+    <string name="diva_desktop_category_title">Diva Desktop (PC y Transmisión)</string>
+    <string name="diva_desktop_enable_title">Activar Modo Escritorio</string>
+    <string name="diva_desktop_enable_summary_on">Servidor de escritorio activo en puerto 7272. Listo para conectar desde la PC.</string>
+    <string name="diva_desktop_enable_summary_off">Inicia el motor de streaming de escritorio para control desde PC (USB o Wi-Fi).</string>
+    <string name="diva_desktop_trackpad_title">Trackpad virtual</string>
+    <string name="diva_desktop_trackpad_summary">Usa la pantalla del teléfono como ratón y teclado para la PC.</string>
+    <string name="diva_desktop_instructions_title">Conexión e información de estado</string>
+    <string name="diva_desktop_instructions_summary">Ejecuta «python diva-desktop-client.py» en tu PC (o usa reenvío de puertos ADB: adb forward tcp:7272 tcp:7272).</string>
+    <string name="diva_desktop_status_running">● Servidor ACTIVO (Puerto 7272)\n• USB: adb forward tcp:7272 tcp:7272\n• Wi-Fi: %1$s\nToca para ver detalles y comandos.</string>
+    <string name="diva_desktop_status_stopped">Servidor inactivo. Activa el modo escritorio arriba para ver la IP y comandos de conexión.</string>
+    <string name="diva_desktop_no_wifi">Wi-Fi no conectado</string>
+    <string name="diva_desktop_dialog_title">Cómo conectar tu PC a Diva Desktop</string>
+    <string name="diva_desktop_dialog_message">🖥️ Modo Escritorio en tu PC\n\n1. Conexión por cable USB (Mínima latencia - Recomendada):\n• Activa «Depuración USB» en Opciones de desarrollador.\n• Conecta el cable USB a la PC.\n• En la consola o terminal de tu PC ejecuta:\n  %2$s\n• Abre tu cliente apuntando a localhost:7272.\n\n2. Conexión por red Wi-Fi (Sin cables):\n• Asegúrate de que la PC y el teléfono estén en la misma red Wi-Fi.\n• Conéctate a:\n  %1$s\n\n3. Cliente de escritorio:\n• Puedes ejecutar «python diva-desktop-client.py» o el cliente compilado «diva-desktop-client».</string>
+    <string name="diva_desktop_copy_adb">Copiar comando ADB</string>
+    <string name="diva_desktop_adb_copied">Comando ADB copiado al portapapeles</string>
+    <string name="diva_desktop_external_title">Pantallas cableadas (DisplayPort / HDMI)</string>
+    <string name="diva_desktop_force_desktop_title">Forzar modo escritorio en pantalla externa</string>
+    <string name="diva_desktop_force_desktop_summary">Habilita interfaz de ventanas estilo escritorio en monitores conectados físicamente por cable.</string>
+    <string name="external_display_settings_summary">Modo escritorio, Diva Desktop y pantallas conectadas</string>
+
     <!-- Posición del reloj -->
     <string name="status_bar_clock_position_title">Posición del reloj</string>
     <string name="status_bar_clock_position_summary">Elige si deseas el reloj en el lado izquierdo o derecho de la barra de estado</string>
@@ -148,4 +192,23 @@
     <string name="app_resolution_preset_480p">480p SD (39%)</string>
     <string name="app_resolution_preset_custom">Escala personalizada</string>
     <string name="app_resolution_slider_label">Escala: %1$d%%</string>
+
+    <!-- App Lock Master Switch -->
+    <string name="app_lock_enable_switch_title">Habilitar bloqueo de aplicaciones</string>
+    <string name="app_lock_enable_switch_summary">Requerir autenticación biométrica o PIN de seguridad antes de abrir apps protegidas</string>
+
+    <!-- Status Bar Brightness Control -->
+    <string name="status_bar_brightness_control_title">Control de brillo en la barra de estado</string>
+    <string name="status_bar_brightness_control_summary">Desliza el dedo por la barra de estado para ajustar el brillo rápidamente</string>
+
+    <!-- Notification Ticker -->
+    <string name="status_bar_notification_ticker_title">Ticker de notificaciones</string>
+    <string name="status_bar_notification_ticker_summary">Muestra el texto de las notificaciones desplazándose en la barra de estado en vez de ventanas flotantes</string>
+
+    <!-- Pocket Mode -->
+    <string name="pocket_mode_title">Modo bolsillo</string>
+    <string name="pocket_mode_summary">Evita toques involuntarios manteniendo la pantalla protegida mientras esté en el bolsillo</string>
+
+    <!-- System Version -->
+    <string name="diva_system_version_title">Versión del sistema</string>
 </resources>

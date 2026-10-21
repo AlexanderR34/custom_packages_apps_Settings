@@ -34,6 +34,18 @@ public class FirmwareVersionPreferenceController extends BasePreferenceControlle
 
     @Override
     public CharSequence getSummary() {
-        return Build.VERSION.RELEASE_OR_PREVIEW_DISPLAY;
+        String version = Build.VERSION.RELEASE_OR_PREVIEW_DISPLAY;
+        if (version != null && !version.isEmpty() && !"null".equalsIgnoreCase(version)) {
+            return version;
+        }
+        version = Build.VERSION.RELEASE;
+        if (version != null && !version.isEmpty() && !"null".equalsIgnoreCase(version)) {
+            return version;
+        }
+        version = android.os.SystemProperties.get("ro.build.version.release", "");
+        if (!version.isEmpty()) {
+            return version;
+        }
+        return "17";
     }
 }
