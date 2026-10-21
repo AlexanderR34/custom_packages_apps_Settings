@@ -56,6 +56,13 @@
             android:title="@string/touch_boost_title"
             android:summary="@string/touch_boost_summary"
             settings:controller="com.android.settings.display.TouchSamplingRatePreferenceController" />
+
+        <SwitchPreferenceCompat
+            android:key="status_bar_brightness_control"
+            android:title="@string/status_bar_brightness_control_title"
+            android:summary="@string/status_bar_brightness_control_summary"
+            android:defaultValue="false"
+            settings:controller="com.android.settings.display.StatusBarBrightnessControlPreferenceController" />
     </PreferenceCategory>
 
     <PreferenceCategory
