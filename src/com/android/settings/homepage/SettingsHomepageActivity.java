@@ -38,10 +38,13 @@ import android.os.Bundle;
 import android.os.Process;
 import android.os.UserHandle;
 import android.os.UserManager;
+import android.provider.Settings;
 import android.text.TextUtils;
 import android.util.ArraySet;
 import android.util.FeatureFlagUtils;
 import android.util.Log;
+
+import com.android.settings.deviceinfo.aboutphone.MonetAmbientGlowDrawable;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
@@ -322,6 +325,12 @@ public class SettingsHomepageActivity extends FragmentActivity implements
     }
 
     @Override
+    protected void onResume() {
+        super.onResume();
+        updateHomepageBackground();
+    }
+
+    @Override
     protected void onStop() {
         super.onStop();
         mAllowUpdateSuggestion = true;
@@ -427,21 +436,45 @@ public class SettingsHomepageActivity extends FragmentActivity implements
     }
 
     private void updateHomepageBackground() {
-        if (!mIsEmbeddingActivityEnabled) {
+        final Window window = getWindow();
+        window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+
+        boolean glowEnabled = Settings.System.getIntForUser(
+                getContentResolver(),
+                Settings.System.SETTINGS_AMBIENT_GLOW_ENABLED, 0, UserHandle.myUserId()) == 1;
+
+        View contentView = findViewById(android.R.id.content);
+        View appBarContainer = findViewById(R.id.app_bar_container);
+
+        if (glowEnabled) {
+            if (contentView != null && !(contentView.getBackground() instanceof MonetAmbientGlowDrawable)) {
+                contentView.setBackground(new MonetAmbientGlowDrawable(this));
+            }
+            if (appBarContainer != null) {
+                appBarContainer.setBackgroundColor(android.graphics.Color.TRANSPARENT);
+            }
             return;
         }
 
-        final Window window = getWindow();
+        if (!mIsEmbeddingActivityEnabled) {
+            if (contentView != null && contentView.getBackground() instanceof MonetAmbientGlowDrawable) {
+                contentView.setBackground(null);
+            }
+            return;
+        }
+
         final int color = mIsTwoPane
                 ? getColor(R.color.settings_two_pane_background_color)
                 : Utils.getColorAttrDefaultColor(this, android.R.attr.colorBackground);
 
-        window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
-
         // Update content background.
-        findViewById(android.R.id.content).setBackgroundColor(color);
-        //Update search bar background
-        findViewById(R.id.app_bar_container).setBackgroundColor(color);
+        if (contentView != null) {
+            contentView.setBackgroundColor(color);
+        }
+        // Update search bar background
+        if (appBarContainer != null) {
+            appBarContainer.setBackgroundColor(color);
+        }
     }
 
     private void showSuggestionFragment(boolean scrollNeeded) {

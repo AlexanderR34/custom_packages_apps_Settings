@@ -281,5 +281,13 @@
         android:order="51"
         settings:controller="com.android.settings.system.ClockPositionPreferenceController" />
 
+    <!-- Ambient Monet Glow in Settings -->
+    <SwitchPreferenceCompat
+        android:key="settings_ambient_glow_enabled"
+        android:title="@string/settings_ambient_glow_title"
+        android:summary="@string/settings_ambient_glow_summary"
+        android:order="60"
+        settings:controller="com.android.settings.system.SettingsAmbientGlowPreferenceController" />
+
 </PreferenceScreen>
 

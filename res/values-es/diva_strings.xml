@@ -653,4 +653,8 @@
 
     <!-- System Version -->
     <string name="diva_system_version_title">Versión del sistema</string>
+
+    <!-- Settings Ambient Monet Glow -->
+    <string name="settings_ambient_glow_title">Resplandor ambiental en Ajustes</string>
+    <string name="settings_ambient_glow_summary">Muestra un resplandor ambiental dinámico con colores Monet en el fondo de los menús de Ajustes con efecto de cristal translúcido</string>
 </resources>

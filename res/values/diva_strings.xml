@@ -661,4 +661,8 @@
 
     <!-- System Version -->
     <string name="diva_system_version_title">System version</string>
+
+    <!-- Settings Ambient Monet Glow -->
+    <string name="settings_ambient_glow_title">Ambient Monet glow in Settings</string>
+    <string name="settings_ambient_glow_summary">Display a smooth, dynamic Monet ambient glow across Settings menus with translucent frosted glass cards</string>
 </resources>

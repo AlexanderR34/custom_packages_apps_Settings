@@ -24,6 +24,8 @@ import android.content.pm.PackageManager;
 import android.content.res.TypedArray;
 import android.os.Bundle;
 import android.os.SystemProperties;
+import android.os.UserHandle;
+import android.provider.Settings;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -31,6 +33,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
 import android.widget.Toolbar;
+
+import com.android.settings.deviceinfo.aboutphone.MonetAmbientGlowDrawable;
 
 import androidx.annotation.DrawableRes;
 import androidx.annotation.NonNull;
@@ -170,8 +174,41 @@ public class SettingsBaseActivity extends FragmentActivity implements CategoryHa
                 com.android.settingslib.collapsingtoolbar.R.id.floating_toolbar);
         getToolbarDelegate().initFloatingToolbar(getApplicationContext(), toolbarLayout);
 
+        applyAmbientGlowBackground();
+
         if (DEBUG_TIMING) {
             Log.d(TAG, "onCreate took " + (System.currentTimeMillis() - startTime) + " ms");
+        }
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        applyAmbientGlowBackground();
+    }
+
+    private void applyAmbientGlowBackground() {
+        if (WizardManagerHelper.isAnySetupWizard(getIntent())) {
+            return;
+        }
+        boolean glowEnabled = Settings.System.getIntForUser(
+                getContentResolver(),
+                Settings.System.SETTINGS_AMBIENT_GLOW_ENABLED, 0, UserHandle.myUserId()) == 1;
+
+        View root = findViewById(R.id.content_parent);
+        if (root == null) {
+            root = findViewById(android.R.id.content);
+        }
+        if (root != null) {
+            if (glowEnabled) {
+                if (!(root.getBackground() instanceof MonetAmbientGlowDrawable)) {
+                    root.setBackground(new MonetAmbientGlowDrawable(this));
+                }
+            } else {
+                if (root.getBackground() instanceof MonetAmbientGlowDrawable) {
+                    root.setBackground(null);
+                }
+            }
         }
     }
 
