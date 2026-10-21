@@ -130,14 +130,7 @@
             android:icon="@drawable/ic_gesture_24px"
             settings:controller="com.android.settings.gestures.NavigationSettingsContextualSearchController" />
 
-        <Preference
-            android:key="external_display_settings"
-            android:title="@string/external_display_settings_title"
-            android:summary="@string/summary_placeholder"
-            android:icon="@drawable/ic_settings_display"
-            android:fragment="com.android.settings.display.ExternalDisplaySettingsConfiguration"
-            settings:keywords="@string/keywords_external_display_settings"
-            settings:controller="com.android.settings.display.ExternalDisplayPreferenceController"/>
+
 
     </PreferenceCategory>
 
@@ -260,6 +253,13 @@
         android:summary="@string/disable_scoped_storage_restrictions_summary"
         android:order="40"
         settings:controller="com.android.settings.system.DisableScopedStorageRestrictionsPreferenceController" />
+
+    <SwitchPreferenceCompat
+        android:key="pocket_mode_enabled"
+        android:title="@string/pocket_mode_title"
+        android:summary="@string/pocket_mode_summary"
+        android:order="45"
+        settings:controller="com.android.settings.system.PocketModePreferenceController" />
 
     <!-- Status Bar Dynamic Chips Sub-dashboard -->
     <Preference

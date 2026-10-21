@@ -164,6 +164,41 @@ class ShadePanelsFragment : RadioButtonPickerFragment(), HelpResourceProvider {
         }
         screen.addPreference(autoBrightnessPref)
 
+        val mediaTimeoutPref = ListPreference(context).apply {
+            key = KEY_QS_MEDIA_PLAYER_TIMEOUT
+            title = context.getText(R.string.qs_media_player_timeout_title)
+            dialogTitle = context.getText(R.string.qs_media_player_timeout_title)
+            setEntries(R.array.qs_media_player_timeout_entries)
+            setEntryValues(R.array.qs_media_player_timeout_values)
+            val currentVal = Settings.System.getInt(
+                context.contentResolver,
+                "qs_media_card_timeout",
+                60
+            )
+            value = currentVal.toString()
+            val index = findIndexOfValue(value)
+            if (index >= 0 && index < entries.size) {
+                summary = entries[index]
+            } else {
+                summary = context.getText(R.string.qs_media_player_timeout_1min)
+            }
+            setOnPreferenceChangeListener { pref, newValue ->
+                val strVal = newValue as String
+                val intVal = strVal.toIntOrNull() ?: 60
+                Settings.System.putInt(
+                    context.contentResolver,
+                    "qs_media_card_timeout",
+                    intVal
+                )
+                val listPref = pref as ListPreference
+                val newIndex = listPref.findIndexOfValue(strVal)
+                if (newIndex >= 0 && newIndex < listPref.entries.size) {
+                    listPref.summary = listPref.entries[newIndex]
+                }
+                true
+            }
+        }
+
         val mediaCardModePref = SwitchPreferenceCompat(context).apply {
             key = KEY_QS_MEDIA_CARD_MODE
             title = context.getText(R.string.qs_media_in_notifications_title)
@@ -172,6 +207,7 @@ class ShadePanelsFragment : RadioButtonPickerFragment(), HelpResourceProvider {
                 if (it != -1) it == 1 else Settings.System.getInt(context.contentResolver, "qs_media_card_mode", 3) != 0
             }
             isChecked = isEnabled
+            mediaTimeoutPref.isEnabled = isEnabled
             setOnPreferenceChangeListener { _, newValue ->
                 val checked = newValue as Boolean
                 Settings.System.putInt(
@@ -184,10 +220,12 @@ class ShadePanelsFragment : RadioButtonPickerFragment(), HelpResourceProvider {
                     "qs_media_card_mode",
                     if (checked) 3 else 0
                 )
+                mediaTimeoutPref.isEnabled = checked
                 true
             }
         }
         screen.addPreference(mediaCardModePref)
+        screen.addPreference(mediaTimeoutPref)
 
         val volumeSliderPref = SwitchPreferenceCompat(context).apply {
             key = KEY_QS_SHOW_VOLUME_SLIDER
@@ -220,6 +258,22 @@ class ShadePanelsFragment : RadioButtonPickerFragment(), HelpResourceProvider {
             }
         }
         screen.addPreference(invertSidesPref)
+
+        val smartPullDownPref = SwitchPreferenceCompat(context).apply {
+            key = KEY_DUAL_SHADE_SMART_PULL_DOWN
+            title = context.getText(R.string.dual_shade_smart_pull_down_title)
+            summary = context.getText(R.string.dual_shade_smart_pull_down_summary)
+            isChecked = Settings.System.getInt(context.contentResolver, "dual_shade_smart_pull_down", 0) == 1
+            setOnPreferenceChangeListener { _, newValue ->
+                Settings.System.putInt(
+                    context.contentResolver,
+                    "dual_shade_smart_pull_down",
+                    if (newValue as Boolean) 1 else 0
+                )
+                true
+            }
+        }
+        screen.addPreference(smartPullDownPref)
 
         if (isDeviceFoldable(context)) {
             screen.addPreference(
@@ -297,8 +351,11 @@ class ShadePanelsFragment : RadioButtonPickerFragment(), HelpResourceProvider {
         @VisibleForTesting
         const val KEY_QS_SHOW_VOLUME_SLIDER = "qs_show_volume_slider"
         const val KEY_QS_MEDIA_CARD_MODE = "qs_media_card_mode"
+        const val KEY_QS_MEDIA_PLAYER_TIMEOUT = "qs_media_card_timeout"
         @VisibleForTesting
         const val KEY_DUAL_SHADE_INVERT_SIDES = "dual_shade_invert_sides"
+        @VisibleForTesting
+        const val KEY_DUAL_SHADE_SMART_PULL_DOWN = "dual_shade_smart_pull_down"
 
         // Expose as a static field for the @SearchIndexable annotation processor.
         @JvmField
