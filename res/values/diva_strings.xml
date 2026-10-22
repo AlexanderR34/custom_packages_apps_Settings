@@ -124,7 +124,8 @@
     <string name="status_bar_chips_progress_bar_category">Progress bar style (Media &amp; Downloads)</string>
     <string name="status_bar_chips_progress_bar_color_mode_title">Bar color mode</string>
     <string name="status_bar_chips_progress_bar_color_mode_summary">Choose the color style for the progress bar</string>
-    <string name="status_bar_chips_progress_bar_color_mode_monet">Monet / App artwork (Default)</string>
+    <string name="status_bar_chips_progress_bar_color_mode_monet">Monet dynamic color (Default)</string>
+    <string name="status_bar_chips_progress_bar_color_mode_artwork">Album artwork color</string>
     <string name="status_bar_chips_progress_bar_color_mode_rainbow">Rainbow mode (Smooth chromatic wave)</string>
     <string name="status_bar_chips_progress_bar_color_mode_custom">Custom HEX color</string>
     <string name="status_bar_chips_progress_bar_custom_color_title">Custom bar color</string>
@@ -665,4 +666,34 @@
     <!-- Settings Ambient Monet Glow -->
     <string name="settings_ambient_glow_title">Ambient Monet glow in Settings</string>
     <string name="settings_ambient_glow_summary">Display a smooth, dynamic Monet ambient glow across Settings menus with translucent frosted glass cards</string>
+
+    <!-- QS and Notifications Ambient Monet Glow -->
+    <string name="qs_notification_ambient_glow_title">Ambient Monet glow in Notifications &amp; QS</string>
+    <string name="qs_notification_ambient_glow_summary">Display dynamic animated Monet ambient glow confined within notification and Quick Settings panels</string>
+
+    <!-- Icon Shape Customization -->
+    <string name="icon_shape_title">Icon shape</string>
+    <string name="icon_shape_summary">Change the shape of app icons across the launcher and system</string>
+    <string name="icon_shape_default">Default (Circle)</string>
+    <string name="icon_shape_squircle">Squircle</string>
+    <string name="icon_shape_roundedrect">Rounded rectangle</string>
+    <string name="icon_shape_teardrop">Teardrop</string>
+    <string name="icon_shape_cylinder">Cylinder</string>
+    <string name="icon_shape_hexagon">Hexagon</string>
+    <string name="icon_shape_pebble">Pebble</string>
+
+
+    <!-- Pixel Launcher Customization -->
+    <string name="pixel_launcher_settings_title">Pixel Launcher customization</string>
+    <string name="pixel_launcher_settings_summary">Sharp drawer background, hide search bar, hide icon labels and rounded recents</string>
+    <string name="pixel_launcher_drawer_category">App drawer</string>
+    <string name="launcher_no_drawer_blur_title">Sharp background (No blur)</string>
+    <string name="launcher_no_drawer_blur_summary">Keep the home screen wallpaper 100% sharp behind the drawer when translucent</string>
+    <string name="launcher_hide_qsb_title">Hide bottom search bar</string>
+    <string name="launcher_hide_qsb_summary">Hide the Google Search Bar (QSB) from the dock on the home screen</string>
+    <string name="pixel_launcher_icons_category">Icons &amp; Recents</string>
+    <string name="launcher_hide_labels_title">Hide app icon labels</string>
+    <string name="launcher_hide_labels_summary">Clean minimal look without app names under icons</string>
+    <string name="launcher_rounded_overview_title">Rounded recent app cards</string>
+    <string name="launcher_rounded_overview_summary">Increase the corner radius of app preview cards in Overview</string>
 </resources>

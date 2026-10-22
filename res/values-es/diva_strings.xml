@@ -122,7 +122,8 @@
     <string name="status_bar_chips_progress_bar_category">Estilo de la barra de progreso (Música y Descargas)</string>
     <string name="status_bar_chips_progress_bar_color_mode_title">Modo de color de la barra</string>
     <string name="status_bar_chips_progress_bar_color_mode_summary">Elige el estilo de color para la barrita de progreso</string>
-    <string name="status_bar_chips_progress_bar_color_mode_monet">Monet / Portada del álbum (Predeterminado)</string>
+    <string name="status_bar_chips_progress_bar_color_mode_monet">Adaptado a Monet (Predeterminado)</string>
+    <string name="status_bar_chips_progress_bar_color_mode_artwork">Color de la portada del álbum</string>
     <string name="status_bar_chips_progress_bar_color_mode_rainbow">Modo Arcoíris (Onda cromática en movimiento)</string>
     <string name="status_bar_chips_progress_bar_color_mode_custom">Color personalizado (HEX)</string>
     <string name="status_bar_chips_progress_bar_custom_color_title">Color personalizado de la barra</string>
@@ -657,4 +658,34 @@
     <!-- Settings Ambient Monet Glow -->
     <string name="settings_ambient_glow_title">Resplandor ambiental en Ajustes</string>
     <string name="settings_ambient_glow_summary">Muestra un resplandor ambiental dinámico con colores Monet en el fondo de los menús de Ajustes con efecto de cristal translúcido</string>
+
+    <!-- QS and Notifications Ambient Monet Glow -->
+    <string name="qs_notification_ambient_glow_title">Resplandor ambiental en Notificaciones y QS</string>
+    <string name="qs_notification_ambient_glow_summary">Muestra un resplandor ambiental dinámico con colores Monet confinado dentro del panel de notificaciones y accesos rápidos</string>
+
+    <!-- Icon Shape Customization -->
+    <string name="icon_shape_title">Forma de los iconos</string>
+    <string name="icon_shape_summary">Cambia la forma de los iconos de las aplicaciones en el launcher y el sistema</string>
+    <string name="icon_shape_default">Predeterminado (Círculo)</string>
+    <string name="icon_shape_squircle">Squircle</string>
+    <string name="icon_shape_roundedrect">Rectángulo redondeado</string>
+    <string name="icon_shape_teardrop">Lágrima</string>
+    <string name="icon_shape_cylinder">Cilindro</string>
+    <string name="icon_shape_hexagon">Hexágono</string>
+    <string name="icon_shape_pebble">Guijarro</string>
+
+
+    <!-- Pixel Launcher Customization (Spanish) -->
+    <string name="pixel_launcher_settings_title">Personalización del Launcher</string>
+    <string name="pixel_launcher_settings_summary">Cajón nítido sin difuminado, ocultar barra de búsqueda y nombres</string>
+    <string name="pixel_launcher_drawer_category">Cajón de aplicaciones</string>
+    <string name="launcher_no_drawer_blur_title">Fondo nítido en el cajón (Sin difuminado)</string>
+    <string name="launcher_no_drawer_blur_summary">Mantiene la pantalla de inicio y el fondo 100% nítidos detrás del cajón translúcido sin emborronar</string>
+    <string name="launcher_hide_qsb_title">Ocultar barra de búsqueda inferior</string>
+    <string name="launcher_hide_qsb_summary">Oculta la barra de búsqueda de Google (QSB) del dock en la pantalla de inicio</string>
+    <string name="pixel_launcher_icons_category">Iconos y Recientes</string>
+    <string name="launcher_hide_labels_title">Ocultar nombres de las aplicaciones</string>
+    <string name="launcher_hide_labels_summary">Diseño limpio y minimalista sin textos debajo de los iconos</string>
+    <string name="launcher_rounded_overview_title">Tarjetas de recientes redondeadas</string>
+    <string name="launcher_rounded_overview_summary">Aumenta el radio de curvatura en las esquinas de las tarjetas de apps recientes</string>
 </resources>

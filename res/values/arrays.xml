@@ -2018,6 +2018,7 @@
     <!-- Status bar chips progress bar color mode -->
     <string-array name="status_bar_chips_progress_bar_color_mode_entries">
         <item>@string/status_bar_chips_progress_bar_color_mode_monet</item>
+        <item>@string/status_bar_chips_progress_bar_color_mode_artwork</item>
         <item>@string/status_bar_chips_progress_bar_color_mode_rainbow</item>
         <item>@string/status_bar_chips_progress_bar_color_mode_custom</item>
     </string-array>
@@ -2026,6 +2027,28 @@
         <item>0</item>
         <item>1</item>
         <item>2</item>
+        <item>3</item>
+    </string-array>
+
+    <!-- Icon shape customization -->
+    <string-array name="icon_shape_entries">
+        <item>@string/icon_shape_default</item>
+        <item>@string/icon_shape_squircle</item>
+        <item>@string/icon_shape_roundedrect</item>
+        <item>@string/icon_shape_teardrop</item>
+        <item>@string/icon_shape_cylinder</item>
+        <item>@string/icon_shape_hexagon</item>
+        <item>@string/icon_shape_pebble</item>
+    </string-array>
+
+    <string-array name="icon_shape_values" translatable="false">
+        <item></item>
+        <item>com.android.theme.icon.squircle</item>
+        <item>com.android.theme.icon.roundedrect</item>
+        <item>com.android.theme.icon.teardrop</item>
+        <item>com.android.theme.icon.cylinder</item>
+        <item>com.android.theme.icon.hexagon</item>
+        <item>com.android.theme.icon.pebble</item>
     </string-array>
 
 </resources>
