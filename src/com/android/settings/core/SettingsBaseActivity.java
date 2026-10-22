@@ -22,10 +22,14 @@ import android.content.ComponentName;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.content.res.TypedArray;
+import android.database.ContentObserver;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Looper;
 import android.os.SystemProperties;
 import android.os.UserHandle;
 import android.provider.Settings;
+import androidx.recyclerview.widget.RecyclerView;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -175,9 +179,53 @@ public class SettingsBaseActivity extends FragmentActivity implements CategoryHa
         getToolbarDelegate().initFloatingToolbar(getApplicationContext(), toolbarLayout);
 
         applyAmbientGlowBackground();
+        registerAmbientGlowObserver();
 
         if (DEBUG_TIMING) {
             Log.d(TAG, "onCreate took " + (System.currentTimeMillis() - startTime) + " ms");
+        }
+    }
+
+    private ContentObserver mAmbientGlowObserver;
+
+    private void registerAmbientGlowObserver() {
+        if (mAmbientGlowObserver != null) return;
+        mAmbientGlowObserver = new ContentObserver(new Handler(Looper.getMainLooper())) {
+            @Override
+            public void onChange(boolean selfChange) {
+                applyAmbientGlowBackground();
+                refreshRecyclerViewCards();
+            }
+        };
+        getContentResolver().registerContentObserver(
+                Settings.System.getUriFor(Settings.System.SETTINGS_AMBIENT_GLOW_ENABLED),
+                false,
+                mAmbientGlowObserver,
+                UserHandle.myUserId());
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        if (mAmbientGlowObserver != null) {
+            getContentResolver().unregisterContentObserver(mAmbientGlowObserver);
+            mAmbientGlowObserver = null;
+        }
+    }
+
+    private void refreshRecyclerViewCards() {
+        View root = findViewById(R.id.content_parent);
+        if (root == null) {
+            root = findViewById(android.R.id.content);
+        }
+        if (root != null) {
+            RecyclerView rv = root.findViewById(androidx.preference.R.id.recycler_view);
+            if (rv == null) {
+                rv = root.findViewById(android.R.id.list);
+            }
+            if (rv != null && rv.getAdapter() != null) {
+                rv.getAdapter().notifyDataSetChanged();
+            }
         }
     }
 

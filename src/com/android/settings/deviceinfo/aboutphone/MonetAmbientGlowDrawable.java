@@ -52,7 +52,7 @@ public class MonetAmbientGlowDrawable extends Drawable {
         updateMonetColors();
 
         mAnimator = ValueAnimator.ofFloat(0f, (float) (Math.PI * 2));
-        mAnimator.setDuration(16000L); // 16 seconds for graceful continuous rotation
+        mAnimator.setDuration(9000L); // 9 seconds for smooth, visible ambient movement
         mAnimator.setInterpolator(new LinearInterpolator());
         mAnimator.setRepeatCount(ValueAnimator.INFINITE);
         mAnimator.setRepeatMode(ValueAnimator.RESTART);
@@ -60,6 +60,7 @@ public class MonetAmbientGlowDrawable extends Drawable {
             mProgress = (float) anim.getAnimatedValue();
             invalidateSelf();
         });
+        mAnimator.start();
     }
 
     public void updateMonetColors() {
@@ -69,35 +70,35 @@ public class MonetAmbientGlowDrawable extends Drawable {
 
         if (isNight) {
             try {
-                mColorPrimary = mContext.getColor(android.R.color.system_accent1_700);
+                mColorPrimary = mContext.getColor(android.R.color.system_accent1_300);
             } catch (Exception e) {
-                mColorPrimary = 0xFF1A365D;
+                mColorPrimary = 0xFF8AB4F8;
             }
             try {
-                mColorSecondary = mContext.getColor(android.R.color.system_accent2_700);
+                mColorSecondary = mContext.getColor(android.R.color.system_accent2_300);
             } catch (Exception e) {
-                mColorSecondary = 0xFF4A154B;
+                mColorSecondary = 0xFFF093FB;
             }
             try {
-                mColorTertiary = mContext.getColor(android.R.color.system_accent3_700);
+                mColorTertiary = mContext.getColor(android.R.color.system_accent3_300);
             } catch (Exception e) {
-                mColorTertiary = 0xFF5C3C10;
+                mColorTertiary = 0xFFFDE293;
             }
         } else {
             try {
-                mColorPrimary = mContext.getColor(android.R.color.system_accent1_100);
+                mColorPrimary = mContext.getColor(android.R.color.system_accent1_200);
             } catch (Exception e) {
-                mColorPrimary = 0xFFE0EDFE;
+                mColorPrimary = 0xFFD2E3FC;
             }
             try {
-                mColorSecondary = mContext.getColor(android.R.color.system_accent2_100);
+                mColorSecondary = mContext.getColor(android.R.color.system_accent2_200);
             } catch (Exception e) {
-                mColorSecondary = 0xFFFBE4F8;
+                mColorSecondary = 0xFFF8D7DA;
             }
             try {
-                mColorTertiary = mContext.getColor(android.R.color.system_accent3_100);
+                mColorTertiary = mContext.getColor(android.R.color.system_accent3_200);
             } catch (Exception e) {
-                mColorTertiary = 0xFFFEF3D6;
+                mColorTertiary = 0xFFFEF7E0;
             }
         }
     }

@@ -33,12 +33,14 @@ import android.content.pm.PackageManager;
 import android.content.pm.PackageManager.ApplicationInfoFlags;
 import android.content.pm.UserInfo;
 import android.content.res.Configuration;
+import android.database.ContentObserver;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Looper;
 import android.os.Process;
 import android.os.UserHandle;
 import android.os.UserManager;
-import android.provider.Settings;
 import android.text.TextUtils;
 import android.util.ArraySet;
 import android.util.FeatureFlagUtils;
@@ -262,6 +264,7 @@ public class SettingsHomepageActivity extends FragmentActivity implements
 
         initHomepageContainer();
         updateHomepageBackground();
+        registerAmbientGlowObserver();
         mLoadedListeners = new ArraySet<>();
 
         initSearchBarView();
@@ -435,13 +438,54 @@ public class SettingsHomepageActivity extends FragmentActivity implements
         updateSplitLayout();
     }
 
+    private ContentObserver mAmbientGlowObserver;
+
+    private void registerAmbientGlowObserver() {
+        if (mAmbientGlowObserver != null) return;
+        mAmbientGlowObserver = new ContentObserver(new Handler(Looper.getMainLooper())) {
+            @Override
+            public void onChange(boolean selfChange) {
+                updateHomepageBackground();
+                refreshHomepageCards();
+            }
+        };
+        getContentResolver().registerContentObserver(
+                android.provider.Settings.System.getUriFor(
+                        android.provider.Settings.System.SETTINGS_AMBIENT_GLOW_ENABLED),
+                false,
+                mAmbientGlowObserver,
+                UserHandle.myUserId());
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        if (mAmbientGlowObserver != null) {
+            getContentResolver().unregisterContentObserver(mAmbientGlowObserver);
+            mAmbientGlowObserver = null;
+        }
+    }
+
+    private void refreshHomepageCards() {
+        View root = findViewById(android.R.id.content);
+        if (root != null) {
+            androidx.recyclerview.widget.RecyclerView rv = root.findViewById(androidx.preference.R.id.recycler_view);
+            if (rv == null) {
+                rv = root.findViewById(android.R.id.list);
+            }
+            if (rv != null && rv.getAdapter() != null) {
+                rv.getAdapter().notifyDataSetChanged();
+            }
+        }
+    }
+
     private void updateHomepageBackground() {
         final Window window = getWindow();
         window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
 
-        boolean glowEnabled = Settings.System.getIntForUser(
+        boolean glowEnabled = android.provider.Settings.System.getIntForUser(
                 getContentResolver(),
-                Settings.System.SETTINGS_AMBIENT_GLOW_ENABLED, 0, UserHandle.myUserId()) == 1;
+                android.provider.Settings.System.SETTINGS_AMBIENT_GLOW_ENABLED, 0, UserHandle.myUserId()) == 1;
 
         View contentView = findViewById(android.R.id.content);
         View appBarContainer = findViewById(R.id.app_bar_container);

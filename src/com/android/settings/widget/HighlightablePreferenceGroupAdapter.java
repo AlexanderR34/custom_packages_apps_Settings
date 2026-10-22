@@ -26,6 +26,8 @@ import android.graphics.drawable.Drawable;
 import android.graphics.drawable.LayerDrawable;
 import android.graphics.drawable.TransitionDrawable;
 import android.os.Bundle;
+import android.os.UserHandle;
+import android.provider.Settings;
 import android.text.TextUtils;
 import android.util.Log;
 import android.util.TypedValue;
@@ -141,6 +143,35 @@ public class HighlightablePreferenceGroupAdapter extends SettingsPreferenceGroup
     public void onBindViewHolder(@NonNull PreferenceViewHolder holder, int position) {
         super.onBindViewHolder(holder, position);
         updateBackground(holder, position);
+        applyCardTransparency(holder);
+    }
+
+    private void applyCardTransparency(@NonNull PreferenceViewHolder holder) {
+        final View v = holder.itemView;
+        if (v == null) return;
+        final boolean glowEnabled = Settings.System.getIntForUser(
+                mContext.getContentResolver(),
+                Settings.System.SETTINGS_AMBIENT_GLOW_ENABLED, 0, UserHandle.myUserId()) == 1;
+
+        final Drawable bg = v.getBackground();
+        if (bg != null) {
+            final int alpha = glowEnabled ? 160 : 255;
+            setDrawableAlphaRecursive(bg.mutate(), alpha);
+        }
+    }
+
+    private static void setDrawableAlphaRecursive(Drawable d, int alpha) {
+        if (d == null) return;
+        d.setAlpha(alpha);
+        if (d instanceof LayerDrawable) {
+            LayerDrawable ld = (LayerDrawable) d;
+            for (int i = 0; i < ld.getNumberOfLayers(); i++) {
+                Drawable layer = ld.getDrawable(i);
+                if (layer != null) {
+                    setDrawableAlphaRecursive(layer.mutate(), alpha);
+                }
+            }
+        }
     }
 
     @VisibleForTesting
